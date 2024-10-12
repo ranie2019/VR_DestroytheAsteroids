@@ -1,0 +1,6 @@
+colocar ovinis para atacar o player, e alternar entre os meteoros e as naves
+
+quando a pontuação atingir um limite desbloquear uma nova arma mais poderosa
+
+
+

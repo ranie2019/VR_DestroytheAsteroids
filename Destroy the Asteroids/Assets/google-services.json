@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39243393131",
+    "project_id": "destroy-the-asteroids",
+    "storage_bucket": "destroy-the-asteroids.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39243393131:android:b40b9c88a9510f5158e92e",
+        "android_client_info": {
+          "package_name": "com.RA.Games.DestroytheAsteroids"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAK98qpZjyDIEKarvDDKup71Brb1-ajGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
