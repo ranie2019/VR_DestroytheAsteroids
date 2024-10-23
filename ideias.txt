@@ -4,3 +4,23 @@ quando a pontuação atingir um limite desbloquear uma nova arma mais poderosa
 
 
 
+🎮🚀 Pessoal, estou empolgado em compartilhar com vocês o meu novo jogo de realidade virtual (VR): Destroy the Asteroids! 🚀🎮
+
+Acabei de lançar um game emocionante, onde o objetivo é destruir o máximo de asteroides no espaço antes que eles destruam a Terra! 🌌 Se você curte jogos de ação e desafios em VR, Destroy the Asteroids vai te prender do início ao fim. Teste seus reflexos e veja se consegue alcançar a maior pontuação! 🌟💥
+
+🎯 O jogo está disponível para Oculus Quest 2
+🕹️ Confira no SideQuest: https://sidequestvr.com/app/38211/destroy-the-asteroids
+
+Estou muito animado por compartilhar esse projeto com a comunidade, e adoraria ouvir o feedback de vocês! Se gostarem, fiquem à vontade para compartilhar! 🙌🔥
+
+***********************************************
+
+criacao de documentacao completa
+
+publico
+mecanica
+roteiro
+prospecto de valores
+pipeline de execucao do projeto(inicio e fim do preojeto)todas as etapas de cricao
+fluxograma
+conceito artistico
