@@ -1,49 +1,94 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class AsteroidHit : MonoBehaviour
 {
+    [Header("Configurações de Destruição")]
     [SerializeField] private GameObject asteroidExplosion;
+    [SerializeField] private float explosionLifetime = 2f;
+    [SerializeField] private float asteroidDestroyDelay = 0f;
+
+    [Header("Referências Externas")]
     [SerializeField] private GameController gameController;
     [SerializeField] private GameObject popupCanvas;
 
     private void Awake()
     {
-        gameController = FindObjectOfType<GameController>();
+        // Tenta encontrar o GameController na cena
+        gameController = FindAnyObjectByType<GameController>();
+
+        // Verifica se o GameController foi encontrado
+        if (gameController == null)
+        {
+            Debug.LogError("GameController não encontrado!");
+        }
     }
 
-    public void AsteroidDestroyed()
+    private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(asteroidExplosion, transform.position, transform.rotation);
-
-
-        if(GameController.currentGameStatus == GameController.GameState.Playing)
+        // Verifica se o objeto que colidiu tem a tag "Laser"
+        if (collision.gameObject.CompareTag("Laser"))
         {
-            //calculate the score for hitting this asteroid.
-            float distanceFromPlayer = Vector3.Distance(transform.position, Vector3.zero);
-            int bonusPoints = (int)distanceFromPlayer;
-
-            int asteroidScore = 10 * bonusPoints;
-
-            //set our text for the popup - then instantiate the popup
-            popupCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = asteroidScore.ToString();
-
-            GameObject asteroidPopup = Instantiate(popupCanvas, transform.position, Quaternion.identity);
-
-            //adjust the scale of the popup
-            asteroidPopup.transform.localScale = new Vector3(transform.localScale.x * (distanceFromPlayer / 10),
-                                                             transform.localScale.y * (distanceFromPlayer / 10),
-                                                             transform.localScale.z * (distanceFromPlayer / 10));
-
-
-
-            //pass score to GameController
-            gameController.UpdatePlayerScore(asteroidScore);
+            HandleAsteroidDestruction();
+            Destroy(collision.gameObject); // Destrói o laser após a colisão
         }
-        
+    }
 
-        Destroy(this.gameObject);
+    public void HandleAsteroidDestruction()
+    {
+        // Conteúdo do método permanece o mesmo
+        CreateExplosion();
+
+        int asteroidScore = CalculateScore();
+        Debug.Log("Pontuação calculada: " + asteroidScore);
+        ShowScorePopup(asteroidScore);
+
+        if (gameController != null)
+        {
+            gameController.UpdatePlayerScore(asteroidScore);
+            Debug.Log("Pontuação do jogador atualizada.");
+        }
+        else
+        {
+            Debug.LogError("GameController não foi encontrado na cena.");
+        }
+
+        Destroy(gameObject, asteroidDestroyDelay);
+    }
+
+    private void CreateExplosion()
+    {
+        // Instancia a explosão do asteroide se o prefab foi atribuído
+        if (asteroidExplosion != null)
+        {
+            GameObject explosion = Instantiate(asteroidExplosion, transform.position, transform.rotation);
+            Destroy(explosion, explosionLifetime); // Destroi a explosão após o tempo definido
+        }
+    }
+
+    private int CalculateScore()
+    {
+        // Calcula a pontuação com base na distância do centro da cena (Vector3.zero)
+        float distanceFromCenter = Vector3.Distance(transform.position, Vector3.zero);
+
+        // Garante que a pontuação mínima seja 1
+        return Mathf.Max(1, (int)distanceFromCenter);
+    }
+
+    private void ShowScorePopup(int score)
+    {
+        // Mostra o popup com a pontuação se o prefab foi atribuído
+        if (popupCanvas != null)
+        {
+            GameObject asteroidPopup = Instantiate(popupCanvas, transform.position, Quaternion.identity);
+            TextMeshProUGUI scoreText = asteroidPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+            // Define o texto do popup como a pontuação calculada
+            scoreText.text = score.ToString();
+
+            // Ajusta a escala do popup com base na distância do centro
+            float scaleMultiplier = Vector3.Distance(transform.position, Vector3.zero) / 10f;
+            asteroidPopup.transform.localScale = transform.localScale * scaleMultiplier;
+        }
     }
 }

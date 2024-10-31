@@ -5545,7 +5545,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4419109857033775678}
         m_TargetAssemblyTypeName: LaserGun, Assembly-CSharp
-        m_MethodName: LaserGunFired
+        m_MethodName: LaserGunFire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
