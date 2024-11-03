@@ -1,47 +1,71 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    [Header("Size of the spawner area")]
-    public Vector3 spawnerSize;
+    [Header("Tamanho da área de geração")]
+    [SerializeField] private Vector3 spawnerSize;
 
-    [Header("Rate of spawn")]
-    public float spawnRate = 1f;
+    [Header("Taxa de geração (segundos)")]
+    [SerializeField] private float spawnRate = 1.0f;
 
-    [Header("Model to spawn")]
-    [SerializeField] private GameObject asteriodModel;
+    [Header("Modelos de Asteroides")]
+    [SerializeField] private GameObject[] asteroidModels;
 
-    private float spawnTimer = 0f;
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0, 1, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, spawnerSize);
-    }
+    private float spawnTimer;
 
     private void Update()
     {
+        // Atualiza o temporizador de spawn
         spawnTimer += Time.deltaTime;
 
-        if(spawnTimer > spawnRate)
+        // Verifica se é hora de gerar um novo asteroide
+        if (spawnTimer >= spawnRate)
         {
-            spawnTimer = 0;
             SpawnAsteroid();
+            spawnTimer = 0f; // Reinicia o temporizador
         }
     }
 
     private void SpawnAsteroid()
     {
-        //get a random position for the asteroid
-        Vector3 spawnPoint = transform.position + new Vector3(UnityEngine.Random.Range(-spawnerSize.x / 2, spawnerSize.x / 2),
-                                                              UnityEngine.Random.Range(-spawnerSize.y / 2, spawnerSize.y / 2),
-                                                              UnityEngine.Random.Range(-spawnerSize.z / 2, spawnerSize.z / 2));
+        // Gera uma posição aleatória dentro da área do spawner
+        Vector3 spawnPosition = GetRandomSpawnPosition();
 
-        GameObject asteroid = Instantiate(asteriodModel, spawnPoint, transform.rotation);
+        // Seleciona aleatoriamente um dos modelos de asteroide
+        GameObject selectedAsteroid = GetRandomAsteroidModel();
 
-        asteroid.transform.SetParent(this.transform);
+        // Instancia o asteroide selecionado na posição gerada com rotação padrão
+        if (selectedAsteroid != null)
+        {
+            Instantiate(selectedAsteroid, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        // Ajusta a geração para o eixo X como a faixa principal
+        return transform.position + new Vector3(
+            Random.Range(-spawnerSize.x / 2, spawnerSize.x / 2), // Eixo X
+            Random.Range(-spawnerSize.y / 2, spawnerSize.y / 2), // Eixo Y
+            Random.Range(-spawnerSize.z / 2, spawnerSize.z / 2)  // Eixo Z
+        );
+    }
+
+    private GameObject GetRandomAsteroidModel()
+    {
+        if (asteroidModels.Length == 0)
+        {
+            return null;
+        }
+
+        int randomIndex = Random.Range(0, asteroidModels.Length);
+        return asteroidModels[randomIndex];
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Desenha a área do spawner no editor para visualização
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawCube(transform.position, spawnerSize);
     }
 }
