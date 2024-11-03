@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426654}
   - component: {fileID: 11491094}
+  - component: {fileID: 1998726055922408939}
   m_Layer: 0
   m_Name: EarthHigh
   m_TagString: Untagged
@@ -52,6 +53,23 @@ MonoBehaviour:
   clockwise: 1
   direction: 1
   directionChangeSpeed: 2
+--- !u!114 &1998726055922408939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6266e8194ceda124583272410fa570a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractionRadius: 1000
+  attractionForce: 1000
+  gravityMultiplier: 500
+  attractionSmoothing: 100
+  maxSpeed: 500
 --- !u!1 &160422
 GameObject:
   m_ObjectHideFlags: 0
