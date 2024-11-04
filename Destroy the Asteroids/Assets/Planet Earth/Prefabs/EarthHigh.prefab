@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spin: 1
   spinParent: 0
-  speed: 1
+  speed: 5
   clockwise: 1
   direction: 1
   directionChangeSpeed: 2
@@ -65,11 +65,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6266e8194ceda124583272410fa570a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionRadius: 1000
-  attractionForce: 1000
-  gravityMultiplier: 500
-  attractionSmoothing: 100
-  maxSpeed: 500
+  attractionRadius: 260
+  attractionForce: 10000
+  gravityMultiplier: 5000
+  attractionSmoothing: 1000
+  maxSpeed: 100
 --- !u!1 &160422
 GameObject:
   m_ObjectHideFlags: 0
