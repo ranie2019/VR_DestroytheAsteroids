@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8685960642093649280}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e8c3e347bc18f408d5828584a7780d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 100
+  velocidade: 800
   tagAlvo: Asteroid
   prefabFragmento: {fileID: 886614355072982495}
-  quantidadeFragmentos: 10
+  quantidadeFragmentos: 5
   forcaFragmentos: 5
   tempoDeVida: 7

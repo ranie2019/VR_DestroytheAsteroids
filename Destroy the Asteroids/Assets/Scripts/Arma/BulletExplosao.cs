@@ -14,7 +14,7 @@ public class BulletExplosao : MonoBehaviour
     [SerializeField] private GameObject prefabFragmento;
 
     [Tooltip("Número de fragmentos gerados na explosão.")]
-    [SerializeField] private int quantidadeFragmentos = 10;
+    [SerializeField] private int quantidadeFragmentos = 5;
 
     [Tooltip("Força aplicada aos fragmentos ao serem criados.")]
     [SerializeField] private float forcaFragmentos = 5f;
@@ -71,12 +71,18 @@ public class BulletExplosao : MonoBehaviour
             // Cria um fragmento no local da explosão
             GameObject fragmento = Instantiate(prefabFragmento, transform.position, Quaternion.identity);
 
+            // Configura um nome único para o fragmento (opcional para depuração)
+            fragmento.name = $"Fragmento_{i + 1}";
+
             // Adiciona uma força aleatória ao fragmento
             if (fragmento.TryGetComponent(out Rigidbody rb))
             {
                 Vector3 direcaoAleatoria = Random.onUnitSphere; // Direção aleatória
                 rb.AddForce(direcaoAleatoria * forcaFragmentos, ForceMode.Impulse);
             }
+
+            // (Opcional) Configura tempo de vida dos fragmentos para evitar excesso na cena
+            Destroy(fragmento, 5f);
         }
     }
 
