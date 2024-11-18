@@ -5,12 +5,13 @@ using UnityEngine;
 public class RotacaoObjeto : MonoBehaviour
 {
     [Header("Configurações de Rotação")]
-    [SerializeField] private float velocidadeRotacao = 5.0f; // Velocidade padrão de rotação
+    public float velocidadeRotacao = 5.0f; // Velocidade padrão de rotação
+    public Vector3 eixoRotacao = Vector3.up; // Eixo de rotação padrão (Y)
 
     // Update is called once per frame
     void Update()
     {
-        // Rotaciona o objeto ao redor do eixo Y no sentido anti-horário (como a rotação da Terra)
-        transform.Rotate(0, -velocidadeRotacao * Time.deltaTime, 0);
+        // Aplica a rotação no eixo escolhido
+        transform.Rotate(eixoRotacao * velocidadeRotacao * Time.deltaTime);
     }
 }

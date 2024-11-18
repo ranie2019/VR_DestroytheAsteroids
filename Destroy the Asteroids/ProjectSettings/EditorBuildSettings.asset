@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SpaceShooter2022/Scenes/SpaceShooter2022_main.unity
-    guid: 781df1e1c88c3e84897d0b03b49c7536
+    path: Assets/Scenes/Cena_main.unity
+    guid: 4bac76ef534f8e94f8467a434ded8d75
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 0e0e6c93a0b9fc547b8f34b26e84c808,
       type: 2}

@@ -9,19 +9,13 @@ public class AsteroidHit : MonoBehaviour
     [SerializeField] private float asteroidDestroyDelay = 0f;
 
     [Header("Referências Externas")]
-    [SerializeField] private GameController gameController;
+    private GameController gameController;
     [SerializeField] private GameObject popupCanvas;
 
     private void Awake()
     {
         // Tenta encontrar o GameController na cena
         gameController = FindAnyObjectByType<GameController>();
-
-        // Verifica se o GameController foi encontrado
-        if (gameController == null)
-        {
-            Debug.LogError("GameController não encontrado!");
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -47,10 +41,6 @@ public class AsteroidHit : MonoBehaviour
         {
             gameController.UpdatePlayerScore(asteroidScore);
             Debug.Log("Pontuação do jogador atualizada.");
-        }
-        else
-        {
-            Debug.LogError("GameController não foi encontrado na cena.");
         }
 
         Destroy(gameObject, asteroidDestroyDelay);
