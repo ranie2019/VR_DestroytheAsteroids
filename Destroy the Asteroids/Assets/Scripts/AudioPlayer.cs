@@ -35,7 +35,6 @@ public class AudioPlayer : MonoBehaviour
         {
             AudioClip randomClip = introClips[UnityEngine.Random.Range(0, introClips.Length)];
             StartCoroutine(PlayWithFade(randomClip, false)); // Sem loop para áudios de introdução
-            Debug.Log($"Tocando áudio de introdução: {randomClip.name}");
         }
     }
 

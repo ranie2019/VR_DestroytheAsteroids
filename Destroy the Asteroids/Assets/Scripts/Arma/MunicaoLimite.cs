@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MunicaoLimite : MonoBehaviour
 {
@@ -30,6 +31,16 @@ public class MunicaoLimite : MonoBehaviour
     private bool recarregando = false;
     private AudioSource audioSource;
 
+    // Novo sistema de entrada
+    private InputAction dispararAction;
+
+    private void OnEnable()
+    {
+        // Configura o Input Action para disparar
+        dispararAction = new InputAction(type: InputActionType.Button, binding: "<Mouse>/leftButton");
+        dispararAction.Enable();
+    }
+
     private void Start()
     {
         // Inicializa o AudioSource
@@ -46,7 +57,7 @@ public class MunicaoLimite : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !recarregando)
+        if (dispararAction.WasPressedThisFrame() && !recarregando)
         {
             Disparar();
         }
@@ -99,5 +110,11 @@ public class MunicaoLimite : MonoBehaviour
     private void AtualizarTextoMunicao()
     {
         municaoText.text = municaoAtual.ToString();
+    }
+
+    private void OnDisable()
+    {
+        // Desabilita o Input Action
+        dispararAction.Disable();
     }
 }
