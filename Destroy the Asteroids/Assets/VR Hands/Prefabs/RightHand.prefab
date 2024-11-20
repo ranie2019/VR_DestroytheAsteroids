@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c6da23fba6f4047adedd2f6678ab80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripAction: {fileID: -741667397773074983, guid: c348712bda248c246b8c49b3db54643f,
+  gripAction: {fileID: -7621925406209348655, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pinchAction: {fileID: 8429157816736509786, guid: c348712bda248c246b8c49b3db54643f,
+  pinchAction: {fileID: -7813013294023911475, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}

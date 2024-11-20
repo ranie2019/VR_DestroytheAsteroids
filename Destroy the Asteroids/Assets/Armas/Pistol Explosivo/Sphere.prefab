@@ -149,6 +149,6 @@ MonoBehaviour:
   velocidade: 800
   tagAlvo: Asteroid
   prefabFragmento: {fileID: 886614355072982495}
-  quantidadeFragmentos: 5
-  forcaFragmentos: 5
-  tempoDeVida: 7
+  quantidadeFragmentos: 1
+  forcaFragmentos: 1
+  tempoDeVida: 5

@@ -12,6 +12,9 @@ public class AsteroidHit : MonoBehaviour
     private GameController gameController;
     [SerializeField] private GameObject popupCanvas;
 
+    [Header("Configurações de Tags")]
+    [SerializeField] private string gravityTag = "Gravidade"; // Tag para identificar objetos de gravidade
+
     private void Awake()
     {
         // Tenta encontrar o GameController na cena
@@ -20,17 +23,21 @@ public class AsteroidHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica se o objeto que colidiu tem a tag "Laser"
-        if (collision.gameObject.CompareTag("Laser"))
+        // Verifica se o objeto que colidiu tem a tag "Gravidade"
+        if (collision.gameObject.CompareTag(gravityTag))
+        {
+            Debug.Log($"Colidiu com objeto de gravidade: {collision.gameObject.name}");
+            DestroyGravitationalObject();
+        }
+        else if (collision.gameObject.CompareTag("Laser"))
         {
             HandleAsteroidDestruction();
-            Destroy(collision.gameObject); // Destrói o laser após a colisão
+            Destroy(collision.gameObject); // Destroi o laser após a colisão
         }
     }
 
     public void HandleAsteroidDestruction()
     {
-        // Conteúdo do método permanece o mesmo
         CreateExplosion();
 
         int asteroidScore = CalculateScore();
@@ -44,6 +51,13 @@ public class AsteroidHit : MonoBehaviour
         }
 
         Destroy(gameObject, asteroidDestroyDelay);
+    }
+
+    private void DestroyGravitationalObject()
+    {
+        Debug.Log("Objeto destruído devido à colisão com gravidade: " + name);
+        CreateExplosion();
+        Destroy(gameObject); // Destroi o objeto imediatamente
     }
 
     private void CreateExplosion()

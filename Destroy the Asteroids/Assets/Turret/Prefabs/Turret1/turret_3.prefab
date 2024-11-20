@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de52bb89295df9419da41fe25b22577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1000
+  distance: 1500
   mount: {fileID: 662840410129687976}
   head: {fileID: 8574188683096011904}
   attachPoints:

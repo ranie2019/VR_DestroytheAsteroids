@@ -6,9 +6,10 @@ public class StartGame : MonoBehaviour
     [Tooltip("Referência ao script AudioPlayer.")]
     [SerializeField] private AudioPlayer audioPlayer;
 
-    [Header("Spawner a ser ativado")]
-    [Tooltip("Referência ao script de Spawner que será ativado.")]
-    [SerializeField] private AsteroidSpawner asteroidSpawnerScript;
+    [Header("Spawners a serem ativados")]
+    [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
+    [SerializeField] private AsteroidSpawner asteroidSpawnerScript1;
+    [SerializeField] private AsteroidSpawner asteroidSpawnerScript2;
 
     [Header("Particle System")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
@@ -38,10 +39,16 @@ public class StartGame : MonoBehaviour
             gameController.ResetScore();
         }
 
-        // Ativa o Spawner
-        if (asteroidSpawnerScript != null)
+        // Ativa o primeiro Spawner
+        if (asteroidSpawnerScript1 != null)
         {
-            asteroidSpawnerScript.enabled = true;
+            asteroidSpawnerScript1.enabled = true;
+        }
+
+        // Ativa o segundo Spawner
+        if (asteroidSpawnerScript2 != null)
+        {
+            asteroidSpawnerScript2.enabled = true;
         }
 
         // Troca o áudio de introdução para o áudio principal do jogo

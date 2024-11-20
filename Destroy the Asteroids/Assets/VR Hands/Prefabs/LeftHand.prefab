@@ -682,9 +682,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c6da23fba6f4047adedd2f6678ab80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripAction: {fileID: -1933264127102390071, guid: c348712bda248c246b8c49b3db54643f,
+  gripAction: {fileID: -8148491892877670638, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pinchAction: {fileID: 2398107341564075493, guid: c348712bda248c246b8c49b3db54643f,
+  pinchAction: {fileID: -2706128282752906596, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
 --- !u!1 &7376254287214117082
 GameObject:

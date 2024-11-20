@@ -350,8 +350,8 @@ MonoBehaviour:
     type: 3}
   bulletSpawnPoint: {fileID: 9064805501977443432}
   bulletSpeed: 900
-  municaoMaxima: 40
-  tempoRecarga: 5
+  municaoMaxima: 30
+  tempoRecarga: 20
   municaoText: {fileID: 7180840596131335054}
   disparoSFX: {fileID: 8300000, guid: f52bef7dc454dbf4d96a763e7518e297, type: 3}
 --- !u!82 &6019602537113935635
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 40
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94b63c08957cf794f9fbc98078f15d69, type: 2}
   m_sharedMaterial: {fileID: -4131890075319073577, guid: 94b63c08957cf794f9fbc98078f15d69,
