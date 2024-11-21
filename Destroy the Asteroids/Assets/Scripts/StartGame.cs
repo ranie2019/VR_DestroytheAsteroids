@@ -19,9 +19,13 @@ public class StartGame : MonoBehaviour
     [Tooltip("Referência ao script GameController.")]
     [SerializeField] private GameController gameController;
 
+    [Header("Objetos Inativos")]
+    [Tooltip("Referências aos objetos Inativos que devem começar a contagem.")]
+    [SerializeField] private Inativo[] objetosInativos;
+
     [Header("Mesh Renderer")]
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
-    [SerializeField] private MeshRenderer childMeshRenderer;
+    [SerializeField] private MeshRenderer childMeshRenderer;  // Adicionada a referência aqui
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -67,6 +71,12 @@ public class StartGame : MonoBehaviour
         if (childMeshRenderer != null)
         {
             childMeshRenderer.enabled = true;
+        }
+
+        // Notifica os objetos inativos para iniciar a contagem
+        foreach (var objInativo in objetosInativos)
+        {
+            objInativo.NotificarInicioDoJogo();  // Chama NotificarInicioDoJogo para cada objeto Inativo
         }
 
         // Desativa o objeto StartGame

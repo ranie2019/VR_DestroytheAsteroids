@@ -41,13 +41,11 @@ public class AsteroidHit : MonoBehaviour
         CreateExplosion();
 
         int asteroidScore = CalculateScore();
-        Debug.Log("Pontuação calculada: " + asteroidScore);
         ShowScorePopup(asteroidScore);
 
         if (gameController != null)
         {
             gameController.UpdatePlayerScore(asteroidScore);
-            Debug.Log("Pontuação do jogador atualizada.");
         }
 
         Destroy(gameObject, asteroidDestroyDelay);
@@ -55,7 +53,6 @@ public class AsteroidHit : MonoBehaviour
 
     private void DestroyGravitationalObject()
     {
-        Debug.Log("Objeto destruído devido à colisão com gravidade: " + name);
         CreateExplosion();
         Destroy(gameObject); // Destroi o objeto imediatamente
     }

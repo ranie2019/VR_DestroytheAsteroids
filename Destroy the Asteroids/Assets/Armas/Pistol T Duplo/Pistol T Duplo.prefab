@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7669879196755616501}
   - component: {fileID: 764191496803522765}
   - component: {fileID: 1336080642312036819}
+  - component: {fileID: 3789058824079681354}
   m_Layer: 0
   m_Name: Pistol T Duplo
   m_TagString: Untagged
@@ -464,6 +465,19 @@ MonoBehaviour:
   tempoRecarga: 20
   municaoText: {fileID: 2196783903675098783}
   disparoSFX: {fileID: 8300000, guid: fa5f15d5c001e1249a46f30914256f91, type: 3}
+--- !u!114 &3789058824079681354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempoDeInatividade: 10
 --- !u!1 &1702040912290477076
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,6 @@ public class AudioPlayer : MonoBehaviour
         {
             AudioClip randomClip = mainGameClips[UnityEngine.Random.Range(0, mainGameClips.Length)];
             StartCoroutine(PlayWithFade(randomClip, true)); // Com loop para áudios principais
-            Debug.Log($"Tocando áudio principal: {randomClip.name}");
         }
     }
 
@@ -53,7 +52,6 @@ public class AudioPlayer : MonoBehaviour
         if (audioSource != null && gameOverClip != null)
         {
             StartCoroutine(PlayWithFade(gameOverClip, false)); // Sem loop para áudio de Game Over
-            Debug.Log($"Tocando áudio de Game Over: {gameOverClip.name}");
         }
     }
 

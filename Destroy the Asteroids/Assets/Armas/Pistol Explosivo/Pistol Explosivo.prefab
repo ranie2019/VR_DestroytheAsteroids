@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4723763750711318010}
   - component: {fileID: 845457418313265169}
   - component: {fileID: 6019602537113935635}
+  - component: {fileID: 508617429398493330}
   m_Layer: 0
   m_Name: Pistol Explosivo
   m_TagString: Untagged
@@ -450,6 +451,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &508617429398493330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010286598784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempoDeInatividade: 17
 --- !u!1 &1694004183064765005
 GameObject:
   m_ObjectHideFlags: 0
