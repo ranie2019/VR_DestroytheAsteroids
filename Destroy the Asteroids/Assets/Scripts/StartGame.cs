@@ -8,8 +8,7 @@ public class StartGame : MonoBehaviour
 
     [Header("Spawners a serem ativados")]
     [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
-    [SerializeField] private AsteroidSpawner asteroidSpawnerScript1;
-    [SerializeField] private AsteroidSpawner asteroidSpawnerScript2;
+    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts; // Array para múltiplos spawners
 
     [Header("Particle System")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
@@ -43,16 +42,13 @@ public class StartGame : MonoBehaviour
             gameController.ResetScore();
         }
 
-        // Ativa o primeiro Spawner
-        if (asteroidSpawnerScript1 != null)
+        // Ativa todos os Spawners
+        foreach (var spawner in asteroidSpawnerScripts)
         {
-            asteroidSpawnerScript1.enabled = true;
-        }
-
-        // Ativa o segundo Spawner
-        if (asteroidSpawnerScript2 != null)
-        {
-            asteroidSpawnerScript2.enabled = true;
+            if (spawner != null)
+            {
+                spawner.enabled = true;
+            }
         }
 
         // Troca o áudio de introdução para o áudio principal do jogo

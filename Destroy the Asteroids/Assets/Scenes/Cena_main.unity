@@ -404,8 +404,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 2079389873}
-  asteroidSpawnerScript1: {fileID: 1586871224}
-  asteroidSpawnerScript2: {fileID: 654923451}
+  asteroidSpawnerScripts:
+  - {fileID: 1586871224}
+  - {fileID: 654923451}
+  - {fileID: 1549047196}
   particleSystem: {fileID: 2097229158}
   gameController: {fileID: 607363919}
   objetosInativos:
@@ -622,7 +624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4874934499113314, guid: 347040970b496ba4086308c48e34652b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 105
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 4874934499113314, guid: 347040970b496ba4086308c48e34652b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1313,7 +1315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e82fec90624d544ab50971dec0dd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidSpawnerScript: {fileID: 1586871224}
+  asteroidSpawnerScripts:
+  - {fileID: 1586871224}
+  - {fileID: 654923451}
+  - {fileID: 1549047196}
   asteroidTag: Asteroid
   gameOverUI: {fileID: 370059128}
   audioPlayer: {fileID: 2079389873}
@@ -2794,9 +2799,10 @@ GameObject:
   m_Component:
   - component: {fileID: 439929902}
   - component: {fileID: 439929901}
+  - component: {fileID: 439929903}
   m_Layer: 0
-  m_Name: XR Origin
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2832,8 +2838,27 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2104004601}
+  - {fileID: 505675104}
   m_Father: {fileID: 659959350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &439929903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439929900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7b18a034be44f43bb5fb0d9eac0144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidSpawner1: {fileID: 1586871224}
+  asteroidSpawner2: {fileID: 654923451}
+  asteroidSpawner3: {fileID: 1549047196}
+  damagingObjectTag: Asteroid
+  gameOverUI: {fileID: 370059128}
+  audioPlayer: {fileID: 2079389873}
 --- !u!1 &464380790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,6 +2903,113 @@ Transform:
   - {fileID: 699626369}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &505675103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505675104}
+  - component: {fileID: 505675107}
+  - component: {fileID: 505675106}
+  - component: {fileID: 505675105}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &505675104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505675103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.794, z: 0}
+  m_LocalScale: {x: 0.05736104, y: 0.38879934, z: 0.38879934}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 439929902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &505675105
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505675103}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &505675106
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505675103}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &505675107
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505675103}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &516391965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3499,8 +3631,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 2079389873}
-  asteroidSpawnerScript1: {fileID: 1586871224}
-  asteroidSpawnerScript2: {fileID: 654923451}
+  asteroidSpawnerScripts:
+  - {fileID: 1586871224}
+  - {fileID: 654923451}
+  - {fileID: 1549047196}
   particleSystem: {fileID: 2097229158}
   gameController: {fileID: 607363919}
   objetosInativos:
@@ -4067,7 +4201,7 @@ Transform:
   m_GameObject: {fileID: 654923449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1969, y: 274, z: 234}
+  m_LocalPosition: {x: 1346, y: 274, z: 234}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4941,7 +5075,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6752,6 +6886,7 @@ Transform:
   - {fileID: 2079389871}
   - {fileID: 1586871225}
   - {fileID: 654923450}
+  - {fileID: 1549047195}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1175308411
@@ -7968,8 +8103,8 @@ Transform:
   m_GameObject: {fileID: 1460497765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 117, z: 1038}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalPosition: {x: 0, y: 117, z: 1870}
+  m_LocalScale: {x: 98.435005, y: 98.435005, z: 98.435005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 464380791}
@@ -8436,6 +8571,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 927232924abbe7749aba0b85a30aa1db, type: 3}
+--- !u!1 &1549047194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1549047195}
+  - component: {fileID: 1549047196}
+  m_Layer: 0
+  m_Name: 'Ufo Spawner '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1549047195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549047194}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.26071003, z: -0, w: 0.96541715}
+  m_LocalPosition: {x: 1492, y: 427, z: 1596}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1174557856}
+  m_LocalEulerAnglesHint: {x: 0, y: -30.224, z: 0}
+--- !u!114 &1549047196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549047194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0e8e2a0cfb177478fcb58bb0dcbaf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnerSize: {x: 134, y: 89.3, z: 66.5}
+  spawnRate: 3
+  asteroidModels:
+  - {fileID: 503222116013560536, guid: 96aeffe1bfd1d4b04908e4a5d7e36d36, type: 3}
+  - {fileID: 7920573696653086769, guid: 2998aa3f4512340fdb5648bbeddc679c, type: 3}
+  - {fileID: 6363790887895094179, guid: 196a014f91f13452ba6d7c90d1498982, type: 3}
 --- !u!1 &1550221313
 GameObject:
   m_ObjectHideFlags: 0
@@ -18170,6 +18355,74 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &7661910594698224316
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21782613
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
+        type: 3}
+      propertyPath: m_Name
+      value: Sphere
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c729638200f745842bb6e547b4cbc586, type: 3}
 --- !u!1 &7742224129448943557
 GameObject:
   m_ObjectHideFlags: 0
@@ -18408,3 +18661,4 @@ SceneRoots:
   - {fileID: 464380791}
   - {fileID: 788967382}
   - {fileID: 1174557856}
+  - {fileID: 7661910594698224316}
