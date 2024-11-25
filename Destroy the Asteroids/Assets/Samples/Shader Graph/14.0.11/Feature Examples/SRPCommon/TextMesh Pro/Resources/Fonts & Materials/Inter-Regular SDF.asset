@@ -75,7 +75,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_d4075b1d9c7241d194dbc09f8cba7233_Texture_1_Texture2D:
-        m_Texture: {fileID: 5361089613174043344}
+        m_Texture: {fileID: 5361089613174043344, guid: 2f7116f10747a67409388e93052ae222,
+          type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TMPFunctionCustomFunction_bb92ec3de3914d6fbdf242980a921d0d_FontTexture_1_Texture2D:

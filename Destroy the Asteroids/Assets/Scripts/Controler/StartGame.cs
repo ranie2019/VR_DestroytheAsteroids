@@ -26,6 +26,10 @@ public class StartGame : MonoBehaviour
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
     [SerializeField] private MeshRenderer childMeshRenderer;  // Adicionada a referência aqui
 
+    [Header("Referência ao Script GameOver")]
+    [SerializeField] private GameOver gameOverScript;
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Laser"))

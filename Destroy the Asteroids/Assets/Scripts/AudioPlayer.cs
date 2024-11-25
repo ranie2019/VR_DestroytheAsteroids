@@ -61,7 +61,6 @@ public class AudioPlayer : MonoBehaviour
             Array.Exists(mainGameClips, clip => clip == audioSource.clip))
         {
             StartCoroutine(FadeOutCoroutine(fadeDuration));
-            Debug.Log($"Parando áudio principal: {audioSource.clip.name}");
         }
     }
 
@@ -118,6 +117,6 @@ public class AudioPlayer : MonoBehaviour
     public void GameOver()
     {
         OnGameOver?.Invoke();
-        PlayGameOverAudio();
+        PlayGameOverAudio(); // Toca o áudio de Game Over
     }
 }

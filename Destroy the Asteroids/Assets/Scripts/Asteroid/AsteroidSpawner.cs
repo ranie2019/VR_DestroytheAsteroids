@@ -6,12 +6,14 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private Vector3 spawnerSize;
 
     [Header("Taxa de geração (segundos)")]
-    [SerializeField] private float spawnRate = 1.0f;
+    [SerializeField] private float spawnRate = 1.0f; // Taxa inicial de geração
+    [SerializeField] private float minimumSpawnRate = 0.1f; // Valor mínimo do spawnRate
 
     [Header("Modelos de Asteroides")]
     [SerializeField] private GameObject[] asteroidModels;
 
     private float spawnTimer;
+    private float rateReductionTimer; // Temporizador para reduzir o spawnRate
 
     private void Update()
     {
@@ -23,6 +25,14 @@ public class AsteroidSpawner : MonoBehaviour
         {
             SpawnAsteroid();
             spawnTimer = 0f; // Reinicia o temporizador
+        }
+
+        // Atualiza o temporizador para redução do spawnRate
+        rateReductionTimer += Time.deltaTime;
+        if (rateReductionTimer >= 1f) // Reduz a cada 1 segundo
+        {
+            ReduceSpawnRate();
+            rateReductionTimer = 0f; // Reinicia o temporizador de redução
         }
     }
 
@@ -60,6 +70,12 @@ public class AsteroidSpawner : MonoBehaviour
 
         int randomIndex = Random.Range(0, asteroidModels.Length);
         return asteroidModels[randomIndex];
+    }
+
+    private void ReduceSpawnRate()
+    {
+        // Reduz o spawnRate em 0.01, mas garante que ele não fique menor que o valor mínimo
+        spawnRate = Mathf.Max(spawnRate - 0.01f, minimumSpawnRate);
     }
 
     private void OnDrawGizmos()

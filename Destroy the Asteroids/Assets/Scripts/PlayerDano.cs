@@ -1,74 +1,103 @@
 using UnityEngine;
+using TMPro; // Importa o namespace TextMeshPro
 
 public class PlayerDano : MonoBehaviour
 {
-    [Header("Spawners a serem congelados")]
-    [Tooltip("Referências aos scripts de Spawner que serão desabilitados.")]
-    [SerializeField] private AsteroidSpawner asteroidSpawner1;
-    [SerializeField] private AsteroidSpawner asteroidSpawner2;
-    [SerializeField] private AsteroidSpawner asteroidSpawner3;
+    [Header("Configuração de Vida")]
+    [Tooltip("Vida inicial do jogador.")]
+    [SerializeField] private int vidaInicial = 3;
+    private int vidaAtual;
 
-    [Header("Tag de Verificação")]
-    [Tooltip("Tag do objeto que, ao colidir, causará o Game Over.")]
-    [SerializeField] private string damagingObjectTag = "Asteroid";
+    [Header("UI de Vida")]
+    [Tooltip("Referência para exibir a vida do jogador na interface usando TextMeshPro.")]
+    [SerializeField] private TextMeshProUGUI vidaTextMeshPro;
 
-    [Header("Objeto Game Over")]
-    [Tooltip("Referência ao objeto que será habilitado ao ocorrer o Game Over.")]
-    [SerializeField] private GameObject gameOverUI;
+    [Header("Game Over UI")]
+    [Tooltip("Referência para o objeto de Game Over que será exibido quando o jogador perder toda a vida.")]
+    [SerializeField] private GameObject gameOverUI;  // Referência ao painel de Game Over
 
-    [Header("Audio Player")]
-    [Tooltip("Referência ao script AudioPlayer.")]
-    [SerializeField] private AudioPlayer audioPlayer;
+    [Header("Spawners")]
+    [Tooltip("Referência aos spawners que serão desativados no Game Over.")]
+    [SerializeField] private GameObject[] spawners; // Referência aos spawners (como GameObjects)
+
+    private void Start()
+    {
+        // Define a vida inicial
+        vidaAtual = vidaInicial;
+        AtualizarUIVida();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(damagingObjectTag))
+        // Verifica se o objeto com o qual colidimos tem a tag "Inimigo"
+        if (collision.gameObject.CompareTag("Inimigo"))
         {
-            HandleGameOver(collision);
+            // Reduz a vida ao sofrer uma colisão com um inimigo
+            vidaAtual--;
+            AtualizarUIVida();
+
+            // Exibe uma mensagem de debug com a vida atual
+            Debug.Log($" {vidaAtual}");
+
+            // Verifica se a vida chegou a zero
+            if (vidaAtual <= 0)
+            {
+                // Chama o método de Game Over
+                HandleGameOver();
+            }
         }
     }
 
-    private void HandleGameOver(Collision collision)
+    private void AtualizarUIVida()
     {
-        // Desabilita os scripts dos Spawners, se as referências estiverem corretas
-        if (asteroidSpawner1 != null && asteroidSpawner1.enabled)
+        // Atualiza a UI com a vida atual usando TextMeshPro
+        if (vidaTextMeshPro != null)
         {
-            asteroidSpawner1.enabled = false;
+            vidaTextMeshPro.text = "" + vidaAtual;
         }
-        if (asteroidSpawner2 != null && asteroidSpawner2.enabled)
-        {
-            asteroidSpawner2.enabled = false;
-        }
-        if (asteroidSpawner3 != null && asteroidSpawner3.enabled)
-        {
-            asteroidSpawner3.enabled = false;
-        }
+    }
 
-        // Habilita o objeto de Game Over
+    private void HandleGameOver()
+    {
+        // Habilita o painel de Game Over
         if (gameOverUI != null)
         {
-            gameOverUI.SetActive(true);
+            gameOverUI.SetActive(true);  // Mostra a tela de Game Over
         }
 
+        // Congela todos os spawners
+        FreezeSpawners();
+
         // Destrói todos os objetos com a tag "Asteroid"
-        DestroyAllDamagingObjects();
+        DestroyAllAsteroids();
 
-        // Destrói o objeto que causou o Game Over
-        Destroy(collision.gameObject);
+        // Desabilita o jogador ou implementa outras ações de Game Over (como parar o movimento do jogador)
+        gameObject.SetActive(false);  // Desabilita o jogador
 
-        // Troca o áudio do jogo para o áudio de Game Over
-        if (audioPlayer != null)
+        // Aqui você pode adicionar mais lógica de Game Over, como exibir pontuação, reiniciar o jogo, etc.
+    }
+
+    private void FreezeSpawners()
+    {
+        // Desabilita todos os spawners (fazendo com que parem de gerar inimigos)
+        foreach (GameObject spawner in spawners)
         {
-            audioPlayer.StopMainGameAudio();
-            audioPlayer.PlayGameOverAudio();
+            if (spawner != null)
+            {
+                spawner.SetActive(false);  // Desativa o spawner
+            }
         }
     }
 
-    private void DestroyAllDamagingObjects()
+    private void DestroyAllAsteroids()
     {
-        foreach (GameObject damagingObject in GameObject.FindGameObjectsWithTag(damagingObjectTag))
+        // Encontra todos os objetos com a tag "Asteroid"
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+
+        // Destroi cada asteroide encontrado
+        foreach (GameObject asteroid in asteroids)
         {
-            Destroy(damagingObject);
+            Destroy(asteroid);
         }
     }
 }
