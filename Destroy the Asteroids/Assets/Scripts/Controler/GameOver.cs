@@ -1,15 +1,18 @@
 using UnityEngine;
-using System.Collections;
 
 public class GameOver : MonoBehaviour
 {
-    [Header("Spawners a serem congelados")]
-    [Tooltip("Referência aos scripts de Spawner que serão desabilitados.")]
-    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts; // Array de Spawners
+    [Header("Spawner a ser congelado")]
+    [Tooltip("Referência ao script de Spawner que será desabilitado.")]
+    [SerializeField] private AsteroidSpawner asteroidSpawnerScript;
 
     [Header("Tag de Verificação")]
-    [Tooltip("Tag do objeto que, ao colidir, causará o congelamento dos spawners.")]
+    [Tooltip("Tag do objeto que, ao colidir, causará o congelamento do spawner.")]
     [SerializeField] private string asteroidTag = "Asteroid";
+
+    [Header("Objeto Game Over")]
+    [Tooltip("Referência ao objeto que será habilitado ao ocorrer o Game Over.")]
+    [SerializeField] private GameObject gameOverUI;
 
     [Header("Audio Player")]
     [Tooltip("Referência ao script AudioPlayer.")]
@@ -35,20 +38,16 @@ public class GameOver : MonoBehaviour
 
     private void HandleGameOver(Collision collision)
     {
-        // Toca o áudio de Game Over e o áudio da explosão da Terra
-        if (audioPlayer != null)
+        // Desabilita o script Asteroid Spawner se a referência estiver correta
+        if (asteroidSpawnerScript != null && asteroidSpawnerScript.enabled)
         {
-            audioPlayer.StopMainGameAudio(); // Se necessário, pare a música principal antes de tocar o Game Over
-            audioPlayer.PlayGameOverAudio(); // Toca o áudio de Game Over
+            asteroidSpawnerScript.enabled = false;
         }
 
-        // Desabilita todos os scripts de Asteroid Spawner
-        foreach (var spawner in asteroidSpawnerScripts)
+        // Habilita o objeto de Game Over
+        if (gameOverUI != null)
         {
-            if (spawner != null && spawner.enabled)
-            {
-                spawner.enabled = false;
-            }
+            gameOverUI.SetActive(true);
         }
 
         // Destrói todos os objetos com a tag "Asteroid"
@@ -69,6 +68,13 @@ public class GameOver : MonoBehaviour
 
         // Destrói o objeto que causou o Game Over
         Destroy(collision.gameObject);
+
+        // Troca o áudio do jogo para o áudio de Game Over
+        if (audioPlayer != null)
+        {
+            audioPlayer.StopMainGameAudio();
+            audioPlayer.PlayGameOverAudio();
+        }
     }
 
     private void DestroyAllAsteroids()
@@ -106,31 +112,5 @@ public class GameOver : MonoBehaviour
                 Destroy(particleClone3.gameObject, particleClone3.main.duration); // Destroi o clone após a duração das partículas
             }
         }
-    }
-
-    // Método para resetar o estado do Game Over
-    public void ResetGameOverState()
-    {
-        // Reativa os Spawners de Asteroides
-        foreach (var spawner in asteroidSpawnerScripts)
-        {
-            if (spawner != null && !spawner.enabled)
-            {
-                spawner.enabled = true;
-            }
-        }
-
-        // Restaura o MeshRenderer do filho do objeto
-        if (objectToDisableMeshRenderer != null)
-        {
-            MeshRenderer childMeshRenderer = objectToDisableMeshRenderer.GetComponentInChildren<MeshRenderer>();
-            if (childMeshRenderer != null)
-            {
-                childMeshRenderer.enabled = true;
-            }
-        }
-
-        // Reseta o estado do jogo conforme necessário
-        // Caso haja alguma variável que marque o estado do jogo, ela deve ser resetada aqui.
     }
 }

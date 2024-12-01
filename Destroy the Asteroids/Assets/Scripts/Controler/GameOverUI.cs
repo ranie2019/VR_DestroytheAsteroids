@@ -3,12 +3,16 @@ using UnityEngine;
 public class GameOverUI : MonoBehaviour
 {
     [Header("Objeto Game Over")]
-    [Tooltip("Referência ao objeto que será habilitado ao ocorrer o Game Over.")]
-    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameOverCanvas; // Canvas de Game Over
+
+    [Header("Gerenciador de Asteroides")]
+    [SerializeField] private AsteroidManager asteroidManager; // Gerenciador de asteroides
+
+    private bool isGameOver = false; // Para rastrear o estado do jogo
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Asteroid") && !isGameOver)
         {
             HandleGameOver(collision);
         }
@@ -16,37 +20,33 @@ public class GameOverUI : MonoBehaviour
 
     private void HandleGameOver(Collision collision)
     {
-        // Habilita o objeto de Game Over
-        if (gameOverUI != null)
+        isGameOver = true; // Marca o estado como Game Over
+
+        // Ativa o canvas de Game Over
+        if (gameOverCanvas != null)
         {
-            gameOverUI.SetActive(true);
+            gameOverCanvas.SetActive(true);
         }
 
-        // Destrói todos os objetos com a tag "Asteroid"
-        DestroyAllAsteroids();
+        // Destroi todos os asteroides
+        if (asteroidManager != null)
+        {
+            asteroidManager.DestroyAllAsteroids();
+        }
 
-        // Destrói o objeto que causou o Game Over
+        // Remove o asteroide que causou o Game Over
         Destroy(collision.gameObject);
     }
 
-    private void DestroyAllAsteroids()
-    {
-        foreach (GameObject asteroid in GameObject.FindGameObjectsWithTag("Asteroid"))
-        {
-            Destroy(asteroid);
-        }
-    }
-
-    // Método para resetar o estado do Game Over
     public void ResetGameOverUI()
     {
-        // Desabilita a UI de Game Over
-        if (gameOverUI != null)
+        // Garante que o canvas seja desativado
+        if (gameOverCanvas != null)
         {
-            gameOverUI.SetActive(false);
+            gameOverCanvas.SetActive(false);
         }
 
-        // Reseta o estado de Game Over
-        // Caso haja alguma variável que marque o estado do jogo, ela deve ser resetada aqui.
+        // Reseta o estado interno
+        isGameOver = false;
     }
 }

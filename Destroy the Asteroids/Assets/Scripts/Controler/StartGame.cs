@@ -8,7 +8,7 @@ public class StartGame : MonoBehaviour
 
     [Header("Spawners a serem ativados")]
     [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
-    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts; // Array para múltiplos spawners
+    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;
 
     [Header("Particle System")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
@@ -19,16 +19,12 @@ public class StartGame : MonoBehaviour
     [SerializeField] private GameController gameController;
 
     [Header("Objetos Inativos")]
-    [Tooltip("Referências aos objetos Inativos que devem começar a contagem.")]
+    [Tooltip("Referências aos objetos inativos que devem começar a contagem.")]
     [SerializeField] private Inativo[] objetosInativos;
 
     [Header("Mesh Renderer")]
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
-    [SerializeField] private MeshRenderer childMeshRenderer;  // Adicionada a referência aqui
-
-    [Header("Referência ao Script GameOver")]
-    [SerializeField] private GameOver gameOverScript;
-
+    [SerializeField] private MeshRenderer childMeshRenderer;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -76,7 +72,7 @@ public class StartGame : MonoBehaviour
         // Notifica os objetos inativos para iniciar a contagem
         foreach (var objInativo in objetosInativos)
         {
-            objInativo.NotificarInicioDoJogo();  // Chama NotificarInicioDoJogo para cada objeto Inativo
+            objInativo.NotificarInicioDoJogo();
         }
 
         // Desativa o objeto StartGame

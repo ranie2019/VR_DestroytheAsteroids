@@ -39,7 +39,7 @@ public class Gravidade : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
-            Debug.LogWarning("AudioSource não encontrado! Adicione um componente AudioSource ao GameObject.");
+
         }
 
         // Inicia a contagem regressiva para destruir o objeto
@@ -103,8 +103,6 @@ public class Gravidade : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(asteroidTag))
         {
-            Debug.Log($"Colisão com {collision.gameObject.name}");
-
             // Reproduz o som de colisão
             if (audioSource != null && collisionSound != null)
             {
