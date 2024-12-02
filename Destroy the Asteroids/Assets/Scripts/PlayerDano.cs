@@ -20,6 +20,10 @@ public class PlayerDano : MonoBehaviour
     [Tooltip("Referência aos spawners que serão desativados no Game Over.")]
     [SerializeField] private GameObject[] spawners; // Referência aos spawners (como GameObjects)
 
+    [Header("Objetos a Desabilitar")]
+    [Tooltip("Lista de objetos que devem ser desativados no Game Over.")]
+    [SerializeField] private GameObject[] objetosParaDesabilitar;
+
     private void Start()
     {
         // Define a vida inicial
@@ -37,7 +41,7 @@ public class PlayerDano : MonoBehaviour
             AtualizarUIVida();
 
             // Exibe uma mensagem de debug com a vida atual
-            Debug.Log($" {vidaAtual}");
+            Debug.Log($"Vida Atual: {vidaAtual}");
 
             // Verifica se a vida chegou a zero
             if (vidaAtual <= 0)
@@ -53,7 +57,7 @@ public class PlayerDano : MonoBehaviour
         // Atualiza a UI com a vida atual usando TextMeshPro
         if (vidaTextMeshPro != null)
         {
-            vidaTextMeshPro.text = "" + vidaAtual;
+            vidaTextMeshPro.text = vidaAtual.ToString();
         }
     }
 
@@ -71,10 +75,11 @@ public class PlayerDano : MonoBehaviour
         // Destrói todos os objetos com a tag "Asteroid"
         DestroyAllAsteroids();
 
+        // Desabilita objetos específicos
+        DesabilitarObjetos();
+
         // Desabilita o jogador ou implementa outras ações de Game Over (como parar o movimento do jogador)
         gameObject.SetActive(false);  // Desabilita o jogador
-
-        // Aqui você pode adicionar mais lógica de Game Over, como exibir pontuação, reiniciar o jogo, etc.
     }
 
     private void FreezeSpawners()
@@ -98,6 +103,18 @@ public class PlayerDano : MonoBehaviour
         foreach (GameObject asteroid in asteroids)
         {
             Destroy(asteroid);
+        }
+    }
+
+    private void DesabilitarObjetos()
+    {
+        // Desativa todos os objetos na lista "objetosParaDesabilitar"
+        foreach (GameObject obj in objetosParaDesabilitar)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
         }
     }
 }

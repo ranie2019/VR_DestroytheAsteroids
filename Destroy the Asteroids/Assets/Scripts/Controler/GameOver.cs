@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameOver : MonoBehaviour
 {
-    [Header("Spawner a ser congelado")]
-    [Tooltip("Referência ao script de Spawner que será desabilitado.")]
-    [SerializeField] private AsteroidSpawner asteroidSpawnerScript;
+    [Header("Spawners a serem congelados")]
+    [Tooltip("Lista de referências aos scripts de Spawners que serão desabilitados.")]
+    [SerializeField] private List<AsteroidSpawner> asteroidSpawnerScripts;
 
     [Header("Tag de Verificação")]
-    [Tooltip("Tag do objeto que, ao colidir, causará o congelamento do spawner.")]
+    [Tooltip("Tag do objeto que, ao colidir, causará o congelamento dos spawners.")]
     [SerializeField] private string asteroidTag = "Asteroid";
 
     [Header("Objeto Game Over")]
@@ -38,10 +39,13 @@ public class GameOver : MonoBehaviour
 
     private void HandleGameOver(Collision collision)
     {
-        // Desabilita o script Asteroid Spawner se a referência estiver correta
-        if (asteroidSpawnerScript != null && asteroidSpawnerScript.enabled)
+        // Desabilita todos os scripts de Asteroid Spawner na lista
+        foreach (var spawner in asteroidSpawnerScripts)
         {
-            asteroidSpawnerScript.enabled = false;
+            if (spawner != null && spawner.enabled)
+            {
+                spawner.enabled = false;
+            }
         }
 
         // Habilita o objeto de Game Over

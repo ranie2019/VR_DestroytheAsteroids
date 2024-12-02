@@ -3,12 +3,35 @@ using UnityEngine;
 public class GameOverUI : MonoBehaviour
 {
     [Header("Objeto Game Over")]
-    [SerializeField] private GameObject gameOverCanvas; // Canvas de Game Over
+    [Tooltip("Canvas de Game Over que será ativado.")]
+    [SerializeField] private GameObject gameOverCanvas;
+
+    [Header("Prefabs de Asteroides")]
+    [Tooltip("Lista de prefabs de asteroides que serão instanciados.")]
+    [SerializeField] private GameObject[] asteroidPrefabs;
 
     [Header("Gerenciador de Asteroides")]
-    [SerializeField] private AsteroidManager asteroidManager; // Gerenciador de asteroides
+    [Tooltip("Gerenciador de asteroides para gerenciar as posições iniciais.")]
+    [SerializeField] private AsteroidManager asteroidManager;
 
     private bool isGameOver = false; // Para rastrear o estado do jogo
+
+    private void Start()
+    {
+        // Valida os objetos configurados no Inspector
+        if (gameOverCanvas == null)
+        {
+            Debug.LogError("Game Over Canvas não foi atribuído!");
+        }
+        if (asteroidPrefabs == null || asteroidPrefabs.Length == 0)
+        {
+            Debug.LogError("Nenhum prefab de asteroide foi atribuído!");
+        }
+        if (asteroidManager == null)
+        {
+            Debug.LogError("AsteroidManager não foi atribuído!");
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,7 +51,7 @@ public class GameOverUI : MonoBehaviour
             gameOverCanvas.SetActive(true);
         }
 
-        // Destroi todos os asteroides
+        // Destroi todos os asteroides na cena
         if (asteroidManager != null)
         {
             asteroidManager.DestroyAllAsteroids();
@@ -36,6 +59,24 @@ public class GameOverUI : MonoBehaviour
 
         // Remove o asteroide que causou o Game Over
         Destroy(collision.gameObject);
+
+        // Instancia novos asteroides a partir dos prefabs
+        SpawnAsteroids();
+    }
+
+    private void SpawnAsteroids()
+    {
+        if (asteroidPrefabs != null && asteroidPrefabs.Length > 0 && asteroidManager != null)
+        {
+            foreach (Vector3 position in asteroidManager.GetSpawnPositions())
+            {
+                // Seleciona aleatoriamente um prefab da lista
+                GameObject selectedPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Length)];
+
+                // Instancia o prefab selecionado
+                Instantiate(selectedPrefab, position, Quaternion.identity);
+            }
+        }
     }
 
     public void ResetGameOverUI()

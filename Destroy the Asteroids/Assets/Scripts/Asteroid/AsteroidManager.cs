@@ -1,16 +1,26 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AsteroidManager : MonoBehaviour
 {
-    [Header("Asteroides na Cena")]
-    [SerializeField] private GameObject[] asteroids;
+    [Tooltip("Lista de posições de spawn para os asteroides.")]
+    [SerializeField] private List<Transform> spawnPoints;
 
     public void DestroyAllAsteroids()
     {
-        asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        foreach (var asteroid in asteroids)
+        foreach (GameObject asteroid in GameObject.FindGameObjectsWithTag("Asteroid"))
         {
             Destroy(asteroid);
         }
+    }
+
+    public List<Vector3> GetSpawnPositions()
+    {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            positions.Add(spawnPoint.position);
+        }
+        return positions;
     }
 }
