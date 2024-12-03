@@ -48,10 +48,11 @@ public class GameOver : MonoBehaviour
             }
         }
 
-        // Habilita o objeto de Game Over
+        // Habilita o objeto de Game Over e todos os seus filhos
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
+            EnableAllChildren(gameOverUI);
         }
 
         // Destrói todos os objetos com a tag "Asteroid"
@@ -115,6 +116,15 @@ public class GameOver : MonoBehaviour
                 particleClone3.Play();
                 Destroy(particleClone3.gameObject, particleClone3.main.duration); // Destroi o clone após a duração das partículas
             }
+        }
+    }
+
+    private void EnableAllChildren(GameObject parent)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(true); // Garante que todos os filhos sejam ativados
+            EnableAllChildren(child.gameObject); // Chamada recursiva para ativar os subfilhos
         }
     }
 }

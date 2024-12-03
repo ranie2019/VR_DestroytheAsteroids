@@ -3,91 +3,62 @@ using UnityEngine;
 public class GameOverUI : MonoBehaviour
 {
     [Header("Objeto Game Over")]
-    [Tooltip("Canvas de Game Over que será ativado.")]
+    [Tooltip("Canvas de Game Over que será ativado e reposicionado.")]
     [SerializeField] private GameObject gameOverCanvas;
 
-    [Header("Prefabs de Asteroides")]
-    [Tooltip("Lista de prefabs de asteroides que serão instanciados.")]
-    [SerializeField] private GameObject[] asteroidPrefabs;
-
-    [Header("Gerenciador de Asteroides")]
-    [Tooltip("Gerenciador de asteroides para gerenciar as posições iniciais.")]
-    [SerializeField] private AsteroidManager asteroidManager;
+    [Header("Posição do Canvas Game Over")]
+    [Tooltip("Posição pública para reposicionar o canvas ao sofrer uma colisão.")]
+    [SerializeField] private Vector3 canvasPosition;
 
     private bool isGameOver = false; // Para rastrear o estado do jogo
 
     private void Start()
     {
-        // Valida os objetos configurados no Inspector
-        if (gameOverCanvas == null)
+        // Garante que o Canvas comece desativado no início do jogo
+        if (gameOverCanvas != null)
         {
-            Debug.LogError("Game Over Canvas não foi atribuído!");
+            gameOverCanvas.SetActive(false); // Desativa o canvas no início
         }
-        if (asteroidPrefabs == null || asteroidPrefabs.Length == 0)
+        else
         {
-            Debug.LogError("Nenhum prefab de asteroide foi atribuído!");
-        }
-        if (asteroidManager == null)
-        {
-            Debug.LogError("AsteroidManager não foi atribuído!");
+            Debug.LogError("Game Over Canvas não atribuído no Inspector!");
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid") && !isGameOver)
+        // Verifica se houve colisão com um objeto específico (como "Asteroid")
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
-            HandleGameOver(collision);
+            HandleGameOver();
         }
     }
 
-    private void HandleGameOver(Collision collision)
+    private void HandleGameOver()
     {
-        isGameOver = true; // Marca o estado como Game Over
-
-        // Ativa o canvas de Game Over
-        if (gameOverCanvas != null)
+        if (!isGameOver && gameOverCanvas != null)
         {
+            isGameOver = true;
+
+            // Ativa e reposiciona o Canvas de Game Over
             gameOverCanvas.SetActive(true);
-        }
+            gameOverCanvas.transform.position = canvasPosition;
 
-        // Destroi todos os asteroides na cena
-        if (asteroidManager != null)
-        {
-            asteroidManager.DestroyAllAsteroids();
-        }
-
-        // Remove o asteroide que causou o Game Over
-        Destroy(collision.gameObject);
-
-        // Instancia novos asteroides a partir dos prefabs
-        SpawnAsteroids();
-    }
-
-    private void SpawnAsteroids()
-    {
-        if (asteroidPrefabs != null && asteroidPrefabs.Length > 0 && asteroidManager != null)
-        {
-            foreach (Vector3 position in asteroidManager.GetSpawnPositions())
-            {
-                // Seleciona aleatoriamente um prefab da lista
-                GameObject selectedPrefab = asteroidPrefabs[Random.Range(0, asteroidPrefabs.Length)];
-
-                // Instancia o prefab selecionado
-                Instantiate(selectedPrefab, position, Quaternion.identity);
-            }
+            Debug.Log("Canvas Game Over ativado e reposicionado em: " + canvasPosition);
         }
     }
 
+    /// <summary>
+    /// Método para resetar o estado do UI de Game Over.
+    /// </summary>
     public void ResetGameOverUI()
     {
-        // Garante que o canvas seja desativado
         if (gameOverCanvas != null)
         {
-            gameOverCanvas.SetActive(false);
+            gameOverCanvas.SetActive(false); // Desativa o Canvas
         }
 
-        // Reseta o estado interno
-        isGameOver = false;
+        isGameOver = false; // Reseta o estado de Game Over
+        Debug.Log("Game Over UI resetado.");
     }
 }
