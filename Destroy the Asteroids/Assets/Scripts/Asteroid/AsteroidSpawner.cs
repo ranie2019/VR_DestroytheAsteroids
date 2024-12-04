@@ -3,17 +3,21 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     [Header("Tamanho da área de geração")]
+    [Tooltip("Define a área em que os asteroides podem ser gerados.")]
     [SerializeField] private Vector3 spawnerSize;
 
     [Header("Taxa de geração (segundos)")]
+    [Tooltip("Tempo inicial entre a geração de asteroides.")]
     [SerializeField] private float spawnRate = 1.0f; // Taxa inicial de geração
+    [Tooltip("Taxa mínima de geração para evitar spawn muito rápido.")]
     [SerializeField] private float minimumSpawnRate = 0.1f; // Valor mínimo do spawnRate
 
     [Header("Modelos de Asteroides")]
+    [Tooltip("Array de modelos de asteroides que podem ser instanciados.")]
     [SerializeField] private GameObject[] asteroidModels;
 
-    private float spawnTimer;
-    private float rateReductionTimer; // Temporizador para reduzir o spawnRate
+    private float spawnTimer; // Temporizador para controlar o spawn
+    private float rateReductionTimer; // Temporizador para reduzir a taxa de spawn
 
     private void Update()
     {
@@ -24,10 +28,10 @@ public class AsteroidSpawner : MonoBehaviour
         if (spawnTimer >= spawnRate)
         {
             SpawnAsteroid();
-            spawnTimer = 0f; // Reinicia o temporizador
+            spawnTimer = 0f; // Reinicia o temporizador de spawn
         }
 
-        // Atualiza o temporizador para redução do spawnRate
+        // Atualiza o temporizador para reduzir o spawnRate
         rateReductionTimer += Time.deltaTime;
         if (rateReductionTimer >= 1f) // Reduz a cada 1 segundo
         {
@@ -36,6 +40,9 @@ public class AsteroidSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Instancia um asteroide em uma posição aleatória dentro da área do spawner.
+    /// </summary>
     private void SpawnAsteroid()
     {
         // Gera uma posição aleatória dentro da área do spawner
@@ -48,12 +55,20 @@ public class AsteroidSpawner : MonoBehaviour
         if (selectedAsteroid != null)
         {
             Instantiate(selectedAsteroid, spawnPosition, Quaternion.identity);
+            Debug.Log("Asteroide gerado na posição: " + spawnPosition);
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum modelo de asteroide disponível para spawn.");
         }
     }
 
+    /// <summary>
+    /// Retorna uma posição aleatória dentro da área do spawner.
+    /// </summary>
+    /// <returns>Posição 3D dentro da área do spawner.</returns>
     private Vector3 GetRandomSpawnPosition()
     {
-        // Ajusta a geração para o eixo X como a faixa principal
         return transform.position + new Vector3(
             Random.Range(-spawnerSize.x / 2, spawnerSize.x / 2), // Eixo X
             Random.Range(-spawnerSize.y / 2, spawnerSize.y / 2), // Eixo Y
@@ -61,10 +76,15 @@ public class AsteroidSpawner : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// Seleciona aleatoriamente um modelo de asteroide do array.
+    /// </summary>
+    /// <returns>GameObject do asteroide selecionado.</returns>
     private GameObject GetRandomAsteroidModel()
     {
         if (asteroidModels.Length == 0)
         {
+            Debug.LogError("Nenhum modelo de asteroide foi atribuído no array.");
             return null;
         }
 
@@ -72,10 +92,14 @@ public class AsteroidSpawner : MonoBehaviour
         return asteroidModels[randomIndex];
     }
 
+    /// <summary>
+    /// Reduz a taxa de geração dos asteroides, respeitando o valor mínimo configurado.
+    /// </summary>
     private void ReduceSpawnRate()
     {
-        // Reduz o spawnRate em 0.01, mas garante que ele não fique menor que o valor mínimo
+        // Reduz o spawnRate, mas garante que ele não fique menor que o valor mínimo
         spawnRate = Mathf.Max(spawnRate - 0.01f, minimumSpawnRate);
+        Debug.Log("Nova taxa de geração: " + spawnRate + " segundos.");
     }
 
     private void OnDrawGizmos()

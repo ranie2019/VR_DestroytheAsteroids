@@ -18,7 +18,7 @@ public class BulletPerseguir : MonoBehaviour
     private void Start()
     {
         // Encontra o alvo mais próximo com a tag especificada
-        alvo = EncontrarAlvoMaisProximo();
+        AtualizarAlvo();
 
         // Destroi a bala após o tempo de vida
         Destroy(gameObject, tempoDeVida);
@@ -38,8 +38,13 @@ public class BulletPerseguir : MonoBehaviour
         else
         {
             // Caso o alvo seja destruído, tenta encontrar outro alvo
-            alvo = EncontrarAlvoMaisProximo();
+            AtualizarAlvo();
         }
+    }
+
+    private void AtualizarAlvo()
+    {
+        alvo = EncontrarAlvoMaisProximo();
     }
 
     private Transform EncontrarAlvoMaisProximo()
@@ -50,6 +55,10 @@ public class BulletPerseguir : MonoBehaviour
 
         foreach (GameObject obj in alvos)
         {
+            // Certifique-se de ignorar objetos inativos
+            if (!obj.activeInHierarchy)
+                continue;
+
             float distancia = Vector3.Distance(transform.position, obj.transform.position);
             if (distancia < menorDistancia)
             {
@@ -59,5 +68,14 @@ public class BulletPerseguir : MonoBehaviour
         }
 
         return alvoMaisProximo;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Destrói a bala ao colidir com o alvo
+        if (other.CompareTag(tagAlvo))
+        {
+            Destroy(gameObject);
+        }
     }
 }
