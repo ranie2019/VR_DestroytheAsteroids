@@ -21,9 +21,7 @@ public class GameOver : MonoBehaviour
 
     [Header("Particle Systems Prefabs")]
     [Tooltip("Prefabs dos Particle Systems que serão ativados no Game Over.")]
-    [SerializeField] private ParticleSystem particleSystemPrefab1;
-    [SerializeField] private ParticleSystem particleSystemPrefab2;
-    [SerializeField] private ParticleSystem particleSystemPrefab3;
+    [SerializeField] private List<ParticleSystem> particleSystemPrefabs;
 
     [Header("Objeto a ser alterado")]
     [Tooltip("Objeto que terá o MeshRenderer do filho desativado manualmente ao ocorrer o Game Over.")]
@@ -43,7 +41,18 @@ public class GameOver : MonoBehaviour
 
     private void HandleGameOver(Collision collision)
     {
-        // Desabilita todos os scripts de Asteroid Spawner na lista
+        FreezeSpawners();
+        ShowGameOverUI();
+        DestroyAllAsteroids();
+        ActivateParticleSystems();
+        DisableObjectMeshRenderer(objectToDisableMeshRenderer);
+        DisableWeapons();
+        Destroy(collision.gameObject);
+        PlayGameOverAudio();
+    }
+
+    private void FreezeSpawners()
+    {
         foreach (var spawner in asteroidSpawnerScripts)
         {
             if (spawner != null && spawner.enabled)
@@ -51,41 +60,18 @@ public class GameOver : MonoBehaviour
                 spawner.enabled = false;
             }
         }
+    }
 
-        // Habilita o objeto de Game Over e todos os seus filhos
+    private void ShowGameOverUI()
+    {
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
             EnableAllChildren(gameOverUI);
         }
-
-        // Destrói todos os objetos com a tag "Asteroid"
-        DestroyAllAsteroids();
-
-        // Posiciona e ativa os Particle Systems clonados
-        ActivateParticleSystems();
-
-        // Desativa o MeshRenderer do filho do objeto manualmente escolhido
-        if (objectToDisableMeshRenderer != null)
+        else
         {
-            MeshRenderer childMeshRenderer = objectToDisableMeshRenderer.GetComponentInChildren<MeshRenderer>();
-            if (childMeshRenderer != null)
-            {
-                childMeshRenderer.enabled = false;
-            }
-        }
-
-        // Desativa o MeshRenderer, BoxCollider e os filhos de todas as armas
-        DisableAllWeapons();
-
-        // Destrói o objeto que causou o Game Over
-        Destroy(collision.gameObject);
-
-        // Troca o áudio do jogo para o áudio de Game Over
-        if (audioPlayer != null)
-        {
-            audioPlayer.StopMainGameAudio();
-            audioPlayer.PlayGameOverAudio();
+            Debug.LogWarning("GameOver UI não está atribuído.");
         }
     }
 
@@ -101,52 +87,46 @@ public class GameOver : MonoBehaviour
     {
         if (objectToDisableMeshRenderer != null)
         {
-            Vector3 objectPosition = objectToDisableMeshRenderer.transform.position;
-            Quaternion objectRotation = objectToDisableMeshRenderer.transform.rotation;
+            Vector3 position = objectToDisableMeshRenderer.transform.position;
+            Quaternion rotation = objectToDisableMeshRenderer.transform.rotation;
 
-            // Instancia e ativa os Particle Systems na posição e rotação do objeto a ser alterado
-            if (particleSystemPrefab1 != null)
+            foreach (var prefab in particleSystemPrefabs)
             {
-                ParticleSystem particleClone1 = Instantiate(particleSystemPrefab1, objectPosition, objectRotation);
-                particleClone1.Play();
-                Destroy(particleClone1.gameObject, particleClone1.main.duration); // Destroi o clone após a duração das partículas
+                if (prefab != null)
+                {
+                    ParticleSystem particleClone = Instantiate(prefab, position, rotation);
+                    particleClone.Play();
+                    Destroy(particleClone.gameObject, particleClone.main.duration);
+                }
             }
-            if (particleSystemPrefab2 != null)
+        }
+        else
+        {
+            Debug.LogWarning("Objeto para partículas não está atribuído.");
+        }
+    }
+
+    private void DisableObjectMeshRenderer(GameObject obj)
+    {
+        if (obj != null)
+        {
+            MeshRenderer childMeshRenderer = obj.GetComponentInChildren<MeshRenderer>();
+            if (childMeshRenderer != null)
             {
-                ParticleSystem particleClone2 = Instantiate(particleSystemPrefab2, objectPosition, objectRotation);
-                particleClone2.Play();
-                Destroy(particleClone2.gameObject, particleClone2.main.duration); // Destroi o clone após a duração das partículas
-            }
-            if (particleSystemPrefab3 != null)
-            {
-                ParticleSystem particleClone3 = Instantiate(particleSystemPrefab3, objectPosition, objectRotation);
-                particleClone3.Play();
-                Destroy(particleClone3.gameObject, particleClone3.main.duration); // Destroi o clone após a duração das partículas
+                childMeshRenderer.enabled = false;
             }
         }
     }
 
-    private void DisableAllWeapons()
+    private void DisableWeapons()
     {
         foreach (var weapon in weaponObjects)
         {
             if (weapon != null)
             {
-                // Desativa todos os MeshRenderers do objeto e de seus filhos
-                MeshRenderer[] meshRenderers = weapon.GetComponentsInChildren<MeshRenderer>();
-                foreach (var renderer in meshRenderers)
-                {
-                    renderer.enabled = false;
-                }
+                DisableComponentsInChildren<MeshRenderer>(weapon);
+                DisableComponentsInChildren<BoxCollider>(weapon);
 
-                // Desativa todos os BoxColliders do objeto e de seus filhos
-                BoxCollider[] boxColliders = weapon.GetComponentsInChildren<BoxCollider>();
-                foreach (var collider in boxColliders)
-                {
-                    collider.enabled = false;
-                }
-
-                // Desativa todos os objetos filhos
                 foreach (Transform child in weapon.transform)
                 {
                     child.gameObject.SetActive(false);
@@ -155,12 +135,41 @@ public class GameOver : MonoBehaviour
         }
     }
 
+    private void DisableComponentsInChildren<T>(GameObject obj) where T : Component
+    {
+        T[] components = obj.GetComponentsInChildren<T>();
+        foreach (var component in components)
+        {
+            if (component is Renderer renderer)
+            {
+                renderer.enabled = false;
+            }
+            else if (component is Collider collider)
+            {
+                collider.enabled = false;
+            }
+        }
+    }
+
+    private void PlayGameOverAudio()
+    {
+        if (audioPlayer != null)
+        {
+            audioPlayer.StopMainGameAudio();
+            audioPlayer.PlayGameOverAudio();
+        }
+        else
+        {
+            Debug.LogWarning("AudioPlayer não está atribuído.");
+        }
+    }
+
     private void EnableAllChildren(GameObject parent)
     {
         foreach (Transform child in parent.transform)
         {
-            child.gameObject.SetActive(true); // Garante que todos os filhos sejam ativados
-            EnableAllChildren(child.gameObject); // Chamada recursiva para ativar os subfilhos
+            child.gameObject.SetActive(true);
+            EnableAllChildren(child.gameObject);
         }
     }
 }
