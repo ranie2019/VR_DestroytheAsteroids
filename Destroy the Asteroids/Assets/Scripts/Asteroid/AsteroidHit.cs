@@ -10,7 +10,7 @@ public class AsteroidHit : MonoBehaviour
 
     [Header("Referências Externas")]
     [SerializeField] private GameObject popupCanvas;
-    [SerializeField] private Transform playerTransform; // Transform do jogador
+    private Transform playerTransform; // Transform do jogador
 
     private GameController gameController;
 
@@ -19,21 +19,10 @@ public class AsteroidHit : MonoBehaviour
         // Tenta encontrar o GameController na cena
         gameController = FindAnyObjectByType<GameController>();
 
-        // Verifica se o GameController foi encontrado
-        if (gameController == null)
-        {
-            Debug.LogError("GameController não encontrado!");
-        }
-
         // Tenta localizar o Transform do jogador na cena, se não foi atribuído
         if (playerTransform == null)
         {
             playerTransform = GameObject.FindWithTag("Player")?.transform;
-
-            if (playerTransform == null)
-            {
-                Debug.LogError("Transform do jogador não foi encontrado!");
-            }
         }
     }
 
@@ -53,19 +42,13 @@ public class AsteroidHit : MonoBehaviour
         CreateExplosion();
 
         int asteroidScore = CalculateScore();
-        Debug.Log("Pontuação calculada: " + asteroidScore);
         ShowScorePopup(asteroidScore);
 
         if (gameController != null)
         {
             gameController.UpdatePlayerScore(asteroidScore);
-            Debug.Log("Pontuação do jogador atualizada.");
-        }
-        else
-        {
-            Debug.LogError("GameController não foi encontrado na cena.");
-        }
 
+        }
         Destroy(gameObject, asteroidDestroyDelay);
     }
 
@@ -106,10 +89,6 @@ public class AsteroidHit : MonoBehaviour
             // Aponta o popup para o jogador
             Vector3 directionToPlayer = (playerTransform.position - asteroidPopup.transform.position).normalized;
             asteroidPopup.transform.forward = directionToPlayer;
-        }
-        else
-        {
-            Debug.LogError("Popup Canvas ou Transform do jogador está faltando!");
         }
     }
 }

@@ -29,6 +29,10 @@ public class GameOver : MonoBehaviour
     [Tooltip("Objeto que terá o MeshRenderer do filho desativado manualmente ao ocorrer o Game Over.")]
     [SerializeField] private GameObject objectToDisableMeshRenderer;
 
+    [Header("Armas a serem desativadas")]
+    [Tooltip("Lista de objetos representando as armas que terão seus MeshRenderers, BoxColliders e filhos desativados no Game Over.")]
+    [SerializeField] private List<GameObject> weaponObjects;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(asteroidTag))
@@ -70,6 +74,9 @@ public class GameOver : MonoBehaviour
                 childMeshRenderer.enabled = false;
             }
         }
+
+        // Desativa o MeshRenderer, BoxCollider e os filhos de todas as armas
+        DisableAllWeapons();
 
         // Destrói o objeto que causou o Game Over
         Destroy(collision.gameObject);
@@ -115,6 +122,35 @@ public class GameOver : MonoBehaviour
                 ParticleSystem particleClone3 = Instantiate(particleSystemPrefab3, objectPosition, objectRotation);
                 particleClone3.Play();
                 Destroy(particleClone3.gameObject, particleClone3.main.duration); // Destroi o clone após a duração das partículas
+            }
+        }
+    }
+
+    private void DisableAllWeapons()
+    {
+        foreach (var weapon in weaponObjects)
+        {
+            if (weapon != null)
+            {
+                // Desativa todos os MeshRenderers do objeto e de seus filhos
+                MeshRenderer[] meshRenderers = weapon.GetComponentsInChildren<MeshRenderer>();
+                foreach (var renderer in meshRenderers)
+                {
+                    renderer.enabled = false;
+                }
+
+                // Desativa todos os BoxColliders do objeto e de seus filhos
+                BoxCollider[] boxColliders = weapon.GetComponentsInChildren<BoxCollider>();
+                foreach (var collider in boxColliders)
+                {
+                    collider.enabled = false;
+                }
+
+                // Desativa todos os objetos filhos
+                foreach (Transform child in weapon.transform)
+                {
+                    child.gameObject.SetActive(false);
+                }
             }
         }
     }

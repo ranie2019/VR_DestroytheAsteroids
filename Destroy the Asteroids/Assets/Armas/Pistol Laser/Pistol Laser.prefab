@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 60
+  tempoDeInatividade: 20
 --- !u!1 &510867543663158508
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +918,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 21e1c6dce7c104e5bba0fa55aab2a581, type: 2}
+  - {fileID: 2100000, guid: a2edbb5882b098049b321158700ffd8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

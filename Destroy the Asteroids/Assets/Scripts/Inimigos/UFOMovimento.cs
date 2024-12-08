@@ -71,11 +71,11 @@ public class UFOMovimento : MonoBehaviour
 
     private void EscolherTrajetoria()
     {
-        // Escolhe uma das 3 trajetórias restantes (sem a 1)
-        int trajeto = Random.Range(0, 3);
+        // Escolhe entre 2 trajetórias restantes (2 e 4)
+        int trajeto = Random.Range(0, 2);
 
         // Define a trajetória escolhida como um número visível no Editor
-        trajetoriaEscolhida = trajeto + 2; // Para exibir 2 a 4 no Editor (não 0 a 2)
+        trajetoriaEscolhida = trajeto == 0 ? 2 : 4;
 
         switch (trajeto)
         {
@@ -83,9 +83,6 @@ public class UFOMovimento : MonoBehaviour
                 direcaoInicial = new Vector3(0, 0, 1).normalized; // Movimento inicial para frente (trajetória 2)
                 break;
             case 1:
-                direcaoInicial = new Vector3(1, 0, -1).normalized; // Diagonal para trás e direita (trajetória 3)
-                break;
-            case 2:
                 direcaoInicial = new Vector3(-1, 0, -1).normalized; // Diagonal para trás e esquerda (trajetória 4)
                 break;
         }
@@ -97,9 +94,6 @@ public class UFOMovimento : MonoBehaviour
         {
             case 2:
                 MoverParaFrente();
-                break;
-            case 3:
-                MoverParaTrasEDireita();
                 break;
             case 4:
                 MoverParaTrasESquerda();
@@ -117,22 +111,6 @@ public class UFOMovimento : MonoBehaviour
         if (direcaoParaJogador != Vector3.zero)
         {
             Quaternion rotacao = Quaternion.LookRotation(direcaoParaJogador);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotacao, Time.deltaTime * velocidade);
-        }
-    }
-
-    // Lógica de movimentação 3 (Diagonal para trás e direita)
-    private void MoverParaTrasEDireita()
-    {
-        Vector3 direcaoParaJogador = (jogador.position - transform.position).normalized;
-        Vector3 direcaoCombinada = (direcaoInicial + direcaoParaJogador).normalized;
-
-        transform.position += direcaoCombinada * velocidade * Time.deltaTime;
-
-        // Verificar se a direção não é zero antes de rotacionar
-        if (direcaoCombinada != Vector3.zero)
-        {
-            Quaternion rotacao = Quaternion.LookRotation(direcaoCombinada);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotacao, Time.deltaTime * velocidade);
         }
     }

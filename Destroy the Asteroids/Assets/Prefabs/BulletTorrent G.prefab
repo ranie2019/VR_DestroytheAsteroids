@@ -96,7 +96,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4016273362745119833, guid: 769dd651998a4594f9f3b86844decaff,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5141527178981041719}
+      addedObject: {fileID: -3968214731980487262}
   m_SourcePrefab: {fileID: 100100000, guid: 769dd651998a4594f9f3b86844decaff, type: 3}
 --- !u!1 &4836174050331487712 stripped
 GameObject:
@@ -104,7 +104,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8404035715107731897}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5141527178981041719
+--- !u!114 &-3968214731980487262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +113,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4836174050331487712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34f5cabcae64404ea954c659f3cb326, type: 3}
+  m_Script: {fileID: 11500000, guid: 49cb91d27b0842b489540afdcffd9b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
+  velocidade: 20
+  tagAlvo: Asteroid
+  tempoDeVida: 5

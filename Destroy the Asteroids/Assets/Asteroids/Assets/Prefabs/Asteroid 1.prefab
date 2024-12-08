@@ -201,9 +201,9 @@ MonoBehaviour:
     type: 3}
   explosionLifetime: 2
   asteroidDestroyDelay: 0
-  gameController: {fileID: 0}
   popupCanvas: {fileID: 9011070306959793057, guid: d9f405dc6602b5446adc6ffa9acd8daf,
     type: 3}
+  playerTransform: {fileID: 0}
 --- !u!82 &2227534531358929818
 AudioSource:
   m_ObjectHideFlags: 0

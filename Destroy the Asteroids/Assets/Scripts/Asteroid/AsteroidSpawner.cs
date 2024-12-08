@@ -55,11 +55,6 @@ public class AsteroidSpawner : MonoBehaviour
         if (selectedAsteroid != null)
         {
             Instantiate(selectedAsteroid, spawnPosition, Quaternion.identity);
-            Debug.Log("Asteroide gerado na posição: " + spawnPosition);
-        }
-        else
-        {
-            Debug.LogWarning("Nenhum modelo de asteroide disponível para spawn.");
         }
     }
 
@@ -84,7 +79,6 @@ public class AsteroidSpawner : MonoBehaviour
     {
         if (asteroidModels.Length == 0)
         {
-            Debug.LogError("Nenhum modelo de asteroide foi atribuído no array.");
             return null;
         }
 
@@ -99,7 +93,6 @@ public class AsteroidSpawner : MonoBehaviour
     {
         // Reduz o spawnRate, mas garante que ele não fique menor que o valor mínimo
         spawnRate = Mathf.Max(spawnRate - 0.01f, minimumSpawnRate);
-        Debug.Log("Nova taxa de geração: " + spawnRate + " segundos.");
     }
 
     private void OnDrawGizmos()

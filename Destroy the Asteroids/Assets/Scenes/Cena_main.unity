@@ -1192,6 +1192,15 @@ MonoBehaviour:
   particleSystemPrefab2: {fileID: 1848417595}
   particleSystemPrefab3: {fileID: 2097229158}
   objectToDisableMeshRenderer: {fileID: 1863438325}
+  weaponObjects:
+  - {fileID: 3473423385406662826}
+  - {fileID: 1187120734}
+  - {fileID: 2021724420473495983}
+  - {fileID: 990558334}
+  - {fileID: 927411033}
+  - {fileID: 1515591258}
+  - {fileID: 2106248690}
+  - {fileID: 342811666}
 --- !u!65 &220264834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2416,6 +2425,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1080617905}
+    - target: {fileID: 5521310714739262156, guid: 2a81f2ab96d78d849a3042526c14013d,
+        type: 3}
+      propertyPath: tempoDeInatividade
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4342,31 +4356,12 @@ Transform:
   - {fileID: 342811664}
   m_Father: {fileID: 788967382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &647085082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
-    type: 3}
-  m_PrefabInstance: {fileID: 1527169394}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &647085088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4789168197315694121, guid: c729638200f745842bb6e547b4cbc586,
     type: 3}
   m_PrefabInstance: {fileID: 1527169394}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &647085089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647085082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e2242138042804e90ecb2813f069d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidade: 3
 --- !u!1 &654923449
 GameObject:
   m_ObjectHideFlags: 0
@@ -4393,7 +4388,7 @@ Transform:
   m_GameObject: {fileID: 654923449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2247, y: 366, z: 504}
+  m_LocalPosition: {x: 2640, y: 480, z: 504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4412,7 +4407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 50, y: 100, z: 150}
-  spawnRate: 1
+  spawnRate: 7
   minimumSpawnRate: 0.1
   asteroidModels:
   - {fileID: 8512000840424516683, guid: 87b3e627d564e3a4e93019febe1473e9, type: 3}
@@ -4663,7 +4658,7 @@ Transform:
   - {fileID: 1586871225}
   - {fileID: 654923450}
   - {fileID: 1549047195}
-  m_Father: {fileID: 1174557856}
+  m_Father: {fileID: 788967382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &699626368
 PrefabInstance:
@@ -5197,6 +5192,7 @@ Transform:
   - {fileID: 375436857}
   - {fileID: 637862156}
   - {fileID: 933657790}
+  - {fileID: 692257953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789485558
@@ -5828,6 +5824,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 508617429398493330, guid: 9bb7bf8080358e349b16f477ea2a65e4,
+        type: 3}
+      propertyPath: tempoDeInatividade
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 898061176354287133, guid: 9bb7bf8080358e349b16f477ea2a65e4,
         type: 3}
       propertyPath: m_IsKinematic
@@ -5984,6 +5985,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2034678835}
+    - target: {fileID: 8067202725110717468, guid: 689a13b7fa63d7e45a9ca0897047f29e,
+        type: 3}
+      propertyPath: tempoDeInatividade
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7317,7 +7323,6 @@ Transform:
   - {fileID: 1810356407}
   - {fileID: 607363918}
   - {fileID: 220264832}
-  - {fileID: 692257953}
   - {fileID: 64632766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9149,11 +9154,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778892369605383205, guid: c729638200f745842bb6e547b4cbc586,
-        type: 3}
-      propertyPath: lifeTime
-      value: 777
-      objectReference: {fileID: 0}
     - target: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
         type: 3}
       propertyPath: m_Name
@@ -9162,11 +9162,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 647085089}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c729638200f745842bb6e547b4cbc586, type: 3}
 --- !u!1001 &1528655856
 PrefabInstance:
@@ -9452,7 +9448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1549047195
 Transform:
   m_ObjectHideFlags: 0
@@ -9462,7 +9458,7 @@ Transform:
   m_GameObject: {fileID: 1549047194}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.26071003, z: -0, w: 0.96541715}
-  m_LocalPosition: {x: 136, y: 427, z: 1312}
+  m_LocalPosition: {x: 535, y: 427, z: 1862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9481,8 +9477,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 134, y: 89.3, z: 66.5}
-  spawnRate: 3
-  minimumSpawnRate: 0.1
+  spawnRate: 15
+  minimumSpawnRate: 0.2
   asteroidModels:
   - {fileID: 503222116013560536, guid: 96aeffe1bfd1d4b04908e4a5d7e36d36, type: 3}
   - {fileID: 7920573696653086769, guid: 2998aa3f4512340fdb5648bbeddc679c, type: 3}
@@ -10004,13 +10000,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586871223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c0e8e2a0cfb177478fcb58bb0dcbaf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 50, y: 100, z: 150}
-  spawnRate: 1
+  spawnRate: 3
   minimumSpawnRate: 0.1
   asteroidModels:
   - {fileID: 8512000840424516683, guid: 87b3e627d564e3a4e93019febe1473e9, type: 3}
@@ -10026,7 +10022,7 @@ Transform:
   m_GameObject: {fileID: 1586871223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1568, y: 208, z: 496}
+  m_LocalPosition: {x: 1667, y: 423, z: 555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18577,8 +18573,16 @@ PrefabInstance:
       value: Pistol T Duplo
       objectReference: {fileID: 0}
     - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.233
+      value: 0.23300007
       objectReference: {fileID: 0}
     - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18598,7 +18602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 475086, guid: 501aeb8f6ddb18d44bd1d6cf700b8428, type: 3}
       propertyPath: m_LocalRotation.z
@@ -18621,6 +18625,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1080617905}
+    - target: {fileID: 3789058824079681354, guid: 501aeb8f6ddb18d44bd1d6cf700b8428,
+        type: 3}
+      propertyPath: tempoDeInatividade
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

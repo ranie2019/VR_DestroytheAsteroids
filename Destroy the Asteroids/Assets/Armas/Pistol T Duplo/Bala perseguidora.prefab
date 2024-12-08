@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1731011084801486480}
   - component: {fileID: 5460058575938118380}
   - component: {fileID: 5446040456349554007}
+  - component: {fileID: 5147281182337667294}
   m_Layer: 0
   m_Name: Bala perseguidora
   m_TagString: Laser
@@ -151,3 +152,16 @@ MonoBehaviour:
   velocidade: 500
   tagAlvo: Asteroid
   tempoDeVida: 10
+--- !u!114 &5147281182337667294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109021670497870004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f5cabcae64404ea954c659f3cb326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5

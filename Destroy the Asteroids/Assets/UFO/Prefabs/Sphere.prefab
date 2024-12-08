@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 642850858731434625}
   - component: {fileID: 5733009855252315231}
   - component: {fileID: 8824501023118106840}
-  - component: {fileID: 7778892369605383205}
+  - component: {fileID: 2118374662278823537}
+  - component: {fileID: 3427900909493863948}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Inimigo
@@ -134,7 +135,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &7778892369605383205
+--- !u!114 &2118374662278823537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +144,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8776194668723731899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 746a68fc8286bb54e8d94c0b2e64c4a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 76e2242138042804e90ecb2813f069d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 7
+  velocidade: 3
+--- !u!114 &3427900909493863948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776194668723731899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f5cabcae64404ea954c659f3cb326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 5
