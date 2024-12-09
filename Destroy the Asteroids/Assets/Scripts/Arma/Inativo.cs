@@ -3,26 +3,34 @@ using UnityEngine;
 
 public class Inativo : MonoBehaviour
 {
-    public float tempoDeInatividade;  // Tempo de inatividade, será definido publicamente
-    private bool podeContar = false;  // Flag para garantir que a contagem só comece uma vez
+    public float tempoDeInatividade; // Tempo de inatividade, será definido publicamente
+    private bool podeContar = false; // Flag para garantir que a contagem só comece uma vez
 
     private MeshRenderer meshRenderer;
-    private BoxCollider boxCollider;  // Referência para o BoxCollider
+    private BoxCollider boxCollider; // Referência para o BoxCollider
     private Canvas canvasFilho;
     private LaserPointer laserPointerFilho;
 
-    private float spawnTimer;  // Timer para controlar o tempo de inatividade
-    private bool jogoIniciado = false;  // Flag para verificar se o jogo foi iniciado
+    private float spawnTimer; // Timer para controlar o tempo de inatividade
+    private bool jogoIniciado = false; // Flag para verificar se o jogo foi iniciado
 
-    private Transform[] filhos;  // Array para armazenar os objetos filhos
+    private Transform[] filhos; // Array para armazenar os objetos filhos
+
+    [Header("Configuração de Áudio")]
+    [Tooltip("Áudio reproduzido quando o tempo de inatividade chega a zero.")]
+    [SerializeField] private AudioClip ativacaoSound; // Som para reprodução
+    private AudioSource audioSource;
 
     private void Awake()
     {
         // Referências para os componentes do objeto
         meshRenderer = GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();  // Obtém o BoxCollider
-        canvasFilho = GetComponentInChildren<Canvas>();  // Obtém o Canvas filho
-        laserPointerFilho = GetComponentInChildren<LaserPointer>();  // Obtém o LaserPointer filho
+        boxCollider = GetComponent<BoxCollider>(); // Obtém o BoxCollider
+        canvasFilho = GetComponentInChildren<Canvas>(); // Obtém o Canvas filho
+        laserPointerFilho = GetComponentInChildren<LaserPointer>(); // Obtém o LaserPointer filho
+
+        // Inicializa ou adiciona o AudioSource
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
 
         // Desativa inicialmente o MeshRenderer, o BoxCollider e os filhos
         if (meshRenderer != null)
@@ -41,7 +49,7 @@ public class Inativo : MonoBehaviour
         // Desativa todos os objetos filhos (exceto o próprio objeto pai)
         foreach (var filho in filhos)
         {
-            if (filho != transform)  // Ignora o próprio objeto pai
+            if (filho != transform) // Ignora o próprio objeto pai
             {
                 filho.gameObject.SetActive(false);
             }
@@ -57,10 +65,10 @@ public class Inativo : MonoBehaviour
     // Método chamado pelo StartGame para iniciar a contagem
     public void IniciarContagem()
     {
-        if (!podeContar && gameObject.activeInHierarchy && jogoIniciado)  // Verifica se o objeto está ativo e se o jogo foi iniciado
+        if (!podeContar && gameObject.activeInHierarchy && jogoIniciado) // Verifica se o objeto está ativo e se o jogo foi iniciado
         {
             podeContar = true;
-            spawnTimer = tempoDeInatividade;  // Reseta o timer para o tempo de inatividade
+            spawnTimer = tempoDeInatividade; // Reseta o timer para o tempo de inatividade
         }
     }
 
@@ -69,10 +77,13 @@ public class Inativo : MonoBehaviour
     {
         if (jogoIniciado && podeContar)
         {
-            spawnTimer -= Time.deltaTime;  // Reduz o tempo de inatividade
+            spawnTimer -= Time.deltaTime; // Reduz o tempo de inatividade
 
             if (spawnTimer <= 0f)
             {
+                // Toca o som de ativação
+                PlayActivationSound();
+
                 // Ativa o BoxCollider e o MeshRenderer após o tempo de inatividade
                 if (boxCollider != null)
                 {
@@ -87,21 +98,34 @@ public class Inativo : MonoBehaviour
                 // Ativa todos os filhos
                 foreach (var filho in filhos)
                 {
-                    if (filho != transform)  // Ignora o próprio objeto pai
+                    if (filho != transform) // Ignora o próprio objeto pai
                     {
                         filho.gameObject.SetActive(true);
                     }
                 }
 
-                podeContar = false;  // Reseta a flag para evitar nova contagem
+                podeContar = false; // Reseta a flag para evitar nova contagem
             }
+        }
+    }
+
+    // Método para tocar o som de ativação
+    private void PlayActivationSound()
+    {
+        if (audioSource != null && ativacaoSound != null)
+        {
+            audioSource.PlayOneShot(ativacaoSound);
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource ou ativacaoSound não configurado.");
         }
     }
 
     // Método para notificar o início do jogo
     public void NotificarInicioDoJogo()
     {
-        jogoIniciado = true;  // Marca o jogo como iniciado
-        IniciarContagem();  // Inicia a contagem
+        jogoIniciado = true; // Marca o jogo como iniciado
+        IniciarContagem(); // Inicia a contagem
     }
 }

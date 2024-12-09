@@ -18,31 +18,23 @@ public class Gravidade : MonoBehaviour
     [Tooltip("Tempo em segundos antes que o objeto seja destruído.")]
     [SerializeField] private float lifeTime = 10f;
 
-    private string asteroidTag = "Asteroid";
-
-    private GameController gameController;
-
     [Header("Configuração de Áudio")]
     [Tooltip("Áudio reproduzido ao colidir com um asteroide.")]
-    [SerializeField] private AudioClip collisionSound; // Som de colisão
+    [SerializeField] private AudioClip collisionSound;
+
+    private const string AsteroidTag = "Asteroid"; // Tag dos asteroides
+    private GameController gameController;
     private AudioSource audioSource;
 
     private void Start()
     {
-        // Encontra o GameController na cena, caso não esteja atribuído manualmente
-        if (gameController == null)
-        {
-            gameController = FindObjectOfType<GameController>();
-        }
+        // Encontra o GameController automaticamente, caso não esteja atribuído
+        gameController = gameController ?? FindObjectOfType<GameController>();
 
-        // Inicializa o AudioSource
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
+        // Inicializa ou adiciona um AudioSource, se necessário
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
 
-        }
-
-        // Inicia a contagem regressiva para destruir o objeto
+        // Inicia o temporizador para destruir o objeto após `lifeTime`
         Invoke(nameof(DestroyObject), lifeTime);
     }
 
@@ -53,23 +45,39 @@ public class Gravidade : MonoBehaviour
 
     private void AttractAsteroids()
     {
-        // Encontra todos os asteroides dentro da área de atração
-        Collider[] asteroidsInRange = Physics.OverlapSphere(transform.position, attractionRadius);
+        // Encontra todos os objetos dentro do raio de atração
+        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, attractionRadius);
 
-        foreach (Collider collider in asteroidsInRange)
+        foreach (var collider in collidersInRange)
         {
-            if (collider.CompareTag(asteroidTag))
+            if (collider.CompareTag(AsteroidTag))
             {
-                Rigidbody asteroidRigidbody = collider.GetComponent<Rigidbody>();
-                if (asteroidRigidbody != null)
-                {
-                    // Aplica a atração
-                    Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
-                    float distanceToCenter = Vector3.Distance(transform.position, collider.transform.position);
-                    float scaledForce = attractionForce / Mathf.Pow(distanceToCenter, 2) * gravityMultiplier;
-                    asteroidRigidbody.AddForce(directionToCenter * scaledForce, ForceMode.Acceleration);
-                }
+                // Movimentação manual do asteroide
+                Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
+                float distanceSquared = Mathf.Max(Vector3.SqrMagnitude(transform.position - collider.transform.position), 0.1f); // Evita divisão por zero
+                float scaledForce = (attractionForce * gravityMultiplier) / distanceSquared;
+
+                // Aplica a atração manualmente
+                collider.transform.position += directionToCenter * scaledForce * Time.fixedDeltaTime;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Evita que o objeto de gravidade se mova ao colidir com um asteroide
+        if (collision.gameObject.CompareTag(AsteroidTag))
+        {
+            PlayCollisionSound();
+            DestroyAsteroid(collision.gameObject);
+        }
+    }
+
+    private void PlayCollisionSound()
+    {
+        if (audioSource != null && collisionSound != null)
+        {
+            audioSource.PlayOneShot(collisionSound);
         }
     }
 
@@ -77,45 +85,41 @@ public class Gravidade : MonoBehaviour
     {
         if (asteroid != null)
         {
-            int asteroidScore = CalculateScore(asteroid.transform.position);
+            // Calcula a pontuação com base na posição do asteroide
+            int score = CalculateScore(asteroid.transform.position);
 
+            // Atualiza o placar do jogador
             if (gameController != null)
             {
-                gameController.UpdatePlayerScore(asteroidScore);
+                gameController.UpdatePlayerScore(score);
+            }
+            else
+            {
+                Debug.LogWarning("GameController não encontrado! Não foi possível atualizar a pontuação.");
             }
 
+            // Destroi o asteroide
             Destroy(asteroid);
         }
     }
 
     private int CalculateScore(Vector3 asteroidPosition)
     {
+        // Cálculo de pontuação com base na distância do asteroide
         float distanceFromCenter = Vector3.Distance(transform.position, asteroidPosition);
-        return Mathf.Max(1, (int)distanceFromCenter);
+        int score = Mathf.Max(1, Mathf.CeilToInt(distanceFromCenter)); // Garantir que a pontuação não seja zero
+        return score;
     }
 
     private void DestroyObject()
     {
+        // Destroi o objeto de gravidade após o tempo de vida
         Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag(asteroidTag))
-        {
-            // Reproduz o som de colisão
-            if (audioSource != null && collisionSound != null)
-            {
-                audioSource.PlayOneShot(collisionSound);
-            }
-
-            // Destrói o asteroide após a colisão
-            DestroyAsteroid(collision.gameObject);
-        }
     }
 
     private void OnDrawGizmosSelected()
     {
+        // Visualiza a área de atração no Editor
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attractionRadius);
     }

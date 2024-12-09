@@ -139,8 +139,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09087671, y: 0.38824055, z: 0.43881238}
-  m_Center: {x: -0.002277251, y: 0.10249899, z: 0.09128204}
+  m_Size: {x: 0.03930028, y: 0.38824055, z: 0.4388124}
+  m_Center: {x: -0.009553667, y: 0.102499, z: 0.09128204}
 --- !u!114 &5510949526461995380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,14 +345,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35283525fdb31b14084b386e86fbe35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7766326079782981827, guid: b9b2fac34328849498982d0030b7680c,
+  bulletPrefab: {fileID: 7766326079782981827, guid: fcf46d004eebbb54586ca479ab95be72,
     type: 3}
   bulletSpawnPoint: {fileID: 5095923706883831389}
-  bulletSpeed: 500
+  bulletSpeed: 900
   municaoMaxima: 5
-  tempoRecarga: 20
+  tempoRecarga: 30
   municaoText: {fileID: 5027498794629475847}
-  disparoSFX: {fileID: 8300000, guid: 6f1f73103a417e5499df1b5f58b0e71b, type: 3}
+  disparoSFX: {fileID: 8300000, guid: eb044324b3575b0479f045b7b8f05a81, type: 3}
 --- !u!114 &5521310714739262156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 40
+  tempoDeInatividade: 85
 --- !u!1 &3648290925959103954
 GameObject:
   m_ObjectHideFlags: 0

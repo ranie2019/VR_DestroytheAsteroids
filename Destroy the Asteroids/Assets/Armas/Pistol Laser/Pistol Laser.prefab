@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23000012143790942}
   - component: {fileID: 5617571577382036059}
   - component: {fileID: 2725419939751928448}
-  - component: {fileID: 2070322623757847386}
   - component: {fileID: 2284842887715294853}
   - component: {fileID: 6016898506937221583}
   - component: {fileID: 7922974290511632796}
@@ -141,29 +140,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09209594, y: 0.30549663, z: 0.45981315}
-  m_Center: {x: -0.0000067278743, y: 0.04193621, z: 0.120335266}
---- !u!65 &2070322623757847386
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153064}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.09209594, y: 0.30549663, z: 0.45981315}
-  m_Center: {x: -0.0000067278743, y: 0.04193621, z: 0.120335266}
+  m_Size: {x: 0.04036106, y: 0.30549666, z: 0.45981315}
+  m_Center: {x: -0.007035248, y: 0.041936204, z: 0.12033524}
 --- !u!114 &2284842887715294853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 20
+  tempoDeInatividade: 40
+  ativacaoSound: {fileID: 8300000, guid: 982b9c2824a84e84abdb2cf51a43b7d2, type: 3}
 --- !u!1 &510867543663158508
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +735,7 @@ MonoBehaviour:
   maxEnergy: 100
   depletionRate: 10
   rechargeDelay: 5
-  rechargeDuration: 20
+  rechargeDuration: 30
   laserSound: {fileID: 8300000, guid: 8090c5079440ab248b513578c6211fcc, type: 3}
 --- !u!1 &4622795315855375607
 GameObject:
