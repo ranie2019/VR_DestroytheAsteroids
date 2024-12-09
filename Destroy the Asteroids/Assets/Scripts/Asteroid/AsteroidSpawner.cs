@@ -16,8 +16,21 @@ public class AsteroidSpawner : MonoBehaviour
     [Tooltip("Array de modelos de asteroides que podem ser instanciados.")]
     [SerializeField] private GameObject[] asteroidModels;
 
-    private float spawnTimer; // Temporizador para controlar o spawn
+    private float originalSpawnRate; // Armazena o valor original de spawnRate
+    private float spawnTimer;        // Temporizador para controlar o spawn
     private float rateReductionTimer; // Temporizador para reduzir a taxa de spawn
+
+    private void Awake()
+    {
+        // Armazena o valor original de spawnRate e inicializa a taxa de geração
+        originalSpawnRate = spawnRate;
+    }
+
+    private void OnEnable()
+    {
+        // Reinicia o spawnRate para o valor original sempre que o script é reiniciado
+        spawnRate = originalSpawnRate;
+    }
 
     private void Update()
     {

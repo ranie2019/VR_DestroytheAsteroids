@@ -4385,7 +4385,7 @@ Transform:
   m_GameObject: {fileID: 654923449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2640, y: 480, z: 504}
+  m_LocalPosition: {x: 2640, y: 480, z: 738}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4404,7 +4404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 50, y: 100, z: 150}
-  spawnRate: 10
+  spawnRate: 7
   minimumSpawnRate: 0.3
   asteroidModels:
   - {fileID: 8512000840424516683, guid: 87b3e627d564e3a4e93019febe1473e9, type: 3}
@@ -9449,7 +9449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 134, y: 89.3, z: 66.5}
-  spawnRate: 30
+  spawnRate: 15
   minimumSpawnRate: 0.2
   asteroidModels:
   - {fileID: 503222116013560536, guid: 96aeffe1bfd1d4b04908e4a5d7e36d36, type: 3}
@@ -9972,13 +9972,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586871223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c0e8e2a0cfb177478fcb58bb0dcbaf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 50, y: 100, z: 150}
-  spawnRate: 1
+  spawnRate: 2
   minimumSpawnRate: 0.1
   asteroidModels:
   - {fileID: 8512000840424516683, guid: 87b3e627d564e3a4e93019febe1473e9, type: 3}

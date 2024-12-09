@@ -4,12 +4,12 @@ using TMPro;
 public class AsteroidHit : MonoBehaviour
 {
     [Header("Configurações de Destruição")]
-    [SerializeField] private GameObject asteroidExplosion;
-    [SerializeField] private float explosionLifetime = 2f;
-    [SerializeField] private float asteroidDestroyDelay = 0f;
+    [SerializeField] private GameObject asteroidExplosion; // Prefab da explosão
+    [SerializeField] private float explosionLifetime = 2f; // Tempo de vida da explosão
+    [SerializeField] private float asteroidDestroyDelay = 0f; // Tempo antes de destruir o asteroide
 
     [Header("Referências Externas")]
-    [SerializeField] private GameObject popupCanvas;
+    [SerializeField] private GameObject popupCanvas; // Prefab do popup de pontuação
     private Transform playerTransform; // Transform do jogador
 
     private GameController gameController;
@@ -23,6 +23,17 @@ public class AsteroidHit : MonoBehaviour
         if (playerTransform == null)
         {
             playerTransform = GameObject.FindWithTag("Player")?.transform;
+        }
+
+        // Verificação adicional para prefabs obrigatórios
+        if (asteroidExplosion == null)
+        {
+            Debug.LogError("O prefab de explosão não foi atribuído ao campo 'Asteroid Explosion'!");
+        }
+
+        if (popupCanvas == null)
+        {
+            Debug.LogError("O prefab do popup de pontuação não foi atribuído ao campo 'Popup Canvas'!");
         }
     }
 
@@ -38,27 +49,38 @@ public class AsteroidHit : MonoBehaviour
 
     public void HandleAsteroidDestruction()
     {
-        // Conteúdo do método permanece o mesmo
+        // Instancia a explosão do asteroide
         CreateExplosion();
 
+        // Calcula e exibe a pontuação
         int asteroidScore = CalculateScore();
         ShowScorePopup(asteroidScore);
 
+        // Atualiza a pontuação do jogador
         if (gameController != null)
         {
             gameController.UpdatePlayerScore(asteroidScore);
-
         }
+        else
+        {
+            Debug.LogWarning("GameController não encontrado. Não foi possível atualizar a pontuação!");
+        }
+
+        // Destroi o asteroide após o tempo de delay
         Destroy(gameObject, asteroidDestroyDelay);
     }
 
     private void CreateExplosion()
     {
-        // Instancia a explosão do asteroide se o prefab foi atribuído
+        // Verifica se o prefab da explosão foi atribuído antes de instanciar
         if (asteroidExplosion != null)
         {
             GameObject explosion = Instantiate(asteroidExplosion, transform.position, transform.rotation);
             Destroy(explosion, explosionLifetime); // Destroi a explosão após o tempo definido
+        }
+        else
+        {
+            Debug.LogError("Prefab de explosão ausente. Certifique-se de atribuir o campo 'Asteroid Explosion'.");
         }
     }
 
@@ -73,7 +95,7 @@ public class AsteroidHit : MonoBehaviour
 
     private void ShowScorePopup(int score)
     {
-        // Mostra o popup com a pontuação se o prefab foi atribuído
+        // Verifica se o prefab do popup foi atribuído antes de instanciar
         if (popupCanvas != null && playerTransform != null)
         {
             GameObject asteroidPopup = Instantiate(popupCanvas, transform.position, Quaternion.identity);
@@ -89,6 +111,10 @@ public class AsteroidHit : MonoBehaviour
             // Aponta o popup para o jogador
             Vector3 directionToPlayer = (playerTransform.position - asteroidPopup.transform.position).normalized;
             asteroidPopup.transform.forward = directionToPlayer;
+        }
+        else
+        {
+            Debug.LogError("Popup Canvas ou Player Transform não encontrados. Não foi possível exibir o popup.");
         }
     }
 }
