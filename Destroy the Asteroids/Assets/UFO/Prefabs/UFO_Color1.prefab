@@ -179,13 +179,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503222116013560536}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4188298c69f654484ee09b3d430b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projetilPrefab: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
     type: 3}
+  pontoRotacaoY: {fileID: 5213080843210703737}
+  pontoRotacaoX: {fileID: 2954270192693664509}
   pontoDeDisparo: {fileID: 773871752090529616}
   intervaloDeAtaque: 3
   alcanceDeAtaque: 300
@@ -223,7 +225,6 @@ MonoBehaviour:
   asteroidDestroyDelay: 0
   popupCanvas: {fileID: 9011070306959793057, guid: d9f405dc6602b5446adc6ffa9acd8daf,
     type: 3}
-  gravityTag: Gravidade
 --- !u!1 &4198790804210576266
 GameObject:
   m_ObjectHideFlags: 0

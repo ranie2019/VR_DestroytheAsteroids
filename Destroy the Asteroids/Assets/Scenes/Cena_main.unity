@@ -9449,7 +9449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnerSize: {x: 134, y: 89.3, z: 66.5}
-  spawnRate: 15
+  spawnRate: 1
   minimumSpawnRate: 0.2
   asteroidModels:
   - {fileID: 503222116013560536, guid: 96aeffe1bfd1d4b04908e4a5d7e36d36, type: 3}
@@ -9972,7 +9972,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586871223}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c0e8e2a0cfb177478fcb58bb0dcbaf2, type: 3}
   m_Name: 
@@ -17458,11 +17458,6 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1080617905}
-    - target: {fileID: 5521310714739262156, guid: 2a81f2ab96d78d849a3042526c14013d,
-        type: 3}
-      propertyPath: ativacaoSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 396514800b8bc5143834fcaedc02ffa8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
