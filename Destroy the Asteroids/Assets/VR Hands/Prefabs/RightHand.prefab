@@ -278,7 +278,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fa0146d148195b45844caebda30604c, type: 2}
+  - {fileID: 2100000, guid: 1eed0e546b0063242b1e5bfc8b9fdffd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -846,8 +846,8 @@ Transform:
   - {fileID: 2589334664373154030}
   - {fileID: 4299557644388345549}
   - {fileID: 1444248899641943941}
-  - {fileID: 1190766155493750524}
   - {fileID: 656875797740927585}
+  - {fileID: 1190766155493750524}
   - {fileID: 245232174586568415}
   m_Father: {fileID: 3660875637856886365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -973,7 +973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8732751464224707454}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c6da23fba6f4047adedd2f6678ab80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gripAction: {fileID: -7621925406209348655, guid: c348712bda248c246b8c49b3db54643f,
+  gripAction: {fileID: -741667397773074983, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pinchAction: {fileID: -7813013294023911475, guid: c348712bda248c246b8c49b3db54643f,
+  pinchAction: {fileID: 8429157816736509786, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
