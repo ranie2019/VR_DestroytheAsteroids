@@ -18,14 +18,18 @@ public class AudioExplosion : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica se os áudios e o AudioSource estão configurados
-        if (firstExplosionClip != null && secondExplosionClip != null && audioSource != null)
+        // Verifica se a colisão foi com um objeto com a tag "Asteroid"
+        if (collision.gameObject.CompareTag("Asteroid"))
         {
-            // Toca o primeiro áudio
-            audioSource.PlayOneShot(firstExplosionClip);
+            // Verifica se os áudios e o AudioSource estão configurados
+            if (firstExplosionClip != null && secondExplosionClip != null && audioSource != null)
+            {
+                // Toca o primeiro áudio
+                audioSource.PlayOneShot(firstExplosionClip);
 
-            // Inicia uma rotina para tocar o segundo áudio após o atraso
-            StartCoroutine(PlaySecondAudioWithDelay());
+                // Inicia uma rotina para tocar o segundo áudio após o atraso
+                StartCoroutine(PlaySecondAudioWithDelay());
+            }
         }
     }
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 55489781516437454}
   - component: {fileID: 7081847932829167965}
   - component: {fileID: 8965529115364828929}
+  - component: {fileID: 8656501345047870176}
   m_Layer: 0
   m_Name: Asteroid 3
   m_TagString: Asteroid
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 153.11505, y: 0, z: 225.01031}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 494542}
@@ -120,7 +121,6 @@ MonoBehaviour:
   asteroidDestroyDelay: 0
   popupCanvas: {fileID: 9011070306959793057, guid: d9f405dc6602b5446adc6ffa9acd8daf,
     type: 3}
-  playerTransform: {fileID: 0}
 --- !u!82 &8965529115364828929
 AudioSource:
   m_ObjectHideFlags: 0
@@ -217,6 +217,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &8656501345047870176
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb08f9656d7bfda4fb7399064a62ed1b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &164382
 GameObject:
   m_ObjectHideFlags: 0

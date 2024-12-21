@@ -24,6 +24,13 @@ public class PlayerDano : MonoBehaviour
     [Tooltip("Lista de objetos que devem ser desativados no Game Over.")]
     [SerializeField] private GameObject[] objetosParaDesabilitar;
 
+    [Header("Áudio de Explosão")]
+    [Tooltip("Áudio que será tocado quando o jogador perder toda a vida.")]
+    [SerializeField] private AudioClip explosionClip;
+
+    [Tooltip("Referência ao AudioSource que tocará o áudio.")]
+    [SerializeField] private AudioSource audioSource;
+
     private void Start()
     {
         // Define a vida inicial
@@ -38,10 +45,13 @@ public class PlayerDano : MonoBehaviour
         {
             // Reduz a vida ao sofrer uma colisão com um inimigo
             vidaAtual--;
+
+            // Atualiza a UI com a vida atual
             AtualizarUIVida();
 
-            // Exibe uma mensagem de debug com a vida atual
-            Debug.Log($"Vida Atual: {vidaAtual}");
+
+            // Destroi o objeto que colidiu (inimigo)
+            Destroy(collision.gameObject);
 
             // Verifica se a vida chegou a zero
             if (vidaAtual <= 0)
@@ -63,11 +73,14 @@ public class PlayerDano : MonoBehaviour
 
     private void HandleGameOver()
     {
-        // Habilita o painel de Game Over
-        if (gameOverUI != null)
+        // Toca o áudio de explosão se configurado
+        if (explosionClip != null && audioSource != null)
         {
-            gameOverUI.SetActive(true);  // Mostra a tela de Game Over
+            audioSource.PlayOneShot(explosionClip);
         }
+
+        // Habilita o painel de Game Over e seus filhos
+        ShowGameOverUI();
 
         // Congela todos os spawners
         FreezeSpawners();
@@ -77,9 +90,19 @@ public class PlayerDano : MonoBehaviour
 
         // Desabilita objetos específicos
         DesabilitarObjetos();
+    }
 
-        // Desabilita o jogador ou implementa outras ações de Game Over (como parar o movimento do jogador)
-        gameObject.SetActive(false);  // Desabilita o jogador
+    private void ShowGameOverUI()
+    {
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true); // Ativa o painel principal
+            EnableAllChildren(gameOverUI); // Ativa todos os filhos do painel
+        }
+        else
+        {
+            Debug.LogWarning("GameOver UI não está atribuído.");
+        }
     }
 
     private void FreezeSpawners()
@@ -115,6 +138,16 @@ public class PlayerDano : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+        }
+    }
+
+    private void EnableAllChildren(GameObject parent)
+    {
+        // Habilita recursivamente todos os filhos de um GameObject
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(true);
+            EnableAllChildren(child.gameObject);
         }
     }
 }

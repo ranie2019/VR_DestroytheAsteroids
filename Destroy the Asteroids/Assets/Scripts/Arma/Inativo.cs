@@ -9,7 +9,6 @@ public class Inativo : MonoBehaviour
     private MeshRenderer meshRenderer;
     private BoxCollider boxCollider; // Referência para o BoxCollider
     private Canvas canvasFilho;
-    private LaserPointer laserPointerFilho;
 
     private float spawnTimer; // Timer para controlar o tempo de inatividade
     private bool jogoIniciado = false; // Flag para verificar se o jogo foi iniciado
@@ -27,7 +26,6 @@ public class Inativo : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>(); // Obtém o BoxCollider
         canvasFilho = GetComponentInChildren<Canvas>(); // Obtém o Canvas filho
-        laserPointerFilho = GetComponentInChildren<LaserPointer>(); // Obtém o LaserPointer filho
 
         // Inicializa ou adiciona o AudioSource
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5740467847982950698}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5999534728659844067}
   - component: {fileID: 7896798247911147280}
   - component: {fileID: 1956628669350366028}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   - component: {fileID: 5324381816167680388}
   - component: {fileID: 2374319470108740848}
   - component: {fileID: 2172291310479444057}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4990,7 +4990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7640535660077522081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5025,7 +5025,7 @@ GameObject:
   - component: {fileID: 8838602760115572781}
   - component: {fileID: 3605588298642000517}
   - component: {fileID: 6986231674772211770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5088,7 +5088,7 @@ GameObject:
   - component: {fileID: 3806832379380550648}
   - component: {fileID: 6553291799839733544}
   - component: {fileID: 6811281610666518954}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Moonbase_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5194,7 +5194,7 @@ GameObject:
   - component: {fileID: 2220657611271309021}
   - component: {fileID: 7479797678336779632}
   - component: {fileID: 5596270065783715967}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun_muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5277,7 +5277,7 @@ GameObject:
   - component: {fileID: 6592458598036645498}
   - component: {fileID: 8165346350218555607}
   - component: {fileID: 6048614309860987096}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5358,7 +5358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415005237253102858}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RaycastPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5396,7 +5396,7 @@ GameObject:
   - component: {fileID: 4807918205891412769}
   - component: {fileID: 2347146840575250091}
   - component: {fileID: 3411716638781474677}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5448,7 +5448,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &3630572942971943365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5468,7 +5468,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -5600,7 +5600,7 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 7640535660077522081}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -5625,7 +5625,7 @@ MonoBehaviour:
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
-  m_ThrowOnDetach: 1
+  m_ThrowOnDetach: 0
   m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 415005237253102858}
   bulletPrefab: {fileID: 4016273362745119833, guid: 769dd651998a4594f9f3b86844decaff,
     type: 3}
-  bulletSpeed: 900
+  bulletSpeed: 1000
   bulletSpawnPoint: {fileID: 415005237253102858}
 --- !u!82 &4807918205891412769
 AudioSource:
