@@ -351,7 +351,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 9064805501977443432}
   bulletSpeed: 900
   municaoMaxima: 30
-  tempoRecarga: 30
+  tempoRecarga: 35
   municaoText: {fileID: 7180840596131335054}
   disparoSFX: {fileID: 8300000, guid: f52bef7dc454dbf4d96a763e7518e297, type: 3}
 --- !u!82 &6019602537113935635
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 60
+  tempoDeInatividade: 120
   ativacaoSound: {fileID: 8300000, guid: 11b78f83477f52f4d971377dc3692e88, type: 3}
 --- !u!1 &1694004183064765005
 GameObject:
