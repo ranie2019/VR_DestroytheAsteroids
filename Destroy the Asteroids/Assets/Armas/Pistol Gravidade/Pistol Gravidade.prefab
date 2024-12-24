@@ -351,7 +351,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 5095923706883831389}
   bulletSpeed: 900
   municaoMaxima: 5
-  tempoRecarga: 35
+  tempoRecarga: 45
   municaoText: {fileID: 5027498794629475847}
   disparoSFX: {fileID: 8300000, guid: eb044324b3575b0479f045b7b8f05a81, type: 3}
 --- !u!114 &5521310714739262156

@@ -16,6 +16,12 @@ public class BuracoNegro : MonoBehaviour
     [Tooltip("Velocidade de movimento do objeto.")]
     [SerializeField] private float movementSpeed = 5f;
 
+    [Header("Configuração de Atração")]
+    [Tooltip("Raio de atração do buraco negro.")]
+    [SerializeField] private float attractionRadius = 10f;
+    [Tooltip("Força de atração aplicada nos asteroides.")]
+    [SerializeField] private float attractionForce = 50f;
+
     private GameController gameController;
     private AudioSource audioSource;
 
@@ -35,6 +41,9 @@ public class BuracoNegro : MonoBehaviour
     {
         // Move o buraco negro na direção especificada
         MoveObject();
+
+        // Aplica atração aos asteroides
+        AttractAsteroids();
     }
 
     private void MoveObject()
@@ -79,5 +88,31 @@ public class BuracoNegro : MonoBehaviour
         {
             audioSource.PlayOneShot(collisionSound);
         }
+    }
+
+    private void AttractAsteroids()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attractionRadius);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Asteroid"))
+            {
+                Rigidbody asteroidRigidbody = collider.GetComponent<Rigidbody>();
+
+                if (asteroidRigidbody != null)
+                {
+                    Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
+                    asteroidRigidbody.AddForce(directionToCenter * attractionForce * Time.deltaTime, ForceMode.Acceleration);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Desenha a área de atração no Editor
+        Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul transparente
+        Gizmos.DrawSphere(transform.position, attractionRadius);
     }
 }

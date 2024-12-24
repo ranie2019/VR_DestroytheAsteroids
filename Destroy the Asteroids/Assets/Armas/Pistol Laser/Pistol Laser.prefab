@@ -734,7 +734,7 @@ MonoBehaviour:
   maxEnergy: 100
   depletionRate: 10
   rechargeDelay: 5
-  rechargeDuration: 35
+  rechargeDuration: 45
   animacaoArma: {fileID: 0}
   laserSound: {fileID: 8300000, guid: 8090c5079440ab248b513578c6211fcc, type: 3}
 --- !u!1 &4622795315855375607

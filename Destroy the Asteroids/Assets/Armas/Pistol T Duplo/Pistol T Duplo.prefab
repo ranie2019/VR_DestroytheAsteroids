@@ -461,7 +461,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 5648810983595280468}
   bulletSpeed: 100
   municaoMaxima: 30
-  tempoRecarga: 35
+  tempoRecarga: 45
   municaoText: {fileID: 2196783903675098783}
   disparoSFX: {fileID: 8300000, guid: fa5f15d5c001e1249a46f30914256f91, type: 3}
 --- !u!114 &3789058824079681354
@@ -802,7 +802,7 @@ Transform:
   m_GameObject: {fileID: 9139892488009543599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.008, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -262,11 +262,11 @@ PlayerSettings:
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 1
   useCustomLauncherManifest: 0
-  useCustomMainGradleTemplate: 0
+  useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 0
   useCustomBaseGradleTemplate: 0
-  useCustomGradlePropertiesTemplate: 0
-  useCustomGradleSettingsTemplate: 0
+  useCustomGradlePropertiesTemplate: 1
+  useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
   AndroidTargetDevices: 0
@@ -296,7 +296,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: c4af445e745119d4fab27c51b52fedef, type: 3}
+      m_Icon: {fileID: 2800000, guid: 82c73119be1e4ee4fa5551a9145d7dc4, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -822,23 +822,23 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK
-    EmbeddedLinux: ULTIMATEXR_USE_OCULUS_SDK
+    Android: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     GameCoreScarlett: ULTIMATEXR_USE_OCULUS_SDK
-    GameCoreXboxOne: ULTIMATEXR_USE_OCULUS_SDK
+    GameCoreXboxOne: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     LinuxHeadlessSimulation: ULTIMATEXR_USE_OCULUS_SDK
-    Nintendo Switch: ULTIMATEXR_USE_OCULUS_SDK
-    PS4: ULTIMATEXR_USE_OCULUS_SDK
-    PS5: ULTIMATEXR_USE_OCULUS_SDK
-    QNX: ULTIMATEXR_USE_OCULUS_SDK
-    Stadia: ULTIMATEXR_USE_OCULUS_SDK
-    Standalone: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK
-    VisionOS: ULTIMATEXR_USE_OCULUS_SDK
-    WebGL: ULTIMATEXR_USE_OCULUS_SDK
+    Nintendo Switch: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    PS4: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    PS5: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    QNX: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    Stadia: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    VisionOS: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    WebGL: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: ULTIMATEXR_USE_OCULUS_SDK
-    XboxOne: ULTIMATEXR_USE_OCULUS_SDK
+    XboxOne: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     iPhone: ULTIMATEXR_USE_OCULUS_SDK
-    tvOS: ULTIMATEXR_USE_OCULUS_SDK
+    tvOS: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
