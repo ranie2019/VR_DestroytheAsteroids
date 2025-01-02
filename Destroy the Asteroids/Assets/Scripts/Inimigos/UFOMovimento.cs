@@ -1,153 +1,153 @@
 using UnityEngine;
+using System.Collections;
 
 public class UFOMovimento : MonoBehaviour
 {
-    [Header("Configurações de Movimentação")]
-    public float velocidade = 5f; // Velocidade de movimentação do UFO
-    public float velocidadeOrbitacao = 3f; // Velocidade para orbitar ao redor do jogador
-    public float distanciaOrbitacao = 100f; // Distância fixa de orbitação ao redor do jogador
+    [Tooltip("Velocidade de órbita ao redor do jogador")]
+    public float orbitSpeed = 5f;
 
-    [Header("Trajetória Escolhida")]
-    public int trajetoriaEscolhida = 1; // Armazena a trajetória escolhida (2 a 4), visível no Editor
+    [Tooltip("Velocidade de movimento em linha reta até o destino")]
+    public float velocidadeMovimentoReto = 3f;
+
+    [Tooltip("Raio da órbita ao redor do jogador")]
+    public float orbitRadius = 10f;
+
+    [Tooltip("Altura do UFO durante a órbita")]
+    public float altura = 5f;
 
     private Transform jogador; // Referência ao jogador
-    private bool emAlcanceDeAtaque; // Indica se o UFO está dentro do alcance de ataque
-    private bool emMovimentacaoLateral; // Se o UFO está movendo-se lateralmente ao redor do jogador
-    private Vector3 direcaoInicial; // Direção inicial do movimento aleatório
+    private bool emAlcanceDeAtaque; // Indica se está em modo de ataque
+
+    private Vector3 initialPosition; // Posição inicial do UFO
+    private Vector3 destinoInicial; // Posição de origem para o movimento reto
+    private bool chegouNoDestino = false; // Flag para indicar que o UFO chegou ao destino
+    private Vector3 pontoDeOrbita; // Ponto onde o UFO começará a orbitar
+
+    private Coroutine movimentoCoroutine; // Coroutine para controlar o movimento em linha reta
 
     private void Start()
     {
-        // Procurar o jogador na cena
-        GameObject playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null)
-        {
-            jogador = playerObj.transform;
-        }
+        jogador = GameObject.FindGameObjectWithTag("Player")?.transform;
+        initialPosition = transform.position;
+        destinoInicial = new Vector3(jogador.position.x, altura, jogador.position.z); // Definindo destino no plano horizontal
 
-        // Inicializa a movimentação aleatória até alcançar o jogador
-        emMovimentacaoLateral = false;
+        // Inicializando a posição do UFO, caso seja instanciado em algum lugar diferente da origem
+        transform.position = initialPosition;
 
-        // Escolhe a trajetória inicial
-        EscolherTrajetoria();
+        // Iniciando o movimento em linha reta usando uma corrotina
+        movimentoCoroutine = StartCoroutine(MoverParaOrigem());
     }
 
     private void Update()
     {
         if (jogador != null)
         {
-            if (emAlcanceDeAtaque)
+            if (chegouNoDestino)
             {
-                // Quando atingir o alcance de ataque, muda para a movimentação lateral
-                if (!emMovimentacaoLateral)
+                if (emAlcanceDeAtaque)
                 {
-                    emMovimentacaoLateral = true;
-                    // Desliga a movimentação da trajetória
-                    StopCoroutine("MoverNaTrajetoria");
+                    OrbitarJogador();
                 }
-
-                // Se o UFO está em alcance de ataque, orbita ao redor do jogador
-                OrbitarJogador();
-            }
-            else
-            {
-                // Caso contrário, segue a trajetória normal
-                if (emMovimentacaoLateral)
+                else
                 {
-                    emMovimentacaoLateral = false;
-                    // Desliga a movimentação lateral e reinicia a movimentação de trajetória
-                    EscolherTrajetoria();
-                    StartCoroutine("MoverNaTrajetoria");
+                    MovimentacaoNormal();
                 }
-
-                MoverNaTrajetoria();
             }
         }
     }
 
-    public void AtualizarEstadoMovimento(bool estadoEmAlcanceDeAtaque)
+    private IEnumerator MoverParaOrigem()
     {
-        emAlcanceDeAtaque = estadoEmAlcanceDeAtaque;
-    }
+        // Movendo o UFO em linha reta até a posição de origem com suavização
+        float distancia = Vector3.Distance(transform.position, destinoInicial);
+        float tempoMovimento = distancia / velocidadeMovimentoReto;
 
-    private void EscolherTrajetoria()
-    {
-        // Escolhe entre 2 trajetórias restantes (2 e 4)
-        int trajeto = Random.Range(0, 2);
+        float tempoGasto = 0f;
+        Vector3 posicaoInicial = transform.position;
 
-        // Define a trajetória escolhida como um número visível no Editor
-        trajetoriaEscolhida = trajeto == 0 ? 2 : 4;
-
-        switch (trajeto)
+        while (tempoGasto < tempoMovimento)
         {
-            case 0:
-                direcaoInicial = new Vector3(0, 0, 1).normalized; // Movimento inicial para frente (trajetória 2)
+            tempoGasto += Time.deltaTime;
+            transform.position = Vector3.Lerp(posicaoInicial, destinoInicial, tempoGasto / tempoMovimento);
+
+            // Verifica se o UFO está dentro do raio de órbita
+            if (Vector3.Distance(transform.position, jogador.position) <= orbitRadius && !chegouNoDestino)
+            {
+                pontoDeOrbita = transform.position; // Salva a posição de orbita
+                chegouNoDestino = true;
+
+                // Se a posição do UFO for diferente da posição inicial, significa que é um clone
+                if (transform.position != initialPosition)
+                {
+                    // Gerar um valor aleatório para o orbitSpeed entre 0.1 e 2 para clones
+                    orbitSpeed = Random.Range(0.1f, 2f);
+                }
+
                 break;
-            case 1:
-                direcaoInicial = new Vector3(-1, 0, -1).normalized; // Diagonal para trás e esquerda (trajetória 4)
-                break;
+            }
+
+            yield return null;
+        }
+
+        // Garantir que o UFO termine na posição inicial, se não tenha atingido o limite do orbitRadius
+        if (!chegouNoDestino)
+        {
+            transform.position = destinoInicial;
+            pontoDeOrbita = destinoInicial; // No caso de não ter atingido o orbitRadius
+            chegouNoDestino = true;
         }
     }
 
-    private void MoverNaTrajetoria()
+    private void MovimentacaoNormal()
     {
-        switch (trajetoriaEscolhida)
-        {
-            case 2:
-                MoverParaFrente();
-                break;
-            case 4:
-                MoverParaTrasESquerda();
-                break;
-        }
-    }
+        // Movimentação normal (orbital) quando o UFO não está em ataque
+        float angle = Time.time * orbitSpeed;
+        float x = Mathf.Cos(angle) * orbitRadius;
+        float z = Mathf.Sin(angle) * orbitRadius;
 
-    // Lógica de movimentação 2 (Movimento inicial para frente)
-    private void MoverParaFrente()
-    {
-        Vector3 direcaoParaJogador = (jogador.position - transform.position).normalized;
-        transform.position += direcaoParaJogador * velocidade * Time.deltaTime;
-
-        // Rotaciona o UFO para olhar na direção do jogador
-        if (direcaoParaJogador != Vector3.zero)
-        {
-            Quaternion rotacao = Quaternion.LookRotation(direcaoParaJogador);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotacao, Time.deltaTime * velocidade);
-        }
-    }
-
-    // Lógica de movimentação 4 (Diagonal para trás e esquerda)
-    private void MoverParaTrasESquerda()
-    {
-        Vector3 direcaoParaJogador = (jogador.position - transform.position).normalized;
-        Vector3 direcaoCombinada = (direcaoInicial + direcaoParaJogador).normalized;
-
-        transform.position += direcaoCombinada * velocidade * Time.deltaTime;
-
-        // Verificar se a direção não é zero antes de rotacionar
-        if (direcaoCombinada != Vector3.zero)
-        {
-            Quaternion rotacao = Quaternion.LookRotation(direcaoCombinada);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotacao, Time.deltaTime * velocidade);
-        }
+        transform.position = new Vector3(x, altura, z);
     }
 
     private void OrbitarJogador()
     {
-        // Agora, ao atingir o alcance de ataque, todos os movimentos passam a ser orbitação lateral
+        // Movimentação orbital quando o UFO está em modo de ataque
+        float angle = Time.time * orbitSpeed;
+        Vector3 direcaoOrbitacao = new Vector3(
+            Mathf.Cos(angle) * orbitRadius,
+            altura,
+            Mathf.Sin(angle) * orbitRadius
+        );
+
+        // Usa a posição armazenada como ponto de órbita para começar a orbitar
+        transform.position = pontoDeOrbita + direcaoOrbitacao;
+    }
+
+    /// <summary>
+    /// Atualiza o estado de movimento do UFO.
+    /// </summary>
+    /// <param name="estadoEmAlcanceDeAtaque">Define se está em modo de ataque.</param>
+    public void AtualizarEstadoMovimento(bool estadoEmAlcanceDeAtaque)
+    {
+        emAlcanceDeAtaque = estadoEmAlcanceDeAtaque;
+
         if (emAlcanceDeAtaque)
         {
-            Vector3 direcaoOrbitacao = (transform.position - jogador.position).normalized;
-            direcaoOrbitacao = Quaternion.Euler(0, velocidadeOrbitacao * Time.deltaTime, 0) * direcaoOrbitacao;
-
-            // Calcula a nova posição ao redor do jogador
-            Vector3 novaPosicao = jogador.position + direcaoOrbitacao * distanciaOrbitacao;
-
-            // Move o UFO para a nova posição ao redor do jogador
-            transform.position = Vector3.Lerp(transform.position, novaPosicao, Time.deltaTime * velocidade);
-
-            // Mantém o UFO olhando para o jogador
-            Quaternion rotacao = Quaternion.LookRotation(jogador.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotacao, Time.deltaTime * velocidade);
+            orbitRadius = 5f;
+            orbitSpeed = 8f;
         }
+        else
+        {
+            orbitRadius = 10f;
+            orbitSpeed = 5f;
+        }
+    }
+
+    /// <summary>
+    /// Define a altura do UFO.
+    /// </summary>
+    /// <param name="novaAltura">Nova altura desejada para o UFO.</param>
+    public void DefinirAltura(float novaAltura)
+    {
+        altura = novaAltura;
     }
 }
