@@ -146,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e8c3e347bc18f408d5828584a7780d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 400
+  velocidade: 1000
   tagAlvo: Asteroid
   prefabFragmento: {fileID: 4836174050331487712, guid: ad15aba109bed35468053b79a171d17f,
     type: 3}
   quantidadeFragmentos: 3
   forcaFragmentos: 1
-  tempoDeVida: 5
+  tempoDeVida: 15

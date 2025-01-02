@@ -64,11 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6266e8194ceda124583272410fa570a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionRadius: 500
-  attractionForce: 10000
-  gravityMultiplier: 5000
-  attractionSmoothing: 1000
-  maxSpeed: 50
+  attractionRadius: 1328.5
+  attractionForce: 99999
+  gravityMultiplier: 99999
+  attractionSmoothing: 99999
+  maxSpeed: 150
 --- !u!1 &160422
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ee7bcdf488618f42b80d4dae742df80, type: 2}
+  - {fileID: 2100000, guid: 6745e6dec0675a7418eec77cec8e2c0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

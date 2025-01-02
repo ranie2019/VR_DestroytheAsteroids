@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class GameController : MonoBehaviour
+public class PontoController : MonoBehaviour
 {
     [Header("Componentes de Pontuação")]
     [SerializeField] private TextMeshProUGUI scoreText; // Referência ao texto que exibe a pontuação

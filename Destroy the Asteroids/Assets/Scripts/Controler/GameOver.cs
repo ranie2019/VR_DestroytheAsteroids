@@ -31,6 +31,10 @@ public class GameOver : MonoBehaviour
     [Tooltip("Lista de objetos representando as armas que terão seus MeshRenderers, BoxColliders e filhos desativados no Game Over.")]
     [SerializeField] private List<GameObject> weaponObjects;
 
+    [Header("Referências aos Scripts Inativo")]
+    [Tooltip("Lista de referências aos scripts Inativo para congelar o tempo de inatividade durante o Game Over.")]
+    [SerializeField] private List<Inativo> inativoScripts; // Alterado para uma lista
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(asteroidTag))
@@ -41,6 +45,9 @@ public class GameOver : MonoBehaviour
 
     private void HandleGameOver(Collision collision)
     {
+        // Congelar o tempo de inatividade para vários objetos
+        FreezeInativoScripts();
+
         FreezeSpawners();
         ShowGameOverUI();
         DestroyAllAsteroids();
@@ -49,6 +56,17 @@ public class GameOver : MonoBehaviour
         DisableWeapons();
         Destroy(collision.gameObject);
         PlayGameOverAudio();
+    }
+
+    private void FreezeInativoScripts()
+    {
+        foreach (var inativo in inativoScripts)
+        {
+            if (inativo != null)
+            {
+                inativo.CongelarTempoDeInatividade();
+            }
+        }
     }
 
     private void FreezeSpawners()

@@ -108,6 +108,27 @@ public class AsteroidSpawner : MonoBehaviour
         spawnRate = Mathf.Max(spawnRate - 0.01f, minimumSpawnRate);
     }
 
+    /// <summary>
+    /// Reseta o estado do AsteroidSpawner.
+    /// </summary>
+    public void ResetSpawner()
+    {
+        // Reinicia os temporizadores
+        spawnTimer = 0f;
+        rateReductionTimer = 0f;
+
+        // Restaura a taxa de spawn original
+        spawnRate = originalSpawnRate;
+
+        // (Opcional) Destruir todos os asteroides existentes ou realizar outras ações de reset
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject); // Destruir todos os asteroides filhos
+        }
+
+        // Você pode adicionar outras ações de reset aqui, se necessário
+    }
+
     private void OnDrawGizmos()
     {
         // Desenha a área do spawner no editor para visualização

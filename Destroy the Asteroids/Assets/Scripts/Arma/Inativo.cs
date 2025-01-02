@@ -1,129 +1,125 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Inativo : MonoBehaviour
 {
-    public float tempoDeInatividade; // Tempo de inatividade, será definido publicamente
-    private bool podeContar = false; // Flag para garantir que a contagem só comece uma vez
+    [Header("Configurações de Inatividade")]
+    [Tooltip("Tempo de inatividade antes da ativação.")]
+    [SerializeField] private float tempoDeInatividade = 5f;
+
+    private bool jogoFinalizado = false; // Indica se o jogo foi finalizado
+    private float spawnTimer; // Timer para controlar o tempo de inatividade
+    private bool contagemEmAndamento = false; // Flag para evitar múltiplas corrotinas
 
     private MeshRenderer meshRenderer;
-    private BoxCollider boxCollider; // Referência para o BoxCollider
+    private BoxCollider boxCollider;
     private Canvas canvasFilho;
-
-    private float spawnTimer; // Timer para controlar o tempo de inatividade
-    private bool jogoIniciado = false; // Flag para verificar se o jogo foi iniciado
-
-    private Transform[] filhos; // Array para armazenar os objetos filhos
+    private Transform[] filhos;
 
     [Header("Configuração de Áudio")]
     [Tooltip("Áudio reproduzido quando o tempo de inatividade chega a zero.")]
-    [SerializeField] private AudioClip ativacaoSound; // Som para reprodução
+    [SerializeField] private AudioClip ativacaoSound;
     private AudioSource audioSource;
 
     private void Awake()
     {
-        // Referências para os componentes do objeto
-        meshRenderer = GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>(); // Obtém o BoxCollider
-        canvasFilho = GetComponentInChildren<Canvas>(); // Obtém o Canvas filho
+        InicializarComponentes();
+        DesativarObjetos();
+    }
 
-        // Inicializa ou adiciona o AudioSource
+    private void InicializarComponentes()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
+        canvasFilho = GetComponentInChildren<Canvas>();
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
 
-        // Desativa inicialmente o MeshRenderer, o BoxCollider e os filhos
-        if (meshRenderer != null)
-        {
-            meshRenderer.enabled = false;
-        }
-
-        if (boxCollider != null)
-        {
-            boxCollider.enabled = false;
-        }
-
-        // Armazena os filhos do objeto em um array
         filhos = GetComponentsInChildren<Transform>();
+    }
 
-        // Desativa todos os objetos filhos (exceto o próprio objeto pai)
+    private void DesativarObjetos()
+    {
+        if (meshRenderer != null) meshRenderer.enabled = false;
+        if (boxCollider != null) boxCollider.enabled = false;
+
         foreach (var filho in filhos)
         {
-            if (filho != transform) // Ignora o próprio objeto pai
-            {
-                filho.gameObject.SetActive(false);
-            }
+            if (filho != transform) filho.gameObject.SetActive(false);
         }
     }
 
-    // Método para configurar o tempo de inatividade
     public void Configurar(float tempo)
     {
         tempoDeInatividade = tempo;
     }
 
-    // Método chamado pelo StartGame para iniciar a contagem
     public void IniciarContagem()
     {
-        if (!podeContar && gameObject.activeInHierarchy && jogoIniciado) // Verifica se o objeto está ativo e se o jogo foi iniciado
-        {
-            podeContar = true;
-            spawnTimer = tempoDeInatividade; // Reseta o timer para o tempo de inatividade
-        }
+        if (!gameObject.activeInHierarchy || jogoFinalizado || contagemEmAndamento) return;
+
+        contagemEmAndamento = true;
+        spawnTimer = tempoDeInatividade;
+        StartCoroutine(ContagemRegressiva());
     }
 
-    // Método chamado a cada frame para controlar o tempo de inatividade
-    private void Update()
+    private IEnumerator ContagemRegressiva()
     {
-        if (jogoIniciado && podeContar)
+        while (spawnTimer > 0 && !jogoFinalizado)
         {
-            spawnTimer -= Time.deltaTime; // Reduz o tempo de inatividade
-
-            if (spawnTimer <= 0f)
-            {
-                // Toca o som de ativação
-                PlayActivationSound();
-
-                // Ativa o BoxCollider e o MeshRenderer após o tempo de inatividade
-                if (boxCollider != null)
-                {
-                    boxCollider.enabled = true;
-                }
-
-                if (meshRenderer != null)
-                {
-                    meshRenderer.enabled = true;
-                }
-
-                // Ativa todos os filhos
-                foreach (var filho in filhos)
-                {
-                    if (filho != transform) // Ignora o próprio objeto pai
-                    {
-                        filho.gameObject.SetActive(true);
-                    }
-                }
-
-                podeContar = false; // Reseta a flag para evitar nova contagem
-            }
+            spawnTimer -= Time.deltaTime;
+            yield return null;
         }
+
+        if (!jogoFinalizado)
+        {
+            AtivarObjetos();
+        }
+
+        contagemEmAndamento = false; // Permite reiniciar contagem posteriormente
     }
 
-    // Método para tocar o som de ativação
+    private void AtivarObjetos()
+    {
+        if (meshRenderer != null) meshRenderer.enabled = true;
+        if (boxCollider != null) boxCollider.enabled = true;
+
+        foreach (var filho in filhos)
+        {
+            if (filho != transform) filho.gameObject.SetActive(true);
+        }
+
+        PlayActivationSound();
+    }
+
     private void PlayActivationSound()
     {
         if (audioSource != null && ativacaoSound != null)
         {
             audioSource.PlayOneShot(ativacaoSound);
         }
-        else
-        {
-            Debug.LogWarning("AudioSource ou ativacaoSound não configurado.");
-        }
     }
 
-    // Método para notificar o início do jogo
     public void NotificarInicioDoJogo()
     {
-        jogoIniciado = true; // Marca o jogo como iniciado
-        IniciarContagem(); // Inicia a contagem
+        jogoFinalizado = false;
+        IniciarContagem();
+    }
+
+    public void CongelarTempoDeInatividade()
+    {
+        jogoFinalizado = true;
+    }
+
+    public void ReiniciarTempoDeInatividade()
+    {
+        jogoFinalizado = false;
+        IniciarContagem();
+    }
+
+    public void GameOverStart()
+    {
+        jogoFinalizado = false;
+        contagemEmAndamento = false; // Garante que podemos reiniciar a contagem
+        IniciarContagem();
     }
 }

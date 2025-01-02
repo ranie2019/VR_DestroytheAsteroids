@@ -349,7 +349,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 886614355072982495, guid: db1f3d99792b56945bdb9eb2551888e4,
     type: 3}
   bulletSpawnPoint: {fileID: 9064805501977443432}
-  bulletSpeed: 900
+  bulletSpeed: 1000
   municaoMaxima: 30
   tempoRecarga: 45
   municaoText: {fileID: 7180840596131335054}
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 120
+  tempoDeInatividade: 40
   ativacaoSound: {fileID: 8300000, guid: 11b78f83477f52f4d971377dc3692e88, type: 3}
 --- !u!1 &1694004183064765005
 GameObject:

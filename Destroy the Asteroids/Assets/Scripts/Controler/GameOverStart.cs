@@ -26,6 +26,15 @@ public class GameOverStart : MonoBehaviour
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
     [SerializeField] private MeshRenderer childMeshRenderer;
 
+    [Header("Armas")]
+    [Tooltip("Referências aos objetos de armas que devem ser ativados.")]
+    [SerializeField] private GameObject[] armas; // Armas que devem ser ativadas
+
+    private void Start()
+    {
+        ValidateReferences();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
@@ -69,19 +78,92 @@ public class GameOverStart : MonoBehaviour
             childMeshRenderer.enabled = true;
         }
 
-        // Notifica os objetos inativos para iniciar a contagem
+        // Ativa as armas (caso já estejam atribuídas como GameObjects)
+        AtivarArmas();
+
+        // Notifica os objetos inativos para iniciar a contagem e desativa o script Inativo
         foreach (var objInativo in objetosInativos)
         {
-            objInativo.NotificarInicioDoJogo(); // Método existente
+            if (objInativo != null)
+            {
+                objInativo.NotificarInicioDoJogo();
+                objInativo.enabled = true; // Habilita o script Inativo no Inspector
+            }
         }
+
+        // Adiciona feedback visual adicional (opcional)
+        ShowGameStartFeedback();
 
         // Desativa o objeto GameOverStart
         gameObject.SetActive(false);
 
-        // Desativa o objeto pai
+        // Desativa o objeto pai (caso necessário)
         if (transform.parent != null)
         {
-            transform.parent.gameObject.SetActive(false);
+            var parentCollider = transform.parent.GetComponent<Collider>();
+            if (parentCollider != null)
+            {
+                parentCollider.enabled = false;
+            }
         }
+    }
+
+    // Método para ativar as armas
+    private void AtivarArmas()
+    {
+        foreach (var arma in armas)
+        {
+            if (arma != null)
+            {
+                arma.SetActive(true); // Ativa as armas, caso sejam GameObjects
+            }
+
+            // Habilita o script Inativo nos objetos de arma
+            Inativo inativoScript = arma.GetComponent<Inativo>();
+            if (inativoScript != null)
+            {
+                inativoScript.enabled = true;
+            }
+        }
+
+        // Ativa todos os scripts desativados
+        MonoBehaviour[] allScripts = FindObjectsOfType<MonoBehaviour>(true);
+        foreach (var script in allScripts)
+        {
+            if (!script.enabled)
+            {
+                script.enabled = true;
+            }
+        }
+    }
+
+    private void ShowGameStartFeedback()
+    {
+        // Adicione aqui efeitos visuais ou UI para informar o início do jogo
+        Debug.Log("O jogo começou! Boa sorte!");
+    }
+
+    private void ValidateReferences()
+    {
+        if (gameController == null)
+            Debug.LogWarning("GameController não está atribuído!");
+
+        if (audioPlayer == null)
+            Debug.LogWarning("AudioPlayer não está atribuído!");
+
+        if (particleSystem == null)
+            Debug.LogWarning("ParticleSystem não está atribuído!");
+
+        if (childMeshRenderer == null)
+            Debug.LogWarning("Child MeshRenderer não está atribuído!");
+
+        if (asteroidSpawnerScripts.Length == 0)
+            Debug.LogWarning("Nenhum AsteroidSpawner foi atribuído!");
+
+        if (objetosInativos.Length == 0)
+            Debug.LogWarning("Nenhum objeto inativo foi atribuído!");
+
+        if (armas.Length == 0)
+            Debug.LogWarning("Nenhuma arma foi atribuída!");
     }
 }
