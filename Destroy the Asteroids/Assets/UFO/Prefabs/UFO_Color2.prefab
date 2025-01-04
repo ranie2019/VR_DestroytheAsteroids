@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbitSpeed: 1
-  velocidadeMovimentoReto: 40
+  velocidadeMovimentoReto: 70
   orbitRadius: 300
   altura: 110
 --- !u!114 &6203565321806255584

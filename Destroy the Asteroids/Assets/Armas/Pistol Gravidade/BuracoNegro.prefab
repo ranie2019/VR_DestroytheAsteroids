@@ -152,8 +152,8 @@ MonoBehaviour:
   lifeTime: 5
   movementDirection: {x: 0, y: 0, z: 1}
   movementSpeed: 5
-  attractionRadius: 10
-  attractionForce: 50
+  attractionRadius: 9999
+  attractionForce: 99999
 --- !u!82 &4503617497340092015
 AudioSource:
   m_ObjectHideFlags: 0

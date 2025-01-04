@@ -27,23 +27,23 @@ public class BuracoNegro : MonoBehaviour
 
     private void Start()
     {
-        // Encontra o GameController automaticamente
-        gameController = gameController ?? FindObjectOfType<GameController>();
+        gameController = FindObjectOfType<GameController>();
+        if (gameController == null)
+        {
+            Debug.LogError("GameController não encontrado! Certifique-se de que há um GameController na cena.");
+        }
 
-        // Inicializa ou adiciona um AudioSource, se necessário
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
 
-        // Destroi o objeto após o tempo especificado
         Destroy(gameObject, lifeTime);
+
+        // Inicia atração com intervalo otimizado
+        InvokeRepeating(nameof(AttractAsteroids), 0f, 0.2f);
     }
 
     private void Update()
     {
-        // Move o buraco negro na direção especificada
         MoveObject();
-
-        // Aplica atração aos asteroides
-        AttractAsteroids();
     }
 
     private void MoveObject()
@@ -53,7 +53,6 @@ public class BuracoNegro : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verifica se o objeto com o qual houve interação é um asteroide
         if (other.CompareTag("Asteroid"))
         {
             DestroyAsteroid(other.gameObject);
@@ -64,20 +63,10 @@ public class BuracoNegro : MonoBehaviour
     {
         if (asteroid != null)
         {
-            // Reproduz som de colisão
             PlayCollisionSound();
 
-            // Atualiza a pontuação
-            if (gameController != null)
-            {
-                gameController.UpdatePlayerScore(50); // Incrementa a pontuação
-            }
-            else
-            {
-                Debug.LogWarning("GameController não encontrado! Não foi possível atualizar a pontuação.");
-            }
+            gameController?.UpdatePlayerScore(50);
 
-            // Destroi o asteroide
             Destroy(asteroid);
         }
     }
@@ -96,22 +85,16 @@ public class BuracoNegro : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Asteroid"))
+            if (collider.CompareTag("Asteroid") && collider.TryGetComponent<Rigidbody>(out var asteroidRigidbody))
             {
-                Rigidbody asteroidRigidbody = collider.GetComponent<Rigidbody>();
-
-                if (asteroidRigidbody != null)
-                {
-                    Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
-                    asteroidRigidbody.AddForce(directionToCenter * attractionForce * Time.deltaTime, ForceMode.Acceleration);
-                }
+                Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
+                asteroidRigidbody.AddForce(directionToCenter * attractionForce * Time.deltaTime, ForceMode.Acceleration);
             }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Desenha a área de atração no Editor
         Gizmos.color = new Color(0, 0, 1, 0.3f); // Azul transparente
         Gizmos.DrawSphere(transform.position, attractionRadius);
     }
