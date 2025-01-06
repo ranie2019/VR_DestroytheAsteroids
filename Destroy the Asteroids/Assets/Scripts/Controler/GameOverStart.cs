@@ -91,8 +91,6 @@ public class GameOverStart : MonoBehaviour
             }
         }
 
-        // Adiciona feedback visual adicional (opcional)
-        ShowGameStartFeedback();
 
         // Desativa o objeto GameOverStart
         gameObject.SetActive(false);
@@ -135,12 +133,6 @@ public class GameOverStart : MonoBehaviour
                 script.enabled = true;
             }
         }
-    }
-
-    private void ShowGameStartFeedback()
-    {
-        // Adicione aqui efeitos visuais ou UI para informar o início do jogo
-        Debug.Log("O jogo começou! Boa sorte!");
     }
 
     private void ValidateReferences()

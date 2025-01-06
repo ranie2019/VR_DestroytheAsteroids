@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 80
+  tempoDeInatividade: 10
   ativacaoSound: {fileID: 8300000, guid: 982b9c2824a84e84abdb2cf51a43b7d2, type: 3}
 --- !u!1 &510867543663158508
 GameObject:
@@ -735,7 +735,6 @@ MonoBehaviour:
   depletionRate: 10
   rechargeDelay: 5
   rechargeDuration: 45
-  animacaoArma: {fileID: 0}
   laserSound: {fileID: 8300000, guid: 8090c5079440ab248b513578c6211fcc, type: 3}
 --- !u!1 &4622795315855375607
 GameObject:

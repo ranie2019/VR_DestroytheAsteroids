@@ -317,9 +317,9 @@ MonoBehaviour:
   pontoRotacaoY: {fileID: 1653914705954521602}
   pontoRotacaoX: {fileID: 8526680615025040262}
   pontoDeDisparo: {fileID: 6382932002484026288}
-  intervaloDeAtaque: 3
+  intervaloDeAtaque: 10
   alcanceDeAtaque: 300
-  velocidadeDoProjetil: 20
+  velocidadeDoProjetil: 50
 --- !u!114 &8143943274903668997
 MonoBehaviour:
   m_ObjectHideFlags: 0

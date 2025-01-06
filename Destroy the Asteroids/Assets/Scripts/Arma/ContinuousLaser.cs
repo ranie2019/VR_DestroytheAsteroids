@@ -16,9 +16,6 @@ public class ContinuousLaser : MonoBehaviour
     [SerializeField] private float rechargeDelay = 5f; // Tempo de espera para iniciar o recarregamento
     [SerializeField] private float rechargeDuration = 10f; // Tempo total de recarregamento
 
-    [Header("Configuração da Animação")]
-    [SerializeField] private AnimacaoArma animacaoArma; // Referência ao script de animação
-
     [Header("Configurações de Áudio")]
     [SerializeField] private AudioClip laserSound; // Som do laser
     private AudioSource audioSource;
@@ -46,11 +43,6 @@ public class ContinuousLaser : MonoBehaviour
         if (gameController == null)
         {
             gameController = FindObjectOfType<GameController>();
-        }
-
-        if (animacaoArma == null)
-        {
-            animacaoArma = GetComponent<AnimacaoArma>();
         }
     }
 
@@ -86,12 +78,6 @@ public class ContinuousLaser : MonoBehaviour
             isLaserActive = true;
             lineRenderer.enabled = true;
 
-            // Ativa a animação de disparo
-            if (animacaoArma != null)
-            {
-                animacaoArma.ActivateFireAnimation();
-            }
-
             // Tocar o som do laser ao ativar
             if (laserSound != null)
             {
@@ -105,12 +91,6 @@ public class ContinuousLaser : MonoBehaviour
     {
         isLaserActive = false;
         lineRenderer.enabled = false;
-
-        // Desativa a animação de disparo
-        if (animacaoArma != null)
-        {
-            animacaoArma.DeactivateFireAnimation();
-        }
 
         // Parar o som do laser ao desativar
         if (audioSource.isPlaying)

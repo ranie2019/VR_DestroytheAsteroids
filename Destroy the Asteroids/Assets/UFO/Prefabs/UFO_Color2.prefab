@@ -292,7 +292,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7920573696653086769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4188298c69f654484ee09b3d430b1d, type: 3}
   m_Name: 
@@ -302,9 +302,9 @@ MonoBehaviour:
   pontoRotacaoY: {fileID: 2542527725913194896}
   pontoRotacaoX: {fileID: 4895385310186395668}
   pontoDeDisparo: {fileID: 1569141394539455685}
-  intervaloDeAtaque: 3
+  intervaloDeAtaque: 10
   alcanceDeAtaque: 300
-  velocidadeDoProjetil: 20
+  velocidadeDoProjetil: 50
 --- !u!114 &8300080284933854694
 MonoBehaviour:
   m_ObjectHideFlags: 0

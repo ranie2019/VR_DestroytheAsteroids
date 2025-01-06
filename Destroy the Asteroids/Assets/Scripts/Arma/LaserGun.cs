@@ -3,10 +3,6 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     [Header("Configurações do Laser")]
-    [Tooltip("Animator responsável pela animação de disparo.")]
-    [SerializeField] private Animator laserAnimator;
-
-    [Header("Som do Disparo")]
     [Tooltip("Som reproduzido ao disparar o laser.")]
     [SerializeField] private AudioClip laserSFX;
 
@@ -29,14 +25,13 @@ public class LaserGun : MonoBehaviour
 
     private void Awake()
     {
-        // Tenta obter o AudioSource automaticamente ou adiciona um novo
+        // Configura o AudioSource
         laserAudioSource = GetComponent<AudioSource>();
         if (laserAudioSource == null)
         {
             laserAudioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        // Atribui o AudioClip ao AudioSource e configura as propriedades do som
         if (laserSFX != null)
         {
             laserAudioSource.clip = laserSFX;
@@ -44,14 +39,12 @@ public class LaserGun : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Dispara o laser.
+    /// Chamado pelo XR Grab Interactable ? Activate.
+    /// </summary>
     public void LaserGunFire()
     {
-        // Ativa a animação de disparo, se atribuída
-        if (laserAnimator != null)
-        {
-            laserAnimator.SetTrigger("Fire");
-        }
-
         // Reproduz o som de disparo
         if (laserAudioSource != null && laserSFX != null)
         {
@@ -66,10 +59,8 @@ public class LaserGun : MonoBehaviour
     {
         if (bulletPrefab != null && bulletSpawnPoint != null)
         {
-            // Instancia a bala no ponto de spawn
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
 
-            // Aplica uma força na bala para movê-la para frente
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
             if (bulletRigidbody != null)
             {
