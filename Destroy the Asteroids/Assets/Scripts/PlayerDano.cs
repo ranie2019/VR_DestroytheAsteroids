@@ -1,70 +1,84 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerDano : MonoBehaviour
 {
     [Header("Configuração de Vida")]
-    [Tooltip("Vida inicial do jogador. A quantidade de vidas que o jogador começa com.")]
     [SerializeField] private int vidaInicial = 3;
     private int vidaAtual;
-
-    // Propriedade pública para acessar a vida atual
-    public int VidaAtual => vidaAtual;  // Agora, a vida atual é acessível de outros scripts
-    public int VidaInicial => vidaInicial;
-
-    [Header("UI de Vida")]
-    [Tooltip("Referência para exibir a vida do jogador na interface usando TextMeshPro.")]
     [SerializeField] private TextMeshProUGUI vidaTextMeshPro;
 
     [Header("Game Over UI")]
-    [Tooltip("Referência para o objeto de Game Over que será exibido quando o jogador perder toda a vida.")]
     [SerializeField] private GameObject gameOverUI;
 
     [Header("Spawners")]
-    [Tooltip("Referência aos spawners de asteroides.")]
     [SerializeField] private MonoBehaviour[] asteroidSpawnerScripts;
+    [SerializeField] private MonoBehaviour[] weaponSpawnerScripts;
 
     [Header("Objetos a Desabilitar")]
-    [Tooltip("Lista de objetos que devem ser desativados no Game Over.")]
     [SerializeField] private GameObject[] objetosParaDesabilitar;
 
     [Header("Áudio de Explosão")]
-    [Tooltip("Áudio que será tocado quando o jogador perder toda a vida.")]
     [SerializeField] private AudioClip explosionClip;
-    [Tooltip("Referência ao AudioSource que tocará o áudio.")]
     [SerializeField] private AudioSource audioSource;
 
-    [Header("Spawner de Armas")]
-    [Tooltip("Lista de referências para os spawners de armas.")]
-    [SerializeField] private MonoBehaviour[] weaponSpawnerScripts;
+    [Header("Efeito de Dano")]
+    [SerializeField] private Canvas danoCanvas;
+    [SerializeField] private float duracaoDanoImage = 0.5f;
+    [SerializeField] private AudioClip danoClip;
+
+    [Header("Distância do Canvas de Dano")]
+    [SerializeField] private float distanciaDanoCanvas = 2f;
 
     private bool gameOverAtivo = false;
+    private Camera mainCamera;
 
     private void Start()
     {
         vidaAtual = vidaInicial;
         AtualizarUIVida();
-
-        // Valida se o AudioSource foi atribuído corretamente
-        if (audioSource == null)
-        {
-            Debug.LogWarning("AudioSource não está atribuído. O áudio de explosão não será tocado.");
-        }
-
-        // Verifica se as referências essenciais foram atribuídas
         ValidateReferences();
+
+        mainCamera = Camera.main;
+
+        // Garante que o Canvas de dano comece desabilitado
+        if (danoCanvas != null)
+        {
+            danoCanvas.gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (danoCanvas != null && mainCamera != null)
+        {
+            Vector3 playerPosition = transform.position;
+            Vector3 cameraForward = mainCamera.transform.forward;
+
+            danoCanvas.transform.position = playerPosition + cameraForward.normalized * distanciaDanoCanvas;
+
+            Vector3 directionToLook = (mainCamera.transform.position - danoCanvas.transform.position).normalized;
+
+            Quaternion rotation = Quaternion.LookRotation(directionToLook);
+            Vector3 eulerRotation = rotation.eulerAngles;
+            eulerRotation.x = 0f;
+            danoCanvas.transform.rotation = Quaternion.Euler(eulerRotation);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica colisão com inimigos e se o game over ainda não foi ativado
         if (collision.gameObject.CompareTag("Inimigo") && !gameOverAtivo)
         {
             vidaAtual--;
             AtualizarUIVida();
+
             Destroy(collision.gameObject);
 
-            // Se a vida atingir 0 ou menos, inicia o processo de game over
+            StartCoroutine(ExibirDanoCanvas());
+            TocarSomDano();
+
             if (vidaAtual <= 0)
             {
                 HandleGameOver();
@@ -80,31 +94,24 @@ public class PlayerDano : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("TextMeshProUGUI não atribuído! A vida não será exibida corretamente.");
+            Debug.LogWarning("TextMeshProUGUI não atribuído!");
         }
     }
 
     private void HandleGameOver()
     {
-        // Impede que o Game Over seja chamado mais de uma vez
         if (gameOverAtivo) return;
 
         gameOverAtivo = true;
 
-        // Toca o áudio de explosão se estiver configurado
         if (explosionClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(explosionClip);
         }
 
-        // Exibe a interface de Game Over
         ShowGameOverUI();
-
-        // Congela todos os spawners de asteroides e armas
         FreezeSpawners();
         FreezeWeaponSpawners();
-
-        // Destroi todos os asteroides e desabilita objetos
         DestroyAllAsteroids();
         DesabilitarObjetos();
 
@@ -142,7 +149,6 @@ public class PlayerDano : MonoBehaviour
             if (spawner != null)
             {
                 spawner.enabled = false;
-                Debug.Log($"Spawner de Arma {spawner.name} desativado.");
             }
         }
     }
@@ -175,78 +181,31 @@ public class PlayerDano : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Reinicia o jogo e redefine a vida.
-    /// </summary>
-    public void OnRestartButtonPressed()
-    {
-        RestartGame();
-    }
-
-    private void RestartGame()
-    {
-        Debug.Log("Reiniciando o jogo...");
-
-        ResetarVida(); // Vida é redefinida aqui, no início do novo jogo
-        gameOverAtivo = false;
-        AtualizarUIVida();
-
-        // Ativa os spawners novamente
-        foreach (MonoBehaviour spawner in asteroidSpawnerScripts)
-        {
-            if (spawner != null)
-            {
-                spawner.enabled = true;
-            }
-        }
-
-        // Ativa os spawners de armas novamente
-        foreach (MonoBehaviour spawner in weaponSpawnerScripts)
-        {
-            if (spawner != null)
-            {
-                spawner.enabled = true;
-            }
-        }
-
-        // Desativa o UI de Game Over
-        if (gameOverUI != null)
-        {
-            gameOverUI.SetActive(false);
-        }
-
-        // Habilita objetos que foram desabilitados
-        foreach (GameObject obj in objetosParaDesabilitar)
-        {
-            if (obj != null)
-            {
-                obj.SetActive(true);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Redefine a vida para o valor inicial.
-    /// </summary>
     public void ResetarVida()
     {
-        // Se a vida atual for menor que a vida inicial, reseta para o valor inicial
-        if (vidaAtual < vidaInicial)
-        {
-            vidaAtual = vidaInicial;
-            Debug.Log("Vida redefinida para o valor inicial.");
-        }
-        else
-        {
-            Debug.Log("Vida já está no valor inicial.");
-        }
+        vidaAtual = vidaInicial;
         gameOverAtivo = false;
         AtualizarUIVida();
     }
 
-    /// <summary>
-    /// Valida as referências atribuídas no inspetor do Unity.
-    /// </summary>
+    private System.Collections.IEnumerator ExibirDanoCanvas()
+    {
+        if (danoCanvas != null)
+        {
+            danoCanvas.gameObject.SetActive(true);
+            yield return new WaitForSeconds(duracaoDanoImage);
+            danoCanvas.gameObject.SetActive(false);
+        }
+    }
+
+    private void TocarSomDano()
+    {
+        if (danoClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(danoClip);
+        }
+    }
+
     private void ValidateReferences()
     {
         if (asteroidSpawnerScripts.Length == 0)
@@ -260,5 +219,11 @@ public class PlayerDano : MonoBehaviour
 
         if (gameOverUI == null)
             Debug.LogWarning("GameOver UI não atribuído.");
+
+        if (danoCanvas == null)
+            Debug.LogWarning("Canvas de Dano não atribuído.");
+
+        if (danoClip == null)
+            Debug.LogWarning("Áudio de Dano não atribuído.");
     }
 }

@@ -12,131 +12,138 @@ public class GameOverStart : MonoBehaviour
 
     [Header("Spawners a serem ativados")]
     [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
-    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;  // Referências aos spawners de asteroides que serão ativados
+    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;  // Referências aos spawners de asteroides
 
     [Header("Particle System")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
-    [SerializeField] private ParticleSystem particleSystem;  // Referência ao sistema de partículas (ex: explosão)
+    [SerializeField] private ParticleSystem particleSystem;  // Sistema de partículas
 
     [Header("Game Controller")]
     [Tooltip("Referência ao script GameController.")]
-    [SerializeField] private GameController gameController;  // Referência ao script que controla a pontuação e o estado do jogo
+    [SerializeField] private GameController gameController;  // Script que controla o jogo
 
     [Header("Objetos Inativos")]
     [Tooltip("Referências aos objetos inativos que devem começar a contagem.")]
-    [SerializeField] private Inativo[] objetosInativos;  // Referências aos objetos que devem ser ativados ao reiniciar o jogo
+    [SerializeField] private Inativo[] objetosInativos;  // Objetos a serem ativados
 
     [Header("Mesh Renderer")]
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
-    [SerializeField] private MeshRenderer childMeshRenderer;  // Referência ao MeshRenderer do objeto filho que deve ser ativado
+    [SerializeField] private MeshRenderer childMeshRenderer;  // Renderização do objeto filho
 
     [Header("Armas")]
     [Tooltip("Referências aos objetos de armas que devem ser ativados.")]
-    [SerializeField] private GameObject[] armas;  // Referências aos objetos de armas que devem ser ativados
+    [SerializeField] private GameObject[] armas;  // Objetos de armas
 
-    // Função chamada quando o script é iniciado
     private void Start()
     {
-        ValidateReferences();  // Valida se todas as referências foram atribuídas corretamente
+        ValidateReferences();  // Valida referências
     }
 
-    // Função chamada quando uma colisão ocorre
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
         {
-            HandleCollisionWithLaser();  // Lida com a colisão com o laser
+            HandleCollisionWithLaser();
         }
     }
 
-    // Lida com a colisão do jogador com o laser
     private void HandleCollisionWithLaser()
     {
-        // Se a vida do jogador for menor que o valor inicial, reseta a vida
-        if (playerDano != null && playerDano.VidaAtual < playerDano.VidaInicial)
+        // Reseta a vida do jogador
+        if (playerDano != null)
         {
-            playerDano.ResetarVida();  // Reseta a vida do jogador
+            playerDano.ResetarVida(); // Método ResetarVida chamado corretamente
+        }
+        else
+        {
+            Debug.LogError("PlayerDano não foi atribuído corretamente no GameOverStart!");
         }
 
-        // Reseta a pontuação do jogo
+        // Reseta a pontuação
         if (gameController != null)
         {
-            gameController.ResetScore();  // Reseta a pontuação do jogo
+            gameController.ResetScore();
         }
 
-        // Ativa todos os spawners de asteroides
+        // Ativa Spawners de Asteroides
         foreach (var spawner in asteroidSpawnerScripts)
         {
             if (spawner != null)
             {
-                spawner.enabled = true;  // Ativa o spawner
+                spawner.enabled = true;
             }
         }
 
-        // Troca o áudio de introdução para o áudio principal do jogo
+        // Toca o áudio principal
         if (audioPlayer != null)
         {
-            audioPlayer.PlayRandomMainGameAudio();  // Toca o áudio principal
+            audioPlayer.PlayRandomMainGameAudio();
         }
 
-        // Ativa o sistema de partículas (ex: explosão)
+        // Ativa sistema de partículas
         if (particleSystem != null)
         {
-            particleSystem.Play();  // Inicia o sistema de partículas
+            particleSystem.Play();
         }
 
-        // Habilita o MeshRenderer do objeto filho
+        // Habilita MeshRenderer do objeto filho
         if (childMeshRenderer != null)
         {
-            childMeshRenderer.enabled = true;  // Torna o MeshRenderer visível
+            childMeshRenderer.enabled = true;
         }
 
-        // Ativa as armas
+        // Ativa armas
         AtivarArmas();
 
-        // Ativa os objetos inativos
+        // Ativa objetos inativos
         foreach (var objInativo in objetosInativos)
         {
             if (objInativo != null)
             {
-                objInativo.NotificarInicioDoJogo();  // Notifica o objeto inativo para iniciar a contagem ou processo
-                objInativo.enabled = true;  // Habilita o script do objeto inativo
+                objInativo.NotificarInicioDoJogo();
+                objInativo.enabled = true;
             }
         }
 
-        // Desativa o script GameOverStart após reiniciar o jogo
+        // Desativa este script após reiniciar o jogo
         gameObject.SetActive(false);
     }
 
-    // Função para ativar as armas do jogador
     private void AtivarArmas()
     {
         foreach (var arma in armas)
         {
             if (arma != null)
             {
-                arma.SetActive(true);  // Ativa o GameObject da arma
+                arma.SetActive(true);
             }
 
-            // Ativa o script Inativo da arma
             Inativo inativoScript = arma.GetComponent<Inativo>();
             if (inativoScript != null)
             {
-                inativoScript.enabled = true;  // Habilita o script Inativo da arma
+                inativoScript.enabled = true;
             }
         }
     }
 
-    // Valida se todas as referências foram atribuídas no inspetor do Unity
     private void ValidateReferences()
     {
         if (playerDano == null)
-            Debug.LogWarning("PlayerDano não está atribuído!");  // Aviso se a referência não foi atribuída
+            Debug.LogWarning("PlayerDano não está atribuído!");
 
         if (gameController == null)
-            Debug.LogWarning("GameController não está atribuído!");  // Aviso se a referência não foi atribuída
+            Debug.LogWarning("GameController não está atribuído!");
 
         if (audioPlayer == null)
-            Debug.LogWarning("AudioPlayer não está atribuído!");  // Aviso se a referência não foi atribuída
+            Debug.LogWarning("AudioPlayer não está atribuído!");
+
+        if (asteroidSpawnerScripts.Length == 0)
+            Debug.LogWarning("Nenhum AsteroidSpawner foi atribuído!");
+
+        if (objetosInativos.Length == 0)
+            Debug.LogWarning("Nenhum objeto inativo foi atribuído!");
+
+        if (armas.Length == 0)
+            Debug.LogWarning("Nenhuma arma foi atribuída!");
     }
 }
