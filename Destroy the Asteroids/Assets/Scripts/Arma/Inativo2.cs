@@ -5,77 +5,27 @@ using UnityEngine.Events;
 public class Inativo2 : MonoBehaviour
 {
     [Header("Configurações de Inatividade")]
-    [Tooltip("Tempo de inatividade antes da ativação.")]
-    [SerializeField] private float tempoDeInatividade = 5f; // Tempo antes da ativação do objeto
+    [Tooltip("Tempo de inatividade antes de mover o objeto.")]
+    [SerializeField] private float tempoDeInatividade = 5f; // Tempo antes do movimento
 
-    private bool jogoFinalizado = false; // Indica se o jogo foi finalizado (pausa)
+    private bool jogoFinalizado = false; // Indica se o jogo foi pausado
     private float spawnTimer; // Timer para controlar a contagem regressiva
     private Coroutine contagemCorrotina; // Referência à corrotina ativa
 
-    private MeshRenderer meshRenderer;
-    private BoxCollider boxCollider;
-    private Transform[] filhos;
+    [Header("Configurações de Posição")]
+    [Tooltip("Posição inicial do objeto.")]
+    [SerializeField] private Vector3 startPosition; // Posição inicial
+    [Tooltip("Posição final do objeto.")]
+    [SerializeField] private Vector3 endPosition; // Posição final
 
-    [Header("Configuração de Áudio")]
-    [Tooltip("Áudio reproduzido quando o tempo de inatividade chega a zero.")]
-    [SerializeField] private AudioClip ativacaoSound; // Som tocado na ativação
-    private AudioSource audioSource;
-
-    [Header("Configurações de Animação")]
-    [Tooltip("Posição inicial da arma.")]
-    [SerializeField] private Vector3 startPosition; // Posição inicial da animação
-    [Tooltip("Posição final da arma.")]
-    [SerializeField] private Vector3 endPosition; // Posição final da animação
-    [Tooltip("Tempo da animação.")]
-    [SerializeField] private float animationDuration = 2f; // Duração da animação
-    [Tooltip("Curva para suavizar a animação.")]
-    [SerializeField] private AnimationCurve sizeCurve; // Curva para ajustar suavidade
-
-    private Vector3 originalScale; // Escala original do objeto
-
-    [Header("Efeitos Visuais e Eventos")]
-    [Tooltip("Partículas ativadas quando o objeto é ativado.")]
-    [SerializeField] private ParticleSystem ativacaoParticle; // Partículas na ativação
-    public UnityEvent onActivated; // Evento chamado na ativação
-    public UnityEvent onDeactivated; // Evento chamado na desativação
+    [Header("Eventos")]
+    [Tooltip("Evento disparado ao concluir o movimento.")]
+    public UnityEvent onMoveComplete;
 
     private void Awake()
     {
-        // Inicializa os componentes e configura o estado inicial do objeto
-        InicializarComponentes();
-        DesativarObjetos();
-    }
-
-    private void InicializarComponentes()
-    {
-        // Busca os componentes necessários
-        meshRenderer = GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
-        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        filhos = GetComponentsInChildren<Transform>();
-
-        // Salva a escala original do objeto
-        originalScale = transform.localScale;
-    }
-
-    private void DesativarObjetos()
-    {
-        // Desativa renderização e colisor do objeto principal
-        if (meshRenderer != null) meshRenderer.enabled = false;
-        if (boxCollider != null) boxCollider.enabled = false;
-
-        // Desativa todos os objetos filhos
-        foreach (var filho in filhos)
-        {
-            if (filho != transform) filho.gameObject.SetActive(false);
-        }
-
-        // Define a posição inicial e escala reduzida
+        // Configura a posição inicial do objeto
         transform.localPosition = startPosition;
-        transform.localScale = Vector3.zero;
-
-        // Dispara o evento de desativação
-        onDeactivated?.Invoke();
     }
 
     public void Configurar(float tempo)
@@ -86,7 +36,7 @@ public class Inativo2 : MonoBehaviour
 
     public void IniciarContagem()
     {
-        // Inicia a contagem regressiva para ativação
+        // Inicia a contagem regressiva para o movimento
         if (!gameObject.activeInHierarchy || jogoFinalizado || contagemCorrotina != null) return;
 
         spawnTimer = tempoDeInatividade;
@@ -95,94 +45,41 @@ public class Inativo2 : MonoBehaviour
 
     private IEnumerator ContagemRegressiva()
     {
-        // Contagem regressiva antes de ativar o objeto
+        // Contagem regressiva antes de mover o objeto
         while (spawnTimer > 0 && !jogoFinalizado)
         {
             spawnTimer -= Time.deltaTime; // Decrementa o tempo
             yield return null; // Espera o próximo frame
         }
 
-        // Quando o tempo acaba, inicia a animação de ativação
+        // Quando o tempo acaba, move o objeto para a posição final
         if (!jogoFinalizado)
         {
-            StartCoroutine(AnimarAtivacao());
+            MoverParaPosicaoFinal();
         }
 
         contagemCorrotina = null; // Reseta a referência da corrotina
     }
 
-    private IEnumerator AnimarAtivacao()
+    private void MoverParaPosicaoFinal()
     {
-        float elapsedTime = 0f;
-
-        // Realiza a animação de movimento e redimensionamento
-        while (elapsedTime < animationDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float progress = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
-
-            // Atualiza posição e escala com base no progresso
-            transform.localPosition = Vector3.Lerp(startPosition, endPosition, progress);
-            transform.localScale = Vector3.Lerp(Vector3.zero, originalScale, sizeCurve.Evaluate(progress));
-
-            yield return null; // Espera o próximo frame
-        }
-
-        // Garante que os valores finais sejam precisos
+        // Atualiza a posição do objeto para a posição final
         transform.localPosition = endPosition;
-        transform.localScale = originalScale;
 
-        AtivarObjetos(); // Ativa os objetos após a animação
-    }
-
-    private void AtivarObjetos()
-    {
-        // Ativa renderização e colisor do objeto principal
-        if (meshRenderer != null) meshRenderer.enabled = true;
-        if (boxCollider != null) boxCollider.enabled = true;
-
-        // Ativa todos os objetos filhos
-        foreach (var filho in filhos)
-        {
-            if (filho != transform) filho.gameObject.SetActive(true);
-        }
-
-        // Dispara o evento de ativação
-        onActivated?.Invoke();
-
-        // Toca o som de ativação
-        PlayActivationSound();
-
-        // Exibe partículas, se configuradas
-        PlayActivationEffect();
-    }
-
-    private void PlayActivationSound()
-    {
-        if (audioSource != null && ativacaoSound != null)
-        {
-            audioSource.PlayOneShot(ativacaoSound);
-        }
-    }
-
-    private void PlayActivationEffect()
-    {
-        if (ativacaoParticle != null)
-        {
-            ativacaoParticle.Play();
-        }
+        // Dispara o evento de conclusão do movimento
+        onMoveComplete?.Invoke();
     }
 
     public void NotificarInicioDoJogo()
     {
-        // Reinicia o estado para permitir ativação
+        // Reinicia o estado para permitir movimento
         jogoFinalizado = false;
         IniciarContagem();
     }
 
     public void CongelarTempoDeInatividade()
     {
-        // Pausa o temporizador de ativação
+        // Pausa o temporizador de movimento
         jogoFinalizado = true;
     }
 
