@@ -4,17 +4,13 @@ public class UFOAttack : MonoBehaviour
 {
     [Header("Configurações de Ataque")]
     public GameObject projetilPrefab; // Prefab do projétil
-    public Transform pontoRotacaoY; // Ponto que rotaciona no eixo Y
-    public Transform pontoRotacaoX; // Ponto que rotaciona no eixo X
     public Transform pontoDeDisparo; // Ponto onde o projétil será disparado
     public float intervaloDeAtaque = 15f; // Tempo mínimo entre ataques
     public float alcanceDeAtaque = 100f; // Distância máxima para iniciar ataques
-    public float velocidadeDoProjetil = 20f; // Velocidade do projétil (adicionada)
+    public float velocidadeDoProjetil = 20f; // Velocidade do projétil
 
     private Transform jogador; // Referência ao jogador
     private float cronometroDeAtaque; // Contador para controlar o intervalo entre ataques
-
-    private UFOMovimento ufoMovimento; // Referência ao script de movimento
 
     private void Start()
     {
@@ -24,26 +20,22 @@ public class UFOAttack : MonoBehaviour
         {
             jogador = playerObj.transform;
         }
-
-        // Obter o componente de movimento
-        ufoMovimento = GetComponent<UFOMovimento>();
+        else
+        {
+            Debug.LogError("Jogador não encontrado! Certifique-se de que há um objeto com a tag 'Player' na cena.");
+        }
     }
 
     private void Update()
     {
-        if (jogador != null)
+        if (jogador == null) return;
+
+        float distanciaDoJogador = Vector3.Distance(transform.position, jogador.position);
+
+        // Se estiver em alcance, ataca
+        if (distanciaDoJogador <= alcanceDeAtaque)
         {
-            float distanciaDoJogador = Vector3.Distance(transform.position, jogador.position);
-
-            // Atualiza o estado de movimento
-            bool emAlcanceDeAtaque = distanciaDoJogador <= alcanceDeAtaque;
-            ufoMovimento.AtualizarEstadoMovimento(emAlcanceDeAtaque);
-
-            // Se estiver em alcance, ataca
-            if (emAlcanceDeAtaque)
-            {
-                Atacar();
-            }
+            Atacar();
         }
     }
 
@@ -61,21 +53,33 @@ public class UFOAttack : MonoBehaviour
 
     private void DispararProjetil()
     {
-        if (projetilPrefab != null && pontoDeDisparo != null && jogador != null)
+        if (projetilPrefab == null)
         {
-            // Calcula a direção do jogador
-            Vector3 direcao = (jogador.position - pontoDeDisparo.position).normalized;
+            Debug.LogError("Prefab do projétil não configurado!");
+            return;
+        }
 
-            // Instancia o projétil no ponto de disparo
-            GameObject projetil = Instantiate(projetilPrefab, pontoDeDisparo.position, Quaternion.LookRotation(direcao));
+        if (pontoDeDisparo == null)
+        {
+            Debug.LogError("Ponto de disparo não configurado!");
+            return;
+        }
 
-            // Configura a direção e a rotação do projétil
-            Rigidbody rb = projetil.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                // Configura a velocidade do projétil
-                rb.velocity = direcao * velocidadeDoProjetil;
-            }
+        // Calcula a direção do jogador
+        Vector3 direcao = (jogador.position - pontoDeDisparo.position).normalized;
+
+        // Instancia o projétil no ponto de disparo
+        GameObject projetil = Instantiate(projetilPrefab, pontoDeDisparo.position, Quaternion.LookRotation(direcao));
+
+        // Configura a direção e a rotação do projétil
+        Rigidbody rb = projetil.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = direcao * velocidadeDoProjetil;
+        }
+        else
+        {
+            Debug.LogError("O prefab do projétil não possui um componente Rigidbody!");
         }
     }
 

@@ -307,18 +307,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6363790887895094179}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac4188298c69f654484ee09b3d430b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projetilPrefab: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
     type: 3}
-  pontoRotacaoY: {fileID: 1653914705954521602}
-  pontoRotacaoX: {fileID: 8526680615025040262}
   pontoDeDisparo: {fileID: 6382932002484026288}
-  intervaloDeAtaque: 10
-  alcanceDeAtaque: 300
+  intervaloDeAtaque: 5
+  alcanceDeAtaque: 350
   velocidadeDoProjetil: 50
 --- !u!114 &8143943274903668997
 MonoBehaviour:
