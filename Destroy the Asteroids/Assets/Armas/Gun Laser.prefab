@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 7795692526500876225}
   - component: {fileID: 880968548657195594}
   - component: {fileID: 273463014310957786}
+  - component: {fileID: 450797966091888117}
   m_Layer: 0
   m_Name: Cima
   m_TagString: Untagged
@@ -280,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 1474423146188376661}
   serializedVersion: 2
   m_LocalRotation: {x: 0.033172194, y: 0.70632833, z: 0.7063282, w: -0.033172198}
-  m_LocalPosition: {x: 0.025804136, y: -0.00019103289, z: 0.5406229}
+  m_LocalPosition: {x: 0.02580414, y: -0.0001910329, z: 0.5406229}
   m_LocalScale: {x: 0.10424378, y: 0.621959, z: 0.10146202}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -337,6 +338,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &450797966091888117
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474423146188376661}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aef4668b4c0160645935b6182548762e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2942533885947066883
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +488,7 @@ GameObject:
   - component: {fileID: 1628717847929302782}
   - component: {fileID: 920942044956792299}
   - component: {fileID: 7127040083600405705}
+  - component: {fileID: 5558075524788432503}
   m_Layer: 0
   m_Name: Gun Laser
   m_TagString: Untagged
@@ -625,6 +648,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5558075524788432503}
+        m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
+        m_MethodName: AtivarAnimacao
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
       m_Calls:
@@ -636,6 +671,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5558075524788432503}
+        m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
+        m_MethodName: DesativarAnimacao
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -732,9 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16171d169412204a806b0a47f3511f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPose:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+  endPosition: {x: -0.514, y: 0.751, z: 0.63}
+  endRotationEuler: {x: 0, y: -9.184, z: 0}
 --- !u!114 &920942044956792299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +890,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5558075524788432503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026763348082732502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b41d1f4055ca747861c02800405ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 450797966091888117}
+  - {fileID: 7288090410694465321}
+  - {fileID: 6802265646470154532}
+  parametroFire: Fire
 --- !u!1 &6304233055840234923
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +918,7 @@ GameObject:
   - component: {fileID: 1137944587619355226}
   - component: {fileID: 2273519583084770223}
   - component: {fileID: 2912432587761522184}
+  - component: {fileID: 6802265646470154532}
   m_Layer: 0
   m_Name: Gatinho
   m_TagString: Untagged
@@ -871,7 +935,7 @@ Transform:
   m_GameObject: {fileID: 6304233055840234923}
   serializedVersion: 2
   m_LocalRotation: {x: 0.033172194, y: 0.70632833, z: 0.7063282, w: -0.033172198}
-  m_LocalPosition: {x: -0.069228716, y: -0.19295406, z: -0.46444798}
+  m_LocalPosition: {x: -0.06922872, y: -0.1929541, z: -0.46444798}
   m_LocalScale: {x: 0.10424378, y: 0.621959, z: 0.10146202}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -927,6 +991,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &6802265646470154532
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6304233055840234923}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46fd92227baae26418f2a9d40f3dbb2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6723393975476290530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,6 +1311,7 @@ GameObject:
   - component: {fileID: 5412741471088239161}
   - component: {fileID: 6271232433480225119}
   - component: {fileID: 8199737035712659912}
+  - component: {fileID: 7288090410694465321}
   m_Layer: 0
   m_Name: Baixo
   m_TagString: Untagged
@@ -1242,7 +1328,7 @@ Transform:
   m_GameObject: {fileID: 7238854132168448111}
   serializedVersion: 2
   m_LocalRotation: {x: 0.033172194, y: 0.70632833, z: 0.7063282, w: -0.033172198}
-  m_LocalPosition: {x: 0.025804136, y: -0.0023851395, z: 0.5406229}
+  m_LocalPosition: {x: 0.02580414, y: -0.002385139, z: 0.5406229}
   m_LocalScale: {x: 0.10424378, y: 0.621959, z: 0.10146202}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1299,6 +1385,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7288090410694465321
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238854132168448111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3348342290f754c46852b1235d37d7c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7509389413874000367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,13 +1507,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7662771951103646422}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07262893, y: -0, z: -0, w: 0.99735904}
-  m_LocalPosition: {x: -5.7625003, y: 0.42168832, z: 1.7482582}
+  m_LocalRotation: {x: 0.04573582, y: 0.036361456, z: -0.0036337527, w: 0.998285}
+  m_LocalPosition: {x: 0.11, y: -0.003, z: 1.269}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6406526574302132076}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.254, y: 4.162, z: -0.226}
 --- !u!120 &4719741153624841153
 LineRenderer:
   serializedVersion: 2
@@ -1459,8 +1566,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.024386493
+        time: 0.04185486
+        value: 0.01736745
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1531,5 +1638,5 @@ MonoBehaviour:
   maxEnergy: 100
   depletionRate: 10
   rechargeDelay: 1
-  rechargeDuration: 45
+  rechargeDuration: 3
   laserSound: {fileID: 8300000, guid: 8090c5079440ab248b513578c6211fcc, type: 3}

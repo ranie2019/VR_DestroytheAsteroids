@@ -115,14 +115,30 @@ public class GameOverStart : MonoBehaviour
         {
             if (arma != null)
             {
+                // Ativa a arma
                 arma.SetActive(true);
-            }
 
-            Inativo inativoScript = arma.GetComponent<Inativo>();
-            if (inativoScript != null)
-            {
-                inativoScript.enabled = true;
+                // Ativa todos os MeshRenderers dos filhos da arma
+                AtivarMeshRenderersDosFilhos(arma);
+
+                // Tenta obter o componente Inativo de forma segura e ativá-lo
+                if (arma.TryGetComponent<Inativo>(out Inativo inativoScript))
+                {
+                    inativoScript.enabled = true;
+                }
             }
+        }
+    }
+
+    private void AtivarMeshRenderersDosFilhos(GameObject arma)
+    {
+        // Obtém todos os MeshRenderers dos filhos da arma
+        MeshRenderer[] meshRenderers = arma.GetComponentsInChildren<MeshRenderer>(true); // true para incluir inativos
+
+        // Ativa o MeshRenderer de cada filho
+        foreach (var meshRenderer in meshRenderers)
+        {
+            meshRenderer.enabled = true;
         }
     }
 

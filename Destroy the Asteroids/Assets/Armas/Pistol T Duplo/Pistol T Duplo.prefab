@@ -332,9 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16171d169412204a806b0a47f3511f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originPose:
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
+  endPosition: {x: 0, y: 0, z: 0}
+  endRotationEuler: {x: 0, y: 0, z: 0}
 --- !u!114 &7669879196755616501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 40
+  tempoDeInatividade: 5
   ativacaoSound: {fileID: 8300000, guid: 00364e1118e20b440903ae011ca0cdd0, type: 3}
 --- !u!1 &1702040912290477076
 GameObject:
