@@ -18535,9 +18535,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9169536171663783196}
         m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
-        m_MethodName: ActivateFireAnimation
+        m_MethodName: AtivarAnimacao
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18550,9 +18550,9 @@ MonoBehaviour:
   m_Deactivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9169536171663783196}
         m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
-        m_MethodName: StopTriggerAnimation
+        m_MethodName: DesativarAnimacao
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19156,6 +19156,7 @@ GameObject:
   - component: {fileID: 1345144127516595949}
   - component: {fileID: 9169536171663783195}
   - component: {fileID: 7380951388192630233}
+  - component: {fileID: 9169536171663783196}
   m_Layer: 0
   m_Name: Gun1
   m_TagString: Untagged
@@ -19470,7 +19471,7 @@ Animator:
   m_GameObject: {fileID: 3832703584074198542}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 408635f42c36e8040a5b9232343168fa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56001fb4d66325c4bbaff406cc3b1e56, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -25205,6 +25206,7 @@ GameObject:
   - component: {fileID: 7213411950322272845}
   - component: {fileID: 716488052965206459}
   - component: {fileID: 1215882461736991097}
+  - component: {fileID: 8597796785388817643}
   m_Layer: 0
   m_Name: Gun2
   m_TagString: Untagged
@@ -25259,6 +25261,7 @@ GameObject:
   - component: {fileID: 4864372603450322574}
   - component: {fileID: 4864372603453189804}
   - component: {fileID: 4864372603452222572}
+  - component: {fileID: 4864372603453189805}
   m_Layer: 0
   m_Name: Ferrolho
   m_TagString: Untagged
@@ -25342,7 +25345,7 @@ Transform:
   m_GameObject: {fileID: 4864372603450290862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0361125, y: 0.30994248, z: -0.000014002992}
+  m_LocalPosition: {x: 0.0361125, y: 0.3099425, z: -0.000014002992}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25542,6 +25545,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4864372603450290862}
   m_Mesh: {fileID: 4300002, guid: 7d06582fc8e311644a92e6d9e9cab273, type: 3}
+--- !u!95 &4864372603453189805
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864372603450290862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f139bae43a939204a93b86a1943d93ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!33 &4864372603453189806
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31308,9 +31332,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8597796785388817643}
         m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
-        m_MethodName: ActivateFireAnimation
+        m_MethodName: AtivarAnimacao
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31323,9 +31347,9 @@ MonoBehaviour:
   m_Deactivated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8597796785388817643}
         m_TargetAssemblyTypeName: AnimacaoArma, Assembly-CSharp
-        m_MethodName: StopTriggerAnimation
+        m_MethodName: DesativarAnimacao
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31978,6 +32002,21 @@ MonoBehaviour:
     type: 3}
   bulletSpeed: 1500
   bulletSpawnPoint: {fileID: 7600904708492752205}
+--- !u!114 &8597796785388817643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864372603450290856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b41d1f4055ca747861c02800405ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 4864372603453189805}
+  parametroFire: Fire
 --- !u!23 &8645075077354865554
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32081,6 +32120,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInteractable: {fileID: 3004980819338975886}
+--- !u!114 &9169536171663783196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832703584074198536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b41d1f4055ca747861c02800405ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 3832703584076132557}
+  parametroFire: Fire
 --- !u!1 &9199961937279422217
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class StartGame : MonoBehaviour
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
     [SerializeField] private MeshRenderer childMeshRenderer;
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
         {
@@ -34,7 +34,7 @@ public class StartGame : MonoBehaviour
         }
     }
 
-    private void HandleCollisionWithLaser()
+    public void HandleCollisionWithLaser()
     {
         // Reseta a pontuação do jogador
         if (gameController != null)
