@@ -465,7 +465,6 @@ GameObject:
   - component: {fileID: 3229008831123220437}
   - component: {fileID: 1628717847929302782}
   - component: {fileID: 920942044956792299}
-  - component: {fileID: 6661704552605198416}
   - component: {fileID: 7127040083600405705}
   m_Layer: 0
   m_Name: Gun Laser
@@ -749,36 +748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInteractable: {fileID: 3229008831123220437}
---- !u!114 &6661704552605198416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026763348082732502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ab0b9921aee44c4aa3ab4e572656a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tempoDeInatividade: 5
-  ativacaoSound: {fileID: 0}
-  startPosition: {x: 0, y: 0, z: 0}
-  endPosition: {x: 0, y: 0, z: 0}
-  animationDuration: 2
-  sizeCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ativacaoParticle: {fileID: 0}
-  onActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeactivated:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!82 &7127040083600405705
 AudioSource:
   m_ObjectHideFlags: 0
