@@ -253,7 +253,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.429, y: 0.578, z: 0.778}
-  m_LocalScale: {x: 0.013071255, y: 0.013071255, z: 0.013071255}
+  m_LocalScale: {x: 0.013071256, y: 0.013071255, z: 0.013071256}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9139508053921494772}
@@ -544,7 +544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 886614355072982495, guid: db1f3d99792b56945bdb9eb2551888e4,
     type: 3}
-  bulletSpawnPoint: {fileID: 4202003894192817922}
+  bulletSpawnPoints:
+  - {fileID: 4202003894192817922}
   bulletSpeed: 1000
   municaoMaxima: 30
   tempoRecarga: 45
@@ -562,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDeInatividade: 1
+  tempoDeInatividade: 80
   ativacaoSound: {fileID: 8300000, guid: 11b78f83477f52f4d971377dc3692e88, type: 3}
 --- !u!114 &3075657746580617664
 MonoBehaviour:

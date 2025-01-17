@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class MunicaoLimite : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class MunicaoLimite : MonoBehaviour
     [Tooltip("Prefab da bala que será disparada.")]
     [SerializeField] private GameObject bulletPrefab;
 
-    [Tooltip("Ponto de spawn das balas.")]
-    [SerializeField] private Transform bulletSpawnPoint;
+    [Tooltip("Pontos de spawn das balas.")]
+    [SerializeField] private List<Transform> bulletSpawnPoints;
 
     [Tooltip("Velocidade da bala disparada.")]
     [SerializeField] private float bulletSpeed = 20f;
@@ -67,12 +68,15 @@ public class MunicaoLimite : MonoBehaviour
     {
         if (municaoAtual > 0)
         {
-            // Dispara a bala
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-            if (bulletRigidbody != null)
+            foreach (Transform spawnPoint in bulletSpawnPoints)
             {
-                bulletRigidbody.velocity = bulletSpawnPoint.forward * bulletSpeed;
+                // Dispara a bala de cada ponto de spawn
+                GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                if (bulletRigidbody != null)
+                {
+                    bulletRigidbody.velocity = spawnPoint.forward * bulletSpeed;
+                }
             }
 
             // Reproduz o som de disparo
