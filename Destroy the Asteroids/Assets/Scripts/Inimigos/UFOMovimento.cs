@@ -1,153 +1,139 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class UFOMovimento : MonoBehaviour
 {
-    [Tooltip("Velocidade de órbita ao redor do jogador")]
-    public float orbitSpeed = 5f;
-
     [Tooltip("Velocidade de movimento em linha reta até o destino")]
     public float velocidadeMovimentoReto = 3f;
 
-    [Tooltip("Raio da órbita ao redor do jogador")]
-    public float orbitRadius = 10f;
-
-    [Tooltip("Altura do UFO durante a órbita")]
-    public float altura = 5f;
-
     private Transform jogador; // Referência ao jogador
+    private Transform buracoNegro; // Referência ao buraco negro
     private bool emAlcanceDeAtaque; // Indica se está em modo de ataque
+    private bool sendoAtraido; // Indica se está sendo afetado pelo buraco negro
 
-    private Vector3 initialPosition; // Posição inicial do UFO
-    private Vector3 destinoInicial; // Posição de origem para o movimento reto
-    private bool chegouNoDestino = false; // Flag para indicar que o UFO chegou ao destino
-    private Vector3 pontoDeOrbita; // Ponto onde o UFO começará a orbitar
-
-    private Coroutine movimentoCoroutine; // Coroutine para controlar o movimento em linha reta
+    private Vector3 destino; // Posição do próximo ponto de destino
+    private Transform[] pontosFixos; // Lista de pontos fixos
+    private Rigidbody rb; // Referência ao Rigidbody do UFO
 
     private void Start()
     {
+        // Obtém a referência do jogador
         jogador = GameObject.FindGameObjectWithTag("Player")?.transform;
-        initialPosition = transform.position;
-        destinoInicial = new Vector3(jogador.position.x, altura, jogador.position.z); // Definindo destino no plano horizontal
 
-        // Inicializando a posição do UFO, caso seja instanciado em algum lugar diferente da origem
-        transform.position = initialPosition;
+        // Obtém a referência do buraco negro
+        buracoNegro = GameObject.FindGameObjectWithTag("Gravidade")?.transform;
 
-        // Iniciando o movimento em linha reta usando uma corrotina
-        movimentoCoroutine = StartCoroutine(MoverParaOrigem());
-    }
-
-    private void Update()
-    {
-        if (jogador != null)
+        // Configurações iniciais
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
         {
-            if (chegouNoDestino)
-            {
-                if (emAlcanceDeAtaque)
-                {
-                    OrbitarJogador();
-                }
-                else
-                {
-                    MovimentacaoNormal();
-                }
-            }
-        }
-    }
-
-    private IEnumerator MoverParaOrigem()
-    {
-        // Movendo o UFO em linha reta até a posição de origem com suavização
-        float distancia = Vector3.Distance(transform.position, destinoInicial);
-        float tempoMovimento = distancia / velocidadeMovimentoReto;
-
-        float tempoGasto = 0f;
-        Vector3 posicaoInicial = transform.position;
-
-        while (tempoGasto < tempoMovimento)
-        {
-            tempoGasto += Time.deltaTime;
-            transform.position = Vector3.Lerp(posicaoInicial, destinoInicial, tempoGasto / tempoMovimento);
-
-            // Verifica se o UFO está dentro do raio de órbita
-            if (Vector3.Distance(transform.position, jogador.position) <= orbitRadius && !chegouNoDestino)
-            {
-                pontoDeOrbita = transform.position; // Salva a posição de orbita
-                chegouNoDestino = true;
-
-                // Se a posição do UFO for diferente da posição inicial, significa que é um clone
-                if (transform.position != initialPosition)
-                {
-                    // Gerar um valor aleatório para o orbitSpeed entre 0.1 e 2 para clones
-                    orbitSpeed = Random.Range(0.1f, 2f);
-                }
-
-                break;
-            }
-
-            yield return null;
+            Debug.LogError("Rigidbody é necessário para o movimento do UFO. Adicione um Rigidbody ao objeto.");
+            return;
         }
 
-        // Garantir que o UFO termine na posição inicial, se não tenha atingido o limite do orbitRadius
-        if (!chegouNoDestino)
+        rb.useGravity = false; // Desativa a gravidade do UFO
+
+        // Busca todos os objetos com a tag "Posicao" e os armazena no array
+        pontosFixos = GameObject.FindGameObjectsWithTag("Posicao")
+            .Select(go => go.transform).ToArray();
+
+        if (pontosFixos.Length == 0)
         {
-            transform.position = destinoInicial;
-            pontoDeOrbita = destinoInicial; // No caso de não ter atingido o orbitRadius
-            chegouNoDestino = true;
+            Debug.LogError("Nenhum ponto fixo com a tag 'Posicao' foi encontrado.");
+        }
+
+        // Inicia a movimentação normal
+        EscolherPontoAleatorio();
+    }
+
+    private void FixedUpdate()
+    {
+        if (sendoAtraido)
+        {
+            // Prioriza a atração do buraco negro
+            AtraidoPeloBuracoNegro();
+        }
+        else if (emAlcanceDeAtaque && jogador != null)
+        {
+            // Realiza a movimentação orbital se em alcance de ataque
+            OrbitarJogador();
+        }
+        else
+        {
+            // Movimentação normal
+            MovimentacaoNormal();
         }
     }
 
     private void MovimentacaoNormal()
     {
-        // Movimentação normal (orbital) quando o UFO não está em ataque
-        float angle = Time.time * orbitSpeed;
-        float x = Mathf.Cos(angle) * orbitRadius;
-        float z = Mathf.Sin(angle) * orbitRadius;
+        if (Vector3.Distance(transform.position, destino) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destino, velocidadeMovimentoReto * Time.deltaTime);
+        }
+        else
+        {
+            EscolherPontoAleatorio();
+        }
+    }
 
-        transform.position = new Vector3(x, altura, z);
+    private void AtraidoPeloBuracoNegro()
+    {
+        if (buracoNegro == null) return;
+
+        // Calcula a direção de atração para o buraco negro
+        Vector3 direcaoAtracao = (buracoNegro.position - transform.position).normalized;
+
+        // Aplica a força de atração (valor fixo ajustado diretamente aqui)
+        float forcaAtracaoFixada = 50f;
+        rb.AddForce(direcaoAtracao * forcaAtracaoFixada * Time.deltaTime, ForceMode.Acceleration);
     }
 
     private void OrbitarJogador()
     {
-        // Movimentação orbital quando o UFO está em modo de ataque
-        float angle = Time.time * orbitSpeed;
+        float angle = Time.time * 0.5f;
         Vector3 direcaoOrbitacao = new Vector3(
-            Mathf.Cos(angle) * orbitRadius,
-            altura,
-            Mathf.Sin(angle) * orbitRadius
+            Mathf.Cos(angle) * 5f,
+            0, // Altura removida
+            Mathf.Sin(angle) * 5f
         );
 
-        // Usa a posição armazenada como ponto de órbita para começar a orbitar
-        transform.position = pontoDeOrbita + direcaoOrbitacao;
+        transform.position = jogador.position + direcaoOrbitacao;
     }
 
-    /// <summary>
-    /// Atualiza o estado de movimento do UFO.
-    /// </summary>
-    /// <param name="estadoEmAlcanceDeAtaque">Define se está em modo de ataque.</param>
+    private void EscolherPontoAleatorio()
+    {
+        if (pontosFixos.Length > 0)
+        {
+            Transform pontoAleatorio;
+            do
+            {
+                pontoAleatorio = pontosFixos[Random.Range(0, pontosFixos.Length)];
+            } while (pontoAleatorio.position == destino);
+
+            destino = pontoAleatorio.position;
+        }
+    }
+
     public void AtualizarEstadoMovimento(bool estadoEmAlcanceDeAtaque)
     {
         emAlcanceDeAtaque = estadoEmAlcanceDeAtaque;
+    }
 
-        if (emAlcanceDeAtaque)
+    public void SetSendoAtraido(bool estado)
+    {
+        sendoAtraido = estado;
+
+        if (estado)
         {
-            orbitRadius = 5f;
-            orbitSpeed = 8f;
+            // Garante que o UFO seja controlado pela física durante a atração
+            rb.isKinematic = false;
         }
         else
         {
-            orbitRadius = 10f;
-            orbitSpeed = 5f;
+            // Retorna ao estado normal após a atração
+            rb.isKinematic = true;
         }
-    }
-
-    /// <summary>
-    /// Define a altura do UFO.
-    /// </summary>
-    /// <param name="novaAltura">Nova altura desejada para o UFO.</param>
-    public void DefinirAltura(float novaAltura)
-    {
-        altura = novaAltura;
     }
 }

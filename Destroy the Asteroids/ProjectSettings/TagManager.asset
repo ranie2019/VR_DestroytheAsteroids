@@ -9,6 +9,7 @@ TagManager:
   - Gravidade
   - FxTemporaire
   - Inimigo
+  - Posicao
   layers:
   - Default
   - TransparentFX

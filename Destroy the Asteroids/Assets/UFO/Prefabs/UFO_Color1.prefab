@@ -101,7 +101,7 @@ MonoBehaviour:
   projetilPrefab: {fileID: 8776194668723731899, guid: c729638200f745842bb6e547b4cbc586,
     type: 3}
   pontoDeDisparo: {fileID: 773871752090529616}
-  intervaloDeAtaque: 10
+  intervaloDeAtaque: 15
   alcanceDeAtaque: 350
   velocidadeDoProjetil: 50
 --- !u!114 &7635363645309398158
@@ -116,9 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b262f8b2ecc0ea4da7c19605c3af12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitSpeed: 0.5
-  velocidadeMovimentoReto: 60
-  orbitRadius: 300
+  velocidadeMovimentoReto: 50
   altura: 100
 --- !u!114 &9069555497358713949
 MonoBehaviour:

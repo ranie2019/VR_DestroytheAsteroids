@@ -85,12 +85,24 @@ public class BuracoNegro : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Asteroid") && collider.TryGetComponent<Rigidbody>(out var asteroidRigidbody))
+            if (collider.CompareTag("Asteroid"))
             {
-                Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
-                asteroidRigidbody.AddForce(directionToCenter * attractionForce * Time.deltaTime, ForceMode.Acceleration);
+                if (collider.TryGetComponent<Rigidbody>(out var asteroidRigidbody))
+                {
+                    Vector3 directionToCenter = (transform.position - collider.transform.position).normalized;
+                    asteroidRigidbody.AddForce(directionToCenter * attractionForce * Time.deltaTime, ForceMode.Acceleration);
+
+                }
             }
         }
+    }
+
+    private void OnValidate()
+    {
+        lifeTime = Mathf.Max(0.1f, lifeTime);
+        movementSpeed = Mathf.Max(0f, movementSpeed);
+        attractionRadius = Mathf.Max(0f, attractionRadius);
+        attractionForce = Mathf.Max(0f, attractionForce);
     }
 
     private void OnDrawGizmosSelected()

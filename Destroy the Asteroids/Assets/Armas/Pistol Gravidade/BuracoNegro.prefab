@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSound: {fileID: 8300000, guid: f1b1cc2d960b7884aa1eb4e2f0083dea, type: 3}
-  lifeTime: 5
+  lifeTime: 10
   movementDirection: {x: 0, y: 0, z: 1}
-  movementSpeed: 5
-  attractionRadius: 9999
-  attractionForce: 99999
+  movementSpeed: 3
+  attractionRadius: 99999
+  attractionForce: 999999
 --- !u!82 &4503617497340092015
 AudioSource:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 505.08716
+  MaxDistance: 115.74905
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

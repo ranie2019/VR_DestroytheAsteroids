@@ -92,15 +92,22 @@ public class MunicaoLimite : MonoBehaviour
             // Inicia o recarregamento se a munição chegar a 0
             if (municaoAtual <= 0)
             {
-                Invoke(nameof(IniciarRecarga), tempoRecarga);
+                IniciarRecarga();
             }
         }
     }
 
     private void IniciarRecarga()
     {
-        recarregando = true;
-        StartCoroutine(Recarregar());
+        if (gameObject.activeInHierarchy) // Verifica se o GameObject está ativo
+        {
+            recarregando = true;
+            StartCoroutine(Recarregar());
+        }
+        else
+        {
+            Debug.LogWarning("Não foi possível iniciar a recarga. O GameObject está inativo.");
+        }
     }
 
     private System.Collections.IEnumerator Recarregar()
