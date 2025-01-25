@@ -116,8 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b262f8b2ecc0ea4da7c19605c3af12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeMovimentoReto: 50
-  altura: 100
+  velocidadeMovimentoReto: 150
 --- !u!114 &9069555497358713949
 MonoBehaviour:
   m_ObjectHideFlags: 0

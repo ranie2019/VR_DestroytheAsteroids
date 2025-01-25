@@ -51,7 +51,6 @@ public class GameOver : MonoBehaviour
 
     private void FreezeInativoScripts()
     {
-        // Congela todos os scripts Inativo
         foreach (var inativo in inativoScripts)
         {
             inativo?.CongelarTempoDeInatividade();
@@ -60,7 +59,6 @@ public class GameOver : MonoBehaviour
 
     private void FreezeSpawners()
     {
-        // Desabilita os spawners de asteroides
         foreach (var spawner in asteroidSpawnerScripts)
         {
             if (spawner != null)
@@ -72,7 +70,6 @@ public class GameOver : MonoBehaviour
 
     private void ShowGameOverUI()
     {
-        // Exibe o painel de Game Over
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
@@ -86,7 +83,6 @@ public class GameOver : MonoBehaviour
 
     private void DestroyAllAsteroids()
     {
-        // Destroi todos os asteroides na cena
         foreach (GameObject asteroid in GameObject.FindGameObjectsWithTag(asteroidTag))
         {
             Destroy(asteroid);
@@ -95,7 +91,6 @@ public class GameOver : MonoBehaviour
 
     private void ActivateParticleSystems()
     {
-        // Ativa os efeitos visuais de partículas
         if (objectToDisableMeshRenderer != null)
         {
             Vector3 position = objectToDisableMeshRenderer.transform.position;
@@ -119,10 +114,8 @@ public class GameOver : MonoBehaviour
 
     private void DisableObjectMeshRenderer()
     {
-        // Desativa o MeshRenderer do objeto
         if (objectToDisableMeshRenderer != null)
         {
-            // Tenta pegar o MeshRenderer do filho do objeto
             MeshRenderer childMeshRenderer = objectToDisableMeshRenderer.GetComponentInChildren<MeshRenderer>();
 
             if (childMeshRenderer != null)
@@ -140,10 +133,8 @@ public class GameOver : MonoBehaviour
         }
     }
 
-
     private void DisableWeapons()
     {
-        // Desativa as armas do jogador
         foreach (var weapon in weaponObjects)
         {
             if (weapon != null)
@@ -161,7 +152,6 @@ public class GameOver : MonoBehaviour
 
     private void DisableComponentsInChildren<T>(GameObject obj) where T : Component
     {
-        // Desativa componentes específicos em todos os filhos do objeto
         T[] components = obj.GetComponentsInChildren<T>();
         foreach (var component in components)
         {
@@ -178,7 +168,6 @@ public class GameOver : MonoBehaviour
 
     private void PlayGameOverAudio()
     {
-        // Reproduz o áudio do Game Over
         if (audioPlayer != null)
         {
             audioPlayer.StopMainGameAudio();
@@ -192,7 +181,6 @@ public class GameOver : MonoBehaviour
 
     private void EnableAllChildren(GameObject parent)
     {
-        // Ativa todos os filhos do objeto de UI
         foreach (Transform child in parent.transform)
         {
             child.gameObject.SetActive(true);

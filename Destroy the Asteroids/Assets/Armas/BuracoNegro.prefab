@@ -2009,7 +2009,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.519, y: 0.829, z: 0.761}
-  m_LocalScale: {x: 0.15300566, y: 0.15300567, z: 0.15300566}
+  m_LocalScale: {x: 0.15300564, y: 0.15300567, z: 0.15300563}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2932089352285939606}
@@ -2301,8 +2301,8 @@ MonoBehaviour:
   bulletSpawnPoints:
   - {fileID: 2147633667897491687}
   bulletSpeed: 400
-  municaoMaxima: 10
-  tempoRecarga: 5
+  municaoMaxima: 2
+  tempoRecarga: 120
   municaoText: {fileID: 8839170214885055627}
   disparoSFX: {fileID: 8300000, guid: eb044324b3575b0479f045b7b8f05a81, type: 3}
 --- !u!114 &7913823341505954647

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8575772405530660773}
   - component: {fileID: 2503586077854054701}
   - component: {fileID: 8760062071003064828}
-  - component: {fileID: 8685960642093649280}
+  - component: {fileID: 6562554219533795505}
   m_Layer: 0
   m_Name: Sphere 2
   m_TagString: Laser
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8685960642093649280
+--- !u!114 &6562554219533795505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,13 +143,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 886614355072982495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e8c3e347bc18f408d5828584a7780d, type: 3}
+  m_Script: {fileID: 11500000, guid: 49cb91d27b0842b489540afdcffd9b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 1000
   tagAlvo: Asteroid
-  prefabFragmento: {fileID: 4836174050331487712, guid: ad15aba109bed35468053b79a171d17f,
-    type: 3}
-  quantidadeFragmentos: 3
-  forcaFragmentos: 1
-  tempoDeVida: 20
+  tempoDeVida: 10
+  tempoDeChegada: 1
+  tempoDeDelay: 0.5
+  velocidadeInicial: 10

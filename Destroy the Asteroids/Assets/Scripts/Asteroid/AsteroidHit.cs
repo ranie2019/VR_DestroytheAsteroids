@@ -106,7 +106,7 @@ public class AsteroidHit : MonoBehaviour
 
             // Ajusta a escala do popup com base na distância do centro
             float scaleMultiplier = Vector3.Distance(transform.position, Vector3.zero) / 10f;
-            asteroidPopup.transform.localScale = transform.localScale * scaleMultiplier;
+            asteroidPopup.transform.localScale = transform.localScale * (scaleMultiplier / 2f); // Reduz o tamanho pela metade
 
             // Aponta o popup para o jogador
             Vector3 directionToPlayer = (playerTransform.position - asteroidPopup.transform.position).normalized;

@@ -56,10 +56,10 @@ MonoBehaviour:
   - {fileID: 5913356730709297699}
   - {fileID: 3194598319039577925}
   - {fileID: 269394999386784182}
-  projectile: {fileID: 4836174050331487712, guid: 121d7e63a42b03949a13c1699dc5e5dd,
+  projectile: {fileID: 3045333054189246682, guid: 8e73a56fd37940f4ca062c3bb08bf4bb,
     type: 3}
-  fireRate: 3
-  projectileSpeed: 15000
+  taxaDisparo: 3
+  projectileSpeed: 1500
   laserSFX: {fileID: 8300000, guid: 61929cc1dcbaf814abfe0ddd1966c89b, type: 3}
 --- !u!114 &4499208418109919
 MonoBehaviour:

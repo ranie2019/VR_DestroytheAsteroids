@@ -28,39 +28,52 @@ public class MunicaoLimite : MonoBehaviour
     [Tooltip("Áudio do disparo da arma.")]
     [SerializeField] private AudioClip disparoSFX;
 
-    private int municaoAtual;
-    private bool recarregando = false;
-    private AudioSource audioSource;
+    [Tooltip("Quantidade de fontes de áudio para disparos.")]
+    [SerializeField] private int audioSourcePoolSize = 5;
 
-    // Novo sistema de entrada
+    private int municaoAtual; // Quantidade atual de munição disponível
+    private bool recarregando = false; // Indica se está no processo de recarga
+
+    private List<AudioSource> audioSourcePool; // Pool de fontes de áudio
+    private int currentAudioSourceIndex = 0; // Índice atual no pool de áudio
+
     private InputAction dispararAction;
 
     private void OnEnable()
     {
-        // Configura o Input Action para disparar
         dispararAction = new InputAction(type: InputActionType.Button, binding: "<Mouse>/leftButton");
         dispararAction.Enable();
     }
 
     private void Start()
     {
-        // Inicializa o AudioSource
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-
-        // Inicializa a quantidade de munição e atualiza o texto
+        // Configura a munição inicial
         municaoAtual = municaoMaxima;
         AtualizarTextoMunicao();
+
+        // Inicializa o pool de fontes de áudio
+        audioSourcePool = new List<AudioSource>();
+        for (int i = 0; i < audioSourcePoolSize; i++)
+        {
+            AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
+            newAudioSource.clip = disparoSFX;
+            newAudioSource.playOnAwake = false;
+            audioSourcePool.Add(newAudioSource);
+        }
     }
 
     private void Update()
     {
+        // Verifica se o jogador tentou disparar
         if (dispararAction.WasPressedThisFrame() && !recarregando)
         {
             Disparar();
+        }
+
+        // Verifica se deve iniciar a recarga automática
+        if (!recarregando && municaoAtual < municaoMaxima)
+        {
+            IniciarRecarga();
         }
     }
 
@@ -70,7 +83,6 @@ public class MunicaoLimite : MonoBehaviour
         {
             foreach (Transform spawnPoint in bulletSpawnPoints)
             {
-                // Dispara a bala de cada ponto de spawn
                 GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
                 Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
                 if (bulletRigidbody != null)
@@ -79,34 +91,30 @@ public class MunicaoLimite : MonoBehaviour
                 }
             }
 
-            // Reproduz o som de disparo
-            if (disparoSFX != null)
-            {
-                audioSource.PlayOneShot(disparoSFX);
-            }
+            // Reproduz o som do disparo usando o pool
+            PlayDisparoSFX();
 
-            // Reduz a munição e atualiza o texto
             municaoAtual--;
             AtualizarTextoMunicao();
+        }
+    }
 
-            // Inicia o recarregamento se a munição chegar a 0
-            if (municaoAtual <= 0)
-            {
-                IniciarRecarga();
-            }
+    private void PlayDisparoSFX()
+    {
+        if (disparoSFX != null && audioSourcePool.Count > 0)
+        {
+            AudioSource currentSource = audioSourcePool[currentAudioSourceIndex];
+            currentSource.Play();
+            currentAudioSourceIndex = (currentAudioSourceIndex + 1) % audioSourcePool.Count;
         }
     }
 
     private void IniciarRecarga()
     {
-        if (gameObject.activeInHierarchy) // Verifica se o GameObject está ativo
+        if (!recarregando && gameObject.activeInHierarchy)
         {
             recarregando = true;
             StartCoroutine(Recarregar());
-        }
-        else
-        {
-            Debug.LogWarning("Não foi possível iniciar a recarga. O GameObject está inativo.");
         }
     }
 
@@ -125,7 +133,6 @@ public class MunicaoLimite : MonoBehaviour
 
     private void OnDisable()
     {
-        // Desabilita o Input Action
         dispararAction.Disable();
     }
 }

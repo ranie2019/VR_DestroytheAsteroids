@@ -895,10 +895,10 @@ MonoBehaviour:
   - {fileID: 5712962869231864341}
   - {fileID: 8806119567653285158}
   - {fileID: 6508159452771866875}
-  projectile: {fileID: 4836174050331487712, guid: 121d7e63a42b03949a13c1699dc5e5dd,
+  projectile: {fileID: 1059671596952343787, guid: ff5c628125d1c28459889a852c5c4074,
     type: 3}
-  fireRate: 3
-  projectileSpeed: 15000
+  taxaDisparo: 3
+  projectileSpeed: 1500
   laserSFX: {fileID: 8300000, guid: 61929cc1dcbaf814abfe0ddd1966c89b, type: 3}
 --- !u!114 &4303223420506491171
 MonoBehaviour:
