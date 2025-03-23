@@ -17,52 +17,46 @@ public class c : MonoBehaviour
         // Verifica se o Rigidbody está marcado como kinematic
         if (objectRigidbody.isKinematic)
         {
-            // Se o Rigidbody for cinemático, desmarque para poder aplicar a física
             objectRigidbody.isKinematic = false;
         }
 
         // Atribuindo o evento de 'on detach' para o lançamento
-        grabInteractable.onSelectExited.AddListener(OnThrow);
+        grabInteractable.selectExited.AddListener(OnThrow);
     }
 
-    private void OnThrow(XRBaseInteractor interactor)
+    private void OnThrow(SelectExitEventArgs args)
     {
-        // Obtém a direção de lançamento
-        Vector3 throwDirection = interactor.transform.forward;
+        if (!args.isCanceled) // Garante que o lançamento não foi cancelado
+        {
+            // Obtém a direção de lançamento do interactor
+            Vector3 throwDirection = args.interactorObject.transform.forward;
 
-        // Lança o objeto com a força definida
-        LaunchObject(throwDirection);
+            // Lança o objeto com a força definida
+            LaunchObject(throwDirection);
+        }
     }
 
     private void LaunchObject(Vector3 direction)
     {
-        // Garantir que o Rigidbody não seja cinemático durante o lançamento
-        objectRigidbody.isKinematic = false;
+        objectRigidbody.isKinematic = false; // Garante que o Rigidbody esteja ativo
 
         // Aplica uma força ao Rigidbody para lançar o objeto
         objectRigidbody.AddForce(direction * throwForce, ForceMode.Impulse);
-
-        // Se você precisar de algo mais, como adicionar rotação ou alterar outros parâmetros, pode fazer aqui
-
-        // Opcional: Se você quiser voltar a ser cinemático após o lançamento, faça isso
-        // objectRigidbody.isKinematic = true;
     }
 
-    // Se você precisar de lógica extra para o comportamento de agarrar, pode adicionar aqui
     private void OnEnable()
     {
-        grabInteractable.onSelectEntered.AddListener(OnGrab);
+        grabInteractable.selectEntered.AddListener(OnGrab);
     }
 
     private void OnDisable()
     {
-        grabInteractable.onSelectEntered.RemoveListener(OnGrab);
-        grabInteractable.onSelectExited.RemoveListener(OnThrow);
+        grabInteractable.selectEntered.RemoveListener(OnGrab);
+        grabInteractable.selectExited.RemoveListener(OnThrow);
     }
 
-    // Método chamado quando o objeto é agarrado
-    private void OnGrab(XRBaseInteractor interactor)
+    private void OnGrab(SelectEnterEventArgs args)
     {
-        // Se você quiser fazer algo quando o objeto é pego, pode adicionar lógica aqui.
+        // Lógica opcional ao agarrar o objeto
     }
 }

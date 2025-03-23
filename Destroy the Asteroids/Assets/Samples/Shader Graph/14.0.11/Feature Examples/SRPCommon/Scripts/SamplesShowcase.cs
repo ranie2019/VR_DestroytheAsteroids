@@ -80,7 +80,7 @@ public class SamplesShowcase : MonoBehaviour
         {
             string jsonText = CleanupJson(SamplesDescriptionsJson.text);
 
-            Samples sampleJsonObject = Samples.CreateFromJSON(jsonText, samplesPrefabs);
+            SampleCollection sampleJsonObject = SampleCollection.CreateFromJSON(jsonText, samplesPrefabs);
 
             //Introduction, it's the first part of the Samples Description text asset
             string introText = sampleJsonObject.introduction;

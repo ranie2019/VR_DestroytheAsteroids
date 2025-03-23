@@ -14,9 +14,9 @@ public class GameOverStart : MonoBehaviour
     [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
     [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;  // Referências aos spawners de asteroides
 
-    [Header("Particle System")]
+    [Header("Sistema Particulas")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
-    [SerializeField] private ParticleSystem particleSystem;  // Sistema de partículas
+    [SerializeField] private ParticleSystem Particulas;  // Sistema de partículas
 
     [Header("Game Controller")]
     [Tooltip("Referência ao script GameController.")]
@@ -81,9 +81,9 @@ public class GameOverStart : MonoBehaviour
         }
 
         // Ativa sistema de partículas
-        if (particleSystem != null)
+        if (GetComponent<ParticleSystem>() != null)
         {
-            particleSystem.Play();
+            GetComponent<ParticleSystem>().Play();
         }
 
         // Habilita MeshRenderer do objeto filho

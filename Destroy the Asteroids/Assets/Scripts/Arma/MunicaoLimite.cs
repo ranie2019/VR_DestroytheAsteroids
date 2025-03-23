@@ -1,42 +1,27 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections;
 using System.Collections.Generic;
 
 public class MunicaoLimite : MonoBehaviour
 {
     [Header("Configurações de Munição")]
-    [Tooltip("Prefab da bala que será disparada.")]
     [SerializeField] private GameObject bulletPrefab;
-
-    [Tooltip("Pontos de spawn das balas.")]
     [SerializeField] private List<Transform> bulletSpawnPoints;
-
-    [Tooltip("Velocidade da bala disparada.")]
     [SerializeField] private float bulletSpeed = 20f;
-
-    [Tooltip("Quantidade máxima de munição.")]
     [SerializeField] private int municaoMaxima = 40;
-
-    [Tooltip("Tempo de recarga (em segundos).")]
     [SerializeField] private float tempoRecarga = 5f;
-
-    [Tooltip("Texto para exibir a quantidade de munição.")]
     [SerializeField] private TMP_Text municaoText;
 
     [Header("Configurações de Áudio")]
-    [Tooltip("Áudio do disparo da arma.")]
     [SerializeField] private AudioClip disparoSFX;
-
-    [Tooltip("Quantidade de fontes de áudio para disparos.")]
     [SerializeField] private int audioSourcePoolSize = 5;
 
-    private int municaoAtual; // Quantidade atual de munição disponível
-    private bool recarregando = false; // Indica se está no processo de recarga
-
-    private List<AudioSource> audioSourcePool; // Pool de fontes de áudio
-    private int currentAudioSourceIndex = 0; // Índice atual no pool de áudio
-
+    private int municaoAtual;
+    private bool recarregando = false;
+    private List<AudioSource> audioSourcePool;
+    private int currentAudioSourceIndex = 0;
     private InputAction dispararAction;
 
     private void OnEnable()
@@ -47,11 +32,26 @@ public class MunicaoLimite : MonoBehaviour
 
     private void Start()
     {
-        // Configura a munição inicial
         municaoAtual = municaoMaxima;
         AtualizarTextoMunicao();
+        InicializarAudioPool();
+    }
 
-        // Inicializa o pool de fontes de áudio
+    private void Update()
+    {
+        if (dispararAction.WasPressedThisFrame() && !recarregando)
+        {
+            Disparar();
+        }
+
+        if (!recarregando && municaoAtual < municaoMaxima)
+        {
+            IniciarRecarga();
+        }
+    }
+
+    private void InicializarAudioPool()
+    {
         audioSourcePool = new List<AudioSource>();
         for (int i = 0; i < audioSourcePoolSize; i++)
         {
@@ -62,38 +62,23 @@ public class MunicaoLimite : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // Verifica se o jogador tentou disparar
-        if (dispararAction.WasPressedThisFrame() && !recarregando)
-        {
-            Disparar();
-        }
-
-        // Verifica se deve iniciar a recarga automática
-        if (!recarregando && municaoAtual < municaoMaxima)
-        {
-            IniciarRecarga();
-        }
-    }
-
-    public void Disparar()
+    private void Disparar()
     {
         if (municaoAtual > 0)
         {
             foreach (Transform spawnPoint in bulletSpawnPoints)
             {
-                GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
-                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-                if (bulletRigidbody != null)
+                if (spawnPoint != null)
                 {
-                    bulletRigidbody.velocity = spawnPoint.forward * bulletSpeed;
+                    GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
+                    Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+                    if (bulletRigidbody != null)
+                    {
+                        bulletRigidbody.velocity = spawnPoint.forward * bulletSpeed;
+                    }
                 }
             }
-
-            // Reproduz o som do disparo usando o pool
             PlayDisparoSFX();
-
             municaoAtual--;
             AtualizarTextoMunicao();
         }
@@ -118,7 +103,7 @@ public class MunicaoLimite : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator Recarregar()
+    private IEnumerator Recarregar()
     {
         yield return new WaitForSeconds(tempoRecarga);
         municaoAtual = municaoMaxima;
@@ -128,7 +113,10 @@ public class MunicaoLimite : MonoBehaviour
 
     private void AtualizarTextoMunicao()
     {
-        municaoText.text = municaoAtual.ToString();
+        if (municaoText != null)
+        {
+            municaoText.text = municaoAtual.ToString();
+        }
     }
 
     private void OnDisable()

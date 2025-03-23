@@ -149,6 +149,8 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 11400000, guid: 259b1bc6ce3be9643947e8b4dde194be, type: 2}
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: 5332005370219413012, guid: 940cdab8326bd904a9548e5d9fc20a32, type: 2}
+  - {fileID: -4479086100994296683, guid: b63b35c2dbe41a643bdd1953b65aa807, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -178,8 +180,8 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 23
-  AndroidTargetSdkVersion: 0
+  AndroidMinSdkVersion: 32
+  AndroidTargetSdkVersion: 32
   AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
@@ -194,8 +196,10 @@ PlayerSettings:
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
+  iOSSimulatorArchitecture: 0
   iOSTargetOSVersionString: 12.0
   tvOSSdkVersion: 0
+  tvOSSimulatorArchitecture: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 12.0
   VisionOSSdkVersion: 0
@@ -710,6 +714,7 @@ PlayerSettings:
   switchSocketBufferEfficiency: 4
   switchSocketInitializeEnabled: 1
   switchNetworkInterfaceManagerInitializeEnabled: 1
+  switchDisableHTCSPlayerConnection: 0
   switchUseNewStyleFilepaths: 0
   switchUseLegacyFmodPriorities: 0
   switchUseMicroSleepForYield: 1
@@ -820,7 +825,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    Android: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
     EmbeddedLinux: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     GameCoreScarlett: ULTIMATEXR_USE_OCULUS_SDK
     GameCoreXboxOne: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
@@ -830,10 +835,10 @@ PlayerSettings:
     PS5: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     QNX: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     Stadia: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
-    Standalone: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: ISDK_OPENXR_HAND;ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
     VisionOS: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     WebGL: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
-    Windows Store Apps: ULTIMATEXR_USE_OCULUS_SDK
+    Windows Store Apps: ULTIMATEXR_USE_OCULUS_SDK;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
     XboxOne: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2
     iPhone: ULTIMATEXR_USE_OCULUS_SDK
     tvOS: ULTIMATEXR_USE_OCULUS_SDK;UNITY_POST_PROCESSING_STACK_V2

@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Samples
+public class SampleCollection  // Renomeado de "Samples" para evitar conflitos
 {
     public string introduction;
     public Sample[] samples;
     private Dictionary<GameObject, int> prefabToSample;
 
-    public static Samples CreateFromJSON(string jsonString, GameObject[] prefabs = null)
+    public static SampleCollection CreateFromJSON(string jsonString, GameObject[] prefabs = null)
     {
-        var newSamples = JsonUtility.FromJson<Samples>(jsonString);
+        var newSamples = JsonUtility.FromJson<SampleCollection>(jsonString);
 
         if (prefabs != null)
         {
@@ -18,7 +18,7 @@ public class Samples
 
             foreach (var go in prefabs)
             {
-                int index = System.Array.FindIndex(newSamples.samples, s => s.prefabName == jsonString);
+                int index = System.Array.FindIndex(newSamples.samples, s => s.prefabName == go.name);
                 if (index >= 0)
                     newSamples.prefabToSample.Add(go, index);
             }
@@ -26,16 +26,18 @@ public class Samples
 
         return newSamples;
     }
-    
+
     public Sample FindSampleWithPrefab(GameObject prefab)
     {
-        if ( prefabToSample.ContainsKey(prefab) )
+        if (prefabToSample != null && prefabToSample.ContainsKey(prefab))
             return samples[prefabToSample[prefab]];
 
-        foreach(Sample sample in samples)
+        foreach (Sample sample in samples)
+        {
             if (sample.prefabName == prefab.name)
                 return sample;
-        
+        }
+
         Debug.LogWarning($"Sample not found with prefabName: {prefab.name}");
         return null;
     }

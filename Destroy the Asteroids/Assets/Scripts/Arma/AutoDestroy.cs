@@ -10,13 +10,10 @@ public class AutoDestroy : MonoBehaviour
         // Destroi o objeto após o tempo definido
         Destroy(gameObject, lifeTime);
     }
-}
 
-public class DestroyOnCollision : MonoBehaviour
-{
     private void OnCollisionEnter(Collision collision)
     {
-        // Destrói o objeto que possui este script ao colidir com qualquer coisa
+        // Destrói o objeto ao colidir com qualquer coisa
         Destroy(gameObject);
     }
 }

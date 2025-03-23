@@ -161,8 +161,8 @@ Transform:
   - {fileID: 1058144126102429659}
   - {fileID: 1457560263811319085}
   - {fileID: 1416415254480856752}
-  - {fileID: 5415088300504342956}
   - {fileID: 9166059480610212582}
+  - {fileID: 5415088300504342956}
   - {fileID: 7619182192150286938}
   m_Father: {fileID: 2504123421396540396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -640,8 +640,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7252658992801458734}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.136, y: 0.363, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -803,7 +803,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1eed0e546b0063242b1e5bfc8b9fdffd, type: 2}
+  - {fileID: 2100000, guid: 9fa0146d148195b45844caebda30604c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
