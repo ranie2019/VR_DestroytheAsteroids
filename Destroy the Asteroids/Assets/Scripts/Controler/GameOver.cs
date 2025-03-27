@@ -106,10 +106,6 @@ public class GameOver : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("Objeto para partículas não está atribuído.");
-        }
     }
 
     private void DisableObjectMeshRenderer()
@@ -122,14 +118,6 @@ public class GameOver : MonoBehaviour
             {
                 childMeshRenderer.enabled = false;
             }
-            else
-            {
-                Debug.LogWarning("MeshRenderer não encontrado no objeto ou nos filhos.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Objeto para desativar o MeshRenderer não está atribuído.");
         }
     }
 
@@ -172,10 +160,6 @@ public class GameOver : MonoBehaviour
         {
             audioPlayer.StopMainGameAudio();
             audioPlayer.PlayGameOverAudio();
-        }
-        else
-        {
-            Debug.LogWarning("AudioPlayer não está atribuído.");
         }
     }
 

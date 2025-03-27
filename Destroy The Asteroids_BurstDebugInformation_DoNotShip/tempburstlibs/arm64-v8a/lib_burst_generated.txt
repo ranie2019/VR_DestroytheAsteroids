@@ -1,6 +1,25 @@
 Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --platform=Android
---backend=burst-llvm-16
+--backend=burst-llvm-18
+--target=ARMV8A_AARCH64
+--global-safety-checks-setting=Off
+--disable-safety-checks
+--meta-data-generation=False
+--dump=Function
+--float-precision=Standard
+--target-framework=NetFramework
+--float-mode=Fast
+--generate-link-xml=Temp\burst.link.xml
+--temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
+--key-folder=D:/Unity/2022.3.58f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
+--output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
+--pdb-search-paths=Temp/ManagedSymbols/
+
+--method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
+--method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.TileRangeExpansionJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.TileRangeExpansionJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--adceb2156d08d59afc9749dc2521fd2b
+--platform=Android
+--backend=burst-llvm-18
 --target=ARMV8A_AARCH64
 --global-safety-checks-setting=Off
 --meta-data-generation=False
@@ -9,7 +28,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
---key-folder=D:/Unity/2022.3.50f1/Editor/Data/PlaybackEngines/AndroidPlayer
+--key-folder=D:/Unity/2022.3.58f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -72,6 +91,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --method=UnityEngine.XR.Interaction.Toolkit.Inputs.XRTransformStabilizer, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::CalculateStabilizedLerp(System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--85f7960146e9f8ac4446266cd9babc8a
 --method=UnityEngine.XR.Interaction.Toolkit.Utilities.BurstPhysicsUtils, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::GetConecastOffset(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single&, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--6c0a80fbd493bdaec24ecd185cb0710c
 --method=UnityEngine.XR.Interaction.Toolkit.Utilities.Tweenables.SmartTweenableVariables.SmartFollowQuaternionTweenableVariable, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::ComputeNewTweenTarget(System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single&, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b5118d24736a64b3b5909549d3f93ab2
+--method=UnityEngine.XR.Interaction.Toolkit.Utilities.BurstPhysicsUtils, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::GetMultiSegmentConecastParameters(System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|UnityEngine.Vector3&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|UnityEngine.Vector3&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single&, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single&, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--30cd4b053d1276ba6e25dda69ba981e0
 --method=UnityEngine.XR.Interaction.Toolkit.Utilities.BurstMathUtility, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::FastSafeDivide(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--2f1cfb62c82230bea1c5e4483198cf31
 --method=UnityEngine.XR.Hands.Gestures.XRHandOrientationUtility, Unity.XR.Hands, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::CheckDirectionAlignment(UnityEngine.XR.Hands.Gestures.XRHandAlignmentCondition, Unity.XR.Hands, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)--b4b81fd9b5c963be8ba85e0d6a7cbf24
 --method=UnityEngine.XR.Hands.Gestures.XRHandRelativeOrientation+TargetCondition, Unity.XR.Hands, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::GetReferenceDirection(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|UnityEngine.XR.Hands.Gestures.XRHandTargetRelativeDirection&, Unity.XR.Hands, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.RigidTransform&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.RigidTransform&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)--11e170df12c955c12f50785c07022b9f
@@ -91,23 +111,4 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --method=UnityEngine.XR.Interaction.Toolkit.Transformers.XRSocketGrabTransformer, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::FastComputeNewTrackedPose(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.quaternion&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.quaternion&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.quaternion&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.quaternion&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)--d25cb729a424e7fa5ef9105d2c698524
 --method=UnityEngine.XR.Hands.Gestures.XRFingerShapeMath, Unity.XR.Hands, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::CalculatePinch(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--13f911d1e17414feb0430b9164b30ce7
 --method=UnityEngine.XR.Interaction.Toolkit.Utilities.BurstMathUtility, Unity.XR.Interaction.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Orthogonal(Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Mathematics.float3&, Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null)--129828f5f7843aff998314f0456a7420
---platform=Android
---backend=burst-llvm-16
---target=ARMV8A_AARCH64
---global-safety-checks-setting=Off
---disable-safety-checks
---meta-data-generation=False
---dump=Function
---float-precision=Standard
---target-framework=NetFramework
---float-mode=Fast
---generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
---key-folder=D:/Unity/2022.3.50f1/Editor/Data/PlaybackEngines/AndroidPlayer
---decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
---output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
---pdb-search-paths=Temp/ManagedSymbols/
-
---method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
---method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.TileRangeExpansionJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.TileRangeExpansionJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--adceb2156d08d59afc9749dc2521fd2b
 

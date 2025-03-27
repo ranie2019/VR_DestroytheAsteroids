@@ -8,16 +8,16 @@ public class ContinuousLaser : MonoBehaviour
     [SerializeField] private float maxLaserDistance = 100f;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameController gameController;
-    [SerializeField] private Image energyBar; // Barra de energia do laser
+    [SerializeField] private Image energyBar;
 
     [Header("Configurações de Energia")]
-    [SerializeField] private float maxEnergy = 100f; // Energia máxima do laser
-    [SerializeField] private float depletionRate = 10f; // Taxa de decaimento de energia por segundo
-    [SerializeField] private float rechargeDelay = 5f; // Tempo de espera para iniciar o recarregamento
-    [SerializeField] private float rechargeDuration = 10f; // Tempo total de recarregamento
+    [SerializeField] private float maxEnergy = 100f;
+    [SerializeField] private float depletionRate = 10f;
+    [SerializeField] private float rechargeDelay = 5f;
+    [SerializeField] private float rechargeDuration = 10f;
 
     [Header("Configurações de Áudio")]
-    [SerializeField] private AudioClip laserSound; // Som do laser
+    [SerializeField] private AudioClip laserSound;
     private AudioSource audioSource;
 
     private bool isLaserActive = false;
@@ -30,14 +30,7 @@ public class ContinuousLaser : MonoBehaviour
         currentEnergy = maxEnergy;
         lineRenderer.enabled = false;
 
-        // Inicializa o AudioSource
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-
-        // Configura o som do laser para ser reproduzido de forma contínua
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
         audioSource.loop = true;
 
         if (gameController == null)
@@ -54,11 +47,11 @@ public class ContinuousLaser : MonoBehaviour
             DrainEnergy();
         }
 
-        if (!isLaserActive && currentEnergy < maxEnergy && !isRecharging)
+        if (!isLaserActive && currentEnergy < maxEnergy)
         {
-            // Começa a contagem regressiva para recarregar
             rechargeTimer += Time.deltaTime;
-            if (rechargeTimer >= rechargeDelay)
+
+            if (rechargeTimer >= rechargeDelay && currentEnergy < maxEnergy)
             {
                 isRecharging = true;
                 rechargeTimer = 0f;
@@ -73,13 +66,12 @@ public class ContinuousLaser : MonoBehaviour
 
     public void ActivateLaser()
     {
-        if (currentEnergy > 0 && !isRecharging)
+        if (currentEnergy > 0)
         {
             isLaserActive = true;
             lineRenderer.enabled = true;
 
-            // Tocar o som do laser ao ativar
-            if (laserSound != null)
+            if (laserSound != null && !audioSource.isPlaying)
             {
                 audioSource.clip = laserSound;
                 audioSource.Play();
@@ -92,7 +84,6 @@ public class ContinuousLaser : MonoBehaviour
         isLaserActive = false;
         lineRenderer.enabled = false;
 
-        // Parar o som do laser ao desativar
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
@@ -109,11 +100,7 @@ public class ContinuousLaser : MonoBehaviour
 
             if (hit.collider.CompareTag("Asteroid"))
             {
-                AsteroidHit asteroidHit = hit.collider.GetComponent<AsteroidHit>();
-                if (asteroidHit != null)
-                {
-                    asteroidHit.HandleAsteroidDestruction();
-                }
+                hit.collider.GetComponent<AsteroidHit>()?.HandleAsteroidDestruction();
             }
         }
         else
@@ -125,37 +112,27 @@ public class ContinuousLaser : MonoBehaviour
     private void DrainEnergy()
     {
         currentEnergy -= depletionRate * Time.deltaTime;
+        currentEnergy = Mathf.Max(0, currentEnergy);
         energyBar.fillAmount = currentEnergy / maxEnergy;
 
         if (currentEnergy <= 0)
         {
             currentEnergy = 0;
-            DeactivateLaser();
+            isRecharging = true;
             rechargeTimer = 0f;
-            Invoke(nameof(StartRecharge), rechargeDelay);
+            DeactivateLaser();
         }
-    }
-
-    private void StartRecharge()
-    {
-        isRecharging = true;
     }
 
     private void RechargeEnergy()
     {
         currentEnergy += (maxEnergy / rechargeDuration) * Time.deltaTime;
+        currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
         energyBar.fillAmount = currentEnergy / maxEnergy;
 
         if (currentEnergy >= maxEnergy)
         {
-            currentEnergy = maxEnergy;
             isRecharging = false;
-
-            // Parar o som de recarga quando a energia estiver cheia
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
         }
     }
 }

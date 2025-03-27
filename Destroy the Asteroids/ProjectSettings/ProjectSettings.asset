@@ -80,7 +80,7 @@ PlayerSettings:
   androidAutoRotationBehavior: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 0
+  runInBackground: 1
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -149,8 +149,6 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 11400000, guid: 259b1bc6ce3be9643947e8b4dde194be, type: 2}
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  - {fileID: 5332005370219413012, guid: 940cdab8326bd904a9548e5d9fc20a32, type: 2}
-  - {fileID: -4479086100994296683, guid: b63b35c2dbe41a643bdd1953b65aa807, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
