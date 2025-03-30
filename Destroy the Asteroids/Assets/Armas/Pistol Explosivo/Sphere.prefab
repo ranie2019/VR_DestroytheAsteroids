@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2503586077854054701}
   - component: {fileID: 8760062071003064828}
   - component: {fileID: 8685960642093649280}
+  - component: {fileID: 6680892845671067384}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Laser
@@ -153,3 +154,24 @@ MonoBehaviour:
   quantidadeFragmentos: 3
   forcaFragmentos: 1
   tempoDeVida: 10
+--- !u!95 &6680892845671067384
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886614355072982495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0e4008e508524d42b849e2f99908460, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

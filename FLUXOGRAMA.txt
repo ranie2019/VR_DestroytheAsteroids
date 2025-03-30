@@ -1,1 +1,3 @@
-crie um sistema para atualizar a posicao do bullet sempre para corrigir o erro
+FAZER O PLACAR OFFLINE
+
+limitar a 10 caracteres para o nome
