@@ -27,6 +27,12 @@ public class GameOver : MonoBehaviour
     [Header("Referências aos Scripts Inativo")]
     [SerializeField] private List<Inativo> inativoScripts;
 
+    [Header("Teclado")]
+    [SerializeField] private GameObject teclado; // Referência ao teclado, que será ativado
+
+    [Header("Record")]
+    [SerializeField] private GameObject record; // Referência ao Record, que será ativado
+
     private void OnCollisionEnter(Collision collision)
     {
         // Verifica se a colisão é com um asteroide
@@ -47,6 +53,8 @@ public class GameOver : MonoBehaviour
         DisableWeapons();
         Destroy(collision.gameObject);
         PlayGameOverAudio();
+        AtivarTeclado(); // Chama a função para ativar o teclado
+        AtivarRecord(); // Chama a função para ativar o Record
     }
 
     private void FreezeInativoScripts()
@@ -169,6 +177,32 @@ public class GameOver : MonoBehaviour
         {
             child.gameObject.SetActive(true);
             EnableAllChildren(child.gameObject);
+        }
+    }
+
+    // Função para ativar o teclado
+    private void AtivarTeclado()
+    {
+        if (teclado != null)
+        {
+            teclado.SetActive(true); // Ativa o teclado
+        }
+        else
+        {
+            Debug.LogWarning("Teclado não está atribuído.");
+        }
+    }
+
+    // Função para ativar o Record
+    private void AtivarRecord()
+    {
+        if (record != null)
+        {
+            record.SetActive(true); // Ativa o Record
+        }
+        else
+        {
+            Debug.LogWarning("Record não está atribuído.");
         }
     }
 }

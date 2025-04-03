@@ -422,14 +422,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11979955}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.88, z: 3.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742928392}
   - {fileID: 1514260343}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1174557856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &25372450
 GameObject:
@@ -3608,7 +3608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &220264832
 Transform:
   m_ObjectHideFlags: 0
@@ -3667,6 +3667,8 @@ MonoBehaviour:
   - {fileID: 837721246069924058}
   - {fileID: 3901925826030530290}
   - {fileID: 7718530162532238783}
+  teclado: {fileID: 11979955}
+  record: {fileID: 1706158730}
 --- !u!65 &220264834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8596,6 +8598,7 @@ GameObject:
   - component: {fileID: 607363918}
   - component: {fileID: 607363919}
   - component: {fileID: 607363920}
+  - component: {fileID: 607363921}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -8731,6 +8734,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &607363921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607363917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072e57d7a9fad9140889c03afa302a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordObjects:
+  - {fileID: 773307095}
+  - {fileID: 529827858}
+  - {fileID: 641318783}
+  - {fileID: 111116417}
+  - {fileID: 3997247}
+  - {fileID: 1231536942}
+  - {fileID: 181048163}
+  - {fileID: 817346632}
+  - {fileID: 761942864}
+  - {fileID: 568157911}
 --- !u!1 &613284102
 GameObject:
   m_ObjectHideFlags: 0
@@ -15789,6 +15815,7 @@ Transform:
   - {fileID: 220264832}
   - {fileID: 64632766}
   - {fileID: 1706158731}
+  - {fileID: 11979956}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1175308411
@@ -22545,7 +22572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1706158731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35461,7 +35488,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7145728141089650045}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3901925826030530279}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7c047b1675684a43a84f10bd7799ccd, type: 3}
@@ -36919,4 +36946,3 @@ SceneRoots:
   - {fileID: 464380791}
   - {fileID: 788967382}
   - {fileID: 1174557856}
-  - {fileID: 11979956}
