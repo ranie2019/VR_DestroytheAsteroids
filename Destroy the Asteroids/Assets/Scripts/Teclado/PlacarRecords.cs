@@ -1,84 +1,86 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PlacarRecords : MonoBehaviour
 {
-    [Header("Objetos de Recorde")]
-    [SerializeField] private List<GameObject> recordObjects; // Lista de objetos pais que cont�m o filho "Record"
+    [Header("Fonte da Pontuação")]
+    [SerializeField] private PontoController pontoController;
 
-    private int[] recordScores = new int[10]; // Array fixo para evitar redimensionamentos
-    private GameController gameController; // Refer�ncia ao GameController
+    [Header("Objetos do Ranking (com filho 'Record')")]
+    [SerializeField] private List<GameObject> recordObjects;
+
+    [Header("Tempo de espera (em segundos) após preencher textos")]
+    [SerializeField] private float tempoDeEspera = 0.5f;
 
     private void Start()
     {
-        gameController = FindObjectOfType<GameController>(); // Busca o GameController na cena
-        AtualizarRecords();
+        Debug.Log("📌 PlacarRecords iniciado.");
     }
 
-    public void AtualizarRecords()
-    {
-        // Carrega os recordes salvos no PlayerPrefs
-        for (int i = 0; i < 10; i++)
-        {
-            recordScores[i] = PlayerPrefs.GetInt($"RecordScore_{i}", 0);
-        }
-
-        // Ordena os recordes do maior para o menor
-        System.Array.Sort(recordScores, (a, b) => b.CompareTo(a));
-
-        // Atualiza a interface gr�fica
-        AtualizarUI();
-    }
-
+    // Chame essa função ao final do jogo
     public void RegistrarPontuacaoFinal()
     {
-        if (gameController == null) return;
-
-        // Encontra a menor pontua��o na tabela
-        int menorPontuacao = int.MaxValue;
-        int indiceMenor = -1;
-
-        for (int i = 0; i < recordScores.Length; i++)
+        if (pontoController == null)
         {
-            if (recordScores[i] < menorPontuacao)
-            {
-                menorPontuacao = recordScores[i];
-                indiceMenor = i;
-            }
+            Debug.LogError("⚠️ ERRO: PontoController não atribuído!");
+            return;
         }
 
+        int playerScore = pontoController.GetPontosFinais();
+        Debug.Log($"✅ Pontuação capturada: {playerScore:N0}");
 
-        // Salva os novos recordes no PlayerPrefs
-        for (int i = 0; i < 10; i++)
-        {
-            PlayerPrefs.SetInt($"RecordScore_{i}", recordScores[i]);
-        }
-        PlayerPrefs.Save();
-
-        AtualizarUI(); // Atualiza a interface gr�fica ap�s a substitui��o
+        // Espera os textos atualizarem antes de ordenar
+        StartCoroutine(OrdenarDepoisDeAtualizar());
     }
 
-    private void AtualizarUI()
+    private IEnumerator OrdenarDepoisDeAtualizar()
     {
-        int count = Mathf.Min(recordScores.Length, recordObjects.Count); // Evita acessar elementos fora do limite
+        yield return new WaitForSeconds(tempoDeEspera);
+        OrdenarPlacarPorPontuacao();
+    }
 
-        for (int i = 0; i < count; i++)
+    private void OrdenarPlacarPorPontuacao()
+    {
+        // Guarda a posição original de cada objeto
+        List<Vector3> posicoesOrdenadas = recordObjects
+            .Select(obj => obj.transform.localPosition)
+            .OrderByDescending(pos => pos.y) // Ordem vertical do canvas
+            .ToList();
+
+        // Cria lista com a pontuação lida do filho "Record"
+        List<(GameObject obj, int score)> ranking = new List<(GameObject, int)>();
+
+        foreach (var obj in recordObjects)
         {
-            if (recordObjects[i] != null)
+            if (obj == null) continue;
+
+            Transform recordChild = obj.transform.Find("Record");
+
+            if (recordChild != null && recordChild.TryGetComponent(out TextMeshProUGUI recordText))
             {
-                Transform recordChild = recordObjects[i].transform.Find("Record");
-
-                if (recordChild != null && recordChild.TryGetComponent(out TextMeshProUGUI recordText))
-                {
-                    recordText.text = $"{recordScores[i]:N0}"; // Exibe a pontua��o formatada
-                }
-
-                if (!recordObjects[i].activeSelf)
-                {
-                    recordObjects[i].SetActive(true); // Ativa o objeto apenas se estiver desativado
-                }
+                string texto = recordText.text.Replace(".", "").Replace(",", "").Trim();
+                int score = int.TryParse(texto, out int s) ? s : 0;
+                ranking.Add((obj, score));
+            }
+            else
+            {
+                ranking.Add((obj, 0)); // fallback
             }
         }
+
+        // Ordena a lista com base na pontuação (maior para cima)
+        var rankingOrdenado = ranking.OrderByDescending(x => x.score).ToList();
+
+        // Atribui a nova posição com base na ordem do ranking
+        for (int i = 0; i < rankingOrdenado.Count; i++)
+        {
+            rankingOrdenado[i].obj.transform.localPosition = posicoesOrdenadas[i];
+            Debug.Log($"[{i + 1}] {rankingOrdenado[i].obj.name} => {rankingOrdenado[i].score} pontos => Posição Y: {posicoesOrdenadas[i].y}");
+        }
+
+        Debug.Log("✅ Placar reorganizado visualmente por pontuação.");
     }
 }

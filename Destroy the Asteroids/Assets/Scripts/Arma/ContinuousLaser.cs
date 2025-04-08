@@ -7,7 +7,7 @@ public class ContinuousLaser : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float maxLaserDistance = 100f;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameController gameController;
+    [SerializeField] private PontoController gameController;
     [SerializeField] private Image energyBar;
 
     [Header("Configurações de Energia")]
@@ -35,7 +35,7 @@ public class ContinuousLaser : MonoBehaviour
 
         if (gameController == null)
         {
-            gameController = FindObjectOfType<GameController>();
+            gameController = FindObjectOfType<PontoController>();
         }
     }
 

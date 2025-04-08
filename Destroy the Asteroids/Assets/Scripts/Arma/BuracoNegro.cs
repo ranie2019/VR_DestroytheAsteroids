@@ -22,12 +22,12 @@ public class BuracoNegro : MonoBehaviour
     [Tooltip("Força de atração aplicada nos asteroides.")]
     [SerializeField] private float attractionForce = 50f;
 
-    private GameController gameController;
+    private PontoController gameController;
     private AudioSource audioSource;
 
     private void Start()
     {
-        gameController = FindObjectOfType<GameController>();
+        gameController = FindObjectOfType<PontoController>();
         if (gameController == null)
         {
             Debug.LogError("GameController não encontrado! Certifique-se de que há um GameController na cena.");

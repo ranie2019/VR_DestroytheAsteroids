@@ -14,7 +14,7 @@ public class StartGame : MonoBehaviour
     [SerializeField] private ParticleSystem particleSystem;
 
     [Header("Game Controller")]
-    [SerializeField] private GameController gameController;
+    [SerializeField] private PontoController pontoController;
 
     [Header("Objetos Inativos")]
     [SerializeField] private Inativo[] objetosInativos;
@@ -23,55 +23,91 @@ public class StartGame : MonoBehaviour
     [SerializeField] private MeshRenderer childMeshRenderer;
 
     [Header("Cronômetro")]
-    [SerializeField] private DemoTimer demoTimer; // Referência ao cronômetro
+    [SerializeField] private DemoTimer demoTimer;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Laser"))
         {
+            Debug.Log("Colisão com laser detectada!");
             HandleCollisionWithLaser();
         }
     }
 
     private void HandleCollisionWithLaser()
     {
-        if (gameController != null)
+        if (asteroidSpawnerScripts != null && asteroidSpawnerScripts.Length > 0)
         {
-            gameController.ResetScore();
-        }
-
-        foreach (var spawner in asteroidSpawnerScripts)
-        {
-            if (spawner != null)
+            foreach (var spawner in asteroidSpawnerScripts)
             {
-                spawner.enabled = true;
+                if (spawner != null)
+                {
+                    spawner.enabled = true;
+                }
+                else
+                {
+                    Debug.LogWarning("Spawner está nulo!");
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum Spawner atribuído!");
         }
 
         if (audioPlayer != null)
         {
             audioPlayer.PlayRandomMainGameAudio();
         }
+        else
+        {
+            Debug.LogWarning("audioPlayer está nulo!");
+        }
 
         if (particleSystem != null)
         {
             particleSystem.Play();
+        }
+        else
+        {
+            Debug.LogWarning("particleSystem está nulo!");
         }
 
         if (childMeshRenderer != null)
         {
             childMeshRenderer.enabled = true;
         }
-
-        foreach (var objInativo in objetosInativos)
+        else
         {
-            objInativo.NotificarInicioDoJogo();
+            Debug.LogWarning("childMeshRenderer está nulo!");
         }
 
-        // Inicia o cronômetro quando a colisão acontece
+        if (objetosInativos != null && objetosInativos.Length > 0)
+        {
+            foreach (var objInativo in objetosInativos)
+            {
+                if (objInativo != null)
+                {
+                    objInativo.NotificarInicioDoJogo();
+                }
+                else
+                {
+                    Debug.LogWarning("objInativo está nulo!");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum objeto inativo atribuído!");
+        }
+
         if (demoTimer != null)
         {
             demoTimer.StartTimer();
+        }
+        else
+        {
+            Debug.LogWarning("demoTimer está nulo!");
         }
 
         gameObject.SetActive(false);

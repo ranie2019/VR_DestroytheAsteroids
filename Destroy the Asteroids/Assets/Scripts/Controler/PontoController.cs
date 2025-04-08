@@ -1,91 +1,145 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
-public class GameController : MonoBehaviour
+public class PontoController : MonoBehaviour
 {
-    [Header("Componentes de PontuaÁ„o")]
-    [SerializeField] private TextMeshProUGUI scoreText; // ReferÍncia ao texto que exibe a pontuaÁ„o
-    [SerializeField] private TextMeshProUGUI recordText; // ReferÍncia ao texto que exibe o recorde
+    [Header("Refer√™ncia do placar principal (UI)")]
+    public TextMeshProUGUI placarTexto;
 
-    [Header("Efeitos de Recorde")]
-    [SerializeField] private ParticleSystem recordEffect; // Efeito visual ao bater o recorde
-    [SerializeField] private AudioClip recordSound; // Som ao bater o recorde
-    [SerializeField] private AudioSource audioSource; // Fonte de ·udio para tocar o som
+    [Header("Elementos do ranking (UI)")]
+    public GameObject[] recordesUI; // Lista de objetos UI que mostram o ranking
 
-    private int playerScore; // PontuaÁ„o atual do jogador
-    private int recordScore; // Recorde salvo
-    private bool hasPlayedRecordSound = false; // Flag para verificar se o som do recorde foi tocado
+    // Dados internos do jogo
+    private List<int> rankingPontos = new List<int>();       // Lista de pontua√ß√µes
+    private List<string> nomesJogadores = new List<string>(); // Lista de nomes
+    private int pontosAtuais = 0;                            // Pontua√ß√£o atual do jogador
+    private int ultimoIndiceSalvo = -1;                      // √çndice do √∫ltimo jogador salvo no ranking
 
     private void Start()
     {
-        // Carrega o recorde salvo usando PlayerPrefs
-        recordScore = PlayerPrefs.GetInt("RecordScore", 0);
-        UpdateUI(); // Atualiza os textos da interface do usu·rio
+        AtualizarPlacarUI(); // Garante que o placar mostre o valor inicial
     }
 
-    // MÈtodo para atualizar a pontuaÁ„o do jogador
-    public void UpdatePlayerScore(int points)
+    /// <summary>
+    /// Adiciona pontos ao placar atual
+    /// </summary>
+    public void AddPontos(int pontos)
     {
-        playerScore += points; // Incrementa a pontuaÁ„o
-        UpdateUI(); // Atualiza o texto da pontuaÁ„o na interface
-
-        // Verifica se a pontuaÁ„o atual È maior que o recorde
-        if (playerScore > recordScore)
-        {
-            UpdateRecord(); // Atualiza o recorde
-        }
+        pontosAtuais += pontos;
+        AtualizarPlacarUI();
     }
 
-    // MÈtodo que atualiza o recorde e salva a informaÁ„o
-    private void UpdateRecord()
-    {
-        recordScore = playerScore; // Define o novo recorde
-        PlayerPrefs.SetInt("RecordScore", recordScore); // Salva o recorde no armazenamento persistente
-        PlayerPrefs.Save(); // Garante que as alteraÁıes sejam salvas imediatamente
-
-        TriggerRecordFeedback(); // Executa efeitos visuais e sonoros ao bater o recorde
-        UpdateUI(); // Atualiza o texto da interface
-    }
-
-    // MÈtodo que atualiza os textos na interface do usu·rio
-    private void UpdateUI()
-    {
-        scoreText.text = $": {playerScore:N0}"; // Atualiza o texto da pontuaÁ„o
-        recordText.text = $": {recordScore:N0}"; // Atualiza o texto do recorde
-    }
-
-    // MÈtodo para exibir efeitos visuais e sonoros ao bater o recorde
-    private void TriggerRecordFeedback()
-    {
-        if (recordEffect != null)
-        {
-            // Instancia o efeito visual de recorde na posiÁ„o atual
-            Instantiate(recordEffect, transform.position, Quaternion.identity);
-        }
-
-        if (!hasPlayedRecordSound && audioSource != null && recordSound != null)
-        {
-            // Toca o som de recorde apenas uma vez
-            audioSource.PlayOneShot(recordSound);
-            hasPlayedRecordSound = true; // Marca que o som foi tocado
-        }
-    }
-
-    // MÈtodo para resetar a pontuaÁ„o do jogador
+    /// <summary>
+    /// Reseta a pontua√ß√£o atual
+    /// </summary>
     public void ResetScore()
     {
-        playerScore = 0; // Zera a pontuaÁ„o do jogador
-        hasPlayedRecordSound = false; // Reseta a flag para o ·udio ser tocado no prÛximo recorde
-        UpdateUI(); // Atualiza a interface do usu·rio
+        pontosAtuais = 0;
+        AtualizarPlacarUI();
     }
 
-    // MÈtodo para resetar o recorde salvo
-    public void ResetRecord()
+    /// <summary>
+    /// Atualiza o texto da UI com os pontos atuais
+    /// </summary>
+    private void AtualizarPlacarUI()
     {
-        recordScore = 0; // Zera o recorde
-        PlayerPrefs.SetInt("RecordScore", 0); // Salva o novo recorde (zero)
-        PlayerPrefs.Save(); // Garante que o armazenamento persistente seja atualizado
-        hasPlayedRecordSound = false; // Reseta a flag para o ·udio ser tocado no prÛximo recorde
-        UpdateUI(); // Atualiza o texto do recorde na interface
+        if (placarTexto != null)
+            placarTexto.text = pontosAtuais.ToString();
+    }
+
+    /// <summary>
+    /// M√©todo externo para atualizar o score (usado por outros scripts)
+    /// </summary>
+    public void UpdatePlayerScore(int pontos)
+    {
+        AddPontos(pontos);
+    }
+
+    /// <summary>
+    /// Salva os pontos no ranking local e atualiza o ranking na tela
+    /// </summary>
+    public void PlacarOffline()
+    {
+        rankingPontos.Add(pontosAtuais);  // Adiciona a pontua√ß√£o atual √† lista
+        nomesJogadores.Add("Anon");       // Nome tempor√°rio padr√£o
+        ultimoIndiceSalvo = rankingPontos.Count - 1; // Guarda o √≠ndice salvo
+
+        AtualizarUIRanking(); // Atualiza visualmente o ranking
+    }
+
+    /// <summary>
+    /// Atualiza o nome do jogador no ranking
+    /// </summary>
+    public void SetNomePlayer(string nome)
+    {
+        if (ultimoIndiceSalvo >= 0 && ultimoIndiceSalvo < nomesJogadores.Count)
+        {
+            nomesJogadores[ultimoIndiceSalvo] = nome;
+        }
+    }
+
+    /// <summary>
+    /// Retorna o √≠ndice do √∫ltimo jogador salvo (usado pelo Teclado)
+    /// </summary>
+    public int GetUltimoIndiceSalvo()
+    {
+        return ultimoIndiceSalvo;
+    }
+
+    /// <summary>
+    /// Retorna o objeto de UI do ranking correspondente ao √≠ndice
+    /// </summary>
+    public GameObject GetRecordObject(int indice)
+    {
+        if (indice >= 0 && indice < recordesUI.Length)
+            return recordesUI[indice];
+
+        return null;
+    }
+
+    /// <summary>
+    /// Retorna os pontos finais atuais do jogador (usado ao salvar o ranking)
+    /// </summary>
+    public int GetPontosFinais()
+    {
+        return pontosAtuais;
+    }
+
+    /// <summary>
+    /// Chamada pelo bot√£o ENTER do teclado
+    /// </summary>
+    public void RegistrarColisaoEnter(string tagObjeto)
+    {
+        Debug.Log("Colis√£o ENTER registrada pelo objeto: " + tagObjeto);
+        // Aqui voc√™ pode adicionar l√≥gica extra de acordo com a tag recebida
+    }
+
+    /// <summary>
+    /// Atualiza os textos da UI com os dados do ranking
+    /// </summary>
+    private void AtualizarUIRanking()
+    {
+        for (int i = 0; i < recordesUI.Length; i++)
+        {
+            if (i < rankingPontos.Count)
+            {
+                // Busca os componentes dentro do objeto de UI
+                Transform nomeTextObj = recordesUI[i].transform.Find("Nome");
+                Transform pontosTextObj = recordesUI[i].transform.Find("Pontos");
+
+                // Atualiza o nome do jogador
+                if (nomeTextObj != null && nomeTextObj.TryGetComponent(out TextMeshProUGUI nomeTMP))
+                {
+                    nomeTMP.text = nomesJogadores[i];
+                }
+
+                // Atualiza a pontua√ß√£o
+                if (pontosTextObj != null && pontosTextObj.TryGetComponent(out TextMeshProUGUI pontosTMP))
+                {
+                    pontosTMP.text = rankingPontos[i].ToString();
+                }
+            }
+        }
     }
 }

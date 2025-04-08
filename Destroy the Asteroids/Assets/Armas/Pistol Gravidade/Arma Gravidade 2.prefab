@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 1078970315057404888}
   - component: {fileID: 7461032952542804427}
   m_Layer: 0
-  m_Name: BuracoNegro 2
+  m_Name: Arma Gravidade 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35283525fdb31b14084b386e86fbe35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7766326079782981827, guid: fcf46d004eebbb54586ca479ab95be72,
+  bulletPrefab: {fileID: 7766326079782981827, guid: 74b9e24894495c54abe60b89e6d1e16d,
     type: 3}
   bulletSpawnPoints:
   - {fileID: 238852809905566760}

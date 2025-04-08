@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class GameOver : MonoBehaviour
@@ -6,7 +6,7 @@ public class GameOver : MonoBehaviour
     [Header("Spawners a serem congelados")]
     [SerializeField] private List<AsteroidSpawner> asteroidSpawnerScripts;
 
-    [Header("Tag de Verificação")]
+    [Header("Tag de VerificaÃ§Ã£o")]
     [SerializeField] private string asteroidTag = "Asteroid";
 
     [Header("Objeto Game Over")]
@@ -24,18 +24,17 @@ public class GameOver : MonoBehaviour
     [Header("Armas a serem desativadas")]
     [SerializeField] private List<GameObject> weaponObjects;
 
-    [Header("Referências aos Scripts Inativo")]
+    [Header("ReferÃªncias aos Scripts Inativo")]
     [SerializeField] private List<Inativo> inativoScripts;
 
-    [Header("Teclado")]
-    [SerializeField] private GameObject teclado; // Referência ao teclado, que será ativado
-
     [Header("Record")]
-    [SerializeField] private GameObject record; // Referência ao Record, que será ativado
+    [SerializeField] private GameObject record; // ReferÃªncia ao Record, que serÃ¡ ativado
+
+    [Header("Teclado")]
+    [SerializeField] private GameObject teclado; // ReferÃªncia ao Teclado, que serÃ¡ ativado
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica se a colisão é com um asteroide
         if (collision.gameObject.CompareTag(asteroidTag))
         {
             HandleGameOver(collision);
@@ -53,8 +52,10 @@ public class GameOver : MonoBehaviour
         DisableWeapons();
         Destroy(collision.gameObject);
         PlayGameOverAudio();
-        AtivarTeclado(); // Chama a função para ativar o teclado
-        AtivarRecord(); // Chama a função para ativar o Record
+        AtivarTeclado();
+        AtivarRecord();
+        FindObjectOfType<PontoController>()?.PlacarOffline();
+        FindObjectOfType<PlacarRecords>()?.RegistrarPontuacaoFinal();
     }
 
     private void FreezeInativoScripts()
@@ -70,9 +71,7 @@ public class GameOver : MonoBehaviour
         foreach (var spawner in asteroidSpawnerScripts)
         {
             if (spawner != null)
-            {
                 spawner.enabled = false;
-            }
         }
     }
 
@@ -85,7 +84,7 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("GameOver UI não está atribuído.");
+            Debug.LogWarning("GameOver UI nÃ£o estÃ¡ atribuÃ­do.");
         }
     }
 
@@ -121,7 +120,6 @@ public class GameOver : MonoBehaviour
         if (objectToDisableMeshRenderer != null)
         {
             MeshRenderer childMeshRenderer = objectToDisableMeshRenderer.GetComponentInChildren<MeshRenderer>();
-
             if (childMeshRenderer != null)
             {
                 childMeshRenderer.enabled = false;
@@ -152,13 +150,9 @@ public class GameOver : MonoBehaviour
         foreach (var component in components)
         {
             if (component is Renderer renderer)
-            {
                 renderer.enabled = false;
-            }
             else if (component is Collider collider)
-            {
                 collider.enabled = false;
-            }
         }
     }
 
@@ -180,29 +174,30 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    // Função para ativar o teclado
     private void AtivarTeclado()
     {
         if (teclado != null)
         {
-            teclado.SetActive(true); // Ativa o teclado
+            teclado.SetActive(true);
+            teclado.transform.position = new Vector3(0f, 2.88f, 3.69f); // Ajuste conforme necessÃ¡rio
+            Debug.Log("Teclado ativado e reposicionado no Game Over");
         }
         else
         {
-            Debug.LogWarning("Teclado não está atribuído.");
+            Debug.LogWarning("Teclado nÃ£o estÃ¡ atribuÃ­do.");
         }
     }
 
-    // Função para ativar o Record
     private void AtivarRecord()
     {
         if (record != null)
         {
-            record.SetActive(true); // Ativa o Record
+            record.SetActive(true);
+            record.transform.position = new Vector3(-5.2f, 3.5f, 5.1f); // Nova posiÃ§Ã£o no Game Over
         }
         else
         {
-            Debug.LogWarning("Record não está atribuído.");
+            Debug.LogWarning("Record nÃ£o estÃ¡ atribuÃ­do.");
         }
     }
 }

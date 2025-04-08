@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagAlvo: Asteroid
-  tempoDeVida: 10
+  tempoDeVida: 20
   tempoDeChegada: 1
   tempoDeDelay: 0.5
-  velocidadeInicial: 10
+  velocidadeInicial: 2000
 --- !u!95 &1951368194869102227
 Animator:
   serializedVersion: 5

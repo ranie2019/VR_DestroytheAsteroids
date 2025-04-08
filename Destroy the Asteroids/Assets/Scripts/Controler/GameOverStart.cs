@@ -4,39 +4,39 @@ public class GameOverStart : MonoBehaviour
 {
     [Header("Player Dano")]
     [Tooltip("Referência ao script PlayerDano.")]
-    [SerializeField] private PlayerDano playerDano;  // Referência ao script que controla a vida do jogador
+    [SerializeField] private PlayerDano playerDano;
 
     [Header("Audio Player")]
     [Tooltip("Referência ao script AudioPlayer.")]
-    [SerializeField] private AudioPlayer audioPlayer;  // Referência ao script responsável pelo áudio
+    [SerializeField] private AudioPlayer audioPlayer;
 
     [Header("Spawners a serem ativados")]
     [Tooltip("Referências aos scripts de Spawner que serão ativados.")]
-    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;  // Referências aos spawners de asteroides
+    [SerializeField] private AsteroidSpawner[] asteroidSpawnerScripts;
 
     [Header("Sistema Particulas")]
     [Tooltip("Referência ao ParticleSystem que será ativado.")]
-    [SerializeField] private ParticleSystem Particulas;  // Sistema de partículas
+    [SerializeField] private ParticleSystem Particulas;
 
     [Header("Game Controller")]
     [Tooltip("Referência ao script GameController.")]
-    [SerializeField] private GameController gameController;  // Script que controla o jogo
+    [SerializeField] private PontoController gameController;
 
     [Header("Objetos Inativos")]
     [Tooltip("Referências aos objetos inativos que devem começar a contagem.")]
-    [SerializeField] private Inativo[] objetosInativos;  // Objetos a serem ativados
+    [SerializeField] private Inativo[] objetosInativos;
 
     [Header("Mesh Renderer")]
     [Tooltip("Referência ao MeshRenderer do objeto filho.")]
-    [SerializeField] private MeshRenderer childMeshRenderer;  // Renderização do objeto filho
+    [SerializeField] private MeshRenderer childMeshRenderer;
 
     [Header("Armas")]
     [Tooltip("Referências aos objetos de armas que devem ser ativados.")]
-    [SerializeField] private GameObject[] armas;  // Objetos de armas
+    [SerializeField] private GameObject[] armas;
 
     private void Start()
     {
-        ValidateReferences();  // Valida referências
+        ValidateReferences();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,17 +52,11 @@ public class GameOverStart : MonoBehaviour
         // Reseta a vida do jogador
         if (playerDano != null)
         {
-            playerDano.ResetarVida(); // Método ResetarVida chamado corretamente
+            playerDano.ResetarVida();
         }
         else
         {
             Debug.LogError("PlayerDano não foi atribuído corretamente no GameOverStart!");
-        }
-
-        // Reseta a pontuação
-        if (gameController != null)
-        {
-            gameController.ResetScore();
         }
 
         // Ativa Spawners de Asteroides
@@ -105,6 +99,17 @@ public class GameOverStart : MonoBehaviour
             }
         }
 
+        // Move o objeto "Records" para a posição fixa
+        GameObject recordsObj = GameObject.Find("Records");
+        if (recordsObj != null)
+        {
+            recordsObj.transform.position = new Vector3(-5.2f, -8.9f, 5.1f);
+        }
+        else
+        {
+            Debug.LogWarning("Objeto 'Records' não encontrado na cena.");
+        }
+
         // Desativa este script após reiniciar o jogo
         gameObject.SetActive(false);
     }
@@ -115,13 +120,9 @@ public class GameOverStart : MonoBehaviour
         {
             if (arma != null)
             {
-                // Ativa a arma
                 arma.SetActive(true);
-
-                // Ativa todos os MeshRenderers dos filhos da arma
                 AtivarMeshRenderersDosFilhos(arma);
 
-                // Tenta obter o componente Inativo de forma segura e ativá-lo
                 if (arma.TryGetComponent<Inativo>(out Inativo inativoScript))
                 {
                     inativoScript.enabled = true;
@@ -132,10 +133,8 @@ public class GameOverStart : MonoBehaviour
 
     private void AtivarMeshRenderersDosFilhos(GameObject arma)
     {
-        // Obtém todos os MeshRenderers dos filhos da arma
-        MeshRenderer[] meshRenderers = arma.GetComponentsInChildren<MeshRenderer>(true); // true para incluir inativos
+        MeshRenderer[] meshRenderers = arma.GetComponentsInChildren<MeshRenderer>(true);
 
-        // Ativa o MeshRenderer de cada filho
         foreach (var meshRenderer in meshRenderers)
         {
             meshRenderer.enabled = true;

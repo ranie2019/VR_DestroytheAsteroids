@@ -12,12 +12,12 @@ public class AsteroidHit : MonoBehaviour
     [SerializeField] private GameObject popupCanvas; // Prefab do popup de pontuação
     private Transform playerTransform; // Transform do jogador
 
-    private GameController gameController;
+    private PontoController gameController;
 
     private void Awake()
     {
         // Tenta encontrar o GameController na cena
-        gameController = FindAnyObjectByType<GameController>();
+        gameController = FindAnyObjectByType<PontoController>();
 
         // Tenta localizar o Transform do jogador na cena, se não foi atribuído
         if (playerTransform == null)
