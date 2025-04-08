@@ -8771,8 +8771,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db300e0c9138fa4eaac68cb4b709955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placarTexto: {fileID: 0}
-  recordesUI: []
+  placarTexto: {fileID: 561835763}
+  recordeTexto: {fileID: 1607369474}
+  recordesUI:
+  - {fileID: 1967531317}
+  - {fileID: 906097876}
+  - {fileID: 645607238}
+  - {fileID: 553293450}
+  - {fileID: 68845099}
+  - {fileID: 385030152}
+  - {fileID: 613284102}
+  - {fileID: 484715542}
+  - {fileID: 1366215752}
+  - {fileID: 1778463129}
 --- !u!114 &607363921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22871,7 +22882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -30.506, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.2, y: -7.1}
+  m_AnchoredPosition: {x: -5.2, y: -5.23}
   m_SizeDelta: {x: 1.0881, y: 0.8309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706158732

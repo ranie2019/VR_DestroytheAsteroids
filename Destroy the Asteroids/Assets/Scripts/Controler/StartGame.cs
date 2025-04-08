@@ -29,7 +29,6 @@ public class StartGame : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Laser"))
         {
-            Debug.Log("Colisão com laser detectada!");
             HandleCollisionWithLaser();
         }
     }
@@ -44,42 +43,22 @@ public class StartGame : MonoBehaviour
                 {
                     spawner.enabled = true;
                 }
-                else
-                {
-                    Debug.LogWarning("Spawner está nulo!");
-                }
             }
-        }
-        else
-        {
-            Debug.LogWarning("Nenhum Spawner atribuído!");
         }
 
         if (audioPlayer != null)
         {
             audioPlayer.PlayRandomMainGameAudio();
         }
-        else
-        {
-            Debug.LogWarning("audioPlayer está nulo!");
-        }
 
         if (particleSystem != null)
         {
             particleSystem.Play();
         }
-        else
-        {
-            Debug.LogWarning("particleSystem está nulo!");
-        }
 
         if (childMeshRenderer != null)
         {
             childMeshRenderer.enabled = true;
-        }
-        else
-        {
-            Debug.LogWarning("childMeshRenderer está nulo!");
         }
 
         if (objetosInativos != null && objetosInativos.Length > 0)
@@ -90,24 +69,12 @@ public class StartGame : MonoBehaviour
                 {
                     objInativo.NotificarInicioDoJogo();
                 }
-                else
-                {
-                    Debug.LogWarning("objInativo está nulo!");
-                }
             }
-        }
-        else
-        {
-            Debug.LogWarning("Nenhum objeto inativo atribuído!");
         }
 
         if (demoTimer != null)
         {
             demoTimer.StartTimer();
-        }
-        else
-        {
-            Debug.LogWarning("demoTimer está nulo!");
         }
 
         gameObject.SetActive(false);
