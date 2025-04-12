@@ -8824,7 +8824,7 @@ MonoBehaviour:
   - {fileID: 2613954130542351759}
   - {fileID: 58397637}
   - {fileID: 837721246069924058}
-  - {fileID: 0}
+  - {fileID: 1417285596}
   - {fileID: 7718530162532238783}
   childMeshRenderer: {fileID: 1865934871}
   demoTimer: {fileID: 607363922}
@@ -37128,7 +37128,7 @@ MonoBehaviour:
   - {fileID: 2613954130542351759}
   - {fileID: 58397637}
   - {fileID: 837721246069924058}
-  - {fileID: 0}
+  - {fileID: 1417285596}
   - {fileID: 7718530162532238783}
   childMeshRenderer: {fileID: 1865934871}
   armas:
@@ -37138,7 +37138,7 @@ MonoBehaviour:
   - {fileID: 3688511006116782076}
   - {fileID: 58397627}
   - {fileID: 6026763347026786887}
-  - {fileID: 0}
+  - {fileID: 478000538}
   - {fileID: 5074934160815097050}
 --- !u!1001 &8167091416122722616
 PrefabInstance:

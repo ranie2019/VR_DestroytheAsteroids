@@ -150,8 +150,8 @@ MonoBehaviour:
   tagAlvo: Asteroid
   tempoDeVida: 20
   tempoDeChegada: 1
-  tempoDeDelay: 1
-  velocidadeInicial: 2000
+  tempoDeDelay: 0.1
+  velocidadeInicial: 1000
 --- !u!95 &6582258965682004978
 Animator:
   serializedVersion: 5
