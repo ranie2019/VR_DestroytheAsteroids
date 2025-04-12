@@ -22,6 +22,9 @@ public class PontoController : MonoBehaviour
 
     private void Start()
     {
+        pontosAtuais = 0; // Resetar o placar atual ao iniciar o jogo
+        AtualizarPlacarUI();
+
         maiorPontuacao = PlayerPrefs.GetInt("recordeSalvo", 0);
         AtualizarPlacarUI();
         AtualizarRecordeUI();
@@ -134,5 +137,12 @@ public class PontoController : MonoBehaviour
     public void MostrarRecordeNaTela()
     {
         Debug.Log("Recorde atual: " + maiorPontuacao.ToString("N0"));
+    }
+
+    // ✅ Novo método para resetar a pontuação atual
+    public void ResetarPontuacao()
+    {
+        pontosAtuais = 0;
+        AtualizarPlacarUI();
     }
 }

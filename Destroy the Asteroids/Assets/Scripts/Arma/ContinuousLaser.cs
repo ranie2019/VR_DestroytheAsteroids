@@ -18,14 +18,17 @@ public class ContinuousLaser : MonoBehaviour
 
     [Header("Configurações de Áudio")]
     [SerializeField] private AudioClip laserSound;
+
     private AudioSource audioSource;
-
-    private bool isLaserActive = false;
+    private bool isLaserActive;
+    private bool isRecharging;
     private float currentEnergy;
-    private bool isRecharging = false;
-    private float rechargeTimer = 0f;
+    private float rechargeTimer;
 
-    private void Start()
+    private readonly int laserStart = 0;
+    private readonly int laserEnd = 1;
+
+    private void Awake()
     {
         currentEnergy = maxEnergy;
         lineRenderer.enabled = false;
@@ -34,105 +37,115 @@ public class ContinuousLaser : MonoBehaviour
         audioSource.loop = true;
 
         if (gameController == null)
-        {
             gameController = FindObjectOfType<PontoController>();
-        }
+
+        UpdateEnergyBar();
     }
 
     private void Update()
     {
-        if (isLaserActive && !isRecharging)
+        if (isLaserActive)
         {
-            ShootLaser();
-            DrainEnergy();
-        }
-
-        if (!isLaserActive && currentEnergy < maxEnergy)
-        {
-            rechargeTimer += Time.deltaTime;
-
-            if (rechargeTimer >= rechargeDelay && currentEnergy < maxEnergy)
+            if (!isRecharging)
             {
-                isRecharging = true;
-                rechargeTimer = 0f;
+                ShootLaser();
+                DrainEnergy();
+            }
+        }
+        else
+        {
+            if (currentEnergy < maxEnergy)
+            {
+                rechargeTimer += Time.deltaTime;
+
+                if (rechargeTimer >= rechargeDelay)
+                {
+                    isRecharging = true;
+                    rechargeTimer = 0f;
+                }
             }
         }
 
         if (isRecharging)
-        {
             RechargeEnergy();
-        }
     }
 
     public void ActivateLaser()
     {
-        if (currentEnergy > 0)
-        {
-            isLaserActive = true;
-            lineRenderer.enabled = true;
+        if (currentEnergy <= 0f) return;
 
-            if (laserSound != null && !audioSource.isPlaying)
-            {
-                audioSource.clip = laserSound;
-                audioSource.Play();
-            }
+        isLaserActive = true;
+        isRecharging = false;
+        lineRenderer.enabled = true;
+
+        if (laserSound != null && !audioSource.isPlaying)
+        {
+            audioSource.clip = laserSound;
+            audioSource.Play();
         }
     }
 
     public void DeactivateLaser()
     {
+        if (!isLaserActive) return;
+
         isLaserActive = false;
         lineRenderer.enabled = false;
 
         if (audioSource.isPlaying)
-        {
             audioSource.Stop();
-        }
     }
 
     private void ShootLaser()
     {
-        lineRenderer.SetPosition(0, firePoint.position);
+        Vector3 origem = firePoint.position;
+        Vector3 direcao = firePoint.forward;
 
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out RaycastHit hit, maxLaserDistance))
+        lineRenderer.SetPosition(laserStart, origem);
+
+        if (Physics.Raycast(origem, direcao, out RaycastHit hit, maxLaserDistance))
         {
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(laserEnd, hit.point);
 
             if (hit.collider.CompareTag("Asteroid"))
-            {
                 hit.collider.GetComponent<AsteroidHit>()?.HandleAsteroidDestruction();
-            }
         }
         else
         {
-            lineRenderer.SetPosition(1, firePoint.position + firePoint.forward * maxLaserDistance);
+            lineRenderer.SetPosition(laserEnd, origem + direcao * maxLaserDistance);
         }
     }
 
     private void DrainEnergy()
     {
         currentEnergy -= depletionRate * Time.deltaTime;
-        currentEnergy = Mathf.Max(0, currentEnergy);
-        energyBar.fillAmount = currentEnergy / maxEnergy;
-
-        if (currentEnergy <= 0)
+        if (currentEnergy <= 0f)
         {
-            currentEnergy = 0;
+            currentEnergy = 0f;
             isRecharging = true;
             rechargeTimer = 0f;
             DeactivateLaser();
         }
+        UpdateEnergyBar();
     }
 
     private void RechargeEnergy()
     {
         currentEnergy += (maxEnergy / rechargeDuration) * Time.deltaTime;
-        currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
-        energyBar.fillAmount = currentEnergy / maxEnergy;
 
         if (currentEnergy >= maxEnergy)
         {
+            currentEnergy = maxEnergy;
             isRecharging = false;
+            rechargeTimer = 0f;
         }
+
+        UpdateEnergyBar();
+    }
+
+    private void UpdateEnergyBar()
+    {
+        if (energyBar != null)
+            energyBar.fillAmount = currentEnergy / maxEnergy;
     }
 }

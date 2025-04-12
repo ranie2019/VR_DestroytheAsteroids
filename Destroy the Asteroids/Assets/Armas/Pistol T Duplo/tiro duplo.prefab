@@ -334,7 +334,7 @@ MonoBehaviour:
   municaoMaxima: 30
   tempoRecarga: 39
   municaoText: {fileID: 1886572244001664814}
-  disparoSFX: {fileID: 8300000, guid: 00364e1118e20b440903ae011ca0cdd0, type: 3}
+  disparoSFX: {fileID: 8300000, guid: 121451a98b563554195e1440e45dd31e, type: 3}
   audioSourcePoolSize: 5
 --- !u!114 &1330337991526299798
 MonoBehaviour:

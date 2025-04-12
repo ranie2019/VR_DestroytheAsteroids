@@ -59,6 +59,12 @@ public class GameOverStart : MonoBehaviour
             Debug.LogError("PlayerDano não foi atribuído corretamente no GameOverStart!");
         }
 
+        // ✅ Reseta o placar atual do jogo
+        if (gameController != null)
+        {
+            gameController.ResetarPontuacao();
+        }
+
         // Ativa Spawners de Asteroides
         foreach (var spawner in asteroidSpawnerScripts)
         {

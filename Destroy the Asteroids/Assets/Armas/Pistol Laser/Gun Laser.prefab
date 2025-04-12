@@ -826,7 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempoDeInatividade: 120
-  ativacaoSound: {fileID: 8300000, guid: e31981bf1cfa26449beb3314848422bb, type: 3}
+  ativacaoSound: {fileID: 8300000, guid: 982b9c2824a84e84abdb2cf51a43b7d2, type: 3}
 --- !u!1 &6304233055840234923
 GameObject:
   m_ObjectHideFlags: 0
