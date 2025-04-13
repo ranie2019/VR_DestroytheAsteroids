@@ -7369,7 +7369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &486272900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8827,7 +8827,7 @@ MonoBehaviour:
   - {fileID: 1417285596}
   - {fileID: 7718530162532238783}
   childMeshRenderer: {fileID: 1865934871}
-  demoTimer: {fileID: 607363922}
+  demoTimer: {fileID: 0}
 --- !u!1 &600671735
 GameObject:
   m_ObjectHideFlags: 0
@@ -28623,7 +28623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2066592631
 RectTransform:
   m_ObjectHideFlags: 0
