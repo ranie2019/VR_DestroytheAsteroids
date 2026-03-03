@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class UFOAttack : MonoBehaviour
 {
-    [Header("Configurações de Ataque")]
-    public GameObject projetilPrefab; // Prefab do projétil
-    public Transform pontoDeDisparo; // Ponto onde o projétil será disparado
-    public float intervaloDeAtaque = 15f; // Tempo mínimo entre ataques
-    public float alcanceDeAtaque = 100f; // Distância máxima para iniciar ataques
-    public float velocidadeDoProjetil = 20f; // Velocidade do projétil
+    [Header("Configuraï¿½ï¿½es de Ataque")]
+    public GameObject projetilPrefab; // Prefab do projï¿½til
+    public Transform pontoDeDisparo; // Ponto onde o projï¿½til serï¿½ disparado
+    public float intervaloDeAtaque = 15f; // Tempo mï¿½nimo entre ataques
+    public float alcanceDeAtaque = 100f; // Distï¿½ncia mï¿½xima para iniciar ataques
+    public float velocidadeDoProjetil = 20f; // Velocidade do projï¿½til
 
-    private Transform jogador; // Referência ao jogador
+    private Transform jogador; // Referï¿½ncia ao jogador
     private float cronometroDeAtaque; // Contador para controlar o intervalo entre ataques
 
     private void Start()
@@ -22,7 +22,7 @@ public class UFOAttack : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Jogador não encontrado! Certifique-se de que há um objeto com a tag 'Player' na cena.");
+            Debug.LogError("Jogador nï¿½o encontrado! Certifique-se de que hï¿½ um objeto com a tag 'Player' na cena.");
         }
     }
 
@@ -41,13 +41,13 @@ public class UFOAttack : MonoBehaviour
 
     private void Atacar()
     {
-        // Atualiza o cronômetro de ataque
+        // Atualiza o cronï¿½metro de ataque
         cronometroDeAtaque += Time.deltaTime;
 
         if (cronometroDeAtaque >= intervaloDeAtaque)
         {
             DispararProjetil();
-            cronometroDeAtaque = 0f; // Reinicia o cronômetro
+            cronometroDeAtaque = 0f; // Reinicia o cronï¿½metro
         }
     }
 
@@ -55,31 +55,31 @@ public class UFOAttack : MonoBehaviour
     {
         if (projetilPrefab == null)
         {
-            Debug.LogError("Prefab do projétil não configurado!");
+            Debug.LogError("Prefab do projï¿½til nï¿½o configurado!");
             return;
         }
 
         if (pontoDeDisparo == null)
         {
-            Debug.LogError("Ponto de disparo não configurado!");
+            Debug.LogError("Ponto de disparo nï¿½o configurado!");
             return;
         }
 
-        // Calcula a direção do jogador
+        // Calcula a direï¿½ï¿½o do jogador
         Vector3 direcao = (jogador.position - pontoDeDisparo.position).normalized;
 
-        // Instancia o projétil no ponto de disparo
+        // Instancia o projï¿½til no ponto de disparo
         GameObject projetil = Instantiate(projetilPrefab, pontoDeDisparo.position, Quaternion.LookRotation(direcao));
 
-        // Configura a direção e a rotação do projétil
+        // Configura a direï¿½ï¿½o e a rotaï¿½ï¿½o do projï¿½til
         Rigidbody rb = projetil.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = direcao * velocidadeDoProjetil;
+            rb.linearVelocity = direcao * velocidadeDoProjetil;
         }
         else
         {
-            Debug.LogError("O prefab do projétil não possui um componente Rigidbody!");
+            Debug.LogError("O prefab do projï¿½til nï¿½o possui um componente Rigidbody!");
         }
     }
 

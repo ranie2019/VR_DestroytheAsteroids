@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LaserGunDouble : MonoBehaviour
 {
-    [Header("Configurações do Laser")]
-    [Tooltip("Animator responsável pela animação de disparo.")]
+    [Header("Configuraï¿½ï¿½es do Laser")]
+    [Tooltip("Animator responsï¿½vel pela animaï¿½ï¿½o de disparo.")]
     [SerializeField] private Animator laserAnimator;
 
     [Header("Som do Disparo")]
@@ -11,14 +11,14 @@ public class LaserGunDouble : MonoBehaviour
     [SerializeField] private AudioClip laserSFX;
 
     [Header("Origens do Raycast")]
-    [Tooltip("Transform de onde o primeiro raycast será emitido.")]
+    [Tooltip("Transform de onde o primeiro raycast serï¿½ emitido.")]
     [SerializeField] private Transform raycastOrigin1;
 
-    [Tooltip("Transform de onde o segundo raycast será emitido.")]
+    [Tooltip("Transform de onde o segundo raycast serï¿½ emitido.")]
     [SerializeField] private Transform raycastOrigin2;
 
-    [Header("Configurações da Bala")]
-    [Tooltip("Prefab da bala que será instanciada ao disparar.")]
+    [Header("Configuraï¿½ï¿½es da Bala")]
+    [Tooltip("Prefab da bala que serï¿½ instanciada ao disparar.")]
     [SerializeField] private GameObject bulletPrefab;
 
     [Tooltip("Velocidade da bala disparada.")]
@@ -52,7 +52,7 @@ public class LaserGunDouble : MonoBehaviour
 
     public void LaserGunFire()
     {
-        // Ativa a animação de disparo, se atribuída
+        // Ativa a animaï¿½ï¿½o de disparo, se atribuï¿½da
         if (laserAnimator != null)
         {
             laserAnimator.SetTrigger("Fire");
@@ -88,11 +88,11 @@ public class LaserGunDouble : MonoBehaviour
         // Instancia a bala no ponto de spawn
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        // Aplica uma força na bala para movê-la para frente
+        // Aplica uma forï¿½a na bala para movï¿½-la para frente
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
         if (bulletRigidbody != null)
         {
-            bulletRigidbody.velocity = spawnPoint.forward * bulletSpeed;
+            bulletRigidbody.linearVelocity = spawnPoint.forward * bulletSpeed;
         }
     }
 }

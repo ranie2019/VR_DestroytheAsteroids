@@ -1,171 +1,198 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class TorrentControl : MonoBehaviour
 {
-    [Header("ConfiguraÁıes da Torreta")]
-    public float distance = 50f; // Alcance m·ximo da torreta
-    public Transform mount; // Base da torreta que rotaciona no eixo Y
-    public Transform head; // CabeÁa da torreta que rotaciona no eixo X
-    public Transform[] attachPoints; // Pontos de disparo dos projÈteis
-    public GameObject projectile; // Prefab do projÈtil
-    public float taxaDisparo = 1f; // Taxa de disparo (projÈteis por segundo)
-    public float projectileSpeed = 800f; // Velocidade do projÈtil
+    [Header("Detec√ß√£o do Alvo")]
+    [Tooltip("Tag dos alvos que a torreta pode detectar e atacar.")]
+    [SerializeField] private string tagAlvo = "Asteroid";
 
-    [Header("Efeitos Sonoros")]
-    public AudioClip laserSFX; // Som do disparo
+    [Tooltip("Alcance m√°ximo da torreta.")]
+    [SerializeField] private float alcance = 50f;
 
-    private AudioSource laserAudioSource; // Componente de ·udio
-    private TurrentAnimator turrentAnimator; // Controlador de animaÁıes
-    private Transform closestAsteroid; // ReferÍncia ao asteroide mais prÛximo
-    private int currentAttachIndex = 0; // Õndice do ponto de disparo atual
-    private float nextFireTime = 0f; // Tempo para o prÛximo disparo
+    [Tooltip("Intervalo (segundos) para procurar o alvo novamente (evita custo todo frame).")]
+    [SerializeField] private float intervaloBuscaAlvo = 0.25f;
+
+    [Header("Partes da Torreta")]
+    [Tooltip("Base que gira no eixo Y.")]
+    [SerializeField] private Transform baseY;
+
+    [Tooltip("Cabe√ßa/cano que gira no eixo X.")]
+    [SerializeField] private Transform cabecaX;
+
+    [Tooltip("Pontos de disparo (m√∫ltiplos canos).")]
+    [SerializeField] private Transform[] pontosDisparo;
+
+    [Header("Disparo")]
+    [Tooltip("Prefab do proj√©til.")]
+    [SerializeField] private GameObject projetilPrefab;
+
+    [Tooltip("Tiros por segundo.")]
+    [SerializeField] private float taxaDisparo = 5f;
+
+    [Tooltip("Velocidade do proj√©til (m/s).")]
+    [SerializeField] private float velocidadeProjetil = 25f;
+
+    [Tooltip("Velocidade de rota√ß√£o da base (graus/s).")]
+    [SerializeField] private float velocidadeRotacaoBase = 180f;
+
+    [Tooltip("Velocidade de rota√ß√£o da cabe√ßa (graus/s).")]
+    [SerializeField] private float velocidadeRotacaoCabeca = 180f;
+
+    [Header("√Åudio")]
+    [SerializeField] private AudioClip laserSFX;
+
+    private AudioSource audioSource;
+    private TurrentAnimator anim;
+
+    private Transform alvoAtual;
+    private int indicePonto = 0;
+    private float proximoDisparoEm = 0f;
+    private float proximaBuscaEm = 0f;
 
     private void Awake()
     {
-        // Configura o componente de ·udio
-        laserAudioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        if (laserSFX != null)
-        {
-            laserAudioSource.clip = laserSFX;
-            laserAudioSource.playOnAwake = false;
-        }
+        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
 
-        // ObtÈm o controlador de animaÁıes
-        turrentAnimator = GetComponentInChildren<TurrentAnimator>();
+        anim = GetComponentInChildren<TurrentAnimator>();
     }
 
     private void Update()
     {
-        // Encontra o asteroide mais prÛximo
-        FindClosestAsteroid();
-
-        // Se houver um asteroide dentro do alcance, mira e dispara
-        if (closestAsteroid != null)
+        // Buscar alvo em intervalos (evita custo todo frame)
+        if (Time.time >= proximaBuscaEm)
         {
-            RotateTowardsAsteroid();
+            proximaBuscaEm = Time.time + intervaloBuscaAlvo;
+            alvoAtual = EncontrarAlvoMaisProximo();
+        }
 
-            // Verifica se a torreta pode disparar
-            if (CanFire())
+        // Se tem alvo, mirar e atirar
+        if (alvoAtual != null)
+        {
+            MirarNoAlvo(alvoAtual);
+
+            if (Time.time >= proximoDisparoEm)
             {
-                ShootProjectile();
+                proximoDisparoEm = Time.time + (1f / Mathf.Max(0.01f, taxaDisparo));
+                Disparar();
             }
         }
     }
 
-    /// <summary>
-    /// Encontra o asteroide mais prÛximo dentro do alcance da torreta.
-    /// </summary>
-    private void FindClosestAsteroid()
+    private Transform EncontrarAlvoMaisProximo()
     {
-        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        closestAsteroid = null;
-        float closestDistance = Mathf.Infinity;
+        GameObject[] alvos = GameObject.FindGameObjectsWithTag(tagAlvo);
+        Transform melhor = null;
+        float melhorDistSqr = float.MaxValue;
 
-        foreach (GameObject asteroid in asteroids)
+        Vector3 origem = transform.position;
+        float alcanceSqr = alcance * alcance;
+
+        for (int i = 0; i < alvos.Length; i++)
         {
-            float dist = Vector3.Distance(asteroid.transform.position, transform.position);
-            if (dist < closestDistance && dist < distance)
+            GameObject go = alvos[i];
+            if (!go || !go.activeInHierarchy) continue;
+
+            float distSqr = (go.transform.position - origem).sqrMagnitude;
+            if (distSqr <= alcanceSqr && distSqr < melhorDistSqr)
             {
-                closestDistance = dist;
-                closestAsteroid = asteroid.transform;
+                melhorDistSqr = distSqr;
+                melhor = go.transform;
             }
         }
+
+        return melhor;
     }
 
-    /// <summary>
-    /// Gira a torreta na direÁ„o do asteroide mais prÛximo.
-    /// </summary>
-    private void RotateTowardsAsteroid()
+    private void MirarNoAlvo(Transform alvo)
     {
-        if (closestAsteroid != null)
+        if (!baseY || !cabecaX) return;
+
+        Vector3 alvoPos = alvo.position;
+
+        // Base: gira s√≥ no Y
+        Vector3 dirBase = alvoPos - baseY.position;
+        dirBase.y = 0f;
+
+        if (dirBase.sqrMagnitude > 0.0001f)
         {
-            Vector3 directionToAsteroid = closestAsteroid.position - mount.position;
-
-            // RotaÁ„o da base (eixo Y)
-            Quaternion targetRotationY = Quaternion.LookRotation(new Vector3(directionToAsteroid.x, 0, directionToAsteroid.z));
-            mount.rotation = Quaternion.RotateTowards(mount.rotation, targetRotationY, 5f * Time.deltaTime);
-
-            // RotaÁ„o da cabeÁa (eixo X)
-            Quaternion targetRotationX = Quaternion.LookRotation(directionToAsteroid);
-            head.localRotation = Quaternion.RotateTowards(head.localRotation, Quaternion.Euler(targetRotationX.eulerAngles.x, 0, 0), 5f * Time.deltaTime);
+            Quaternion rotBaseDesejada = Quaternion.LookRotation(dirBase.normalized, Vector3.up);
+            baseY.rotation = Quaternion.RotateTowards(
+                baseY.rotation,
+                rotBaseDesejada,
+                velocidadeRotacaoBase * Time.deltaTime
+            );
         }
+
+        // Cabe√ßa: gira no X (pitch)  ‚úÖ CORRIGIDO (invertido para apontar pra cima)
+        Vector3 dirLocal = baseY.InverseTransformDirection((alvoPos - cabecaX.position).normalized);
+
+        // invers√£o do pitch resolve cabe√ßa apontando para baixo (eixo do modelo invertido)
+        float pitch = -Mathf.Atan2(dirLocal.y, dirLocal.z) * Mathf.Rad2Deg;
+
+        Quaternion rotCabecaDesejada = Quaternion.Euler(pitch, 0f, 0f);
+        cabecaX.localRotation = Quaternion.RotateTowards(
+            cabecaX.localRotation,
+            rotCabecaDesejada,
+            velocidadeRotacaoCabeca * Time.deltaTime
+        );
     }
 
-    /// <summary>
-    /// Verifica se a torreta est· pronta para disparar.
-    /// </summary>
-    private bool CanFire()
+    private void Disparar()
     {
-        if (Time.time >= nextFireTime)
-        {
-            nextFireTime = Time.time + 1f / taxaDisparo;
-            return true;
-        }
-        return false;
-    }
+        if (projetilPrefab == null || pontosDisparo == null || pontosDisparo.Length == 0)
+            return;
 
-    /// <summary>
-    /// Dispara um projÈtil no ponto de disparo atual.
-    /// </summary>
-    private void ShootProjectile()
-    {
-        Transform attach = attachPoints[currentAttachIndex];
-        GameObject clone = Instantiate(projectile, attach.position, head.rotation);
-        Rigidbody rb = clone.GetComponent<Rigidbody>();
+        Transform ponto = pontosDisparo[indicePonto];
+        if (ponto == null || alvoAtual == null) return;
 
+        // Dire√ß√£o real do alvo (n√£o depende do eixo do modelo)
+        Vector3 dir = (alvoAtual.position - ponto.position).normalized;
+
+        // Instancia o proj√©til olhando para o alvo
+        GameObject bala = Instantiate(projetilPrefab, ponto.position, Quaternion.LookRotation(dir, Vector3.up));
+
+        // Velocidade consistente na dire√ß√£o do alvo
+        Rigidbody rb = bala.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(head.forward * projectileSpeed);
+            rb.useGravity = false;
+            rb.linearVelocity = dir * velocidadeProjetil;
         }
 
-        // Reproduz o som do disparo
-        PlaySound(laserSFX);
+        // Som
+        if (laserSFX != null) audioSource.PlayOneShot(laserSFX);
 
-        // Ativa a animaÁ„o de disparo
-        StartCoroutine(FireAnimationRoutine());
+        // Anima√ß√£o (se existir)
+        if (anim != null) StartCoroutine(RotinaAnimDisparo());
 
-        // Atualiza o Ìndice para o prÛximo ponto de anexo
-        currentAttachIndex = (currentAttachIndex + 1) % attachPoints.Length;
+        // Pr√≥ximo cano
+        indicePonto = (indicePonto + 1) % pontosDisparo.Length;
     }
 
-    /// <summary>
-    /// Reproduz um som no componente de ·udio.
-    /// </summary>
-    private void PlaySound(AudioClip clip)
+    private IEnumerator RotinaAnimDisparo()
     {
-        if (laserAudioSource != null && clip != null)
-        {
-            laserAudioSource.PlayOneShot(clip);
-        }
+        if (anim == null) yield break;
+
+        anim.ActivateFireAnimation();
+        yield return new WaitForSeconds(0.15f);
+        anim.DeactivateFireAnimation();
     }
 
-    /// <summary>
-    /// Corrotina para gerenciar a animaÁ„o de disparo.
-    /// </summary>
-    private IEnumerator FireAnimationRoutine()
-    {
-        if (turrentAnimator != null)
-        {
-            turrentAnimator.ActivateFireAnimation();
-            yield return new WaitForSeconds(0.5f); // Tempo ajust·vel
-            turrentAnimator.DeactivateFireAnimation();
-        }
-    }
-
-    /// <summary>
-    /// Desenha o alcance da torreta e a linha de disparo no Editor.
-    /// </summary>
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, distance); // Desenha o alcance da torreta
+        Gizmos.DrawWireSphere(transform.position, alcance);
 
-        if (closestAsteroid != null)
+        if (alvoAtual != null && pontosDisparo != null && pontosDisparo.Length > 0)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(attachPoints[currentAttachIndex].position, closestAsteroid.position); // Linha de disparo
+            Transform p = pontosDisparo[Mathf.Clamp(indicePonto, 0, pontosDisparo.Length - 1)];
+            if (p != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(p.position, alvoAtual.position);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class HapticFeedback : MonoBehaviour
 {
 
-    [SerializeField] XRGrabInteractable grabInteractable;
+    [SerializeField] UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 
 
     private void OnEnable()

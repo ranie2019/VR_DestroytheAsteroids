@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Cena/Cena_main.unity
+    path: Assets/Cena/Inicio.unity
     guid: 4bac76ef534f8e94f8467a434ded8d75
   - enabled: 1
-    path: Assets/Cena/Demo.unity
+    path: Assets/Cena/GameOver.unity
     guid: dc2132e94e4fd3045821f81e2fce6176
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 0e0e6c93a0b9fc547b8f34b26e84c808,

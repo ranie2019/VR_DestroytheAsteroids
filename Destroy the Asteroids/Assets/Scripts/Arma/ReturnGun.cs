@@ -4,14 +4,14 @@ using System.Collections;
 
 public class ReturnGun : MonoBehaviour
 {
-    [Header("Configurações de Posição Original")]
-    [Tooltip("Posição e rotação originais da arma.")]
+    [Header("Configuraï¿½ï¿½es de Posiï¿½ï¿½o Original")]
+    [Tooltip("Posiï¿½ï¿½o e rotaï¿½ï¿½o originais da arma.")]
     [SerializeField] private Pose originPose;
 
-    [Tooltip("Tempo de transição para retornar à posição original.")]
+    [Tooltip("Tempo de transiï¿½ï¿½o para retornar ï¿½ posiï¿½ï¿½o original.")]
     [SerializeField] private float returnDuration = 0.5f;
 
-    private XRGrabInteractable grabInteractable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 
     private void Awake()
     {
@@ -34,11 +34,11 @@ public class ReturnGun : MonoBehaviour
     /// </summary>
     private void InitializeGrabInteractable()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
     }
 
     /// <summary>
-    /// Salva a posição e rotação originais da arma.
+    /// Salva a posiï¿½ï¿½o e rotaï¿½ï¿½o originais da arma.
     /// </summary>
     private void SaveOriginalPose()
     {
@@ -47,7 +47,7 @@ public class ReturnGun : MonoBehaviour
     }
 
     /// <summary>
-    /// Registra os listeners para os eventos necessários.
+    /// Registra os listeners para os eventos necessï¿½rios.
     /// </summary>
     private void RegisterEventListeners()
     {
@@ -71,20 +71,20 @@ public class ReturnGun : MonoBehaviour
     }
 
     /// <summary>
-    /// Chamado quando a arma é pega pelo jogador.
+    /// Chamado quando a arma ï¿½ pega pelo jogador.
     /// </summary>
-    /// <param name="arg0">Argumentos do evento de interação.</param>
+    /// <param name="arg0">Argumentos do evento de interaï¿½ï¿½o.</param>
     private void OnGunGrabbed(SelectEnterEventArgs arg0)
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.isKinematic = false; // Ativar física ao pegar
+            rb.isKinematic = false; // Ativar fï¿½sica ao pegar
         }
     }
 
     /// <summary>
-    /// Chamado quando a arma é solta pelo jogador.
+    /// Chamado quando a arma ï¿½ solta pelo jogador.
     /// </summary>
     /// <param name="arg0">Argumentos do evento de soltura.</param>
     private void OnGunReleased(SelectExitEventArgs arg0)
@@ -93,7 +93,7 @@ public class ReturnGun : MonoBehaviour
     }
 
     /// <summary>
-    /// Retorna a arma suavemente à posição e rotação originais.
+    /// Retorna a arma suavemente ï¿½ posiï¿½ï¿½o e rotaï¿½ï¿½o originais.
     /// </summary>
     private IEnumerator SmoothResetToOriginalPose()
     {
@@ -113,7 +113,7 @@ public class ReturnGun : MonoBehaviour
 
             if (rb != null)
             {
-                rb.isKinematic = true; // Evitar interferências físicas durante a transição
+                rb.isKinematic = true; // Evitar interferï¿½ncias fï¿½sicas durante a transiï¿½ï¿½o
                 rb.MovePosition(newPosition);
                 rb.MoveRotation(newRotation);
             }

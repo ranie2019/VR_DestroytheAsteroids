@@ -2,137 +2,168 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
-    [Header("Tamanho da área de geração")]
-    [Tooltip("Define a área em que os asteroides podem ser gerados.")]
-    [SerializeField] private Vector3 spawnerSize;
+    [Header("Área de geração")]
+    [Tooltip("Tamanho da área onde os asteroides podem nascer.")]
+    [SerializeField] private Vector3 tamanhoArea = new Vector3(10, 5, 10);
 
-    [Header("Taxa de geração (segundos)")]
-    [Tooltip("Tempo inicial entre a geração de asteroides.")]
-    [SerializeField] private float spawnRate = 1.0f; // Taxa inicial de geração
-    [Tooltip("Taxa mínima de geração para evitar spawn muito rápido.")]
-    [SerializeField] private float minimumSpawnRate = 0.1f; // Valor mínimo do spawnRate
+    [Header("Frequência de spawn (segundos)")]
+    [Tooltip("Intervalo entre spawns durante a fase ATIVA (quanto menor, mais asteroides).")]
+    [SerializeField] private float intervaloSpawn = 0.6f;
+
+    [Tooltip("Intervalo mínimo permitido (pra não ficar zero/negativo).")]
+    [SerializeField] private float intervaloSpawnMinimo = 0.1f;
+
+    [Header("Tempos do ciclo (segundos)")]
+    [Tooltip("Tempo que fica spawnando (fase ATIVA).")]
+    [SerializeField] private float tempoAtivo = 10f;
+
+    [Tooltip("Tempo que fica sem spawnar (fase PAUSA).")]
+    [SerializeField] private float tempoPausa = 5f;
+
+    [Tooltip("Tempo mínimo permitido de pausa.")]
+    [SerializeField] private float tempoPausaMinimo = 0.5f;
+
+    [Header("Dificuldade por tempo (a cada 30s)")]
+    [Tooltip("A cada 30 segundos, diminui o intervalo de spawn em 0.1.")]
+    [SerializeField] private float reduzirIntervaloSpawn = 0.1f;
+
+    [Tooltip("A cada 30 segundos, diminui o tempo de pausa em 0.5.")]
+    [SerializeField] private float reduzirTempoPausa = 0.5f;
+
+    [Tooltip("De quanto em quanto tempo aplica a dificuldade.")]
+    [SerializeField] private float intervaloDificuldadeSegundos = 30f;
 
     [Header("Modelos de Asteroides")]
-    [Tooltip("Array de modelos de asteroides que podem ser instanciados.")]
-    [SerializeField] private GameObject[] asteroidModels;
+    [SerializeField] private GameObject[] modelosAsteroides;
 
-    private float originalSpawnRate; // Armazena o valor original de spawnRate
-    private float spawnTimer;        // Temporizador para controlar o spawn
-    private float rateReductionTimer; // Temporizador para reduzir a taxa de spawn
+    [Header("Organização (opcional)")]
+    [Tooltip("Se preencher, os asteroides vão nascer como filhos desse objeto (facilita limpar/resetar).")]
+    [SerializeField] private Transform paiDosAsteroides;
+
+    private enum Estado { Ativo, Pausa }
+    private Estado estado = Estado.Ativo;
+
+    private float timerEstado = 0f;
+    private float timerSpawn = 0f;
+
+    private float timerDificuldade = 0f;
+
+    private float intervaloSpawnOriginal;
+    private float tempoAtivoOriginal;
+    private float tempoPausaOriginal;
 
     private void Awake()
     {
-        // Armazena o valor original de spawnRate e inicializa a taxa de geração
-        originalSpawnRate = spawnRate;
+        intervaloSpawnOriginal = intervaloSpawn;
+        tempoAtivoOriginal = tempoAtivo;
+        tempoPausaOriginal = tempoPausa;
     }
 
     private void OnEnable()
     {
-        // Reinicia o spawnRate para o valor original sempre que o script é reiniciado
-        spawnRate = originalSpawnRate;
+        ResetSpawner();
     }
 
     private void Update()
     {
-        // Atualiza o temporizador de spawn
-        spawnTimer += Time.deltaTime;
-
-        // Verifica se é hora de gerar um novo asteroide
-        if (spawnTimer >= spawnRate)
+        // ===== 1) Dificuldade por tempo (a cada 30s) =====
+        timerDificuldade += Time.deltaTime;
+        if (timerDificuldade >= intervaloDificuldadeSegundos)
         {
-            SpawnAsteroid();
-            spawnTimer = 0f; // Reinicia o temporizador de spawn
+            AplicarDificuldade();
+            timerDificuldade = 0f;
         }
 
-        // Atualiza o temporizador para reduzir o spawnRate
-        rateReductionTimer += Time.deltaTime;
-        if (rateReductionTimer >= 1f) // Reduz a cada 1 segundo
+        // ===== 2) Lógica de ciclo (ATIVO / PAUSA) =====
+        timerEstado += Time.deltaTime;
+
+        if (estado == Estado.Ativo)
         {
-            ReduceSpawnRate();
-            rateReductionTimer = 0f; // Reinicia o temporizador de redução
+            // Spawn contínuo enquanto estiver ATIVO
+            timerSpawn += Time.deltaTime;
+            if (timerSpawn >= intervaloSpawn)
+            {
+                SpawnAsteroid();
+                timerSpawn = 0f;
+            }
+
+            // Terminou o tempo ATIVO? vai pra PAUSA
+            if (timerEstado >= tempoAtivo)
+            {
+                estado = Estado.Pausa;
+                timerEstado = 0f;
+                timerSpawn = 0f;
+            }
+        }
+        else // PAUSA
+        {
+            // PAUSA = não spawnar nada
+
+            // Terminou a PAUSA? volta a ATIVO
+            if (timerEstado >= tempoPausa)
+            {
+                estado = Estado.Ativo;
+                timerEstado = 0f;
+                timerSpawn = 0f;
+            }
         }
     }
 
-    /// <summary>
-    /// Instancia um asteroide em uma posição aleatória dentro da área do spawner.
-    /// </summary>
+    private void AplicarDificuldade()
+    {
+        // Intervalo de spawn cai 0.1 a cada 30s
+        intervaloSpawn = Mathf.Max(intervaloSpawn - reduzirIntervaloSpawn, intervaloSpawnMinimo);
+
+        // Tempo de pausa cai 0.5 a cada 30s
+        tempoPausa = Mathf.Max(tempoPausa - reduzirTempoPausa, tempoPausaMinimo);
+    }
+
     private void SpawnAsteroid()
     {
-        // Gera uma posição aleatória dentro da área do spawner
-        Vector3 spawnPosition = GetRandomSpawnPosition();
+        if (modelosAsteroides == null || modelosAsteroides.Length == 0) return;
 
-        // Seleciona aleatoriamente um dos modelos de asteroide
-        GameObject selectedAsteroid = GetRandomAsteroidModel();
+        GameObject prefab = modelosAsteroides[Random.Range(0, modelosAsteroides.Length)];
+        if (prefab == null) return;
 
-        // Instancia o asteroide selecionado na posição gerada com rotação padrão
-        if (selectedAsteroid != null)
-        {
-            Instantiate(selectedAsteroid, spawnPosition, Quaternion.identity);
-        }
+        Vector3 pos = GetRandomSpawnPosition();
+
+        if (paiDosAsteroides != null)
+            Instantiate(prefab, pos, Quaternion.identity, paiDosAsteroides);
+        else
+            Instantiate(prefab, pos, Quaternion.identity);
     }
 
-    /// <summary>
-    /// Retorna uma posição aleatória dentro da área do spawner.
-    /// </summary>
-    /// <returns>Posição 3D dentro da área do spawner.</returns>
     private Vector3 GetRandomSpawnPosition()
     {
         return transform.position + new Vector3(
-            Random.Range(-spawnerSize.x / 2, spawnerSize.x / 2), // Eixo X
-            Random.Range(-spawnerSize.y / 2, spawnerSize.y / 2), // Eixo Y
-            Random.Range(-spawnerSize.z / 2, spawnerSize.z / 2)  // Eixo Z
+            Random.Range(-tamanhoArea.x / 2f, tamanhoArea.x / 2f),
+            Random.Range(-tamanhoArea.y / 2f, tamanhoArea.y / 2f),
+            Random.Range(-tamanhoArea.z / 2f, tamanhoArea.z / 2f)
         );
     }
 
-    /// <summary>
-    /// Seleciona aleatoriamente um modelo de asteroide do array.
-    /// </summary>
-    /// <returns>GameObject do asteroide selecionado.</returns>
-    private GameObject GetRandomAsteroidModel()
-    {
-        if (asteroidModels.Length == 0)
-        {
-            return null;
-        }
-
-        int randomIndex = Random.Range(0, asteroidModels.Length);
-        return asteroidModels[randomIndex];
-    }
-
-    /// <summary>
-    /// Reduz a taxa de geração dos asteroides, respeitando o valor mínimo configurado.
-    /// </summary>
-    private void ReduceSpawnRate()
-    {
-        // Reduz o spawnRate, mas garante que ele não fique menor que o valor mínimo
-        spawnRate = Mathf.Max(spawnRate - 0.01f, minimumSpawnRate);
-    }
-
-    /// <summary>
-    /// Reseta o estado do AsteroidSpawner.
-    /// </summary>
     public void ResetSpawner()
     {
-        // Reinicia os temporizadores
-        spawnTimer = 0f;
-        rateReductionTimer = 0f;
+        estado = Estado.Ativo;
+        timerEstado = 0f;
+        timerSpawn = 0f;
+        timerDificuldade = 0f;
 
-        // Restaura a taxa de spawn original
-        spawnRate = originalSpawnRate;
+        intervaloSpawn = intervaloSpawnOriginal;
+        tempoAtivo = tempoAtivoOriginal;
+        tempoPausa = tempoPausaOriginal;
 
-        // (Opcional) Destruir todos os asteroides existentes ou realizar outras ações de reset
-        foreach (Transform child in transform)
+        // Limpa asteroides se estiver usando paiDosAsteroides
+        if (paiDosAsteroides != null)
         {
-            Destroy(child.gameObject); // Destruir todos os asteroides filhos
+            for (int i = paiDosAsteroides.childCount - 1; i >= 0; i--)
+                Destroy(paiDosAsteroides.GetChild(i).gameObject);
         }
-
-        // Você pode adicionar outras ações de reset aqui, se necessário
     }
 
     private void OnDrawGizmos()
     {
-        // Desenha a área do spawner no editor para visualização
-        Gizmos.color = new Color(0, 1, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, spawnerSize);
+        Gizmos.color = new Color(0, 1, 0, 0.25f);
+        Gizmos.DrawCube(transform.position, tamanhoArea);
     }
 }

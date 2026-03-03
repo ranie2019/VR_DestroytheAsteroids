@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Disparo : MonoBehaviour
 {
-    [Header("Configurações do Audio")]
+    [Header("Configuraï¿½ï¿½es do Audio")]
     [SerializeField] private AudioClip audio; // Som do disparo
 
-    [Header("Configurações da Bala")]
+    [Header("Configuraï¿½ï¿½es da Bala")]
     [SerializeField] private GameObject bulletPrefab; // Prefab da bala
     [SerializeField] private float bulletSpeed = 20f; // Velocidade da bala
 
@@ -14,8 +14,8 @@ public class Disparo : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [Header("Configurações de Disparo")]
-    [SerializeField] private float fireRate = 0.2f; // Intervalo entre disparos rápidos
+    [Header("Configuraï¿½ï¿½es de Disparo")]
+    [SerializeField] private float fireRate = 0.2f; // Intervalo entre disparos rï¿½pidos
     private float nextFireTime = 0f; // Controla o tempo de disparo
 
     private Vector3 latestSpawnPosition;
@@ -24,22 +24,22 @@ public class Disparo : MonoBehaviour
 
     private void Awake()
     {
-        // Verifica se o AudioSource existe, senão cria um novo
+        // Verifica se o AudioSource existe, senï¿½o cria um novo
         audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
     }
 
     /// <summary>
-    /// Método para disparar a arma.
+    /// Mï¿½todo para disparar a arma.
     /// </summary>
     public void LaserGunFire()
     {
         if (Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireRate; // Ajusta o tempo para o próximo disparo
+            nextFireTime = Time.time + fireRate; // Ajusta o tempo para o prï¿½ximo disparo
             PlayLaserSound();
 
-            // Guarda a posição e rotação corretas no momento do disparo
+            // Guarda a posiï¿½ï¿½o e rotaï¿½ï¿½o corretas no momento do disparo
             latestSpawnPosition = bulletSpawnPoint.position;
             latestSpawnRotation = Quaternion.LookRotation(bulletSpawnPoint.forward);
             shouldFire = true;
@@ -58,7 +58,7 @@ public class Disparo : MonoBehaviour
     }
 
     /// <summary>
-    /// Garante que o disparo ocorra no último momento do frame, evitando problemas de interpolação.
+    /// Garante que o disparo ocorra no ï¿½ltimo momento do frame, evitando problemas de interpolaï¿½ï¿½o.
     /// </summary>
     private void LateUpdate()
     {
@@ -76,14 +76,14 @@ public class Disparo : MonoBehaviour
     {
         if (bulletPrefab != null)
         {
-            // Instancia a bala na posição correta do último frame
+            // Instancia a bala na posiï¿½ï¿½o correta do ï¿½ltimo frame
             GameObject bullet = Instantiate(bulletPrefab, latestSpawnPosition, latestSpawnRotation);
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             if (bulletRigidbody != null)
             {
-                // Aplica a velocidade à bala
-                bulletRigidbody.velocity = latestSpawnRotation * Vector3.forward * bulletSpeed;
+                // Aplica a velocidade ï¿½ bala
+                bulletRigidbody.linearVelocity = latestSpawnRotation * Vector3.forward * bulletSpeed;
             }
         }
     }

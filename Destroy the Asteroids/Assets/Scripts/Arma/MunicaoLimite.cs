@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class MunicaoLimite : MonoBehaviour
 {
-    [Header("Configurações de Munição")]
+    [Header("Configuraï¿½ï¿½es de Muniï¿½ï¿½o")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private List<Transform> bulletSpawnPoints;
     [SerializeField] private float bulletSpeed = 20f;
@@ -14,7 +14,7 @@ public class MunicaoLimite : MonoBehaviour
     [SerializeField] private float tempoRecarga = 5f;
     [SerializeField] private TMP_Text municaoText;
 
-    [Header("Configurações de Áudio")]
+    [Header("Configuraï¿½ï¿½es de ï¿½udio")]
     [SerializeField] private AudioClip disparoSFX;
     [SerializeField] private int audioSourcePoolSize = 5;
 
@@ -62,7 +62,7 @@ public class MunicaoLimite : MonoBehaviour
         }
     }
 
-    private void Disparar()
+    public void Disparar()
     {
         if (municaoAtual > 0)
         {
@@ -74,7 +74,7 @@ public class MunicaoLimite : MonoBehaviour
                     Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
                     if (bulletRigidbody != null)
                     {
-                        bulletRigidbody.velocity = spawnPoint.forward * bulletSpeed;
+                        bulletRigidbody.linearVelocity = spawnPoint.forward * bulletSpeed;
                     }
                 }
             }

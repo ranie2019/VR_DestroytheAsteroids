@@ -2,110 +2,154 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Rendering.Universal.Internal;
 
-// This Renderer Feature enqueues either the CopyDepthPass or the DepthOnlyPass depending on the current platform support.
-// CopyDepthPass copies the depth texture to an RTHandle. DepthOnlyPass renders depth values to an RTHandle.
-// The Renderer Feature also enqueues the DepthBlitEdgePass which takes the RTHandle as input to create an effect to visualize depth, and output it to the screen.
+// DepthBlitFeature (Atualizado p/ URP novo / Unity 6)
+// - Não usa CopyDepthPass interno (que mudou assinatura)
+// - Gera uma textura "depth em cor" (R32_SFloat) usando um fullscreen blit
+// - Requer: um shader/material que leia _CameraDepthTexture (ex: depth copy shader)
+// - Continua usando seu DepthBlitEdgePass existente do sample
 public class DepthBlitFeature : ScriptableRendererFeature
 {
+    [Header("Pass Events")]
     public RenderPassEvent evt_Depth = RenderPassEvent.AfterRenderingOpaques;
     public RenderPassEvent evt_Edge = RenderPassEvent.AfterRenderingOpaques;
-    public UniversalRendererData rendererDataAsset; // The field for accessing opaqueLayerMask on the renderer asset
-    
+
+    [Header("Materials / Shaders")]
+    [Tooltip("Shader que converte _CameraDepthTexture para um RT em formato de cor (R32/R16).")]
     public Shader copyDepthShader;
-    private Material m_CopyDepthMaterial;
-    
-    public Material m_DepthEdgeMaterial;
-    
-    // The RTHandle for storing the depth texture
+
+    [Tooltip("Material do efeito de borda/visualização (seu DepthBlitEdgePass usa isso).")]
+    public Material depthEdgeMaterial;
+
+    // RTHandle para armazenar depth como cor
     private RTHandle m_DepthRTHandle;
     private const string k_DepthRTName = "_MyDepthTexture";
-    
-    // The passes for the effect
-    private CopyDepthPass m_CopyDepthPass;
-    private DepthOnlyPass m_DepthOnlyPass; // DepthOnlyPass is for platforms that run OpenGL ES, which does not support CopyDepth.
-    private DepthBlitEdgePass m_DepthEdgePass;
-    
-    // Check if the platform supports CopyDepthPass
-    private bool CanCopyDepth(ref CameraData cameraData)
+
+    private Material m_CopyDepthMaterial;
+
+    private DepthToColorPass m_DepthToColorPass;
+    private DepthBlitEdgePass m_DepthEdgePass; // vem do sample (mantém o seu)
+
+    // ---------------- PASS: Depth -> Color ----------------
+    private class DepthToColorPass : ScriptableRenderPass
     {
-        bool msaaEnabledForCamera = cameraData.cameraTargetDescriptor.msaaSamples > 1;
-        bool supportsTextureCopy = SystemInfo.copyTextureSupport != CopyTextureSupport.None;
-        bool supportsDepthTarget = RenderingUtils.SupportsRenderTextureFormat(RenderTextureFormat.Depth);
-        bool supportsDepthCopy = !msaaEnabledForCamera && (supportsDepthTarget || supportsTextureCopy);
+        private Material m_Material;
+        private RTHandle m_SourceColor;
+        private RTHandle m_Destination;
 
-        bool msaaDepthResolve = msaaEnabledForCamera && SystemInfo.supportsMultisampledTextures != 0;
-        
-        // Avoid copying MSAA depth on GLES3 platform to avoid invalid results
-        if (IsGLESDevice() && msaaDepthResolve)
-            return false;
-
-        return supportsDepthCopy || msaaDepthResolve;
-    }
-
-    private bool IsGLESDevice()
-    {
-        return SystemInfo.graphicsDeviceType == GraphicsDeviceType.OpenGLES3 || SystemInfo.graphicsDeviceType == GraphicsDeviceType.OpenGLES2;
-    }
-    
-    public override void AddRenderPasses(ScriptableRenderer renderer,  ref RenderingData renderingData)
-    {
-        var cameraData = renderingData.cameraData;
-        if (renderingData.cameraData.cameraType != CameraType.Game)
-            return;
-
-        if (CanCopyDepth(ref cameraData))
+        public DepthToColorPass(RenderPassEvent evt, Material mat)
         {
-            if (m_CopyDepthMaterial == null)
-                m_CopyDepthMaterial = CoreUtils.CreateEngineMaterial(copyDepthShader);
-            if (m_CopyDepthPass == null)
-                m_CopyDepthPass = new CopyDepthPass(evt_Depth, m_CopyDepthMaterial);
-            renderer.EnqueuePass(m_CopyDepthPass);
-        }
-        else
-        {
-            if (m_DepthOnlyPass == null)
-                m_DepthOnlyPass = new DepthOnlyPass(evt_Depth, RenderQueueRange.opaque, rendererDataAsset.opaqueLayerMask);
-            renderer.EnqueuePass(m_DepthOnlyPass);
+            renderPassEvent = evt;
+            m_Material = mat;
+
+            // Isso força URP a garantir que existe depth texture disponível como _CameraDepthTexture
+            ConfigureInput(ScriptableRenderPassInput.Depth);
         }
 
-        renderer.EnqueuePass(m_DepthEdgePass);
-    }
+        public void Setup(RTHandle sourceColor, RTHandle destination)
+        {
+            m_SourceColor = sourceColor;
+            m_Destination = destination;
+        }
 
-    public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
-    {
-        var cameraData = renderingData.cameraData;
-        if (renderingData.cameraData.cameraType != CameraType.Game)
-            return;
-        
-        // Create an RTHandle for storing the depth
-        var desc = renderingData.cameraData.cameraTargetDescriptor;
-        desc.graphicsFormat = GraphicsFormat.None;
-        desc.msaaSamples = 1;
-        RenderingUtils.ReAllocateIfNeeded(ref m_DepthRTHandle, desc, FilterMode.Bilinear, TextureWrapMode.Clamp, name: k_DepthRTName );
-        
-        // Setup source and destination RTHandles for the CopyDepthPass
-        if (CanCopyDepth(ref cameraData))
-            m_CopyDepthPass.Setup(renderer.cameraDepthTargetHandle, m_DepthRTHandle);
-        else
-            m_DepthOnlyPass.Setup(desc, m_DepthRTHandle);
-        
-        // Pass the RTHandle for the DepthEdge effect
-        m_DepthEdgePass.SetRTHandle(ref m_DepthRTHandle, renderer.cameraColorTargetHandle);
+        public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
+        {
+            // destino é um RTHandle já alocado fora
+            ConfigureTarget(m_Destination);
+            ConfigureClear(ClearFlag.None, Color.black);
+        }
+
+        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
+        {
+            if (m_Material == null || m_Destination == null)
+                return;
+
+            var cmd = CommandBufferPool.Get("DepthToColorPass");
+
+            // Blit fullscreen: usa sourceColor apenas como "input dummy" para Blitter,
+            // mas o shader deve ler _CameraDepthTexture e escrever no destino.
+            Blitter.BlitCameraTexture(cmd, m_SourceColor, m_Destination, m_Material, 0);
+
+            context.ExecuteCommandBuffer(cmd);
+            CommandBufferPool.Release(cmd);
+        }
     }
 
     public override void Create()
     {
-        m_DepthEdgePass = new DepthBlitEdgePass(m_DepthEdgeMaterial, evt_Edge);
+        // Material do depth copy
+        if (m_CopyDepthMaterial == null && copyDepthShader != null)
+            m_CopyDepthMaterial = CoreUtils.CreateEngineMaterial(copyDepthShader);
+
+        // Pass depth->color
+        if (m_DepthToColorPass == null)
+            m_DepthToColorPass = new DepthToColorPass(evt_Depth, m_CopyDepthMaterial);
+
+        // Pass de borda (do seu sample)
+        // Mantém a assinatura original que você já tinha:
+        m_DepthEdgePass = new DepthBlitEdgePass(depthEdgeMaterial, evt_Edge);
+    }
+
+    public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
+    {
+        if (renderingData.cameraData.cameraType != CameraType.Game)
+            return;
+
+        // Aloca RTHandle para depth em cor
+        var desc = renderingData.cameraData.cameraTargetDescriptor;
+
+        // Vamos guardar depth como cor (evita treta de copiar depth nativo)
+        desc.depthBufferBits = 0;
+        desc.msaaSamples = 1;
+
+        // R32_SFloat é ótimo pra depth; se sua plataforma não suportar, tente R16_UNorm
+        desc.graphicsFormat = GraphicsFormat.R32_SFloat;
+
+        RenderingUtils.ReAllocateIfNeeded(
+            ref m_DepthRTHandle,
+            desc,
+            FilterMode.Bilinear,
+            TextureWrapMode.Clamp,
+            name: k_DepthRTName
+        );
+
+        // Setup do pass depth->color
+        m_DepthToColorPass.Setup(renderer.cameraColorTargetHandle, m_DepthRTHandle);
+
+        // Passa RT pro edge pass (do sample)
+        m_DepthEdgePass.SetRTHandle(ref m_DepthRTHandle, renderer.cameraColorTargetHandle);
+    }
+
+    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+    {
+        if (renderingData.cameraData.cameraType != CameraType.Game)
+            return;
+
+        if (copyDepthShader == null)
+            return;
+
+        if (m_CopyDepthMaterial == null)
+            m_CopyDepthMaterial = CoreUtils.CreateEngineMaterial(copyDepthShader);
+
+        // garante que o pass está com o material certo
+        if (m_DepthToColorPass == null)
+            m_DepthToColorPass = new DepthToColorPass(evt_Depth, m_CopyDepthMaterial);
+
+        renderer.EnqueuePass(m_DepthToColorPass);
+
+        if (m_DepthEdgePass != null)
+            renderer.EnqueuePass(m_DepthEdgePass);
     }
 
     protected override void Dispose(bool disposing)
     {
         m_DepthRTHandle?.Release();
+        m_DepthRTHandle = null;
+
         CoreUtils.Destroy(m_CopyDepthMaterial);
+        m_CopyDepthMaterial = null;
+
+        m_DepthToColorPass = null;
         m_DepthEdgePass = null;
-        m_CopyDepthPass = null;
-        m_DepthOnlyPass = null;
     }
 }

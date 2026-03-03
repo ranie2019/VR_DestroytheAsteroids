@@ -3,35 +3,35 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class c : MonoBehaviour
 {
-    [Header("Configurações de Lançamento")]
-    public float throwForce = 10f;  // Força aplicada ao lançar o objeto
+    [Header("Configuraï¿½ï¿½es de Lanï¿½amento")]
+    public float throwForce = 10f;  // Forï¿½a aplicada ao lanï¿½ar o objeto
 
-    private XRGrabInteractable grabInteractable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
     private Rigidbody objectRigidbody;
 
     private void Awake()
     {
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         objectRigidbody = GetComponent<Rigidbody>();
 
-        // Verifica se o Rigidbody está marcado como kinematic
+        // Verifica se o Rigidbody estï¿½ marcado como kinematic
         if (objectRigidbody.isKinematic)
         {
             objectRigidbody.isKinematic = false;
         }
 
-        // Atribuindo o evento de 'on detach' para o lançamento
+        // Atribuindo o evento de 'on detach' para o lanï¿½amento
         grabInteractable.selectExited.AddListener(OnThrow);
     }
 
     private void OnThrow(SelectExitEventArgs args)
     {
-        if (!args.isCanceled) // Garante que o lançamento não foi cancelado
+        if (!args.isCanceled) // Garante que o lanï¿½amento nï¿½o foi cancelado
         {
-            // Obtém a direção de lançamento do interactor
+            // Obtï¿½m a direï¿½ï¿½o de lanï¿½amento do interactor
             Vector3 throwDirection = args.interactorObject.transform.forward;
 
-            // Lança o objeto com a força definida
+            // Lanï¿½a o objeto com a forï¿½a definida
             LaunchObject(throwDirection);
         }
     }
@@ -40,7 +40,7 @@ public class c : MonoBehaviour
     {
         objectRigidbody.isKinematic = false; // Garante que o Rigidbody esteja ativo
 
-        // Aplica uma força ao Rigidbody para lançar o objeto
+        // Aplica uma forï¿½a ao Rigidbody para lanï¿½ar o objeto
         objectRigidbody.AddForce(direction * throwForce, ForceMode.Impulse);
     }
 
@@ -57,6 +57,6 @@ public class c : MonoBehaviour
 
     private void OnGrab(SelectEnterEventArgs args)
     {
-        // Lógica opcional ao agarrar o objeto
+        // Lï¿½gica opcional ao agarrar o objeto
     }
 }
