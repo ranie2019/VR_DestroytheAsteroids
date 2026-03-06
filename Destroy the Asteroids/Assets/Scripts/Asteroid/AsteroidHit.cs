@@ -8,6 +8,10 @@ public class AsteroidHit : MonoBehaviour
     [SerializeField] private float explosionLifetime = 2f; // Tempo de vida da explosão
     [SerializeField] private float asteroidDestroyDelay = 0f; // Tempo antes de destruir o asteroide
 
+    [Header("Áudio")]
+    [SerializeField] private AudioClip explosionSound; // Som da explosão
+    [SerializeField] private float audioVolume = 1f;
+
     [Header("Referências Externas")]
     [SerializeField] private GameObject popupCanvas; // Prefab do popup de pontuação
     private Transform playerTransform; // Transform do jogador
@@ -25,7 +29,6 @@ public class AsteroidHit : MonoBehaviour
             playerTransform = GameObject.FindWithTag("Player")?.transform;
         }
 
-        // Verificação adicional para prefabs obrigatórios
         if (asteroidExplosion == null)
         {
             Debug.LogError("O prefab de explosão não foi atribuído ao campo 'Asteroid Explosion'!");
@@ -39,24 +42,24 @@ public class AsteroidHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica se o objeto que colidiu tem a tag "Laser"
         if (collision.gameObject.CompareTag("Laser"))
         {
             HandleAsteroidDestruction();
-            Destroy(collision.gameObject); // Destrói o laser após a colisão
+            Destroy(collision.gameObject);
         }
     }
 
     public void HandleAsteroidDestruction()
     {
-        // Instancia a explosão do asteroide
+        // NOVO: toca o áudio
+        PlayExplosionSound();
+
+        // Instancia a explosão
         CreateExplosion();
 
-        // Calcula e exibe a pontuação
         int asteroidScore = CalculateScore();
         ShowScorePopup(asteroidScore);
 
-        // Atualiza a pontuação do jogador
         if (gameController != null)
         {
             gameController.UpdatePlayerScore(asteroidScore);
@@ -66,17 +69,15 @@ public class AsteroidHit : MonoBehaviour
             Debug.LogWarning("GameController não encontrado. Não foi possível atualizar a pontuação!");
         }
 
-        // Destroi o asteroide após o tempo de delay
         Destroy(gameObject, asteroidDestroyDelay);
     }
 
     private void CreateExplosion()
     {
-        // Verifica se o prefab da explosão foi atribuído antes de instanciar
         if (asteroidExplosion != null)
         {
             GameObject explosion = Instantiate(asteroidExplosion, transform.position, transform.rotation);
-            Destroy(explosion, explosionLifetime); // Destroi a explosão após o tempo definido
+            Destroy(explosion, explosionLifetime);
         }
         else
         {
@@ -84,31 +85,33 @@ public class AsteroidHit : MonoBehaviour
         }
     }
 
+    // ===== NOVA FUNÇÃO DE ÁUDIO =====
+    private void PlayExplosionSound()
+    {
+        if (explosionSound != null)
+        {
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position, audioVolume);
+        }
+    }
+
     private int CalculateScore()
     {
-        // Calcula a pontuação com base na distância do centro da cena (Vector3.zero)
         float distanceFromCenter = Vector3.Distance(transform.position, Vector3.zero);
-
-        // Garante que a pontuação mínima seja 1
         return Mathf.Max(1, (int)distanceFromCenter);
     }
 
     private void ShowScorePopup(int score)
     {
-        // Verifica se o prefab do popup foi atribuído antes de instanciar
         if (popupCanvas != null && playerTransform != null)
         {
             GameObject asteroidPopup = Instantiate(popupCanvas, transform.position, Quaternion.identity);
             TextMeshProUGUI scoreText = asteroidPopup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-            // Define o texto do popup como a pontuação calculada
             scoreText.text = score.ToString();
 
-            // Ajusta a escala do popup com base na distância do centro
             float scaleMultiplier = Vector3.Distance(transform.position, Vector3.zero) / 10f;
-            asteroidPopup.transform.localScale = transform.localScale * (scaleMultiplier / 2f); // Reduz o tamanho pela metade
+            asteroidPopup.transform.localScale = transform.localScale * (scaleMultiplier / 2f);
 
-            // Aponta o popup para o jogador
             Vector3 directionToPlayer = (playerTransform.position - asteroidPopup.transform.position).normalized;
             asteroidPopup.transform.forward = directionToPlayer;
         }

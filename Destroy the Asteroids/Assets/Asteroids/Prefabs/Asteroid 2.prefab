@@ -210,6 +210,8 @@ MonoBehaviour:
     type: 3}
   explosionLifetime: 2
   asteroidDestroyDelay: 0
+  explosionSound: {fileID: 8300000, guid: b60feae168fefa341bbd7c90703c28ad, type: 3}
+  audioVolume: 1
   popupCanvas: {fileID: 9011070306959793057, guid: d9f405dc6602b5446adc6ffa9acd8daf,
     type: 3}
 --- !u!82 &2227534531358929818
