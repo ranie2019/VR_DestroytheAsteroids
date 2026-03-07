@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81612b21943d5b34d9e1d3cd4291f8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabInteractable: {fileID: 0}
+  grabInteractable: {fileID: 8426511329787241657}
 --- !u!114 &5558075524788432503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempoDeInatividade: 180
+  travarTransformTotalmente: 1
+  travarRigidbody: 1
   ativacaoSound: {fileID: 8300000, guid: 982b9c2824a84e84abdb2cf51a43b7d2, type: 3}
 --- !u!114 &8426511329787241657
 MonoBehaviour:

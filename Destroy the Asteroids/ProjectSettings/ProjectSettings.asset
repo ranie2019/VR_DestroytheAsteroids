@@ -148,6 +148,7 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 259b1bc6ce3be9643947e8b4dde194be, type: 2}
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: 11400000, guid: af52dce7d520a4d44aeb7c38f1ea219d, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -860,6 +861,7 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
