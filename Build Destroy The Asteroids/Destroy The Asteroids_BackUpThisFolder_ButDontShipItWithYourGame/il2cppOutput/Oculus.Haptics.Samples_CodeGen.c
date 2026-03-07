@@ -1,0 +1,99 @@
+﻿#include "pch-c.h"
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void HapticsSdkGuidance_get_CurrentPopUpIndex_mF6127869105DFDC1A16952E34F0AD1148DF4D02A (void);
+extern void HapticsSdkGuidance_set_CurrentPopUpIndex_m7C8E4956FB861834E3CD2368DC6EB4D6AFF0D3B5 (void);
+extern void HapticsSdkGuidance_Awake_m8AEE3EF9F183D9E22F4B4067A9D4BEAC4164F385 (void);
+extern void HapticsSdkGuidance_NextStep_m5508198157C330A7FC145CAB20476AF27CDE8119 (void);
+extern void HapticsSdkGuidance__ctor_m67226127BB1C6A0F5AF8AD6BC5C8E566900422B1 (void);
+extern void HapticsSdkOVRControllerGuidance_Update_m23B7FF8FF4781DED7824A4D6B5358C97F61F1ED4 (void);
+extern void HapticsSdkOVRControllerGuidance_HandleHapticsSdkGuidanceStep_m990DA130B4DCDDDC2C9830187EDD06D81C229DE4 (void);
+extern void HapticsSdkOVRControllerGuidance_HandleControllerInput_m5E697F3394BD84F5254E3E0CC56D13A7CA5191DD (void);
+extern void HapticsSdkOVRControllerGuidance__ctor_m5D21717999DF225F3C76AC69B00348BFCE460C31 (void);
+extern void HapticsSdkPlaySample_Start_mB39D184E5418A6302A6A13A7E5EDCEE2DA67D0B5 (void);
+extern void HapticsSdkPlaySample_PlayFirstClip_mED4C03B8733C3C3B4B5794D69FE39DF35F488DD7 (void);
+extern void HapticsSdkPlaySample_StopFirstClip_m5AD6B3AB085585458545BB2797EE2E38FEEDD44A (void);
+extern void HapticsSdkPlaySample_SetLoopingOfFirstClip_m79080372E878BA176F3DF8694AC70204DED920FB (void);
+extern void HapticsSdkPlaySample_ModulateAmplitudeAndFrequencyOfFirstClip_m0B2D91A817207E188FA2154BCC4595689603ED51 (void);
+extern void HapticsSdkPlaySample_PlaySecondClip_m5E3830B68B705FDDCF75EB75161AD24084FEEF12 (void);
+extern void HapticsSdkPlaySample_StopSecondClip_mADBEE7F665F7FF3617EAC4B7B3EAA24FC337A500 (void);
+extern void HapticsSdkPlaySample_OnDestroy_m518CD6DB33F42B7A7FBE89511162D0F5E794ABCC (void);
+extern void HapticsSdkPlaySample_OnApplicationQuit_m06DE66D30FEE7B8A5EE9FDE4047AD0E623CB0CF9 (void);
+extern void HapticsSdkPlaySample__ctor_m0EEDEA1775F2229677B214941F9A3714F64F562E (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m2B68F10BC46BAD5272688150A8A255C0A43CAAD2 (void);
+extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m9AFC41CB0CD3FEFCCD4F696ADAB32E8376983A3E (void);
+static Il2CppMethodPointer s_methodPointers[21] = 
+{
+	HapticsSdkGuidance_get_CurrentPopUpIndex_mF6127869105DFDC1A16952E34F0AD1148DF4D02A,
+	HapticsSdkGuidance_set_CurrentPopUpIndex_m7C8E4956FB861834E3CD2368DC6EB4D6AFF0D3B5,
+	HapticsSdkGuidance_Awake_m8AEE3EF9F183D9E22F4B4067A9D4BEAC4164F385,
+	HapticsSdkGuidance_NextStep_m5508198157C330A7FC145CAB20476AF27CDE8119,
+	HapticsSdkGuidance__ctor_m67226127BB1C6A0F5AF8AD6BC5C8E566900422B1,
+	HapticsSdkOVRControllerGuidance_Update_m23B7FF8FF4781DED7824A4D6B5358C97F61F1ED4,
+	HapticsSdkOVRControllerGuidance_HandleHapticsSdkGuidanceStep_m990DA130B4DCDDDC2C9830187EDD06D81C229DE4,
+	HapticsSdkOVRControllerGuidance_HandleControllerInput_m5E697F3394BD84F5254E3E0CC56D13A7CA5191DD,
+	HapticsSdkOVRControllerGuidance__ctor_m5D21717999DF225F3C76AC69B00348BFCE460C31,
+	HapticsSdkPlaySample_Start_mB39D184E5418A6302A6A13A7E5EDCEE2DA67D0B5,
+	HapticsSdkPlaySample_PlayFirstClip_mED4C03B8733C3C3B4B5794D69FE39DF35F488DD7,
+	HapticsSdkPlaySample_StopFirstClip_m5AD6B3AB085585458545BB2797EE2E38FEEDD44A,
+	HapticsSdkPlaySample_SetLoopingOfFirstClip_m79080372E878BA176F3DF8694AC70204DED920FB,
+	HapticsSdkPlaySample_ModulateAmplitudeAndFrequencyOfFirstClip_m0B2D91A817207E188FA2154BCC4595689603ED51,
+	HapticsSdkPlaySample_PlaySecondClip_m5E3830B68B705FDDCF75EB75161AD24084FEEF12,
+	HapticsSdkPlaySample_StopSecondClip_mADBEE7F665F7FF3617EAC4B7B3EAA24FC337A500,
+	HapticsSdkPlaySample_OnDestroy_m518CD6DB33F42B7A7FBE89511162D0F5E794ABCC,
+	HapticsSdkPlaySample_OnApplicationQuit_m06DE66D30FEE7B8A5EE9FDE4047AD0E623CB0CF9,
+	HapticsSdkPlaySample__ctor_m0EEDEA1775F2229677B214941F9A3714F64F562E,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_m2B68F10BC46BAD5272688150A8A255C0A43CAAD2,
+	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_m9AFC41CB0CD3FEFCCD4F696ADAB32E8376983A3E,
+};
+static const int32_t s_InvokerIndices[21] = 
+{
+	39593,
+	37839,
+	23541,
+	23541,
+	23541,
+	23541,
+	23541,
+	8355,
+	23541,
+	23541,
+	17662,
+	17662,
+	17662,
+	8608,
+	17662,
+	17662,
+	23541,
+	23541,
+	23541,
+	39785,
+	23541,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Oculus_Haptics_Samples_CodeGenModule;
+const Il2CppCodeGenModule g_Oculus_Haptics_Samples_CodeGenModule = 
+{
+	"Oculus.Haptics.Samples.dll",
+	21,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};
