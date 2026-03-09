@@ -1,86 +1,121 @@
 ﻿using UnityEngine;
-using TMPro;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 public class PlacarRecords : MonoBehaviour
 {
     [Header("Fonte da Pontuação")]
     [SerializeField] private PontoController pontoController;
 
-    [Header("Objetos do Ranking (com filho 'Record')")]
-    [SerializeField] private List<GameObject> recordObjects;
+    [Header("Persistência dos records")]
+    [SerializeField] private SaveRecords saveRecords;
 
-    [Header("Tempo de espera (em segundos) após preencher textos")]
-    [SerializeField] private float tempoDeEspera = 0.5f;
+    private int pontuacaoFinalPendente = -1;
+    private bool aguardandoNome = false;
 
     private void Start()
     {
-        Debug.Log("📌 PlacarRecords iniciado.");
+        if (saveRecords == null)
+        {
+            Debug.LogError("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
+            return;
+        }
+
+        saveRecords.CarregarRecordsNoPlacar();
+        Debug.Log("📥 Placar carregado no início.");
     }
 
-    // Chame essa função ao final do jogo
+    /// <summary>
+    /// Chame essa função quando o jogo acabar.
+    /// Ela captura a pontuação final da partida e deixa pronta para salvar.
+    /// </summary>
     public void RegistrarPontuacaoFinal()
     {
         if (pontoController == null)
         {
-            Debug.LogError("⚠️ ERRO: PontoController não atribuído!");
+            Debug.LogError("⚠️ PlacarRecords: PontoController não foi atribuído.");
             return;
         }
 
-        int playerScore = pontoController.GetPontosFinais();
-        Debug.Log($"✅ Pontuação capturada: {playerScore:N0}");
+        pontuacaoFinalPendente = pontoController.GetPontosFinais();
+        aguardandoNome = true;
 
-        // Espera os textos atualizarem antes de ordenar
-        StartCoroutine(OrdenarDepoisDeAtualizar());
+        Debug.Log($"✅ Pontuação final capturada: {pontuacaoFinalPendente}");
     }
 
-    private IEnumerator OrdenarDepoisDeAtualizar()
+    /// <summary>
+    /// O teclado deve chamar essa função passando o nome digitado.
+    /// Exemplo:
+    /// placarRecords.ConfirmarNomeDoJogador("RANIE");
+    /// </summary>
+    public void ConfirmarNomeDoJogador(string nomeJogador)
     {
-        yield return new WaitForSeconds(tempoDeEspera);
-        OrdenarPlacarPorPontuacao();
+        if (saveRecords == null)
+        {
+            Debug.LogError("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
+            return;
+        }
+
+        if (!aguardandoNome)
+        {
+            Debug.LogWarning("⚠️ PlacarRecords: não existe pontuação pendente para salvar.");
+            return;
+        }
+
+        if (pontuacaoFinalPendente < 0)
+        {
+            Debug.LogWarning("⚠️ PlacarRecords: pontuação pendente inválida.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(nomeJogador))
+            nomeJogador = "Name";
+
+        saveRecords.RegistrarNovoRecord(nomeJogador.Trim(), pontuacaoFinalPendente);
+
+        Debug.Log($"💾 Record salvo: {nomeJogador} - {pontuacaoFinalPendente}");
+
+        pontuacaoFinalPendente = -1;
+        aguardandoNome = false;
     }
 
-    private void OrdenarPlacarPorPontuacao()
+    /// <summary>
+    /// Cancela a pontuação pendente atual.
+    /// </summary>
+    public void CancelarPontuacaoPendente()
     {
-        // Guarda a posição original de cada objeto
-        List<Vector3> posicoesOrdenadas = recordObjects
-            .Select(obj => obj.transform.localPosition)
-            .OrderByDescending(pos => pos.y) // Ordem vertical do canvas
-            .ToList();
+        pontuacaoFinalPendente = -1;
+        aguardandoNome = false;
 
-        // Cria lista com a pontuação lida do filho "Record"
-        List<(GameObject obj, int score)> ranking = new List<(GameObject, int)>();
+        Debug.Log("❌ Pontuação pendente cancelada.");
+    }
 
-        foreach (var obj in recordObjects)
+    /// <summary>
+    /// Retorna se existe pontuação aguardando nome.
+    /// </summary>
+    public bool EstaAguardandoNome()
+    {
+        return aguardandoNome;
+    }
+
+    /// <summary>
+    /// Retorna a pontuação final pendente.
+    /// </summary>
+    public int GetPontuacaoFinalPendente()
+    {
+        return pontuacaoFinalPendente;
+    }
+
+    /// <summary>
+    /// Recarrega manualmente o placar salvo.
+    /// </summary>
+    public void RecarregarPlacar()
+    {
+        if (saveRecords == null)
         {
-            if (obj == null) continue;
-
-            Transform recordChild = obj.transform.Find("Record");
-
-            if (recordChild != null && recordChild.TryGetComponent(out TextMeshProUGUI recordText))
-            {
-                string texto = recordText.text.Replace(".", "").Replace(",", "").Trim();
-                int score = int.TryParse(texto, out int s) ? s : 0;
-                ranking.Add((obj, score));
-            }
-            else
-            {
-                ranking.Add((obj, 0)); // fallback
-            }
+            Debug.LogWarning("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
+            return;
         }
 
-        // Ordena a lista com base na pontuação (maior para cima)
-        var rankingOrdenado = ranking.OrderByDescending(x => x.score).ToList();
-
-        // Atribui a nova posição com base na ordem do ranking
-        for (int i = 0; i < rankingOrdenado.Count; i++)
-        {
-            rankingOrdenado[i].obj.transform.localPosition = posicoesOrdenadas[i];
-            Debug.Log($"[{i + 1}] {rankingOrdenado[i].obj.name} => {rankingOrdenado[i].score} pontos => Posição Y: {posicoesOrdenadas[i].y}");
-        }
-
-        Debug.Log("✅ Placar reorganizado visualmente por pontuação.");
+        saveRecords.CarregarRecordsNoPlacar();
+        Debug.Log("🔄 Placar recarregado manualmente.");
     }
 }

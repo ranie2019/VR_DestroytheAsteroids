@@ -16645,17 +16645,49 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScrollRect_set_verticalNormalizedPositio
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScrollRect_SetHorizontalNormalizedPosition_m3F43FC307A146E534DC3F73F4DE38386AAC10405 (ScrollRect_t17D2F2939CA8953110180DF53164CFC3DC88D70E* __this, float ___0_value, const RuntimeMethod* method) 
 {
+	bool V_0 = false;
 	{
-		float L_0 = ___0_value;
-		VirtualActionInvoker2< float, int32_t >::Invoke(49, __this, L_0, 0);
+		float L_0;
+		L_0 = ScrollRect_get_horizontalNormalizedPosition_mC2C3A7F67E27AA7470A81042AD2B0AD0B5F1AF93(__this, NULL);
+		float L_1 = ___0_value;
+		V_0 = (bool)((((int32_t)((((float)L_0) == ((float)L_1))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		bool L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_001a;
+		}
+	}
+	{
+		float L_3 = ___0_value;
+		VirtualActionInvoker2< float, int32_t >::Invoke(49, __this, L_3, 0);
+	}
+
+IL_001a:
+	{
 		return;
 	}
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScrollRect_SetVerticalNormalizedPosition_m4E9F3559FA6369389C1B70D3E94AA35AEC7903E5 (ScrollRect_t17D2F2939CA8953110180DF53164CFC3DC88D70E* __this, float ___0_value, const RuntimeMethod* method) 
 {
+	bool V_0 = false;
 	{
-		float L_0 = ___0_value;
-		VirtualActionInvoker2< float, int32_t >::Invoke(49, __this, L_0, 1);
+		float L_0;
+		L_0 = ScrollRect_get_verticalNormalizedPosition_m4FE766F04272C1805FDE2A4B72D80F6190841FA1(__this, NULL);
+		float L_1 = ___0_value;
+		V_0 = (bool)((((int32_t)((((float)L_0) == ((float)L_1))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		bool L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_001a;
+		}
+	}
+	{
+		float L_3 = ___0_value;
+		VirtualActionInvoker2< float, int32_t >::Invoke(49, __this, L_3, 1);
+	}
+
+IL_001a:
+	{
 		return;
 	}
 }

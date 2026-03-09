@@ -157,7 +157,7 @@ struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87;
 struct Action_1_tEFD4B3570567C07AE1CC4A2D290987F4347F2F01;
 struct Action_2_t829FF86EEA250A853DF3A95B2C4DAC034707E20F;
 struct Action_2_t4FD84D64C1341169AC2F73750A356411BCEAF88A;
-struct Action_3_t49FA781C56DE067155C075179D6ACD0931791091;
+struct Action_3_t1087DE4BCAA11662F41D9F6974FE64A1A8E972F8;
 struct BasicNodePool_1_tC6A4D3981871B022827FEC48623A7DD565857F50;
 struct BasicNodePool_1_t073A79E90DF0EFECF50348C64C13C664766F45E4;
 struct BasicNode_1_t35824621448B5C86B405174E9DDB413FA8F4CEAE;
@@ -237,6 +237,7 @@ struct List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73;
 struct List_1_t7800E70A7392F23CB7BF14247E9530BCCF67CE7E;
 struct List_1_t569CB45C96475FFA9C716A7CC2ADE24112D38121;
 struct List_1_t285B009FCA959BE44A1AC977C669EA806F59D427;
+struct List_1_t5C642E497E84A11D96D7387A1B546577D1804D43;
 struct List_1_t05E9D64FA04264FFFD8318E39EE4EFC55D386E13;
 struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D;
 struct List_1_t2200D844C9319E1BF28395CD8C04CBF94E6A7EEE;
@@ -2273,7 +2274,7 @@ struct Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB_marshaled_com
 {
 	intptr_t ___m_Ptr;
 };
-struct EventModifiers_tB9DEEF73F8FC4C312B8E0C34336C7D9C3023B270 
+struct EventModifiers_t48244B043FBB42CDD555C6AC43279EC7158777AC 
 {
 	int32_t ___value__;
 };
@@ -2632,6 +2633,7 @@ struct UIRenderDevice_t59628CBA89B4617E832C2B270E1C1A3931D01302  : public Runtim
 	float ___m_IndexToVertexCountRatio;
 	List_1_tB86898E2E533634C35EC58EC5DAE3353038A9210* ___m_DeferredFrees;
 	List_1_tA79C35FB5E50135962B53960CB758B9262700632* ___m_Updates;
+	List_1_t5C642E497E84A11D96D7387A1B546577D1804D43* ___m_MeshesPendingFree;
 	CommandListManager_tE51C77834C44250F2CB8B9505F24D75EB559A764* ___m_CommandListManager;
 	UInt32U5BU5D_t02FBD658AD156A17574ECE6106CF1FBFCC9807FA* ___m_Fences;
 	MaterialPropertyBlock_t2308669579033A857EFE6E4831909F638B27411D* ___m_ConstantProps;
@@ -2639,6 +2641,7 @@ struct UIRenderDevice_t59628CBA89B4617E832C2B270E1C1A3931D01302  : public Runtim
 	uint32_t ___m_FrameIndex;
 	uint32_t ___m_NextUpdateID;
 	DrawStatistics_t4AF06C67CEC7B97509EBAD48E3EE908301598E6F ___m_DrawStats;
+	bool ___m_RenderingInProgress;
 	LinkedPool_1_tD8A175EE023C8220138E51E722F4A20ACE9CA851* ___m_MeshHandles;
 	DrawParams_t523864F415D78BD8BB14E8B7BD349594D6187443* ___m_DrawParams;
 	TextureSlotManager_tB1F8E620AE296DE3728FAAFBE3CC85D2A176928D* ___m_TextureSlotManager;
@@ -4253,7 +4256,7 @@ struct GUIUtility_tA20863F7281628086EFC61CF90CB52D20E1FD76A_StaticFields
 	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___cleanupRoots;
 	Func_2_tDDBE08B46BEFDD869DE0B97D023CB9C89674FED6* ___endContainerGUIFromException;
 	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___guiChanged;
-	Action_3_t49FA781C56DE067155C075179D6ACD0931791091* ___beforeEventProcessed;
+	Action_3_t1087DE4BCAA11662F41D9F6974FE64A1A8E972F8* ___beforeEventProcessed;
 	Event_tEBC6F24B56CE22B9C9AD1AC6C24A6B83BC3860CB* ___m_Event;
 	bool ___U3CguiIsExitingU3Ek__BackingField;
 	Func_1_t2BE7F58348C9CC544A8973B3A9E55541DE43C457* ___s_HasCurrentWindowKeyFocusFunc;
@@ -5716,8 +5719,8 @@ inline bool KeyboardEventBase_1_get_actionKey_m41727377DE6FBE0D53A28DC0C639254BA
 }
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_button_m8661CD81ADA679F625C9FD8E9B3EF9B282499F59_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_button_m7D270A0FB7BF8D63EE26483770D72A0676374769_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) ;
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) ;
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_clickCount_m8EF3978EDDB6111E7805D79D2596F90E6D2AA978_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ManipulatorActivationFilter_Equals_m6D9CDF042CE2808C90A212A43262ADD9BB9CAC41 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81 ___0_other, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ManipulatorActivationFilter_Equals_m5BE53154869F0B26619DB5EEE913398BE351483E (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, RuntimeObject* ___0_obj, const RuntimeMethod* method) ;
@@ -13929,23 +13932,23 @@ IL2CPP_EXTERN_C  void ManipulatorActivationFilter_set_button_m7D270A0FB7BF8D63EE
 	_thisAdjusted = reinterpret_cast<ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81*>(__this + _offset);
 	ManipulatorActivationFilter_set_button_m7D270A0FB7BF8D63EE26483770D72A0676374769_inline(_thisAdjusted, ___0_value, method);
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = __this->___U3CmodifiersU3Ek__BackingField;
 		return L_0;
 	}
 }
-IL2CPP_EXTERN_C  int32_t ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+IL2CPP_EXTERN_C  int32_t ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
 {
 	ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* _thisAdjusted;
 	int32_t _offset = 1;
 	_thisAdjusted = reinterpret_cast<ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81*>(__this + _offset);
 	int32_t _returnValue;
-	_returnValue = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(_thisAdjusted, method);
+	_returnValue = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(_thisAdjusted, method);
 	return _returnValue;
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = ___0_value;
@@ -13953,12 +13956,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifier
 		return;
 	}
 }
-IL2CPP_EXTERN_C  void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_AdjustorThunk (RuntimeObject* __this, int32_t ___0_value, const RuntimeMethod* method)
+IL2CPP_EXTERN_C  void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_AdjustorThunk (RuntimeObject* __this, int32_t ___0_value, const RuntimeMethod* method)
 {
 	ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* _thisAdjusted;
 	int32_t _offset = 1;
 	_thisAdjusted = reinterpret_cast<ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81*>(__this + _offset);
-	ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline(_thisAdjusted, ___0_value, method);
+	ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline(_thisAdjusted, ___0_value, method);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_clickCount_m8EF3978EDDB6111E7805D79D2596F90E6D2AA978 (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) 
 {
@@ -14043,9 +14046,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ManipulatorActivationFilter_Equals_m6D9C
 	}
 	{
 		int32_t L_2;
-		L_2 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_2 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		int32_t L_3;
-		L_3 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline((&___0_other), NULL);
+		L_3 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline((&___0_other), NULL);
 		if ((!(((uint32_t)L_2) == ((uint32_t)L_3))))
 		{
 			goto IL_0030;
@@ -14104,7 +14107,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_GetHashCo
 		V_0 = ((int32_t)il2cpp_codegen_add(((int32_t)il2cpp_codegen_multiply(L_0, ((int32_t)-1521134295))), L_2));
 		int32_t L_3 = V_0;
 		int32_t L_4;
-		L_4 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_4 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		V_2 = L_4;
 		int32_t L_5;
 		L_5 = Int32_GetHashCode_m253D60FF7527A483E91004B7A2366F13E225E295((&V_2), NULL);
@@ -14313,7 +14316,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ManipulatorActivationFilter_MatchModifie
 	int32_t G_B24_0 = 0;
 	{
 		int32_t L_0;
-		L_0 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_0 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		if (!((int32_t)((int32_t)L_0&4)))
 		{
 			goto IL_000e;
@@ -14330,7 +14333,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ManipulatorActivationFilter_MatchModifie
 IL_000e:
 	{
 		int32_t L_2;
-		L_2 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_2 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		bool L_3 = ___0_alt;
 		G_B4_0 = ((int32_t)(((((int32_t)((int32_t)((int32_t)L_2&4))) == ((int32_t)0))? 1 : 0)&(int32_t)L_3));
 		goto IL_001e;
@@ -14358,7 +14361,7 @@ IL_001e:
 IL_0027:
 	{
 		int32_t L_5;
-		L_5 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_5 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		if (!((int32_t)((int32_t)L_5&2)))
 		{
 			goto IL_0034;
@@ -14375,7 +14378,7 @@ IL_0027:
 IL_0034:
 	{
 		int32_t L_7;
-		L_7 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_7 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		bool L_8 = ___1_ctrl;
 		G_B10_0 = ((int32_t)(((((int32_t)((int32_t)((int32_t)L_7&2))) == ((int32_t)0))? 1 : 0)&(int32_t)L_8));
 		goto IL_0044;
@@ -14403,7 +14406,7 @@ IL_0044:
 IL_004d:
 	{
 		int32_t L_10;
-		L_10 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_10 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		if (!((int32_t)((int32_t)L_10&1)))
 		{
 			goto IL_005a;
@@ -14420,7 +14423,7 @@ IL_004d:
 IL_005a:
 	{
 		int32_t L_12;
-		L_12 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_12 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		bool L_13 = ___2_shift;
 		G_B16_0 = ((int32_t)(((((int32_t)((int32_t)((int32_t)L_12&1))) == ((int32_t)0))? 1 : 0)&(int32_t)L_13));
 		goto IL_006a;
@@ -14448,7 +14451,7 @@ IL_006a:
 IL_0073:
 	{
 		int32_t L_15;
-		L_15 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_15 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		bool L_16 = ___3_command;
 		if (!((int32_t)(((((int32_t)((int32_t)((int32_t)L_15&8))) == ((int32_t)0))? 1 : 0)|(int32_t)L_16)))
 		{
@@ -14457,7 +14460,7 @@ IL_0073:
 	}
 	{
 		int32_t L_17;
-		L_17 = ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline(__this, NULL);
+		L_17 = ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline(__this, NULL);
 		if (((int32_t)((int32_t)L_17&8)))
 		{
 			goto IL_0094;
@@ -31986,14 +31989,14 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mDEEF6A0254EB7A61AC9F501ED27EF0C9DE85E6D7_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ManipulatorActivationFilter_get_modifiers_mEF6562F67467567816B75BE923125F51CFAA1860_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = __this->___U3CmodifiersU3Ek__BackingField;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = ___0_value;

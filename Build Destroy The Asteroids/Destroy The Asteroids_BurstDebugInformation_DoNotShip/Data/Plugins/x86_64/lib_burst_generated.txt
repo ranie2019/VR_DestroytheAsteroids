@@ -12,7 +12,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -130,7 +130,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -248,7 +248,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -340,7 +340,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -434,7 +434,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -456,7 +456,7 @@ Library: D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Bur
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\Burst
 --debug=LineOnly
---key-folder=D:/Unity/6000.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=D:/Unity/6000.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Library\Burst
 --output=D:\Unity Projetos\VR_DestroytheAsteroids\Destroy the Asteroids\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/

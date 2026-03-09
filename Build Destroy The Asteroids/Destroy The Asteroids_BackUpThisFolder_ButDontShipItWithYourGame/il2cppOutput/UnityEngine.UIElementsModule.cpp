@@ -28804,6 +28804,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool DataBindingManager_TryGetBindingRequest_
 	memset((&V_4), 0, sizeof(V_4));
 	bool V_5 = false;
 	bool V_6 = false;
+	int32_t G_B6_0 = 0;
 	{
 		VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* L_0 = ___0_element;
 		il2cpp_codegen_runtime_class_init_inline(DataBindingManager_tE7B33E64EBBDCAB0A89B6A8421529F9BA0D066E1_il2cpp_TypeInfo_var);
@@ -28825,7 +28826,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool DataBindingManager_TryGetBindingRequest_
 		*((RuntimeObject**)L_5) = (RuntimeObject*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_5, (void*)(RuntimeObject*)NULL);
 		V_2 = (bool)0;
-		goto IL_0071;
+		goto IL_0080;
 	}
 
 IL_0022:
@@ -28835,7 +28836,7 @@ IL_0022:
 		int32_t L_7;
 		L_7 = List_1_get_Count_m2D941957E274B0973B6C00B985E7902CF8B9EA1E_inline(L_6, List_1_get_Count_m2D941957E274B0973B6C00B985E7902CF8B9EA1E_RuntimeMethod_var);
 		V_3 = ((int32_t)il2cpp_codegen_subtract(L_7, 1));
-		goto IL_005d;
+		goto IL_006c;
 	}
 
 IL_002d:
@@ -28851,56 +28852,75 @@ IL_002d:
 		il2cpp_codegen_runtime_class_init_inline(BindingId_t8BBB6188CD126EACCA07816C78760E92DC16620E_il2cpp_TypeInfo_var);
 		bool L_13;
 		L_13 = BindingId_op_Inequality_mF5EF17A9172A8D32FB393C512F389D6A3EB0019A(L_11, L_12, NULL);
-		V_5 = L_13;
-		bool L_14 = V_5;
-		if (!L_14)
+		if (L_13)
 		{
-			goto IL_004c;
+			goto IL_0052;
 		}
 	}
 	{
-		goto IL_0059;
+		BindingRequest_tB47D4B85CD5F177F9D6891D44DE7958EE23A7172 L_14 = V_4;
+		bool L_15 = L_14.___shouldProcess;
+		G_B6_0 = ((((int32_t)L_15) == ((int32_t)0))? 1 : 0);
+		goto IL_0053;
 	}
 
-IL_004c:
+IL_0052:
 	{
-		Binding_tA1358A155852138C1926082E4F3245B6F631CBED** L_15 = ___2_binding;
-		BindingRequest_tB47D4B85CD5F177F9D6891D44DE7958EE23A7172 L_16 = V_4;
-		Binding_tA1358A155852138C1926082E4F3245B6F631CBED* L_17 = L_16.___binding;
-		*((RuntimeObject**)L_15) = (RuntimeObject*)L_17;
-		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_15, (void*)(RuntimeObject*)L_17);
+		G_B6_0 = 1;
+	}
+
+IL_0053:
+	{
+		V_5 = (bool)G_B6_0;
+		bool L_16 = V_5;
+		if (!L_16)
+		{
+			goto IL_005b;
+		}
+	}
+	{
+		goto IL_0068;
+	}
+
+IL_005b:
+	{
+		Binding_tA1358A155852138C1926082E4F3245B6F631CBED** L_17 = ___2_binding;
+		BindingRequest_tB47D4B85CD5F177F9D6891D44DE7958EE23A7172 L_18 = V_4;
+		Binding_tA1358A155852138C1926082E4F3245B6F631CBED* L_19 = L_18.___binding;
+		*((RuntimeObject**)L_17) = (RuntimeObject*)L_19;
+		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_17, (void*)(RuntimeObject*)L_19);
 		V_2 = (bool)1;
-		goto IL_0071;
+		goto IL_0080;
 	}
 
-IL_0059:
+IL_0068:
 	{
-		int32_t L_18 = V_3;
-		V_3 = ((int32_t)il2cpp_codegen_subtract(L_18, 1));
+		int32_t L_20 = V_3;
+		V_3 = ((int32_t)il2cpp_codegen_subtract(L_20, 1));
 	}
 
-IL_005d:
+IL_006c:
 	{
-		int32_t L_19 = V_3;
-		V_6 = (bool)((((int32_t)((((int32_t)L_19) < ((int32_t)0))? 1 : 0)) == ((int32_t)0))? 1 : 0);
-		bool L_20 = V_6;
-		if (L_20)
+		int32_t L_21 = V_3;
+		V_6 = (bool)((((int32_t)((((int32_t)L_21) < ((int32_t)0))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		bool L_22 = V_6;
+		if (L_22)
 		{
 			goto IL_002d;
 		}
 	}
 	{
-		Binding_tA1358A155852138C1926082E4F3245B6F631CBED** L_21 = ___2_binding;
-		*((RuntimeObject**)L_21) = (RuntimeObject*)NULL;
-		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_21, (void*)(RuntimeObject*)NULL);
+		Binding_tA1358A155852138C1926082E4F3245B6F631CBED** L_23 = ___2_binding;
+		*((RuntimeObject**)L_23) = (RuntimeObject*)NULL;
+		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_23, (void*)(RuntimeObject*)NULL);
 		V_2 = (bool)0;
-		goto IL_0071;
+		goto IL_0080;
 	}
 
-IL_0071:
+IL_0080:
 	{
-		bool L_22 = V_2;
-		return L_22;
+		bool L_24 = V_2;
+		return L_24;
 	}
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DataBindingManager_DirtyBindingOrder_mF0D827C788028A58BC3D00FDE049B3A326651FA4 (DataBindingManager_tE7B33E64EBBDCAB0A89B6A8421529F9BA0D066E1* __this, const RuntimeMethod* method) 

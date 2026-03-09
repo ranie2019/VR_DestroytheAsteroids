@@ -929,7 +929,7 @@ struct DropdownMenuSizeMode_t9AD9F30ADB29200FF5C65C72309B9EF28BD8E304
 {
 	int32_t ___value__;
 };
-struct EventModifiers_tB9DEEF73F8FC4C312B8E0C34336C7D9C3023B270 
+struct EventModifiers_t48244B043FBB42CDD555C6AC43279EC7158777AC 
 {
 	int32_t ___value__;
 };

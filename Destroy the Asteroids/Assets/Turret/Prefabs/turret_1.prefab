@@ -61,7 +61,7 @@ MonoBehaviour:
   projetilPrefab: {fileID: 3045333054189246682, guid: 8e73a56fd37940f4ca062c3bb08bf4bb,
     type: 3}
   taxaDisparo: 10
-  velocidadeProjetil: 10
+  velocidadeProjetil: 1
   velocidadeRotacaoBase: 180
   velocidadeRotacaoCabeca: 180
   laserSFX: {fileID: 8300000, guid: 61929cc1dcbaf814abfe0ddd1966c89b, type: 3}

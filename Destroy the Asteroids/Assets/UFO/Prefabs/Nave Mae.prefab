@@ -1180,10 +1180,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   velocidade: 200
-  velocidadeRotacao: 0.5
+  velocidadeRotacao: 0.2
   distanciaParaTrocar: 5
   distanciaAntecipacaoCurva: 4
-  velocidadeCurva: 90
+  velocidadeCurva: 50
   modeloForwardLocal: {x: 0, y: 0, z: 1}
   modeloUpLocal: {x: 0, y: 1, z: 0}
   visual: {fileID: 6224855322861527487}

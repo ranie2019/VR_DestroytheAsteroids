@@ -2615,7 +2615,7 @@ struct DropdownMenuSizeMode_t9AD9F30ADB29200FF5C65C72309B9EF28BD8E304
 {
 	int32_t ___value__;
 };
-struct EventModifiers_tB9DEEF73F8FC4C312B8E0C34336C7D9C3023B270 
+struct EventModifiers_t48244B043FBB42CDD555C6AC43279EC7158777AC 
 {
 	int32_t ___value__;
 };
@@ -4536,6 +4536,7 @@ struct ScrollView_t7CE209084E084FAA0E8DF3CD8E3B8BB9EB27E8D9  : public VisualElem
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___m_HighBounds;
 	float ___m_LastVelocityLerpTime;
 	bool ___m_StartedMoving;
+	bool ___m_TouchDraggingAllowed;
 	bool ___m_TouchPointerMoveAllowed;
 	bool ___m_TouchStoppedVelocity;
 	VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* ___m_CapturedTarget;
@@ -7259,7 +7260,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m9E3155FB84015C823606
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t BaseTreeView_GetItemIndex_mBAF8D523FC4E2CF647E1C122E8E43AD23E32A033 (BaseTreeView_t4B72EA959CB8F22C78269844A43D51C4AB360DD7* __this, int32_t ___0_id, bool ___1_expand, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BaseTreeView_set_autoExpand_mE277C6E89C792E232359936965F71236D1F0A6C2 (BaseTreeView_t4B72EA959CB8F22C78269844A43D51C4AB360DD7* __this, bool ___0_value, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ReusableCollectionItem_get_id_m765F123306544777F8B1E273AFB8A0A1E94C4857_inline (ReusableCollectionItem_t58A07E0E19A545B24DBE7711A46490EF5E239086* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CanStartDragArgs__ctor_m563F61052FFA7CDC085D6B4AC3C0EA0922707438 (CanStartDragArgs_tABF4E0D7A89F6C14BE4E8308C18129670E80DFEF* __this, VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* ___0_draggedElement, int32_t ___1_id, RuntimeObject* ___2_selectedIds, int32_t ___3_modifiers, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CanStartDragArgs__ctor_m90B350601A3C149C2FF42C9CD4B063DAEDC5C53D (CanStartDragArgs_tABF4E0D7A89F6C14BE4E8308C18129670E80DFEF* __this, VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* ___0_draggedElement, int32_t ___1_id, RuntimeObject* ___2_selectedIds, int32_t ___3_modifiers, const RuntimeMethod* method) ;
 inline bool Func_2_Invoke_m48A7AF321AF80BD8B48D0CE92423C2C4778CADC8_inline (Func_2_tD62FEF82C38D2F936C4A0BE93BCEEE9CF7A7DB06* __this, CanStartDragArgs_tABF4E0D7A89F6C14BE4E8308C18129670E80DFEF ___0_arg, const RuntimeMethod* method)
 {
 	return ((  bool (*) (Func_2_tD62FEF82C38D2F936C4A0BE93BCEEE9CF7A7DB06*, CanStartDragArgs_tABF4E0D7A89F6C14BE4E8308C18129670E80DFEF, const RuntimeMethod*))Func_2_Invoke_m48A7AF321AF80BD8B48D0CE92423C2C4778CADC8_gshared_inline)(__this, ___0_arg, method);
@@ -10419,7 +10420,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool BaseVerticalCollectionView_HasCanStartDr
 		return (bool)((!(((RuntimeObject*)(Func_2_tD62FEF82C38D2F936C4A0BE93BCEEE9CF7A7DB06*)L_0) <= ((RuntimeObject*)(RuntimeObject*)NULL)))? 1 : 0);
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool BaseVerticalCollectionView_RaiseCanStartDrag_m1A1F0FF11269C87CA22E06A52D90D3978F5D8B0D (BaseVerticalCollectionView_t2BCDC86B9E301E46CFB2500A834D640F0B96ADAE* __this, ReusableCollectionItem_t58A07E0E19A545B24DBE7711A46490EF5E239086* ___0_item, RuntimeObject* ___1_ids, int32_t ___2_modifiers, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool BaseVerticalCollectionView_RaiseCanStartDrag_m9AA1990010B8E4F1D0EE448BA4A3ACA431125172 (BaseVerticalCollectionView_t2BCDC86B9E301E46CFB2500A834D640F0B96ADAE* __this, ReusableCollectionItem_t58A07E0E19A545B24DBE7711A46490EF5E239086* ___0_item, RuntimeObject* ___1_ids, int32_t ___2_modifiers, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -10521,7 +10522,7 @@ IL_002a:
 		int32_t L_10 = ___2_modifiers;
 		CanStartDragArgs_tABF4E0D7A89F6C14BE4E8308C18129670E80DFEF L_11;
 		memset((&L_11), 0, sizeof(L_11));
-		CanStartDragArgs__ctor_m563F61052FFA7CDC085D6B4AC3C0EA0922707438((&L_11), G_B8_1, G_B8_0, L_9, L_10, NULL);
+		CanStartDragArgs__ctor_m90B350601A3C149C2FF42C9CD4B063DAEDC5C53D((&L_11), G_B8_1, G_B8_0, L_9, L_10, NULL);
 		NullCheck(G_B8_2);
 		bool L_12;
 		L_12 = Func_2_Invoke_m48A7AF321AF80BD8B48D0CE92423C2C4778CADC8_inline(G_B8_2, L_11, NULL);
@@ -12042,17 +12043,20 @@ IL_0020:
 		L_38 = ScrollView_get_horizontalScroller_mF0791CC587E399B708C24885E89301F2633712E8_inline(L_37, NULL);
 		NullCheck(L_38);
 		VisualElement_set_viewDataKey_m6318C0A701350678B0DBF34939C3BC392134B092(L_38, (String_t*)NULL, NULL);
+		ScrollView_t7CE209084E084FAA0E8DF3CD8E3B8BB9EB27E8D9* L_39 = __this->___m_ScrollView;
+		NullCheck(L_39);
+		L_39->___m_TouchDraggingAllowed = (bool)0;
 		VirtualActionInvoker1< bool >::Invoke(17, __this, (bool)1);
 		VisualElement_set_isCompositeRoot_m9D76CE169E211EBD63CFA23C85271BB3BA971D65(__this, (bool)1, NULL);
 		Focusable_set_delegatesFocus_mC691C4199C88BEF0C55A7F7FD2C6ADDD00402D6F(__this, (bool)1, NULL);
-		Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8* L_39 = (Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8*)il2cpp_codegen_object_new(Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8_il2cpp_TypeInfo_var);
-		Action_2__ctor_m83CEE170A5B9427B596A04F9F50676B044223927(L_39, __this, (intptr_t)((void*)BaseVerticalCollectionView_OnItemIndexChanged_mD4FE2A6624A75359E00ED8BE8DD1817A8C3B5AD0_RuntimeMethod_var), NULL);
-		__this->___m_ItemIndexChangedCallback = L_39;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ItemIndexChangedCallback), (void*)L_39);
-		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_40 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
-		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_40, __this, (intptr_t)((void*)BaseVerticalCollectionView_OnItemsSourceChanged_mD1E9C9856DF2E37DF2A3936B92896C0EF3732A59_RuntimeMethod_var), NULL);
-		__this->___m_ItemsSourceChangedCallback = L_40;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ItemsSourceChangedCallback), (void*)L_40);
+		Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8* L_40 = (Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8*)il2cpp_codegen_object_new(Action_2_tD7438462601D3939500ED67463331FE00CFFBDB8_il2cpp_TypeInfo_var);
+		Action_2__ctor_m83CEE170A5B9427B596A04F9F50676B044223927(L_40, __this, (intptr_t)((void*)BaseVerticalCollectionView_OnItemIndexChanged_mD4FE2A6624A75359E00ED8BE8DD1817A8C3B5AD0_RuntimeMethod_var), NULL);
+		__this->___m_ItemIndexChangedCallback = L_40;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ItemIndexChangedCallback), (void*)L_40);
+		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_41 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
+		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_41, __this, (intptr_t)((void*)BaseVerticalCollectionView_OnItemsSourceChanged_mD1E9C9856DF2E37DF2A3936B92896C0EF3732A59_RuntimeMethod_var), NULL);
+		__this->___m_ItemsSourceChangedCallback = L_41;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_ItemsSourceChangedCallback), (void*)L_41);
 		BaseVerticalCollectionView_InitializeDragAndDropController_m23EAC91DDC85180858BA6437808C1F7AE4037E25(__this, (bool)0, NULL);
 		return;
 	}

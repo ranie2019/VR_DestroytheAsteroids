@@ -1046,6 +1046,9 @@ struct ExceptionDispatchInfo_tD7AF19E75FEC22F4A8329FD1E9EDF96615CB2757  : public
 	Exception_t* ___m_Exception;
 	RuntimeObject* ___m_stackTrace;
 };
+struct FrameDebugger_tA08EDF485600E2BA26915AC49D6CFD2319E2D190  : public RuntimeObject
+{
+};
 struct ManagedStreamHelpers_t22DF8AAFFA97BDBA87CFF925CDA2937AA875FAB5  : public RuntimeObject
 {
 };
@@ -5058,6 +5061,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Pose_op_Equality_mB6476BEA859F2904A41C04
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_zero_m0C1249C3F25B1C70EAD3CC8B31259975A457AE39_inline (const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_get_identity_m7E701AE095ED10FD5EA0B50ABCFDE2EEFF2173A5_inline (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NameFormatter_FormatVariableName_Injected_mCAACCD953B5C28FC34B66B3A55669159F03B7169 (ManagedSpanWrapper_tE7FC4BBB631B130757F8DEB15853D98FD3D5DC0E* ___0_name, ManagedSpanWrapper_tE7FC4BBB631B130757F8DEB15853D98FD3D5DC0E* ___1_ret, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0 (const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422 (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DrivenRectTransformTracker_Add_mC0CE417831BF58E6DA81770CE5E2A99B142EEFEC (DrivenRectTransformTracker_tFB0706C933E3C68E4F377C204FCEEF091F1EE0B1* __this, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_driver, RectTransform_t6C5DA5E41A89E0F488B001E45E58963480E543A5* ___1_rectTransform, int32_t ___2_drivenProperties, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DrivenRectTransformTracker_Clear_m9A7F5130E4007F70B14AB1FF13A2997C073A64EE (DrivenRectTransformTracker_tFB0706C933E3C68E4F377C204FCEEF091F1EE0B1* __this, const RuntimeMethod* method) ;
 inline intptr_t MarshalledUnityObject_MarshalNotNull_TisRectTransform_t6C5DA5E41A89E0F488B001E45E58963480E543A5_m27C81A83805202B622D1E690C24AB96016BA8793_inline (RectTransform_t6C5DA5E41A89E0F488B001E45E58963480E543A5* ___0_obj, const RuntimeMethod* method)
@@ -24309,6 +24314,18 @@ IL2CPP_EXTERN_C  String_t* EntityId_ToString_mC58FD63890C6A27288C9425A8183CD3F7F
 	_returnValue = EntityId_ToString_mC58FD63890C6A27288C9425A8183CD3F7F897D14(_thisAdjusted, method);
 	return _returnValue;
 }
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 EntityId_From_m83F98DBA6B2CBDAD3D24292DB524AE0CB6ECD341 (int32_t ___0_input, const RuntimeMethod* method) 
+{
+	EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8));
+		int32_t L_0 = ___0_input;
+		(&V_0)->___m_Data = L_0;
+		EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 L_1 = V_0;
+		return L_1;
+	}
+}
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -33226,6 +33243,60 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NameFormatter_FormatVariableName_Injecte
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (NameFormatter_FormatVariableName_Injected_mCAACCD953B5C28FC34B66B3A55669159F03B7169_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.NameFormatter::FormatVariableName_Injected(UnityEngine.Bindings.ManagedSpanWrapper&,UnityEngine.Bindings.ManagedSpanWrapper&)");
 	_il2cpp_icall_func(___0_name, ___1_ret);
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FrameDebugger_get_enabled_mD61167C62C65193E5344C240CC7E92A835EA4FE3 (const RuntimeMethod* method) 
+{
+	int32_t G_B3_0 = 0;
+	{
+		bool L_0;
+		L_0 = FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0(NULL);
+		if (L_0)
+		{
+			goto IL_000e;
+		}
+	}
+	{
+		bool L_1;
+		L_1 = FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422(NULL);
+		G_B3_0 = ((int32_t)(L_1));
+		goto IL_000f;
+	}
+
+IL_000e:
+	{
+		G_B3_0 = 1;
+	}
+
+IL_000f:
+	{
+		return (bool)G_B3_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0 (const RuntimeMethod* method) 
+{
+	typedef bool (*FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0_ftn) ();
+	static FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (FrameDebugger_IsLocalEnabled_mD0EE043B2005C7808639B0EB499F822D36F5AAD0_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.FrameDebugger::IsLocalEnabled()");
+	bool icallRetVal = _il2cpp_icall_func();
+	return icallRetVal;
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422 (const RuntimeMethod* method) 
+{
+	typedef bool (*FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422_ftn) ();
+	static FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (FrameDebugger_IsRemoteEnabled_mFD8D5CB3730BE86C8712F99CD1D1C3944957D422_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.FrameDebugger::IsRemoteEnabled()");
+	bool icallRetVal = _il2cpp_icall_func();
+	return icallRetVal;
 }
 #ifdef __clang__
 #pragma clang diagnostic pop

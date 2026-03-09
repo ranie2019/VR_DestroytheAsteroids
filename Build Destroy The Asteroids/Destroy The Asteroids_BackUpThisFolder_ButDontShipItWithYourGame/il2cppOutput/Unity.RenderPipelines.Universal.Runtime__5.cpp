@@ -254,6 +254,7 @@ struct Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1;
 struct Type_t;
 struct URPDefaultVolumeProfileSettings_tBA6AB7C1DDE0B98A8B2B5232257E7B080019F98E;
 struct URPShaderStrippingSetting_t34D554AFBCB8D669F5882637E4B542CEC9704F42;
+struct URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C;
 struct UniversalAdditionalCameraData_t57B5D0F93C2D506E618E23187302C0FADE813B93;
 struct UniversalAdditionalLightData_t64155D8CEDD90D83B10153DF9473AEE7E39EF107;
 struct UniversalCameraData_t7904AE9D68B973761A72DFAA7CA3DE915696E1C7;
@@ -263,6 +264,7 @@ struct UniversalRenderPipelineAsset_tE8A9AA6F030CC3B558CEA2EB54FFF4FC58CA6232;
 struct UniversalRenderPipelineDebugDisplaySettings_t8E70DD217918DB0E7BD8BCCD9958C3E781DE0653;
 struct UniversalRenderPipelineDebugShaders_t941849ACBD4A63CCFF782F59981D37DEF0A85D3A;
 struct UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65;
+struct UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76;
 struct UniversalRenderPipelineRuntimeTextures_tDA15F1E9BFCD85610D963AC723C03EB214D1EB86;
 struct UniversalRenderPipelineRuntimeXRResources_tA4F43DD581BFCF9ACFE77C7B0A2204A43D176886;
 struct UniversalRendererResources_tE514A01A6E93F9E91A1B2CCEFE172D3B3692B629;
@@ -356,6 +358,7 @@ IL2CPP_EXTERN_C RuntimeClass* int4U5BU5D_t036E74070BB2037017010DB7F1DCF33D922817
 IL2CPP_EXTERN_C RuntimeClass* quaternion_tD6BCBECAF088B9EBAE2345EC8534C7A1A4C910D4_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_t16CE31F4DEE6BA0AEFEB3FA0105D58630695B339____888955380992D62883B27CC51FDC7E5C290C441026048F403C5618F305AD2BF1_FieldInfo_var;
 IL2CPP_EXTERN_C String_t* _stringLiteral0195EFEB86DE633EA2A2F27E6414D8FB9FC57E92;
+IL2CPP_EXTERN_C String_t* _stringLiteral0496A52D2DA877098C0B447E6138219F03BCAB44;
 IL2CPP_EXTERN_C String_t* _stringLiteral09353CB50DF6F69660D381D7B670103B85BD6C9A;
 IL2CPP_EXTERN_C String_t* _stringLiteral0D76E3AB9337C4CD395C73DB41422C130A537093;
 IL2CPP_EXTERN_C String_t* _stringLiteral0EC5682F14D624B753E23B194210598D954C3B2D;
@@ -370,6 +373,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral2662EBC5B7CBF942A21BAED6985C48987801319E
 IL2CPP_EXTERN_C String_t* _stringLiteral26A6D52B13869B05BEC0E0F673755BD8168C7C6D;
 IL2CPP_EXTERN_C String_t* _stringLiteral26D9C177FDA77D5CE40AC02108C120881CF883B4;
 IL2CPP_EXTERN_C String_t* _stringLiteral27F659B2F4BC7C7CE4C3B8CCB1AD437898B9E8E8;
+IL2CPP_EXTERN_C String_t* _stringLiteral2BAC95A5137EDB5C2283284881B447810135AEE7;
 IL2CPP_EXTERN_C String_t* _stringLiteral3E13244399C992A9E87EF306E518012802049F14;
 IL2CPP_EXTERN_C String_t* _stringLiteral45FF659B2A53DB686A8860705374DBC87DE7BCEF;
 IL2CPP_EXTERN_C String_t* _stringLiteral471E5E354BA47B35D4AFE90E811C51764895D83D;
@@ -377,7 +381,6 @@ IL2CPP_EXTERN_C String_t* _stringLiteral47F11CECC4AA8D462DFA01AD7D684F2D51065CA8
 IL2CPP_EXTERN_C String_t* _stringLiteral4823B4BD3B2F9A53E90610751D7DE1F78A3D0E70;
 IL2CPP_EXTERN_C String_t* _stringLiteral49425CF51EF67FBFD8AA098A16B840096305BF92;
 IL2CPP_EXTERN_C String_t* _stringLiteral4B1F2E91FE0D077C861AADD10C45C26327100496;
-IL2CPP_EXTERN_C String_t* _stringLiteral4D44656ADB1CE6B59C7C7211ED6BBE048EF38BC1;
 IL2CPP_EXTERN_C String_t* _stringLiteral503BF7DCAB751C362DE7DBB5D457213AB5207929;
 IL2CPP_EXTERN_C String_t* _stringLiteral5272D732907F13CCECF6D4D6A877AE201D6C34FF;
 IL2CPP_EXTERN_C String_t* _stringLiteral547AC61E241FAE943F5C7A2B2B3DECDDB15A36D6;
@@ -455,6 +458,8 @@ IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_get_Current_mB49912FF111A954F2C3
 IL2CPP_EXTERN_C const RuntimeMethod* Fixed2_1_get_Item_m74569C53A827E8C1461DABB19AD016B23C2F3FA8_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Fixed2_1_get_Item_m81F0147A06738ACD739D62F7942FF134B83B8C4F_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Fixed2_1_get_Item_mEA4C73D450E24C7172EF04F40B54AB94E2B0AE3F_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* GraphicsSettings_TryGetRenderPipelineSettings_TisURPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C_m6F20C5A3F3156A53251DB06F11475EBBCBAD874B_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* IRasterRenderGraphBuilder_SetRenderFunc_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_mC9D240AEA502E1A9806EB62FCF879EC5C2FFD2A2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KeyValuePair_2_get_Value_m846F833A669F541542DCE931168E1D2B29D0B4C2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* KeyValuePair_2_get_Value_mFE8034B368D38F383755ACD2FF11F04B1C488378_RuntimeMethod_var;
@@ -711,6 +716,13 @@ struct UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_CoreBlitPS;
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_CoreBlitColorAndDepthPS;
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_SamplingPS;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailLit;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailGrassBillboard;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailGrass;
+};
+struct UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76  : public RuntimeObject
+{
+	int32_t ___m_Version;
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailLit;
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailGrassBillboard;
 	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___m_TerrainDetailGrass;
@@ -1882,6 +1894,10 @@ struct Version_t672F608D7D66518C831FABAF342EB084F8EBCF04
 {
 	int32_t ___value__;
 };
+struct Version_t657F7CC11649B056E42F45C8B7D7B259EC938336 
+{
+	int32_t ___value__;
+};
 struct Version_t8FE0D25C0F2D4540648156EC04916E1EA8F1ACDC 
 {
 	int32_t ___value__;
@@ -2266,6 +2282,11 @@ struct URPShaderStrippingSetting_t34D554AFBCB8D669F5882637E4B542CEC9704F42  : pu
 	bool ___m_StripUnusedVariants;
 	bool ___m_StripScreenCoordOverrideVariants;
 };
+struct URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C  : public RuntimeObject
+{
+	int32_t ___m_Version;
+	bool ___m_IncludeTerrainShaders;
+};
 struct VisibleLight_t0A4DF5B22865A00F618A0352B805277FA0132805 
 {
 	int32_t ___m_LightType;
@@ -2404,6 +2425,7 @@ struct ReflectionProbeMinMaxZJob_tB55272F39D5B8B189F5DF7212CDA3FFF1EC0C71C_marsh
 };
 struct RenderPipelineAsset_t5F9BF815BF931E1314B184E7F9070FB649C7054E  : public ScriptableObject_tB3BFDB921A1B1795B38A5417D3B97A89A140436A
 {
+	bool ___U3CrequiresCompatibleRenderPipelineGlobalSettingsU3Ek__BackingField;
 };
 struct RenderTargetHandle_tB5C2670041BF377223D41FDF9290F6D8BFB7BA66 
 {
@@ -3971,6 +3993,7 @@ struct Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C  : public RuntimeAr
 
 
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisRuntimeObject_m4A49E1AE2B3C4BE4E8ABC90A0DDF437C4A5FE544_gshared (RuntimeObject* ___0_settings, RuntimeObject** ___1_currentPropertyValue, RuntimeObject* ___2_newValue, String_t* ___3_propertyName, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GraphicsSettings_TryGetRenderPipelineSettings_TisRuntimeObject_m0D94DC4AD9E0B50AB27617DDD4ADE7D626554DEA_gshared (RuntimeObject** ___0_settings, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_m7316301B8CF47FB538886B229B2749EC160B9D5C_gshared (Dictionary_2_tA75D1125AC9BE8F005BA9B868B373398E643C907* __this, int32_t ___0_key, RuntimeObject** ___1_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SortedList_2__ctor_m7D7C6A241AA21DEDB9DF213EEF41809014759A38_gshared (SortedList_2_tC7AE2B2BAEE7B263E99BEF399E612D5CBF0E5CA7* __this, int32_t ___0_capacity, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_mAF1EF7DA16BD70E252EA5C4B0F74DE519A02CBCD_gshared (Dictionary_2_tA75D1125AC9BE8F005BA9B868B373398E643C907* __this, int32_t ___0_key, RuntimeObject* ___1_value, const RuntimeMethod* method) ;
@@ -4046,6 +4069,21 @@ inline void RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisComput
 {
 	((  void (*) (RuntimeObject*, ComputeShader_tA7BDD0F6EE879D149480F5890BA2E665C50CFBF8**, ComputeShader_tA7BDD0F6EE879D149480F5890BA2E665C50CFBF8*, String_t*, const RuntimeMethod*))RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisRuntimeObject_m4A49E1AE2B3C4BE4E8ABC90A0DDF437C4A5FE544_gshared)(___0_settings, ___1_currentPropertyValue, ___2_newValue, ___3_propertyName, method);
 }
+inline bool GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76** ___0_settings, const RuntimeMethod* method)
+{
+	return ((  bool (*) (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76**, const RuntimeMethod*))GraphicsSettings_TryGetRenderPipelineSettings_TisRuntimeObject_m0D94DC4AD9E0B50AB27617DDD4ADE7D626554DEA_gshared)(___0_settings, method);
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailLitShader_m1662C5DC22C02DC99C9A1303773F870F20038844_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailLitShader_m114AE213108013393683CB6FC4C51BE37E99F79D (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassBillboardShader_mF9774EAD4E221638A4D69B9361B6278983FFF319_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassBillboardShader_mDD42D4702D87F8750821D459ED22DF4A990A57D8 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassShader_m1A87C1AE92EC1481416D67F954541EA74356D351_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassShader_m211C1EB09C0ED7FFD93A20D8D557116CFE3CB295 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) ;
+inline bool GraphicsSettings_TryGetRenderPipelineSettings_TisURPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C_m6F20C5A3F3156A53251DB06F11475EBBCBAD874B (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C** ___0_settings, const RuntimeMethod* method)
+{
+	return ((  bool (*) (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C**, const RuntimeMethod*))GraphicsSettings_TryGetRenderPipelineSettings_TisRuntimeObject_m0D94DC4AD9E0B50AB27617DDD4ADE7D626554DEA_gshared)(___0_settings, method);
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool URPTerrainShaderSetting_get_includeTerrainShaders_m2963CAFC44D22D4E0D34915CBC94879ABEB25B80_inline (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, const RuntimeMethod* method) ;
 inline void RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisTexture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4_m90CBB00FF7AEEAA6930144AE336B8ABAF0160DF6 (RuntimeObject* ___0_settings, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4** ___1_currentPropertyValue, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* ___2_newValue, String_t* ___3_propertyName, const RuntimeMethod* method)
 {
 	((  void (*) (RuntimeObject*, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4**, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4*, String_t*, const RuntimeMethod*))RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisRuntimeObject_m4A49E1AE2B3C4BE4E8ABC90A0DDF437C4A5FE544_gshared)(___0_settings, ___1_currentPropertyValue, ___2_newValue, ___3_propertyName, method);
@@ -5338,14 +5376,348 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_se
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailLitShader_m97D15161F810BCF8C93CC42F823859201DA97BA4 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_GetOriginalTerrainDetailLitShader_mCEFCC460E59FB9D0279373CA0517EB50E98CE9B6 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
 {
 	{
 		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailLit;
 		return L_0;
 	}
 }
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_GetOriginalTerrainDetailGrassBillboardShader_m8892CD71061E658E1597C3802CF53EADFDC88733 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrassBillboard;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_GetOriginalTerrainDetailGrassShader_m88A98CECDACC4FA742AC8FFDF6D2F0A6D0FF0C3E (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrass;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_ClearOriginalTerrainDetailShaders_m5F789F11286D3309A8FF2A9207FB4835691A5BE5 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	{
+		__this->___m_TerrainDetailLit = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_TerrainDetailLit), (void*)(Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL);
+		__this->___m_TerrainDetailGrassBillboard = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_TerrainDetailGrassBillboard), (void*)(Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL);
+		__this->___m_TerrainDetailGrass = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_TerrainDetailGrass), (void*)(Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailLitShader_m97D15161F810BCF8C93CC42F823859201DA97BA4 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* V_2 = NULL;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		NullCheck(L_2);
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3;
+		L_3 = UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailLitShader_m1662C5DC22C02DC99C9A1303773F870F20038844_inline(L_2, NULL);
+		V_2 = L_3;
+		goto IL_001a;
+	}
+
+IL_0016:
+	{
+		V_2 = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		goto IL_001a;
+	}
+
+IL_001a:
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_4 = V_2;
+		return L_4;
+	}
+}
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_set_terrainDetailLitShader_m0000B389B7AD57FDF638CEFD075A40302FB9E7BF (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3 = ___0_value;
+		NullCheck(L_2);
+		UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailLitShader_m114AE213108013393683CB6FC4C51BE37E99F79D(L_2, L_3, NULL);
+	}
+
+IL_0016:
+	{
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailGrassBillboardShader_m3C56734FBD951FE598B6F32B80CEC7439464DBC5 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* V_2 = NULL;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		NullCheck(L_2);
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3;
+		L_3 = UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassBillboardShader_mF9774EAD4E221638A4D69B9361B6278983FFF319_inline(L_2, NULL);
+		V_2 = L_3;
+		goto IL_001a;
+	}
+
+IL_0016:
+	{
+		V_2 = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		goto IL_001a;
+	}
+
+IL_001a:
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_4 = V_2;
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_set_terrainDetailGrassBillboardShader_mC3EA3E18D58C6381D03507FF3E31EB973B7F1B7C (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3 = ___0_value;
+		NullCheck(L_2);
+		UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassBillboardShader_mDD42D4702D87F8750821D459ED22DF4A990A57D8(L_2, L_3, NULL);
+	}
+
+IL_0016:
+	{
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailGrassShader_m890774324257B4C0EEEE9DCA92DA08025C34E25E (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* V_2 = NULL;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		NullCheck(L_2);
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3;
+		L_3 = UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassShader_m1A87C1AE92EC1481416D67F954541EA74356D351_inline(L_2, NULL);
+		V_2 = L_3;
+		goto IL_001a;
+	}
+
+IL_0016:
+	{
+		V_2 = (Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692*)NULL;
+		goto IL_001a;
+	}
+
+IL_001a:
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_4 = V_2;
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_set_terrainDetailGrassShader_m3BE1BAA2B72FD952410410844706B39F6AB5873A (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* V_0 = NULL;
+	bool V_1 = false;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisUniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76_mC8260B63163BD67A1A8BE174CBB321D71A034D07_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* L_2 = V_0;
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_3 = ___0_value;
+		NullCheck(L_2);
+		UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassShader_m211C1EB09C0ED7FFD93A20D8D557116CFE3CB295(L_2, L_3, NULL);
+	}
+
+IL_0016:
+	{
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders__ctor_mC2BFDF143531A471E1C7626E2AA8CEB2B99AC9D8 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+{
+	{
+		__this->___m_Version = 0;
+		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UniversalRenderPipelineRuntimeTerrainShaders_get_version_m54CEFB89ED95B64828C5942008C4202BC0235D78 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	{
+		int32_t L_0 = __this->___m_Version;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool UniversalRenderPipelineRuntimeTerrainShaders_UnityEngine_Rendering_IRenderPipelineGraphicsSettings_get_isAvailableInPlayerBuild_m8A7E16CCE806C7921C7DFC4B827782E0ECB89158 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_TryGetRenderPipelineSettings_TisURPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C_m6F20C5A3F3156A53251DB06F11475EBBCBAD874B_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* V_0 = NULL;
+	bool V_1 = false;
+	bool V_2 = false;
+	{
+		il2cpp_codegen_runtime_class_init_inline(GraphicsSettings_t01785CE5CB5C5105CB527619AF4D74BEF417EF1A_il2cpp_TypeInfo_var);
+		bool L_0;
+		L_0 = GraphicsSettings_TryGetRenderPipelineSettings_TisURPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C_m6F20C5A3F3156A53251DB06F11475EBBCBAD874B((&V_0), GraphicsSettings_TryGetRenderPipelineSettings_TisURPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C_m6F20C5A3F3156A53251DB06F11475EBBCBAD874B_RuntimeMethod_var);
+		V_1 = L_0;
+		bool L_1 = V_1;
+		if (!L_1)
+		{
+			goto IL_0016;
+		}
+	}
+	{
+		URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* L_2 = V_0;
+		NullCheck(L_2);
+		bool L_3;
+		L_3 = URPTerrainShaderSetting_get_includeTerrainShaders_m2963CAFC44D22D4E0D34915CBC94879ABEB25B80_inline(L_2, NULL);
+		V_2 = L_3;
+		goto IL_001a;
+	}
+
+IL_0016:
+	{
+		V_2 = (bool)0;
+		goto IL_001a;
+	}
+
+IL_001a:
+	{
+		bool L_4 = V_2;
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailLitShader_m1662C5DC22C02DC99C9A1303773F870F20038844 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailLit;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailLitShader_m114AE213108013393683CB6FC4C51BE37E99F79D (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -5361,14 +5733,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_se
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailGrassBillboardShader_m3C56734FBD951FE598B6F32B80CEC7439464DBC5 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassBillboardShader_mF9774EAD4E221638A4D69B9361B6278983FFF319 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
 {
 	{
 		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrassBillboard;
 		return L_0;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_set_terrainDetailGrassBillboardShader_mC3EA3E18D58C6381D03507FF3E31EB973B7F1B7C (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassBillboardShader_mDD42D4702D87F8750821D459ED22DF4A990A57D8 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -5384,14 +5756,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_se
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeShaders_get_terrainDetailGrassShader_m890774324257B4C0EEEE9DCA92DA08025C34E25E (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassShader_m1A87C1AE92EC1481416D67F954541EA74356D351 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
 {
 	{
 		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrass;
 		return L_0;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_set_terrainDetailGrassShader_m3BE1BAA2B72FD952410410844706B39F6AB5873A (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders_set_terrainDetailGrassShader_m211C1EB09C0ED7FFD93A20D8D557116CFE3CB295 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -5407,7 +5779,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders_se
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeShaders__ctor_mC2BFDF143531A471E1C7626E2AA8CEB2B99AC9D8 (UniversalRenderPipelineRuntimeShaders_tD8AE97114385E9EA58E9C85DC5DBEE19C5F8AA65* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UniversalRenderPipelineRuntimeTerrainShaders__ctor_m02B8359B979A208C38A7D2161E797B2E77E6EB71 (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
 {
 	{
 		__this->___m_Version = 0;
@@ -7735,6 +8107,60 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void URPShaderStrippingSetting__ctor_mB5592E1
 		__this->___m_StripUnusedPostProcessingVariants = (bool)0;
 		__this->___m_StripUnusedVariants = (bool)1;
 		__this->___m_StripScreenCoordOverrideVariants = (bool)1;
+		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t URPTerrainShaderSetting_get_version_mE4F5E034DA5F299F441B574D9A0043058B064C0C (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, const RuntimeMethod* method) 
+{
+	{
+		int32_t L_0 = __this->___m_Version;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool URPTerrainShaderSetting_get_includeTerrainShaders_m2963CAFC44D22D4E0D34915CBC94879ABEB25B80 (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, const RuntimeMethod* method) 
+{
+	{
+		bool L_0 = __this->___m_IncludeTerrainShaders;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void URPTerrainShaderSetting_set_includeTerrainShaders_m98732EB86B3E68CB9BB01A1657DDA383537DC363 (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, bool ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_mA4AF9CB52E8EACE7972AB1BC8B3051B607402DB3_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral0496A52D2DA877098C0B447E6138219F03BCAB44);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		bool* L_0 = (bool*)(&__this->___m_IncludeTerrainShaders);
+		bool L_1 = ___0_value;
+		RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_mA4AF9CB52E8EACE7972AB1BC8B3051B607402DB3(__this, L_0, L_1, _stringLiteral0496A52D2DA877098C0B447E6138219F03BCAB44, RenderPipelineGraphicsSettingsExtensions_SetValueAndNotify_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_mA4AF9CB52E8EACE7972AB1BC8B3051B607402DB3_RuntimeMethod_var);
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void URPTerrainShaderSetting__ctor_m666418E7D974F7888CD0837BFA6EA67B3C34689B (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, const RuntimeMethod* method) 
+{
+	{
+		__this->___m_IncludeTerrainShaders = (bool)1;
 		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
 		return;
 	}
@@ -14313,7 +14739,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TemporalAA_Render_m0263602D171BA0DE90248
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CRenderU3Eb__17_0_m44D9170C06193ADF2757B6F441B60BABD17410DF_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_U3CRenderU3Eb__17_1_mAF439049BB5E1A740A52B435259AF61744BDC3C7_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CU3Ec_tC3DD9E43D6037D8F7E71B1C31D1001F695745629_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral4D44656ADB1CE6B59C7C7211ED6BBE048EF38BC1);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2BAC95A5137EDB5C2283284881B447810135AEE7);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralCEE6CF1B6EA166705ABDB415601B15204BA6B385);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralD353225409A8D17B5C43395130E94C2513B59083);
 		s_Il2CppMethodInitialized = true;
@@ -14442,7 +14868,7 @@ IL_0072:
 		L_28 = ProfilingSampler_Get_TisURPProfileId_tA83520239B6C0F10A73CCC6CEC7D3DA1F1932481_m9F3104BDEBD70A287E8F4BAC86579564A19A5661(((int32_t)46), ProfilingSampler_Get_TisURPProfileId_tA83520239B6C0F10A73CCC6CEC7D3DA1F1932481_m9F3104BDEBD70A287E8F4BAC86579564A19A5661_RuntimeMethod_var);
 		NullCheck(L_27);
 		RuntimeObject* L_29;
-		L_29 = RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0(L_27, _stringLiteralD353225409A8D17B5C43395130E94C2513B59083, (&V_8), L_28, _stringLiteral4D44656ADB1CE6B59C7C7211ED6BBE048EF38BC1, ((int32_t)487), RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0_RuntimeMethod_var);
+		L_29 = RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0(L_27, _stringLiteralD353225409A8D17B5C43395130E94C2513B59083, (&V_8), L_28, _stringLiteral2BAC95A5137EDB5C2283284881B447810135AEE7, ((int32_t)487), RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0_RuntimeMethod_var);
 		V_7 = L_29;
 	}
 	{
@@ -14720,7 +15146,7 @@ IL_01f9:
 		L_100 = ProfilingSampler_Get_TisURPProfileId_tA83520239B6C0F10A73CCC6CEC7D3DA1F1932481_m9F3104BDEBD70A287E8F4BAC86579564A19A5661(((int32_t)47), ProfilingSampler_Get_TisURPProfileId_tA83520239B6C0F10A73CCC6CEC7D3DA1F1932481_m9F3104BDEBD70A287E8F4BAC86579564A19A5661_RuntimeMethod_var);
 		NullCheck(L_99);
 		RuntimeObject* L_101;
-		L_101 = RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0(L_99, _stringLiteralCEE6CF1B6EA166705ABDB415601B15204BA6B385, (&V_16), L_100, _stringLiteral4D44656ADB1CE6B59C7C7211ED6BBE048EF38BC1, ((int32_t)551), RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0_RuntimeMethod_var);
+		L_101 = RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0(L_99, _stringLiteralCEE6CF1B6EA166705ABDB415601B15204BA6B385, (&V_16), L_100, _stringLiteral2BAC95A5137EDB5C2283284881B447810135AEE7, ((int32_t)551), RenderGraph_AddRasterRenderPass_TisTaaPassData_t992ABF68CE669B648B042A94BB6F244C2D330E05_m43C2DF631CBA74E9E587C81426F143499049D1F0_RuntimeMethod_var);
 		V_15 = L_101;
 	}
 	{
@@ -22951,6 +23377,34 @@ IL_0038:
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailLitShader_m1662C5DC22C02DC99C9A1303773F870F20038844_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailLit;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassBillboardShader_mF9774EAD4E221638A4D69B9361B6278983FFF319_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrassBillboard;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* UniversalRenderPipelineRuntimeTerrainShaders_get_terrainDetailGrassShader_m1A87C1AE92EC1481416D67F954541EA74356D351_inline (UniversalRenderPipelineRuntimeTerrainShaders_t64E79F7001F8ECE62C7A71C47875D0E0FB1DFA76* __this, const RuntimeMethod* method) 
+{
+	{
+		Shader_tADC867D36B7876EE22427FAA2CE485105F4EE692* L_0 = __this->___m_TerrainDetailGrass;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool URPTerrainShaderSetting_get_includeTerrainShaders_m2963CAFC44D22D4E0D34915CBC94879ABEB25B80_inline (URPTerrainShaderSetting_tC5776A74B97931A9E0295699418DCAD2133F0E8C* __this, const RuntimeMethod* method) 
+{
+	{
+		bool L_0 = __this->___m_IncludeTerrainShaders;
+		return L_0;
+	}
+}
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_red_mA2E53E7173FDC97E68E335049AB0FAAEE43A844D_inline (const RuntimeMethod* method) 
 {
 	{

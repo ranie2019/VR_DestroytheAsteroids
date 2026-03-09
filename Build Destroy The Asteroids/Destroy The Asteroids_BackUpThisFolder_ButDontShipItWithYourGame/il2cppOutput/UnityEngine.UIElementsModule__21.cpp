@@ -1935,7 +1935,7 @@ struct DisplayStyle_t87BEDA2F78F764785ED41FC5E622ECB0091B2459
 {
 	int32_t ___value__;
 };
-struct EventModifiers_tB9DEEF73F8FC4C312B8E0C34336C7D9C3023B270 
+struct EventModifiers_t48244B043FBB42CDD555C6AC43279EC7158777AC 
 {
 	int32_t ___value__;
 };
@@ -3590,6 +3590,7 @@ struct ScrollView_t7CE209084E084FAA0E8DF3CD8E3B8BB9EB27E8D9  : public VisualElem
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___m_HighBounds;
 	float ___m_LastVelocityLerpTime;
 	bool ___m_StartedMoving;
+	bool ___m_TouchDraggingAllowed;
 	bool ___m_TouchPointerMoveAllowed;
 	bool ___m_TouchStoppedVelocity;
 	VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* ___m_CapturedTarget;
@@ -5367,7 +5368,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Rect_tA04E0F8A1830E767F40FB27ECD8
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* EventBase_get_elementTarget_mF6CFD6372FB247718797DB8927654F781821B94D_inline (EventBase_tD7F89B936EB8074AE31E7B15976C072277371F7C* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t VisualElement_IndexOf_m1CC000F2192D5D561AE87B2EC3AB312BD0D714AE (VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* __this, VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* ___0_element, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnCollectionHeader_RaiseColumnResized_mE261E54FB14D2F9CD56857494329A72D79DFCE91 (MultiColumnCollectionHeader_t0B041BD57A14950E8C33DCD854F3A3C2C3DA706D* __this, int32_t ___0_columnIndex, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m5A1BB88EE04055C0764CD1661BA0A8E93368DD8C (MultiColumnCollectionHeader_t0B041BD57A14950E8C33DCD854F3A3C2C3DA706D* __this, Column_tD686764EBBB4AFE8473E2464D0039885E3A2EC6A* ___0_column, int32_t ___1_modifiers, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m340554ECCFAC22119105748E574B9931D259304D (MultiColumnCollectionHeader_t0B041BD57A14950E8C33DCD854F3A3C2C3DA706D* __this, Column_tD686764EBBB4AFE8473E2464D0039885E3A2EC6A* ___0_column, int32_t ___1_modifiers, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass73_0__ctor_m9EFE19A9456808EF179C5C278A289996DEB9F245 (U3CU3Ec__DisplayClass73_0_t3AE14AE11B775DBC738BA02BA0DC1EAD1CC12010* __this, const RuntimeMethod* method) ;
 inline void Func_2__ctor_m46000E42E0E80F7501D334AEC37AB08828FFCF29 (Func_2_t3D82AF007EA8EE4E79564452A7BD617D0D26C06E* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method)
 {
@@ -5546,7 +5547,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_set_
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ColumnMover_add_movingChanged_m7E3915D46E38740AF4726D81C41DD3AE7A42781D (ColumnMover_tF8B270BEC7C26ECD780F9EEAE6EC2A99BDC6986F* __this, Action_1_t9695AED713CA91CBC7D63B1EED2BDF6D6C9C33F9* ___0_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Clickable__ctor_mCB2B71EB5818A9A1BB1916BBA2FE4BC983575DEB (Clickable_tED3E313565F64BDF5DA9D3FE0FEFFD0E17E53834* __this, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___0_handler, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_set_clickable_m4D07B882D6BE89436D23BEB6FFF429E67806B025_inline (MultiColumnHeaderColumn_t6F44266EE1B6EEB83465A7FE3BA6A6C7CBF8F9B4* __this, Clickable_tED3E313565F64BDF5DA9D3FE0FEFFD0E17E53834* ___0_value, const RuntimeMethod* method) ;
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VisualElement_set_name_m5ABC7B8D2586B1839DD436E1AAF25D81395759BC (VisualElement_t2667F9D19E62C7A315927506C06F223AB9234115* __this, String_t* ___0_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_UnbindHeaderContent_mC0B1E1AC05405EF53761C24AE57A7F105F4CA542 (MultiColumnHeaderColumn_t6F44266EE1B6EEB83465A7FE3BA6A6C7CBF8F9B4* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_BindHeaderContent_mCE24B0B824AA2636B4BD62D6418B1138345C6D5F (MultiColumnHeaderColumn_t6F44266EE1B6EEB83465A7FE3BA6A6C7CBF8F9B4* __this, const RuntimeMethod* method) ;
@@ -23189,7 +23190,7 @@ FINALLY_008e:
 			Column_tD686764EBBB4AFE8473E2464D0039885E3A2EC6A* L_20;
 			L_20 = MultiColumnHeaderColumn_get_column_mC2830961D571CC5AD223379819A2FC6A02DD7519_inline(L_19, NULL);
 			int32_t L_21 = V_1;
-			MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m5A1BB88EE04055C0764CD1661BA0A8E93368DD8C(__this, L_20, L_21, NULL);
+			MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m340554ECCFAC22119105748E574B9931D259304D(__this, L_20, L_21, NULL);
 			goto IL_0098;
 		}
 		catch(Il2CppExceptionWrapper& e)
@@ -23208,7 +23209,7 @@ IL_009f:
 		return;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m5A1BB88EE04055C0764CD1661BA0A8E93368DD8C (MultiColumnCollectionHeader_t0B041BD57A14950E8C33DCD854F3A3C2C3DA706D* __this, Column_tD686764EBBB4AFE8473E2464D0039885E3A2EC6A* ___0_column, int32_t ___1_modifiers, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnCollectionHeader_UpdateSortColumnDescriptionsOnClick_m340554ECCFAC22119105748E574B9931D259304D (MultiColumnCollectionHeader_t0B041BD57A14950E8C33DCD854F3A3C2C3DA706D* __this, Column_tD686764EBBB4AFE8473E2464D0039885E3A2EC6A* ___0_column, int32_t ___1_modifiers, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -26286,7 +26287,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_InitManipulators
 		L_9 = MouseManipulator_get_activators_mAB6DB832B06575DF49E23F84AE0B79EACE0509C9_inline(L_8, NULL);
 		il2cpp_codegen_initobj((&V_3), sizeof(ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81));
 		ManipulatorActivationFilter_set_button_m7D270A0FB7BF8D63EE26483770D72A0676374769_inline((&V_3), 0, NULL);
-		ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline((&V_3), 1, NULL);
+		ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline((&V_3), 1, NULL);
 		ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81 L_10 = V_3;
 		NullCheck(L_9);
 		List_1_Add_m312FE437F125C20E59CB1E48C69BF7F40ADE12C0_inline(L_9, L_10, List_1_Add_m312FE437F125C20E59CB1E48C69BF7F40ADE12C0_RuntimeMethod_var);
@@ -26335,7 +26336,7 @@ IL_0097:
 		il2cpp_codegen_initobj((&V_3), sizeof(ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81));
 		ManipulatorActivationFilter_set_button_m7D270A0FB7BF8D63EE26483770D72A0676374769_inline((&V_3), 0, NULL);
 		int32_t L_17 = V_0;
-		ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline((&V_3), L_17, NULL);
+		ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline((&V_3), L_17, NULL);
 		ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81 L_18 = V_3;
 		NullCheck(L_16);
 		List_1_Add_m312FE437F125C20E59CB1E48C69BF7F40ADE12C0_inline(L_16, L_18, List_1_Add_m312FE437F125C20E59CB1E48C69BF7F40ADE12C0_RuntimeMethod_var);
@@ -28202,7 +28203,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void MultiColumnHeaderColumn_set_
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m5B697D476E03DD96C623DF430B08C01C4A49C7E0_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ManipulatorActivationFilter_set_modifiers_m192D9065F5CD6F592753C0439A2B1F60A6DBC969_inline (ManipulatorActivationFilter_t866A0295DA75EA271B30BDC1F9EEA2C4FDEB1A81* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = ___0_value;

@@ -2560,6 +2560,17 @@ struct Double_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F
 {
 	double ___m_value;
 };
+struct EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 
+{
+	union
+	{
+		struct
+		{
+			int32_t ___m_Data;
+		};
+		uint8_t EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8__padding[4];
+	};
+};
 struct Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2  : public ValueType_t6D9B272BD21782F0A9A14F2E41F85A50E97A986F
 {
 };
@@ -3410,7 +3421,7 @@ struct EditorTextRenderingMode_tDAF3F89A6026D9F460A8C3DA671388E2E7DC2636
 {
 	int32_t ___value__;
 };
-struct EventModifiers_tB9DEEF73F8FC4C312B8E0C34336C7D9C3023B270 
+struct EventModifiers_t48244B043FBB42CDD555C6AC43279EC7158777AC 
 {
 	int32_t ___value__;
 };
@@ -4368,6 +4379,7 @@ struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219
 	int32_t ___startIndex;
 	int32_t ___length;
 	intptr_t ___fontAsset;
+	intptr_t ___gradientAsset;
 	int32_t ___fontSize;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___color;
 	int32_t ___fontStyle;
@@ -4381,19 +4393,28 @@ struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___highlightColor;
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___highlightPadding;
 	GlyphMetrics_t6C1C65A891A6279A0EE807C436436B1E44F7AF1A ___spriteMetrics;
-	int32_t ___spriteID;
+	EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 ___spriteID;
 	bool ___spriteTint;
 	int32_t ___spriteScale;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___spriteColor;
 	int32_t ___margin;
 	int32_t ___marginDirection;
 	int32_t ___marginUnitType;
+	int32_t ___lineHeight;
+	int32_t ___lineHeightUnitType;
+	int32_t ___indent;
+	int32_t ___indentUnitType;
+	int32_t ___vOffset;
+	int32_t ___vOffsetUnitType;
+	int8_t ___subscriptNestingLevel;
+	int8_t ___superscriptNestingLevel;
 };
 struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219_marshaled_pinvoke
 {
 	int32_t ___startIndex;
 	int32_t ___length;
 	intptr_t ___fontAsset;
+	intptr_t ___gradientAsset;
 	int32_t ___fontSize;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___color;
 	int32_t ___fontStyle;
@@ -4407,19 +4428,28 @@ struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219_marshaled_pinvoke
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___highlightColor;
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___highlightPadding;
 	GlyphMetrics_t6C1C65A891A6279A0EE807C436436B1E44F7AF1A ___spriteMetrics;
-	int32_t ___spriteID;
+	EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 ___spriteID;
 	int32_t ___spriteTint;
 	int32_t ___spriteScale;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___spriteColor;
 	int32_t ___margin;
 	int32_t ___marginDirection;
 	int32_t ___marginUnitType;
+	int32_t ___lineHeight;
+	int32_t ___lineHeightUnitType;
+	int32_t ___indent;
+	int32_t ___indentUnitType;
+	int32_t ___vOffset;
+	int32_t ___vOffsetUnitType;
+	int8_t ___subscriptNestingLevel;
+	int8_t ___superscriptNestingLevel;
 };
 struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219_marshaled_com
 {
 	int32_t ___startIndex;
 	int32_t ___length;
 	intptr_t ___fontAsset;
+	intptr_t ___gradientAsset;
 	int32_t ___fontSize;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___color;
 	int32_t ___fontStyle;
@@ -4433,13 +4463,21 @@ struct TextSpan_tD088342260A71C10DC0840BCA5D5E28139BA4219_marshaled_com
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___highlightColor;
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___highlightPadding;
 	GlyphMetrics_t6C1C65A891A6279A0EE807C436436B1E44F7AF1A ___spriteMetrics;
-	int32_t ___spriteID;
+	EntityId_t982FBD037EAC5CA077B1602A7EA40E3523AA0FC8 ___spriteID;
 	int32_t ___spriteTint;
 	int32_t ___spriteScale;
 	Color32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B ___spriteColor;
 	int32_t ___margin;
 	int32_t ___marginDirection;
 	int32_t ___marginUnitType;
+	int32_t ___lineHeight;
+	int32_t ___lineHeightUnitType;
+	int32_t ___indent;
+	int32_t ___indentUnitType;
+	int32_t ___vOffset;
+	int32_t ___vOffsetUnitType;
+	int8_t ___subscriptNestingLevel;
+	int8_t ___superscriptNestingLevel;
 };
 struct Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700  : public Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C
 {
@@ -10131,7 +10169,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t FontAsset_get_nativeFontAsset_mDC06A
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t TextSettings_get_nativeTextSettings_m8D7260CC0DA22E66802BBF70187DE8A87E4905C0 (TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool TextElement_get_enableRichText_mEE9AF3B9D18988A715A5A648FC53511ECC8EB75B_inline (TextElement_tD56C5044CCC5552285DC8A9950CC60448C80FEE0* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool RichTextTagParser_MayNeedParsing_m3509676215C75DCB7C9C91A9543A1794F81B0D90 (String_t* ___0_text, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextPreprocessor_PreProcessString_mB203851E82C93E074AFD7446E26B50EDC87C4A49 (String_t** ___0_text, int32_t ___1_flags, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextPreprocessor_PreProcessString_m0BC58EDFBE25B4713633A772DA37D63806106015 (String_t** ___0_text, int32_t ___1_flags, TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* ___2_textSettings, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RichTextTagParser_CreateTextGenerationSettingsArray_m40CFD232D6A7AC7C3562244D09D74481214C7E68 (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* ___0_tgs, List_1_t17793F9C5D3D05B86F970A73AEF8E8897591C9FC* ___1_links, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___2_hyperlinkColor, float ___3_pixelsPerPoint, TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* ___4_textSettings, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TextAsset_t2C64E93DA366D9DE5A8209E1802FA4884AC1BD69* UITKTextHandle_GetICUAssetStaticFalback_mB6887BF2196C38D747F337CA32080C98AC6CDC83 (const RuntimeMethod* method) ;
 inline TextAssetU5BU5D_t36E72C271245C06AE024E4E06CD5B60A7D24FBBD* Resources_FindObjectsOfTypeAll_TisTextAsset_t2C64E93DA366D9DE5A8209E1802FA4884AC1BD69_mFBDBECD64ABCC8D30545CC964A1DA8B67890400B (const RuntimeMethod* method)
@@ -10141,6 +10179,8 @@ inline TextAssetU5BU5D_t36E72C271245C06AE024E4E06CD5B60A7D24FBBD* Resources_Find
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TextAsset_t2C64E93DA366D9DE5A8209E1802FA4884AC1BD69* UITKTextHandle_GetICUAsset_m11CFC0B56FB76BA685D41B9A8D5D1C3FE11D264C (UITKTextHandle_t1FF3B4EC2367C05F42D61C660D6FE30DF91C06CE* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* TextAsset_get_bytes_m244B31755642C9623B570FC96B9A04523B1E5178 (TextAsset_t2C64E93DA366D9DE5A8209E1802FA4884AC1BD69* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextLib__ctor_mF8D936A838D79316C758F83145B710655DFC03B1 (TextLib_tEF7DFF87B9D7FF0F8B2C231A28CA4CE5A5B59F74* __this, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* ___0_icuData, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TextHandle_get_IsCachedPermanentATG_mAD663007CF3185211F4808040113F6400726ED26 (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextHandle_RemoveFromPermanentCacheATG_m4B0CF77A22933833C970744E2063C8B1426B6474 (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F Color_get_blue_mF04A26CE61D6DA3C0D8B1C4720901B1028C7AB87_inline (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextHandle__ctor_m0E8BD79BF9F66EED2A87EA09B246B712DDEED9C9 (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextEventHandler__ctor_mA0B6BBDE5A8796FB87B3385CC39A370CB53301BE (TextEventHandler_tF1994B2651F7C6291372F06EE9EA2CC0780112BE* __this, TextElement_tD56C5044CCC5552285DC8A9950CC60448C80FEE0* ___0_textElement, const RuntimeMethod* method) ;
@@ -10194,7 +10234,6 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Max_mF5379E63D2BBAC76
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float TextHandle_ConvertPixelUnitsToTextCoreRelativeUnits_m472293EA75E31A85F0DEF2DEE1CAE688CB1A5BBD (float ___0_fontSize, FontAsset_t61A6446D934E582651044E33D250EA8D306AB958* ___1_fontAsset, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t FontAsset_get_atlasPadding_m251A35FB5F499EE66CC2E2150CBEDB2C8C5D5581 (FontAsset_t61A6446D934E582651044E33D250EA8D306AB958* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Min_m747CA71A9483CDB394B13BD0AD048EE17E48FFE4_inline (float ___0_a, float ___1_b, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextHandle_RemoveFromPermanentCacheATG_m4B0CF77A22933833C970744E2063C8B1426B6474 (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ATGTextEventHandler_OnDestroy_m98169CD361836D3B0451692ADBAFD15EA413E1D3 (ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TextHandle_get_IsCachedPermanentTextCore_mE80268ADC2700F6981DB1ABF461212BE24269F9A (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TextHandle_RemoveFromPermanentCacheTextCore_m6329E15DBFE35F711F8A47625197CA2DBBF93202 (TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8* __this, const RuntimeMethod* method) ;
@@ -30828,7 +30867,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ATGTextEventHandler_LinkTagOnPointerDown
 	}
 	{
 		int32_t L_21 = V_1;
-		G_B3_0 = ((((int32_t)((((int32_t)L_21) == ((int32_t)((int32_t)14)))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		G_B3_0 = ((((int32_t)((((int32_t)L_21) == ((int32_t)((int32_t)15)))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_0073;
 	}
 
@@ -30979,7 +31018,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ATGTextEventHandler_LinkTagOnPointerUp_m
 	}
 	{
 		int32_t L_21 = V_1;
-		G_B3_0 = ((((int32_t)((((int32_t)L_21) == ((int32_t)((int32_t)14)))? 1 : 0)) == ((int32_t)0))? 1 : 0);
+		G_B3_0 = ((((int32_t)((((int32_t)L_21) == ((int32_t)((int32_t)15)))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 		goto IL_0073;
 	}
 
@@ -31137,7 +31176,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ATGTextEventHandler_LinkTagOnPointerMove
 	}
 	{
 		int32_t L_21 = V_1;
-		G_B3_0 = ((((int32_t)L_21) == ((int32_t)((int32_t)14)))? 1 : 0);
+		G_B3_0 = ((((int32_t)L_21) == ((int32_t)((int32_t)15)))? 1 : 0);
 		goto IL_0070;
 	}
 
@@ -32467,7 +32506,7 @@ IL_0022_1:
 			}
 			{
 				int32_t L_7 = V_4;
-				G_B6_0 = ((((int32_t)L_7) == ((int32_t)((int32_t)14)))? 1 : 0);
+				G_B6_0 = ((((int32_t)L_7) == ((int32_t)((int32_t)15)))? 1 : 0);
 				goto IL_003d_1;
 			}
 
@@ -32595,7 +32634,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t85E097D322420D9F03288E97554B181
 		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2(_stringLiteralEE601D6B5461869F4EC3BA2F5C75B7F03AE82B64, NULL);
 		ValueTuple_2_t85E097D322420D9F03288E97554B1816DEC2EC6D L_4;
 		memset((&L_4), 0, sizeof(L_4));
-		ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290((&L_4), ((int32_t)33), (String_t*)NULL, ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290_RuntimeMethod_var);
+		ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290((&L_4), ((int32_t)46), (String_t*)NULL, ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290_RuntimeMethod_var);
 		V_2 = L_4;
 		goto IL_008d;
 	}
@@ -32623,7 +32662,7 @@ IL_0038:
 	{
 		ValueTuple_2_t85E097D322420D9F03288E97554B1816DEC2EC6D L_12;
 		memset((&L_12), 0, sizeof(L_12));
-		ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290((&L_12), ((int32_t)33), (String_t*)NULL, ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290_RuntimeMethod_var);
+		ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290((&L_12), ((int32_t)46), (String_t*)NULL, ValueTuple_2__ctor_mEC89C5B1A27EE06B504B5E938A9C09C656E95290_RuntimeMethod_var);
 		V_2 = L_12;
 		goto IL_008d;
 	}
@@ -33322,7 +33361,7 @@ IL_03b2:
 	}
 	{
 		V_16 = (bool)0;
-		goto IL_053e;
+		goto IL_0549;
 	}
 
 IL_0413:
@@ -33351,7 +33390,7 @@ IL_0413:
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2(L_142, NULL);
 		V_16 = (bool)0;
-		goto IL_053e;
+		goto IL_0549;
 	}
 
 IL_044c:
@@ -33382,7 +33421,7 @@ IL_044c:
 	}
 	{
 		V_16 = (bool)0;
-		goto IL_053e;
+		goto IL_0549;
 	}
 
 IL_0497:
@@ -33425,7 +33464,7 @@ IL_04d2:
 		bool L_162 = V_20;
 		if (!L_162)
 		{
-			goto IL_052d;
+			goto IL_0538;
 		}
 	}
 	{
@@ -33433,40 +33472,43 @@ IL_04d2:
 		String_t** L_164 = (String_t**)(&L_163->___text);
 		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_165 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
 		int32_t L_166 = L_165->___preProcessFlags;
-		TextPreprocessor_PreProcessString_mB203851E82C93E074AFD7446E26B50EDC87C4A49(L_164, L_166, NULL);
-		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_167 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
-		L_167->___preProcessFlags = 0;
-		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_168 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
-		List_1_t17793F9C5D3D05B86F970A73AEF8E8897591C9FC* L_169;
-		L_169 = UITKTextHandle_get_Links_m243AB0729E93CA3C457B00D3BCB8DF8F600A0682(__this, NULL);
-		Color_tD001788D726C3A7F1379BEED0260B9591F440C1F L_170 = __this->___atgHyperlinkColor;
-		float L_171;
-		L_171 = VirtualFuncInvoker0< float >::Invoke(4, __this);
-		TextElement_tD56C5044CCC5552285DC8A9950CC60448C80FEE0* L_172 = __this->___m_TextElement;
-		TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* L_173;
-		L_173 = TextUtilities_GetTextSettingsFrom_mFD034569BC2E09F1D58BEC2D483A2B8E7075D78A(L_172, NULL);
+		TextElement_tD56C5044CCC5552285DC8A9950CC60448C80FEE0* L_167 = __this->___m_TextElement;
+		TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* L_168;
+		L_168 = TextUtilities_GetTextSettingsFrom_mFD034569BC2E09F1D58BEC2D483A2B8E7075D78A(L_167, NULL);
+		TextPreprocessor_PreProcessString_m0BC58EDFBE25B4713633A772DA37D63806106015(L_164, L_166, L_168, NULL);
+		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_169 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
+		L_169->___preProcessFlags = 0;
+		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_170 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
+		List_1_t17793F9C5D3D05B86F970A73AEF8E8897591C9FC* L_171;
+		L_171 = UITKTextHandle_get_Links_m243AB0729E93CA3C457B00D3BCB8DF8F600A0682(__this, NULL);
+		Color_tD001788D726C3A7F1379BEED0260B9591F440C1F L_172 = __this->___atgHyperlinkColor;
+		float L_173;
+		L_173 = VirtualFuncInvoker0< float >::Invoke(4, __this);
+		TextElement_tD56C5044CCC5552285DC8A9950CC60448C80FEE0* L_174 = __this->___m_TextElement;
+		TextSettings_tB7F55685AFFD4A96F714427BCACFD6958E357D64* L_175;
+		L_175 = TextUtilities_GetTextSettingsFrom_mFD034569BC2E09F1D58BEC2D483A2B8E7075D78A(L_174, NULL);
 		il2cpp_codegen_runtime_class_init_inline(RichTextTagParser_t6CE9A7F79A3EAF720335157DB8B1BBF3A58F5856_il2cpp_TypeInfo_var);
-		RichTextTagParser_CreateTextGenerationSettingsArray_m40CFD232D6A7AC7C3562244D09D74481214C7E68(L_168, L_169, L_170, L_171, L_173, NULL);
-		goto IL_0539;
+		RichTextTagParser_CreateTextGenerationSettingsArray_m40CFD232D6A7AC7C3562244D09D74481214C7E68(L_170, L_171, L_172, L_173, L_175, NULL);
+		goto IL_0544;
 	}
 
-IL_052d:
+IL_0538:
 	{
-		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_174 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
-		L_174->___textSpans = (TextSpanU5BU5D_t5E3335EA0DC1E9CAE42ABA23B1BB679078C9BF1C*)NULL;
-		Il2CppCodeGenWriteBarrier((void**)(&L_174->___textSpans), (void*)(TextSpanU5BU5D_t5E3335EA0DC1E9CAE42ABA23B1BB679078C9BF1C*)NULL);
+		NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A* L_176 = (NativeTextGenerationSettings_t2F77A4671666C1EB65AADCE42D64244F0168A62A*)(&((TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8*)__this)->___nativeSettings);
+		L_176->___textSpans = (TextSpanU5BU5D_t5E3335EA0DC1E9CAE42ABA23B1BB679078C9BF1C*)NULL;
+		Il2CppCodeGenWriteBarrier((void**)(&L_176->___textSpans), (void*)(TextSpanU5BU5D_t5E3335EA0DC1E9CAE42ABA23B1BB679078C9BF1C*)NULL);
 	}
 
-IL_0539:
+IL_0544:
 	{
 		V_16 = (bool)1;
-		goto IL_053e;
+		goto IL_0549;
 	}
 
-IL_053e:
+IL_0549:
 	{
-		bool L_175 = V_16;
-		return L_175;
+		bool L_177 = V_16;
+		return L_177;
 	}
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TextAsset_t2C64E93DA366D9DE5A8209E1802FA4884AC1BD69* UITKTextHandle_GetICUAsset_m11CFC0B56FB76BA685D41B9A8D5D1C3FE11D264C (UITKTextHandle_t1FF3B4EC2367C05F42D61C660D6FE30DF91C06CE* __this, const RuntimeMethod* method) 
@@ -33702,6 +33744,51 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UITKTextHandle_InitTextLib_m8420D42F4B61
 
 IL_001d:
 	{
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UITKTextHandle_RemoveFromPermanentCacheATG_m6C5CCF7FED292BBE40F9B40BDB3AF837BFD7033C (UITKTextHandle_t1FF3B4EC2367C05F42D61C660D6FE30DF91C06CE* __this, const RuntimeMethod* method) 
+{
+	bool V_0 = false;
+	ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* G_B3_0 = NULL;
+	ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* G_B2_0 = NULL;
+	{
+		bool L_0;
+		L_0 = TextHandle_get_IsCachedPermanentATG_mAD663007CF3185211F4808040113F6400726ED26(__this, NULL);
+		V_0 = L_0;
+		bool L_1 = V_0;
+		if (!L_1)
+		{
+			goto IL_001f;
+		}
+	}
+	{
+		ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* L_2 = __this->___m_ATGTextEventHandler;
+		ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* L_3 = L_2;
+		if (L_3)
+		{
+			G_B3_0 = L_3;
+			goto IL_0018;
+		}
+		G_B2_0 = L_3;
+	}
+	{
+		goto IL_001e;
+	}
+
+IL_0018:
+	{
+		NullCheck(G_B3_0);
+		ATGTextEventHandler_UnRegisterHyperlinkCallbacks_mB498CEB985F3BD5CAB4EB7212478DB778B8BBE9E(G_B3_0, NULL);
+	}
+
+IL_001e:
+	{
+	}
+
+IL_001f:
+	{
+		TextHandle_RemoveFromPermanentCacheATG_m4B0CF77A22933833C970744E2063C8B1426B6474(__this, NULL);
 		return;
 	}
 }
@@ -33977,7 +34064,7 @@ IL_0019:
 		___2_height = L_10;
 		Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 L_11 = ___3_fontsize;
 		bool L_12;
-		L_12 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(10, __this, (bool)0, L_11);
+		L_12 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(11, __this, (bool)0, L_11);
 		il2cpp_codegen_runtime_class_init_inline(TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8_il2cpp_TypeInfo_var);
 		TextGenerationSettings_t3E75DB1D14DF53934AF76C9ACB1CD94A344A92A2* L_13;
 		L_13 = TextHandle_get_settings_m924DCD63BED9F000A224620C4A1FD1E8DEF51D10(NULL);
@@ -34146,7 +34233,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UITKTextHandle_UpdateMesh_mF406787AD6746
 		il2cpp_codegen_initobj((&V_1), sizeof(Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75));
 		Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 L_0 = V_1;
 		bool L_1;
-		L_1 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(10, __this, (bool)1, L_0);
+		L_1 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(11, __this, (bool)1, L_0);
 		il2cpp_codegen_runtime_class_init_inline(TextHandle_tA1D5C98B154F1F73CBD35E42EB4E9CCB02280EF8_il2cpp_TypeInfo_var);
 		TextGenerationSettings_t3E75DB1D14DF53934AF76C9ACB1CD94A344A92A2* L_2;
 		L_2 = TextHandle_get_settings_m924DCD63BED9F000A224620C4A1FD1E8DEF51D10(NULL);
@@ -34229,7 +34316,7 @@ IL_0025:
 		il2cpp_codegen_initobj((&V_2), sizeof(Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75));
 		Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 L_3 = V_2;
 		bool L_4;
-		L_4 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(10, __this, (bool)1, L_3);
+		L_4 = VirtualFuncInvoker2< bool, bool, Nullable_1_t3D746CBB6123D4569FF4DEA60BC4240F32C6FE75 >::Invoke(11, __this, (bool)1, L_3);
 		V_1 = L_4;
 		bool L_5 = V_1;
 		if (!L_5)
@@ -35102,7 +35189,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UITKTextHandle_ReleaseResourcesIfPossibl
 		}
 	}
 	{
-		TextHandle_RemoveFromPermanentCacheATG_m4B0CF77A22933833C970744E2063C8B1426B6474(__this, NULL);
+		VirtualActionInvoker0::Invoke(6, __this);
 		ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6* L_4 = __this->___m_ATGTextEventHandler;
 		V_2 = (bool)((!(((RuntimeObject*)(ATGTextEventHandler_tF4D6D334CF23C75D986F30BE0C8CD5B7623FD1F6*)L_4) <= ((RuntimeObject*)(RuntimeObject*)NULL)))? 1 : 0);
 		bool L_5 = V_2;

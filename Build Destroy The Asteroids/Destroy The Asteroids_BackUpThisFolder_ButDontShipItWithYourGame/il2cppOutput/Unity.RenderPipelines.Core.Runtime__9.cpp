@@ -443,6 +443,7 @@ IL2CPP_EXTERN_C RuntimeClass* ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE9945
 IL2CPP_EXTERN_C RuntimeClass* Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* PassBreakAudit_t86F0837A5B639D308588333370DEB00AB5933A76_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* RTHandles_t84D932A74064E591F31E9813FBED5D64F5CC888C_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* RenderGraphDebugSession_tA910CE761F9E225F0664054C4D539F218508BA35_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* RenderGraphExceptionMessages_t6584E722EB929BC50938CDA6E57AFBE0CCC43FFE_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* RenderGraphPassType_tD00EC2DAA135C660EE7E71652291A4672104EA2D_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* RenderGraphResourcePool_1_tD512F7AEC71A1B9C33733EA0B61ECEFF6B9742B4_il2cpp_TypeInfo_var;
@@ -2308,6 +2309,7 @@ struct InternalRenderGraphContext_t7197268EBA8C241EB895B070A5E0C71B111D7503  : p
 	RenderGraphPass_tEFB5BD685D417024760D82991EEEA4F4D0454A93* ___executingPass;
 	CompilerContextData_t0E7B5B9E1A939E4546A3AE9D8357556FC956A77D* ___compilerContext;
 	bool ___contextlessTesting;
+	bool ___forceResourceCreation;
 };
 struct LoadAudit_t417FC3BB0E7799755F8AD6FF4AB6386508CB7D0C 
 {
@@ -7313,7 +7315,7 @@ IL_0018:
 		return L_2;
 	}
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void IRenderGraphResource_CreatePooledGraphicsResource_m10353C77AC3CD59E60A1223D95ED765BCA55DB1E (IRenderGraphResource_t8C49F0158EDB9571FA4BDAF754E09A32E535C021* __this, const RuntimeMethod* method) 
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void IRenderGraphResource_CreatePooledGraphicsResource_mB9D846CD46FFA56C9426751E957B69BC70F75A43 (IRenderGraphResource_t8C49F0158EDB9571FA4BDAF754E09A32E535C021* __this, bool ___0_forceResourceCreation, const RuntimeMethod* method) 
 {
 	{
 		return;
@@ -17780,6 +17782,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativePassCompiler_TryMergeNativePasses_
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&NativeList_1_get_Length_m7D9D5966559210CE4CEB91B60ED6360979C504CE_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&NativePassCompiler_t4E5CE894AF5B8832B5828B22DAB0EA4FAC819E07_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ProfilingSampler_Get_TisNativeCompilerProfileId_tCBB285B04A0C9217333A56C7681DAD2C9B68EAEF_mF887FCD93999F59865CF3F1DC5AE8742C866BA7C_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&RenderGraphDebugSession_tA910CE761F9E225F0664054C4D539F218508BA35_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	CompilerContextData_t0E7B5B9E1A939E4546A3AE9D8357556FC956A77D* V_0 = NULL;
@@ -17828,6 +17831,7 @@ FINALLY_01c2:
 		{
 			{
 				V_2 = (-1);
+				il2cpp_codegen_runtime_class_init_inline(RenderGraphDebugSession_tA910CE761F9E225F0664054C4D539F218508BA35_il2cpp_TypeInfo_var);
 				bool L_2;
 				L_2 = RenderGraphDebugSession_get_hasActiveDebugSession_mE3C8590DABBACE77CB88CEC0FE627E5720DBBC7C(NULL);
 				if (L_2)
@@ -21098,6 +21102,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativePassCompiler_DetermineLoadStoreAct
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&NativePassCompiler_t4E5CE894AF5B8832B5828B22DAB0EA4FAC819E07_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ProfilingSampler_Get_TisNativeCompilerProfileId_tCBB285B04A0C9217333A56C7681DAD2C9B68EAEF_mF887FCD93999F59865CF3F1DC5AE8742C866BA7C_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ReadOnlySpan_1_get_Length_m678C425F52472CF767CC03702FFE5C0426DCDE49_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&RenderGraphDebugSession_tA910CE761F9E225F0664054C4D539F218508BA35_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ResourceHandle_tD3B1FFBD59EB9C23F0A020351836F834C4BD276C_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralBFDFADA27E03E208CB67AE3752D1C0E4A014C802);
 		s_Il2CppMethodInitialized = true;
@@ -21332,6 +21337,7 @@ IL_0091_1:
 				NativePassData_tC0F1669A8ED49F7203325B91DF9C473D65AA9CD2* L_23 = ___0_nativePass;
 				FixedAttachmentArray_1_t097F263B4BA144B4ACC3DC76BEBD68D2B99E582C* L_24 = (FixedAttachmentArray_1_t097F263B4BA144B4ACC3DC76BEBD68D2B99E582C*)(&L_23->___fragments);
 				V_3 = L_24;
+				il2cpp_codegen_runtime_class_init_inline(RenderGraphDebugSession_tA910CE761F9E225F0664054C4D539F218508BA35_il2cpp_TypeInfo_var);
 				bool L_25;
 				L_25 = RenderGraphDebugSession_get_hasActiveDebugSession_mE3C8590DABBACE77CB88CEC0FE627E5720DBBC7C(NULL);
 				if (L_25)

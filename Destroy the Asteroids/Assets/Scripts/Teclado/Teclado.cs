@@ -17,26 +17,28 @@ public class Teclado : MonoBehaviour
     [Header("Referência ao teclado completo")]
     public GameObject tecladoRaiz;
 
-    public PontoController pontoController;
+    [Header("Sistema do placar")]
+    public PlacarRecords placarRecords;
+
+    [Header("Configuração")]
     public int limiteMaximo = 10;
 
     private Vector3 escalaOriginal;
     private Vector3 posicaoOriginal;
+    private bool processandoEnter = false;
 
     private void Start()
     {
         escalaOriginal = transform.localScale;
         posicaoOriginal = transform.localPosition;
-
-        if (tecladoRaiz != null)
-            tecladoRaiz.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         StartCoroutine(AnimarBotao());
 
-        if (alvoDisplay == null) return;
+        if (alvoDisplay == null)
+            return;
 
         if (botaoApagar)
         {
@@ -48,13 +50,10 @@ public class Teclado : MonoBehaviour
         }
         else if (botaoEnter)
         {
-            AtivarETeleportarTeclado();
+            if (processandoEnter)
+                return;
 
-            if (pontoController != null)
-            {
-                pontoController.RegistrarColisaoEnter(gameObject.tag);
-            }
-
+            processandoEnter = true;
             ConfirmarNome();
         }
         else
@@ -118,51 +117,72 @@ public class Teclado : MonoBehaviour
         }
     }
 
-    private void AtivarETeleportarTeclado()
-    {
-        if (tecladoRaiz != null)
-        {
-            tecladoRaiz.SetActive(true);
-            tecladoRaiz.transform.position = new Vector3(0f, -5f, 3.69f);
-            Debug.Log("Teclado ativado e movido pelo botão Enter.");
-        }
-    }
-
     public void ConfirmarNome()
     {
-        if (alvoDisplay == null || pontoController == null) return;
+        if (alvoDisplay == null)
+        {
+            processandoEnter = false;
+            return;
+        }
 
         TextMeshProUGUI textoAlvo = alvoDisplay.GetComponentInChildren<TextMeshProUGUI>();
-        if (textoAlvo == null) return;
+        if (textoAlvo == null)
+        {
+            processandoEnter = false;
+            return;
+        }
 
         string nomeLimpo = textoAlvo.text.Trim();
-        if (string.IsNullOrEmpty(nomeLimpo)) return;
-
-        pontoController.SetNomePlayer(nomeLimpo);
-
-        // Atualiza o UI diretamente
-        int indice = pontoController.GetUltimoIndiceSalvo();
-        GameObject objetoRecord = pontoController.GetRecordObject(indice);
-
-        if (objetoRecord != null)
+        if (string.IsNullOrEmpty(nomeLimpo))
         {
-            Transform nomeChild = objetoRecord.transform.Find("Nome");
-            if (nomeChild != null && nomeChild.TryGetComponent(out TextMeshProUGUI nomeText))
-            {
-                nomeText.text = nomeLimpo;
-            }
+            processandoEnter = false;
+            return;
         }
+
+        if (placarRecords == null)
+        {
+            Debug.LogError("⚠️ Teclado: PlacarRecords não foi atribuído.");
+            processandoEnter = false;
+            return;
+        }
+
+        // Aqui está a ligação certa com o sistema novo
+        placarRecords.ConfirmarNomeDoJogador(nomeLimpo);
 
         if (botaoEnter && tecladoRaiz != null)
         {
-            StartCoroutine(DesativarTecladoComDelay());
+            StartCoroutine(FinalizarTecladoComDelay());
+        }
+        else
+        {
+            processandoEnter = false;
         }
     }
 
-    private IEnumerator DesativarTecladoComDelay()
+    private IEnumerator FinalizarTecladoComDelay()
     {
         yield return new WaitForSeconds(0.7f);
-        tecladoRaiz.SetActive(false);
+
+        ResetarTextoDigitado();
+
+        if (tecladoRaiz != null)
+        {
+            tecladoRaiz.SetActive(false);
+        }
+
+        processandoEnter = false;
+    }
+
+    private void ResetarTextoDigitado()
+    {
+        if (alvoDisplay == null)
+            return;
+
+        TextMeshProUGUI textoAlvo = alvoDisplay.GetComponentInChildren<TextMeshProUGUI>();
+        if (textoAlvo != null)
+        {
+            textoAlvo.text = "";
+        }
     }
 
     public void DefinirTextoAlvo(TextMeshProUGUI novoTextoAlvo)
@@ -186,13 +206,13 @@ public class Teclado : MonoBehaviour
             if (teclado.botaoEnter)
             {
                 EditorGUILayout.Space();
-                EditorGUILayout.LabelField("↪️ Configurações Exclusivas do ENTER", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("Configurações Exclusivas do ENTER", EditorStyles.boldLabel);
 
                 SerializedProperty tecladoRaiz = serializedObject.FindProperty("tecladoRaiz");
                 EditorGUILayout.PropertyField(tecladoRaiz, new GUIContent("Objeto do Teclado"));
 
-                SerializedProperty pontoController = serializedObject.FindProperty("pontoController");
-                EditorGUILayout.PropertyField(pontoController, new GUIContent("Ponto Controller"));
+                SerializedProperty placarRecords = serializedObject.FindProperty("placarRecords");
+                EditorGUILayout.PropertyField(placarRecords, new GUIContent("Placar Records"));
 
                 serializedObject.ApplyModifiedProperties();
             }

@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8cf9ba52095a4f4bb35e68774cfa634, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3508
+      value: 4908.9756
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8cf9ba52095a4f4bb35e68774cfa634, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37
+      value: 0.00015700064
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8cf9ba52095a4f4bb35e68774cfa634, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3024
+      value: 1469.7874
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8cf9ba52095a4f4bb35e68774cfa634, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126,7 +126,7 @@ MonoBehaviour:
   - {fileID: 0}
   autoHerdarPontos: 1
   nomeDoCaminhoNaCena: Drone Caminho
-  velocidade: 100
+  velocidade: 250
   distanciaParaChegar: 0.2
   rotacionarParaDirecao: 1
   velocidadeRotacao: 8

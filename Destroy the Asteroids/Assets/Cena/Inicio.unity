@@ -484,7 +484,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &25372453
 BoxCollider:
@@ -832,7 +832,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &59537343
 BoxCollider:
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &78758392
 BoxCollider:
@@ -2827,7 +2827,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &187221236
 BoxCollider:
@@ -3187,7 +3187,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &199704774
 BoxCollider:
@@ -3618,7 +3618,7 @@ Transform:
   m_GameObject: {fileID: 210523719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.300003, y: 62.1, z: 208.1}
+  m_LocalPosition: {x: -547, y: 62.1, z: 1200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3794,7 +3794,7 @@ Transform:
   m_GameObject: {fileID: 220264831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2428, y: 241, z: 622}
+  m_LocalPosition: {x: -3941, y: 241, z: 622}
   m_LocalScale: {x: 5.4555163, y: 530.77057, z: 943.75354}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3845,8 +3845,8 @@ MonoBehaviour:
   - {fileID: 7461032953950647825}
   - {fileID: 1942569363}
   - {fileID: 1421372246967986984}
-  record: {fileID: 0}
-  teclado: {fileID: 0}
+  record: {fileID: 1706158730}
+  teclado: {fileID: 11979955}
 --- !u!65 &220264834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4320,7 +4320,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 0}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &261707869
 BoxCollider:
@@ -4750,7 +4750,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &288757562
 BoxCollider:
@@ -5256,7 +5256,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &340376267
 BoxCollider:
@@ -6723,8 +6723,8 @@ MonoBehaviour:
   botaoApagar: 0
   botaoEspaco: 0
   botaoEnter: 0
-  tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  tecladoRaiz: {fileID: 412700346}
+  placarRecords: {fileID: 607363921}
   limiteMaximo: 10
 --- !u!65 &412700349
 BoxCollider:
@@ -7211,8 +7211,8 @@ MonoBehaviour:
   botaoApagar: 0
   botaoEspaco: 0
   botaoEnter: 0
-  tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  tecladoRaiz: {fileID: 11979955}
+  placarRecords: {fileID: 607363921}
   limiteMaximo: 10
 --- !u!65 &428971766
 BoxCollider:
@@ -7522,11 +7522,12 @@ Transform:
   - {fileID: 584979593}
   - {fileID: 822513475}
   - {fileID: 1917383179}
-  - {fileID: 600671736}
   - {fileID: 6365360290513580614}
   - {fileID: 1376464787}
+  - {fileID: 600671736}
   - {fileID: 1372858239}
   - {fileID: 1690097524}
+  - {fileID: 692257953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484715542
@@ -7714,7 +7715,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -7933,8 +7934,8 @@ MonoBehaviour:
   botaoApagar: 0
   botaoEspaco: 0
   botaoEnter: 1
-  tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  tecladoRaiz: {fileID: 11979955}
+  placarRecords: {fileID: 607363921}
   limiteMaximo: 10
 --- !u!65 &498843598
 BoxCollider:
@@ -8067,7 +8068,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &512851896
 BoxCollider:
@@ -8362,7 +8363,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &522925026
 BoxCollider:
@@ -8660,7 +8661,7 @@ Transform:
   m_GameObject: {fileID: 553673787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 190, y: 62.1, z: 208.1}
+  m_LocalPosition: {x: 491, y: 62.1, z: 849}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9036,7 +9037,7 @@ Transform:
   m_GameObject: {fileID: 587540519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 190, y: 62.1, z: -173}
+  m_LocalPosition: {x: 190, y: 62.1, z: -664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9067,7 +9068,7 @@ Transform:
   m_GameObject: {fileID: 590649083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3500, y: -525, z: -4146}
+  m_LocalPosition: {x: 3500, y: -525, z: -3736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9272,6 +9273,7 @@ GameObject:
   - component: {fileID: 607363922}
   - component: {fileID: 607363921}
   - component: {fileID: 607363923}
+  - component: {fileID: 607363924}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -9319,6 +9321,8 @@ MonoBehaviour:
   - {fileID: 484715542}
   - {fileID: 1366215752}
   - {fileID: 1778463129}
+  resetarPontuacaoAoIniciar: 1
+  chaveRecordeSalvo: recordeSalvo
 --- !u!114 &607363921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9326,24 +9330,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607363917}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072e57d7a9fad9140889c03afa302a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pontoController: {fileID: 607363919}
-  recordObjects:
-  - {fileID: 1967531317}
-  - {fileID: 906097876}
-  - {fileID: 645607238}
-  - {fileID: 553293450}
-  - {fileID: 68845099}
-  - {fileID: 385030152}
-  - {fileID: 613284102}
-  - {fileID: 484715542}
-  - {fileID: 1366215752}
-  - {fileID: 1778463129}
-  tempoDeEspera: 0.5
+  saveRecords: {fileID: 607363924}
 --- !u!114 &607363922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9370,6 +9363,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316fc43303f6cce4ca70227390eac538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SteamScript
+--- !u!114 &607363924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607363917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b92594072186ab4aaf68b0b0c1e98bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveRecords
+  recordObjects:
+  - {fileID: 1967531317}
+  - {fileID: 906097876}
+  - {fileID: 645607238}
+  - {fileID: 553293450}
+  - {fileID: 68845099}
+  - {fileID: 385030152}
+  - {fileID: 613284102}
+  - {fileID: 484715542}
+  - {fileID: 1366215752}
+  - {fileID: 1778463129}
+  maxRecords: 10
+  nomePadrao: Name
 --- !u!1 &613284102
 GameObject:
   m_ObjectHideFlags: 0
@@ -10150,7 +10168,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &692257953
 Transform:
@@ -10168,7 +10186,7 @@ Transform:
   - {fileID: 1586871225}
   - {fileID: 1629364999}
   - {fileID: 1549047195}
-  m_Father: {fileID: 788967382}
+  m_Father: {fileID: 464380791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714538768
 GameObject:
@@ -10593,7 +10611,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &763228334
 BoxCollider:
@@ -10961,7 +10979,6 @@ Transform:
   - {fileID: 375436857}
   - {fileID: 637862156}
   - {fileID: 933657790}
-  - {fileID: 692257953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789485558
@@ -12372,7 +12389,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &922273924
 BoxCollider:
@@ -12505,7 +12522,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &932841215
 BoxCollider:
@@ -13690,7 +13707,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1034183099
 BoxCollider:
@@ -14710,7 +14727,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1094234468
 BoxCollider:
@@ -14843,7 +14860,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1096588485
 BoxCollider:
@@ -15252,8 +15269,8 @@ MonoBehaviour:
   botaoApagar: 0
   botaoEspaco: 1
   botaoEnter: 0
-  tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  tecladoRaiz: {fileID: 11979955}
+  placarRecords: {fileID: 607363921}
   limiteMaximo: 10
 --- !u!65 &1115714968
 BoxCollider:
@@ -15990,7 +16007,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1152556164
 BoxCollider:
@@ -17036,7 +17053,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1210919526
 BoxCollider:
@@ -18139,7 +18156,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1305574696
 BoxCollider:
@@ -18244,7 +18261,7 @@ Transform:
   m_GameObject: {fileID: 1305836654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.7, y: 177, z: 142.1}
+  m_LocalPosition: {x: -507, y: 177, z: 142.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18303,7 +18320,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1312684875
 BoxCollider:
@@ -18648,7 +18665,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1338121671
 BoxCollider:
@@ -19322,7 +19339,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1391297686
 BoxCollider:
@@ -19447,7 +19464,7 @@ Transform:
   m_GameObject: {fileID: 1403541524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4372, y: -845, z: -5925}
+  m_LocalPosition: {x: -5937, y: -139, z: -5925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19573,7 +19590,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1418940426
 BoxCollider:
@@ -20077,8 +20094,8 @@ Transform:
   m_GameObject: {fileID: 1460497765}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 462, z: 2300}
-  m_LocalScale: {x: 98.435005, y: 98.435005, z: 98.435005}
+  m_LocalPosition: {x: 0, y: 1279, z: 6718}
+  m_LocalScale: {x: 105.38452, y: 105.38452, z: 105.38452}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1931754083}
@@ -20943,7 +20960,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1521196272
 BoxCollider:
@@ -21175,7 +21192,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1549047195
 Transform:
@@ -21754,7 +21771,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1586871224
 MonoBehaviour:
@@ -21988,7 +22005,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1593169756
 BoxCollider:
@@ -22502,7 +22519,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1629364999
 Transform:
@@ -22816,7 +22833,7 @@ Transform:
   m_GameObject: {fileID: 1646127426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4392, y: 319, z: 3022}
+  m_LocalPosition: {x: -5064, y: 112, z: 3022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22875,7 +22892,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1662162479
 BoxCollider:
@@ -23660,7 +23677,7 @@ GameObject:
   - component: {fileID: 1706158733}
   - component: {fileID: 1706158732}
   m_Layer: 5
-  m_Name: Records
+  m_Name: PLACAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23674,7 +23691,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706158730}
   m_LocalRotation: {x: -0, y: -0.263078, z: -0, w: 0.9647746}
-  m_LocalPosition: {x: 0, y: 0, z: 5.1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.14}
   m_LocalScale: {x: 4.873686, y: 6.684316, z: 3.0674665}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23683,7 +23700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -30.506, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.4, y: 3.66}
+  m_AnchoredPosition: {x: -5.33, y: 3.66}
   m_SizeDelta: {x: 1.0881, y: 0.8309}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706158732
@@ -24342,7 +24359,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1731607239
 BoxCollider:
@@ -25261,7 +25278,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1786415213
 BoxCollider:
@@ -25531,7 +25548,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1806241476
 BoxCollider:
@@ -25663,8 +25680,8 @@ MonoBehaviour:
   botaoApagar: 1
   botaoEspaco: 0
   botaoEnter: 0
-  tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  tecladoRaiz: {fileID: 11979955}
+  placarRecords: {fileID: 607363921}
   limiteMaximo: 10
 --- !u!65 &1810347381
 BoxCollider:
@@ -26064,7 +26081,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1821631237
 BoxCollider:
@@ -26302,7 +26319,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1832292742
 BoxCollider:
@@ -26435,7 +26452,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1836137679
 BoxCollider:
@@ -26665,25 +26682,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7046089816706913331}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1863666287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863438325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8369c1b1b4ca49440b8288c6e37c6a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TerraGravidade
-  raioInfluencia: 2000
-  forcaGravidade: 50
-  distanciaMinima: 2
-  tagAlvo: Asteroid
-  ignorarKinematic: 1
-  usarForcaPorDistancia: 1
-  intervaloAtualizacao: 0
 --- !u!1 &1864243706
 GameObject:
   m_ObjectHideFlags: 0
@@ -27553,7 +27551,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &1918246529
 BoxCollider:
@@ -27711,7 +27709,7 @@ Transform:
   m_GameObject: {fileID: 1924399423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 127, z: 142.1}
+  m_LocalPosition: {x: 0, y: 127, z: 451}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28845,7 +28843,7 @@ Transform:
   m_GameObject: {fileID: 2015149174}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82, y: 138, z: -192}
+  m_LocalPosition: {x: 82, y: 138, z: -864}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29171,7 +29169,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &2041918152
 BoxCollider:
@@ -29775,7 +29773,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -30289,7 +30287,7 @@ MonoBehaviour:
   botaoEspaco: 0
   botaoEnter: 0
   tecladoRaiz: {fileID: 0}
-  pontoController: {fileID: 607363919}
+  placarRecords: {fileID: 0}
   limiteMaximo: 10
 --- !u!65 &2089583384
 BoxCollider:
@@ -38316,11 +38314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426654, guid: 27fe6d2a15a377f4587f716a2d37ca8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2500
+      value: -4000
       objectReference: {fileID: 0}
     - target: {fileID: 426654, guid: 27fe6d2a15a377f4587f716a2d37ca8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 284
+      value: 549
       objectReference: {fileID: 0}
     - target: {fileID: 426654, guid: 27fe6d2a15a377f4587f716a2d37ca8a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38354,14 +38352,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -12.616
       objectReference: {fileID: 0}
+    - target: {fileID: 7603083524191408965, guid: 27fe6d2a15a377f4587f716a2d37ca8a,
+        type: 3}
+      propertyPath: forcaMinima
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603083524191408965, guid: 27fe6d2a15a377f4587f716a2d37ca8a,
+        type: 3}
+      propertyPath: distanciaMinima
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 132870, guid: 27fe6d2a15a377f4587f716a2d37ca8a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1863666287}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27fe6d2a15a377f4587f716a2d37ca8a, type: 3}
 --- !u!4 &7288438393766944041
 Transform:
@@ -38581,6 +38585,7 @@ MonoBehaviour:
   - {fileID: 2741955830187142078}
   - {fileID: 1599478761}
   - {fileID: 111537502}
+  placarRecords: {fileID: 1706158730}
 --- !u!1001 &8167091416122722616
 PrefabInstance:
   m_ObjectHideFlags: 0

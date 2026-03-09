@@ -116,7 +116,6 @@ struct UnityNativeInterface_tD09163B2786F8A2BB986CFE7710017F8C8C8DCC7;
 struct WwisePluginInterface_t199AE67CEDE65A79910FD8DFA154C8FD392E6EEB;
 struct U3CU3Ec_tA51D7D68FAE1E941D82412D324ECEDB8B0E9AEE1;
 
-IL2CPP_EXTERN_C RuntimeClass* AcousticModel_t4267D32C89F39B1175686D18A27F8BAC98305B53_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534_il2cpp_TypeInfo_var;
@@ -182,19 +181,10 @@ IL2CPP_EXTERN_C RuntimeField* U3CPrivateImplementationDetailsU3E_tA72208D6996CCF
 IL2CPP_EXTERN_C String_t* _stringLiteral12998AE26ABA2BB1BEEF18B0A944908860EB5E37;
 IL2CPP_EXTERN_C String_t* _stringLiteral1ADACE024A6187363E04C29B4F53D872AC3252C9;
 IL2CPP_EXTERN_C String_t* _stringLiteral200684201C7F1A1FAC8184E87AB6C3317669C6EA;
-IL2CPP_EXTERN_C String_t* _stringLiteral3AA2D0B6407BF6FA90F29F229971DC0C7F6FC5E6;
-IL2CPP_EXTERN_C String_t* _stringLiteral3E1D569944FA634BAF92EECFFF026A474FB15D03;
-IL2CPP_EXTERN_C String_t* _stringLiteral42A422F273281DC2952DBF7BE24C95F0DF664939;
 IL2CPP_EXTERN_C String_t* _stringLiteral56C45E83BD44D523AE575BA73B6377C78D317DBC;
 IL2CPP_EXTERN_C String_t* _stringLiteral639AAFBC2545E25FA610A9A35CC6001C55ED1B50;
-IL2CPP_EXTERN_C String_t* _stringLiteral6CEE3F44F7BD3490E651E4E7ADBB98B8A657D8DA;
-IL2CPP_EXTERN_C String_t* _stringLiteral75747A585F3CDC4C996360FACD9A5A2FDD8475BF;
-IL2CPP_EXTERN_C String_t* _stringLiteral78228913BAA5055D00A587B0DD86C2298DE86086;
-IL2CPP_EXTERN_C String_t* _stringLiteral8A02F5F188B678BFC1C8D758AD62EA73CA4E1055;
-IL2CPP_EXTERN_C String_t* _stringLiteralA211C98A9BA709F0C0926B4502E5D24500AD7985;
 IL2CPP_EXTERN_C String_t* _stringLiteralBA1B34019FB95AAC9C0E412717682A9A70218B15;
 IL2CPP_EXTERN_C String_t* _stringLiteralCC2B6409F4EEFEC29FEC52538F974E561B471E80;
-IL2CPP_EXTERN_C String_t* _stringLiteralE608673B918A04D6FADE442B9611EB3CF4FC8500;
 IL2CPP_EXTERN_C const RuntimeMethod* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Component_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m42DA4DEA19EB60D80CBED7413ADEB27FA033C77B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerable_First_TisPoint_tE62A9AAF9CD86C87CF30310CF08E8E097B3EC370_m9A5B7D161731D9F26131FFF1DE3CD78958D9939B_RuntimeMethod_var;
@@ -1701,10 +1691,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MetaXRAcousticSettings_tDD5A8FF53B48D70646FFC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAcousticSettings_ApplyAllSettings_m729E3782520C8D12092D933916ADD630914E2B23 (MetaXRAcousticSettings_tDD5A8FF53B48D70646FFC715466C85E6CE18E406* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* MetaXRAcousticNativeInterface_get_Interface_m985A4D3138BAB1CB6303AC0EB85FC3000C5F8786 (const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t MetaXRAcousticSettings_get_AcousticModel_m128DCBF589EEC1D86A3B7E88BC27506A9F15671D_inline (MetaXRAcousticSettings_tDD5A8FF53B48D70646FFC715466C85E6CE18E406* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8 (String_t* ___0_format, RuntimeObject* ___1_arg0, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool MetaXRAcousticSettings_get_DiffractionEnabled_m281BB8BFEDFE4E5D853CECACEDD77446E29A6CCD_inline (MetaXRAcousticSettings_tDD5A8FF53B48D70646FFC715466C85E6CE18E406* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B (String_t* ___0_str0, String_t* ___1_str1, String_t* ___2_str2, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB (RuntimeObject* ___0_message, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_x, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___1_y, const RuntimeMethod* method) ;
 inline MetaXRAcousticSettings_tDD5A8FF53B48D70646FFC715466C85E6CE18E406* Resources_Load_TisMetaXRAcousticSettings_tDD5A8FF53B48D70646FFC715466C85E6CE18E406_m9ECDDF09D417DB61B31278A5D9B3EF9F693078D9 (String_t* ___0_path, const RuntimeMethod* method)
 {
@@ -1818,6 +1805,7 @@ inline ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRu
 	return ((  ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_m918500C1EFB475181349A79989BB79BB36102894 (String_t* ___0_format, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___1_args, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB (RuntimeObject* ___0_message, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Spectrum_Clone_mA45D20B98E3BDE2BB12FE569F5FA85FE26BE851F (Spectrum_tB3DBF8FDC543E15999B59292C4341C4E179A1F10* __this, Spectrum_tB3DBF8FDC543E15999B59292C4341C4E179A1F10* ___0_other, const RuntimeMethod* method) ;
 inline int32_t List_1_get_Count_m8236F54051F544037548F2640DC798B3383CE782_inline (List_1_tE575C855EE278366C48A69CE242AFD55DBC3AFD5* __this, const RuntimeMethod* method)
 {
@@ -12967,45 +12955,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAcousticSettings_ApplyAllSettings_
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AcousticModel_t4267D32C89F39B1175686D18A27F8BAC98305B53_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&INativeInterface_tCDC37BA0B86E1FFFBA32E7A04EC310F1AA6085F5_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral3AA2D0B6407BF6FA90F29F229971DC0C7F6FC5E6);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral3E1D569944FA634BAF92EECFFF026A474FB15D03);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral42A422F273281DC2952DBF7BE24C95F0DF664939);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		int32_t L_0;
-		L_0 = MetaXRAcousticSettings_get_AcousticModel_m128DCBF589EEC1D86A3B7E88BC27506A9F15671D_inline(__this, NULL);
-		int32_t L_1 = L_0;
-		RuntimeObject* L_2 = Box(AcousticModel_t4267D32C89F39B1175686D18A27F8BAC98305B53_il2cpp_TypeInfo_var, &L_1);
-		String_t* L_3;
-		L_3 = String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8(_stringLiteral3E1D569944FA634BAF92EECFFF026A474FB15D03, L_2, NULL);
+		RuntimeObject* L_0;
+		L_0 = MetaXRAcousticNativeInterface_get_Interface_m985A4D3138BAB1CB6303AC0EB85FC3000C5F8786(NULL);
+		int32_t L_1;
+		L_1 = MetaXRAcousticSettings_get_AcousticModel_m128DCBF589EEC1D86A3B7E88BC27506A9F15671D_inline(__this, NULL);
+		NullCheck(L_0);
+		int32_t L_2;
+		L_2 = InterfaceFuncInvoker1< int32_t, int32_t >::Invoke(0, INativeInterface_tCDC37BA0B86E1FFFBA32E7A04EC310F1AA6085F5_il2cpp_TypeInfo_var, L_0, L_1);
+		RuntimeObject* L_3;
+		L_3 = MetaXRAcousticNativeInterface_get_Interface_m985A4D3138BAB1CB6303AC0EB85FC3000C5F8786(NULL);
 		bool L_4;
 		L_4 = MetaXRAcousticSettings_get_DiffractionEnabled_m281BB8BFEDFE4E5D853CECACEDD77446E29A6CCD_inline(__this, NULL);
-		bool L_5 = L_4;
-		RuntimeObject* L_6 = Box(il2cpp_defaults.boolean_class, &L_5);
-		String_t* L_7;
-		L_7 = String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8(_stringLiteral3AA2D0B6407BF6FA90F29F229971DC0C7F6FC5E6, L_6, NULL);
-		String_t* L_8;
-		L_8 = String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B(_stringLiteral42A422F273281DC2952DBF7BE24C95F0DF664939, L_3, L_7, NULL);
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_8, NULL);
-		RuntimeObject* L_9;
-		L_9 = MetaXRAcousticNativeInterface_get_Interface_m985A4D3138BAB1CB6303AC0EB85FC3000C5F8786(NULL);
-		int32_t L_10;
-		L_10 = MetaXRAcousticSettings_get_AcousticModel_m128DCBF589EEC1D86A3B7E88BC27506A9F15671D_inline(__this, NULL);
-		NullCheck(L_9);
-		int32_t L_11;
-		L_11 = InterfaceFuncInvoker1< int32_t, int32_t >::Invoke(0, INativeInterface_tCDC37BA0B86E1FFFBA32E7A04EC310F1AA6085F5_il2cpp_TypeInfo_var, L_9, L_10);
-		RuntimeObject* L_12;
-		L_12 = MetaXRAcousticNativeInterface_get_Interface_m985A4D3138BAB1CB6303AC0EB85FC3000C5F8786(NULL);
-		bool L_13;
-		L_13 = MetaXRAcousticSettings_get_DiffractionEnabled_m281BB8BFEDFE4E5D853CECACEDD77446E29A6CCD_inline(__this, NULL);
-		NullCheck(L_12);
-		int32_t L_14;
-		L_14 = InterfaceFuncInvoker2< int32_t, uint32_t, bool >::Invoke(3, INativeInterface_tCDC37BA0B86E1FFFBA32E7A04EC310F1AA6085F5_il2cpp_TypeInfo_var, L_12, 6, L_13);
+		NullCheck(L_3);
+		int32_t L_5;
+		L_5 = InterfaceFuncInvoker2< int32_t, uint32_t, bool >::Invoke(3, INativeInterface_tCDC37BA0B86E1FFFBA32E7A04EC310F1AA6085F5_il2cpp_TypeInfo_var, L_3, 6, L_4);
 		return;
 	}
 }
@@ -13147,13 +13114,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* MetaXRAudioNativeInterface_Fin
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&FMODPluginInterface_t829FB8C7A2EC760BC196155384D04A8A47E0CA3D_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&UnityNativeInterface_tD09163B2786F8A2BB986CFE7710017F8C8C8DCC7_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&WwisePluginInterface_t199AE67CEDE65A79910FD8DFA154C8FD392E6EEB_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral6CEE3F44F7BD3490E651E4E7ADBB98B8A657D8DA);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral78228913BAA5055D00A587B0DD86C2298DE86086);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral8A02F5F188B678BFC1C8D758AD62EA73CA4E1055);
 		s_Il2CppMethodInitialized = true;
 	}
 	intptr_t V_0;
@@ -13167,72 +13130,66 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* MetaXRAudioNativeInterface_Fin
 		intptr_t L_0;
 		L_0 = WwisePluginInterface_getOrCreateGlobalOvrAudioContext_mEF9C53E7B2B8AC2105A94F916E9008ECDFC79060(NULL);
 		V_0 = L_0;
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral6CEE3F44F7BD3490E651E4E7ADBB98B8A657D8DA, NULL);
 		WwisePluginInterface_t199AE67CEDE65A79910FD8DFA154C8FD392E6EEB* L_1 = (WwisePluginInterface_t199AE67CEDE65A79910FD8DFA154C8FD392E6EEB*)il2cpp_codegen_object_new(WwisePluginInterface_t199AE67CEDE65A79910FD8DFA154C8FD392E6EEB_il2cpp_TypeInfo_var);
 		WwisePluginInterface__ctor_m102AF2F81B68898D54A1BE79A6E9B37BFB23CDC7(L_1, NULL);
 		V_1 = L_1;
-		goto IL_0055;
+		goto IL_0034;
 	}
 	catch(Il2CppExceptionWrapper& e)
 	{
 		if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
 		{
 			IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-			goto CATCH_001b;
+			goto CATCH_0010;
 		}
 		throw e;
 	}
 
-CATCH_001b:
+CATCH_0010:
 	{
 		DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534* L_2 = ((DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534*)IL2CPP_GET_ACTIVE_EXCEPTION(DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534*));;
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
-		goto IL_0020;
+		goto IL_0015;
 	}
 
-IL_0020:
+IL_0015:
 	{
 	}
 	try
 	{
 		int32_t L_3;
 		L_3 = FMODPluginInterface_ovrAudio_GetPluginContext_m5DAC6D42596648E7CC10B0143A8F5C23280117E7((&V_0), NULL);
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral8A02F5F188B678BFC1C8D758AD62EA73CA4E1055, NULL);
 		FMODPluginInterface_t829FB8C7A2EC760BC196155384D04A8A47E0CA3D* L_4 = (FMODPluginInterface_t829FB8C7A2EC760BC196155384D04A8A47E0CA3D*)il2cpp_codegen_object_new(FMODPluginInterface_t829FB8C7A2EC760BC196155384D04A8A47E0CA3D_il2cpp_TypeInfo_var);
 		FMODPluginInterface__ctor_m5E680483B10C7ED3C547F49EE1119E1987812F70(L_4, NULL);
 		V_1 = L_4;
-		goto IL_0055;
+		goto IL_0034;
 	}
 	catch(Il2CppExceptionWrapper& e)
 	{
 		if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
 		{
 			IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-			goto CATCH_003d;
+			goto CATCH_0027;
 		}
 		throw e;
 	}
 
-CATCH_003d:
+CATCH_0027:
 	{
 		DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534* L_5 = ((DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534*)IL2CPP_GET_ACTIVE_EXCEPTION(DllNotFoundException_t8CAE636A394C482C9FCF38FB7B7929506319D534*));;
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
-		goto IL_0042;
+		goto IL_002c;
 	}
 
-IL_0042:
+IL_002c:
 	{
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral78228913BAA5055D00A587B0DD86C2298DE86086, NULL);
 		UnityNativeInterface_tD09163B2786F8A2BB986CFE7710017F8C8C8DCC7* L_6 = (UnityNativeInterface_tD09163B2786F8A2BB986CFE7710017F8C8C8DCC7*)il2cpp_codegen_object_new(UnityNativeInterface_tD09163B2786F8A2BB986CFE7710017F8C8C8DCC7_il2cpp_TypeInfo_var);
 		UnityNativeInterface__ctor_m429B3502D983C98CDB04D4B59574265D6E3C426A(L_6, NULL);
 		V_1 = L_6;
-		goto IL_0055;
+		goto IL_0034;
 	}
 
-IL_0055:
+IL_0034:
 	{
 		RuntimeObject* L_7 = V_1;
 		return L_7;
@@ -15168,14 +15125,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAudioRoomAcousticProperties_CheckS
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_AddComponent_TisMetaXRAudioRoomAcousticProperties_t9E605CE8F232C8B8B455DC23F1469508556480C9_mD43B43D37FEAED2F93891370BC1C58C7B1C878FD_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_t76FEDD663AB33C991A9C9A23129337651094216F_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_FindObjectsOfType_TisMetaXRAudioRoomAcousticProperties_t9E605CE8F232C8B8B455DC23F1469508556480C9_mFF107257026360A211CC4F1F96D7BDD663E93DA6_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral200684201C7F1A1FAC8184E87AB6C3317669C6EA);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral75747A585F3CDC4C996360FACD9A5A2FDD8475BF);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralA211C98A9BA709F0C0926B4502E5D24500AD7985);
 		s_Il2CppMethodInitialized = true;
 	}
 	MetaXRAudioRoomAcousticPropertiesU5BU5D_t03D430121ACB676DC30F57553C02143F71F87F6C* V_0 = NULL;
@@ -15194,12 +15148,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAudioRoomAcousticProperties_CheckS
 		bool L_2 = V_1;
 		if (!L_2)
 		{
-			goto IL_003d;
+			goto IL_0032;
 		}
 	}
 	{
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteralA211C98A9BA709F0C0926B4502E5D24500AD7985, NULL);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)il2cpp_codegen_object_new(GameObject_t76FEDD663AB33C991A9C9A23129337651094216F_il2cpp_TypeInfo_var);
 		GameObject__ctor_m37D512B05D292F954792225E6C6EEE95293A9B88(L_3, _stringLiteral200684201C7F1A1FAC8184E87AB6C3317669C6EA, NULL);
 		V_2 = L_3;
@@ -15216,7 +15168,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAudioRoomAcousticProperties_CheckS
 		Object_DestroyImmediate_m6336EBC83591A5DB64EC70C92132824C6E258705(L_7, NULL);
 	}
 
-IL_003d:
+IL_0032:
 	{
 		MetaXRAudioRoomAcousticPropertiesU5BU5D_t03D430121ACB676DC30F57553C02143F71F87F6C* L_8 = V_0;
 		NullCheck(L_8);
@@ -15224,15 +15176,13 @@ IL_003d:
 		bool L_9 = V_4;
 		if (!L_9)
 		{
-			goto IL_0056;
+			goto IL_0040;
 		}
 	}
 	{
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2(_stringLiteral75747A585F3CDC4C996360FACD9A5A2FDD8475BF, NULL);
 	}
 
-IL_0056:
+IL_0040:
 	{
 		return;
 	}
@@ -16066,30 +16016,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAudioSettings__ctor_m550A5B742E2FA
 #endif
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetaXRAudioSource_OnBeforeSceneLoadRuntimeMethod_m52DECD660A50BD6434F6DB531D2FD4BCBF42BD47 (const RuntimeMethod* method) 
 {
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralE608673B918A04D6FADE442B9611EB3CF4FC8500);
-		s_Il2CppMethodInitialized = true;
-	}
 	{
 		MetaXRAudioSettings_t76602DA396AC738EC47E2C6D7F76C7B4BA2B25F9* L_0;
 		L_0 = MetaXRAudioSettings_get_Instance_mB453230A57D314E0508F6A012987114BE46160F1(NULL);
 		NullCheck(L_0);
 		int32_t L_1 = L_0->___voiceLimit;
-		int32_t L_2 = L_1;
-		RuntimeObject* L_3 = Box(il2cpp_defaults.int32_class, &L_2);
-		String_t* L_4;
-		L_4 = String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8(_stringLiteralE608673B918A04D6FADE442B9611EB3CF4FC8500, L_3, NULL);
-		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_4, NULL);
-		MetaXRAudioSettings_t76602DA396AC738EC47E2C6D7F76C7B4BA2B25F9* L_5;
-		L_5 = MetaXRAudioSettings_get_Instance_mB453230A57D314E0508F6A012987114BE46160F1(NULL);
-		NullCheck(L_5);
-		int32_t L_6 = L_5->___voiceLimit;
-		int32_t L_7;
-		L_7 = MetaXRAudioSource_MetaXRAudio_Unity_SetGlobalVoiceLimit_m72C01AF1135B3DCDBF98382E200903D13D034CA2(L_6, NULL);
+		int32_t L_2;
+		L_2 = MetaXRAudioSource_MetaXRAudio_Unity_SetGlobalVoiceLimit_m72C01AF1135B3DCDBF98382E200903D13D034CA2(L_1, NULL);
 		return;
 	}
 }

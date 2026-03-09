@@ -34,6 +34,10 @@ public class GameOverStart : MonoBehaviour
     [Tooltip("Referências aos objetos de armas que devem ser ativados.")]
     [SerializeField] private GameObject[] armas;
 
+    [Header("Placar")]
+    [Tooltip("Objeto do placar que deve ser escondido ao iniciar novo jogo.")]
+    [SerializeField] private GameObject placarRecords;
+
     private void Start()
     {
         ValidateReferences();
@@ -59,7 +63,7 @@ public class GameOverStart : MonoBehaviour
             Debug.LogError("PlayerDano não foi atribuído corretamente no GameOverStart!");
         }
 
-        // ✅ Reseta o placar atual do jogo
+        // Reseta o placar atual do jogo
         if (gameController != null)
         {
             gameController.ResetarPontuacao();
@@ -105,15 +109,14 @@ public class GameOverStart : MonoBehaviour
             }
         }
 
-        // Move o objeto "Records" para a posição fixa
-        GameObject recordsObj = GameObject.Find("Records");
-        if (recordsObj != null)
+        // Esconde o placar ao iniciar novo jogo
+        if (placarRecords != null)
         {
-            recordsObj.transform.position = new Vector3(-5.2f, -8.9f, 5.1f);
+            placarRecords.SetActive(false);
         }
         else
         {
-            Debug.LogWarning("Objeto 'Records' não encontrado na cena.");
+            Debug.LogWarning("Placar Records não foi atribuído no Inspector.");
         }
 
         // Desativa este script após reiniciar o jogo
@@ -166,5 +169,8 @@ public class GameOverStart : MonoBehaviour
 
         if (armas.Length == 0)
             Debug.LogWarning("Nenhuma arma foi atribuída!");
+
+        if (placarRecords == null)
+            Debug.LogWarning("Placar Records não está atribuído!");
     }
 }
