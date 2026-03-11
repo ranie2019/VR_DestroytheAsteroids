@@ -4924,7 +4924,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9121549893462604010, guid: efe086015070f38468ea90fd0968a1b9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6365360290513580614}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe086015070f38468ea90fd0968a1b9, type: 3}
 --- !u!1 &302177704
@@ -7509,6 +7513,7 @@ Transform:
   - {fileID: 1716113769}
   - {fileID: 971557872}
   - {fileID: 1137816335}
+  - {fileID: 1376464787}
   - {fileID: 1088897288}
   - {fileID: 1550221314}
   - {fileID: 131093509}
@@ -7516,8 +7521,6 @@ Transform:
   - {fileID: 584979593}
   - {fileID: 822513475}
   - {fileID: 1917383179}
-  - {fileID: 6365360290513580614}
-  - {fileID: 1376464787}
   - {fileID: 600671736}
   - {fileID: 1372858239}
   - {fileID: 1690097524}
@@ -18085,7 +18088,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288544990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28373,7 +28376,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970841073}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -36880,12 +36883,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 464380791}
+    m_TransformParent: {fileID: 1137816335}
     m_Modifications:
+    - target: {fileID: 736484312739059448, guid: b1f27b6608b4098459d6d721ebf7dc79,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18671034
+      objectReference: {fileID: 0}
     - target: {fileID: 736484312739059448, guid: b1f27b6608b4098459d6d721ebf7dc79,
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.17055196
+      objectReference: {fileID: 0}
+    - target: {fileID: 736484312739059448, guid: b1f27b6608b4098459d6d721ebf7dc79,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.17644103
       objectReference: {fileID: 0}
     - target: {fileID: 736484312739059448, guid: b1f27b6608b4098459d6d721ebf7dc79,
         type: 3}

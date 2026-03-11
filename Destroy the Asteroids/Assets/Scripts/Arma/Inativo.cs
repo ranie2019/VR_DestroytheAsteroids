@@ -31,11 +31,9 @@ public class Inativo : MonoBehaviour
 
     private Rigidbody rb;
 
-    // posição/rotação travadas
     private Vector3 posicaoInicial;
     private Quaternion rotacaoInicial;
 
-    // constraints originais do rigidbody
     private RigidbodyConstraints rbConstraintsOriginais;
     private bool rbKinematicOriginal;
 
@@ -108,8 +106,12 @@ public class Inativo : MonoBehaviour
 
         if (rb != null && travarRigidbody)
         {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            if (!rb.isKinematic)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
+
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -123,24 +125,21 @@ public class Inativo : MonoBehaviour
         {
             rb.isKinematic = rbKinematicOriginal;
             rb.constraints = rbConstraintsOriginais;
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+
+            if (!rb.isKinematic)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+            }
         }
     }
 
     private void LateUpdate()
     {
-        // enquanto o jogo não começou, força voltar pro lugar
         if (!jogoIniciado && travarTransformTotalmente)
         {
             transform.position = posicaoInicial;
             transform.rotation = rotacaoInicial;
-
-            if (rb != null && travarRigidbody)
-            {
-                rb.linearVelocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-            }
         }
     }
 
