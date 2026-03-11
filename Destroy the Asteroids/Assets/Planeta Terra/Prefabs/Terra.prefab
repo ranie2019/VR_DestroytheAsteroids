@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426654}
   - component: {fileID: 11491094}
-  - component: {fileID: 7603083524191408965}
+  - component: {fileID: 4746467251587539178}
   m_Layer: 0
   m_Name: Terra
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -665, y: 159, z: 243}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3.0486, y: 3.0486, z: 3.0486}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 459932}
@@ -52,7 +52,7 @@ MonoBehaviour:
   clockwise: 1
   direction: 1
   directionChangeSpeed: 2
---- !u!114 &7603083524191408965
+--- !u!114 &4746467251587539178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,13 +64,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8369c1b1b4ca49440b8288c6e37c6a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TerraGravidade
-  raioInfluencia: 3000
-  forcaGravidade: 1000
-  distanciaMinima: 3000
+  centroGravidade: {fileID: 426654}
+  raioInfluencia: 4779
+  forcaGravidade: 100
+  distanciaMinima: 5
   tagAlvo: Asteroid
   ignorarKinematic: 1
   usarForcaPorDistancia: 1
   intervaloAtualizacao: 0
+  forcaMinima: 2
+  forcaMaxima: 300
+  maxColisoes: 256
 --- !u!1 &160422
 GameObject:
   m_ObjectHideFlags: 0

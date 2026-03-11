@@ -2415,7 +2415,7 @@ MonoBehaviour:
   - {fileID: 2147633667897491687}
   bulletSpeed: 400
   municaoMaxima: 2
-  tempoRecarga: 120
+  tempoRecarga: 170
   municaoText: {fileID: 8839170214885055627}
   disparoSFX: {fileID: 8300000, guid: eb044324b3575b0479f045b7b8f05a81, type: 3}
   audioSourcePoolSize: 5
@@ -2546,6 +2546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempoDeInatividade: 240
+  travarTransformTotalmente: 1
+  travarRigidbody: 1
   ativacaoSound: {fileID: 8300000, guid: 396514800b8bc5143834fcaedc02ffa8, type: 3}
 --- !u!1 &5380403241558051390
 GameObject:

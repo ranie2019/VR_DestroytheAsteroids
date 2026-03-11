@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempoDeInatividade: 60
+  travarTransformTotalmente: 1
+  travarRigidbody: 1
   ativacaoSound: {fileID: 8300000, guid: 00364e1118e20b440903ae011ca0cdd0, type: 3}
 --- !u!114 &8580363150871362789
 MonoBehaviour:

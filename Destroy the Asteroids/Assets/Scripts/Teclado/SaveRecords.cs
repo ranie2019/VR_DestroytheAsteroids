@@ -46,7 +46,6 @@ public class SaveRecords : MonoBehaviour
 
         if (novaPontuacao < 0)
         {
-            Debug.LogWarning("⚠️ SaveRecords: tentativa de salvar pontuação inválida.");
             return;
         }
 
@@ -62,7 +61,6 @@ public class SaveRecords : MonoBehaviour
         SalvarListaNaMemoria(records);
         AplicarListaNaUI(records);
 
-        Debug.Log($"✅ Novo record registrado: {nomeJogador} - {novaPontuacao}");
     }
 
     /// <summary>
@@ -72,14 +70,12 @@ public class SaveRecords : MonoBehaviour
     {
         if (recordObjects == null || recordObjects.Count == 0)
         {
-            Debug.LogWarning("⚠️ SaveRecords: recordObjects está vazio.");
             return;
         }
 
         List<RecordData> records = CarregarRecordsDaMemoria();
         AplicarListaNaUI(records);
 
-        Debug.Log("📥 Placar carregado do PlayerPrefs.");
     }
 
     /// <summary>
@@ -90,7 +86,6 @@ public class SaveRecords : MonoBehaviour
     {
         if (recordObjects == null || recordObjects.Count == 0)
         {
-            Debug.LogWarning("⚠️ SaveRecords: recordObjects está vazio.");
             return;
         }
 
@@ -141,7 +136,6 @@ public class SaveRecords : MonoBehaviour
         SalvarListaNaMemoria(records);
         AplicarListaNaUI(records);
 
-        Debug.Log("💾 Estado atual do placar salvo.");
     }
 
     /// <summary>
@@ -159,7 +153,6 @@ public class SaveRecords : MonoBehaviour
         PlayerPrefs.Save();
         AplicarListaNaUI(new List<RecordData>());
 
-        Debug.Log("🗑️ Todos os records foram apagados.");
     }
 
     /// <summary>
@@ -208,7 +201,6 @@ public class SaveRecords : MonoBehaviour
             PlayerPrefs.SetString(PrefixoNome + i, nome);
             PlayerPrefs.SetInt(PrefixoScore + i, pontuacao);
 
-            Debug.Log($"💾 Salvando posição {i + 1}: {nome} - {pontuacao}");
         }
 
         PlayerPrefs.Save();
@@ -237,7 +229,6 @@ public class SaveRecords : MonoBehaviour
                 if (recordChild != null && recordChild.TryGetComponent(out TextMeshProUGUI scoreTMP))
                     scoreTMP.text = records[i].pontuacao.ToString("N0", culturaPtBr);
 
-                Debug.Log($"📥 Carregando posição {i + 1}: {records[i].nome} - {records[i].pontuacao}");
             }
             else
             {
@@ -247,7 +238,6 @@ public class SaveRecords : MonoBehaviour
                 if (recordChild != null && recordChild.TryGetComponent(out TextMeshProUGUI scoreTMP))
                     scoreTMP.text = "";
 
-                Debug.Log($"📥 Carregando posição {i + 1}: {nomePadrao} - vazio");
             }
         }
     }

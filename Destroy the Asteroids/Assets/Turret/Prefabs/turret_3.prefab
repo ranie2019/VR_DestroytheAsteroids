@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagAlvo: Asteroid
-  alcance: 1500
+  alcance: 2000
   intervaloBuscaAlvo: 1
   baseY: {fileID: 662840410129687976}
   cabecaX: {fileID: 8574188683096011904}

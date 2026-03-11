@@ -5,49 +5,46 @@ using TMPro;
 public class PlayerDano : MonoBehaviour
 {
     [Header("Configuração de Vida")]
-    [SerializeField] private int vidaInicial = 3; // Vida inicial do jogador.
-    private int vidaAtual; // Vida atual do jogador.
-    [SerializeField] private TextMeshProUGUI vidaTextMeshPro; // UI para exibir a vida do jogador.
+    [SerializeField] private int vidaInicial = 3;
+    private int vidaAtual;
+    [SerializeField] private TextMeshProUGUI vidaTextMeshPro;
 
     [Header("Game Over UI")]
-    [SerializeField] private GameObject gameOverUI; // Referência ao painel de Game Over.
+    [SerializeField] private GameObject gameOverUI;
 
     [Header("Spawners")]
-    [SerializeField] private MonoBehaviour[] asteroidSpawnerScripts; // Scripts responsáveis por spawnar asteroides.
+    [SerializeField] private MonoBehaviour[] asteroidSpawnerScripts;
 
     [Header("Objetos a Desabilitar")]
-    [SerializeField] private GameObject[] objetosParaDesabilitar; // Objetos que serão desativados no Game Over.
+    [SerializeField] private GameObject[] objetosParaDesabilitar;
 
     [Header("Áudio de Explosão")]
-    [SerializeField] private AudioClip explosionClip; // Som de explosão ao perder todas as vidas.
-    [SerializeField] private AudioSource audioSource; // Componente de áudio usado para tocar sons.
+    [SerializeField] private AudioClip explosionClip;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Efeito de Dano")]
-    [SerializeField] private Canvas danoCanvas; // Canvas usado para exibir o efeito de dano.
-    [SerializeField] private float duracaoDanoImage = 0.5f; // Duração do efeito de dano.
-    [SerializeField] private AudioClip danoClip; // Som tocado ao sofrer dano.
+    [SerializeField] private Canvas danoCanvas;
+    [SerializeField] private float duracaoDanoImage = 0.5f;
+    [SerializeField] private AudioClip danoClip;
 
     [Header("Distância do Canvas de Dano")]
-    [SerializeField] private float distanciaDanoCanvas = 2f; // Distância entre o canvas de dano e o jogador.
+    [SerializeField] private float distanciaDanoCanvas = 2f;
 
-    private bool gameOverAtivo = false; // Indica se o jogo está no estado de Game Over.
-    private Camera mainCamera; // Referência à câmera principal da cena.
+    [Header("Sistema de Placar")]
+    [SerializeField] private GameObject record;
+    [SerializeField] private GameObject teclado;
+
+    private bool gameOverAtivo = false;
+    private Camera mainCamera;
 
     private void Start()
     {
-        // Inicializa a vida do jogador com a vida inicial.
         vidaAtual = vidaInicial;
-
-        // Atualiza a UI da vida no início do jogo.
         AtualizarUIVida();
-
-        // Valida se todas as referências necessárias foram atribuídas.
         ValidateReferences();
 
-        // Obtém a câmera principal.
         mainCamera = Camera.main;
 
-        // Garante que o Canvas de dano comece desativado.
         if (danoCanvas != null)
         {
             danoCanvas.gameObject.SetActive(false);
@@ -56,43 +53,33 @@ public class PlayerDano : MonoBehaviour
 
     private void Update()
     {
-        // Atualiza a posição e rotação do Canvas de dano para seguir o jogador.
         if (danoCanvas != null && mainCamera != null)
         {
             Vector3 playerPosition = transform.position;
             Vector3 cameraForward = mainCamera.transform.forward;
 
-            // Posiciona o Canvas de dano à frente do jogador.
             danoCanvas.transform.position = playerPosition + cameraForward.normalized * distanciaDanoCanvas;
 
-            // Faz o Canvas de dano olhar na direção da câmera.
             Vector3 directionToLook = (mainCamera.transform.position - danoCanvas.transform.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(directionToLook);
             Vector3 eulerRotation = rotation.eulerAngles;
-            eulerRotation.x = 0f; // Remove a inclinação no eixo X.
+            eulerRotation.x = 0f;
             danoCanvas.transform.rotation = Quaternion.Euler(eulerRotation);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Detecta colisões com objetos marcados como "Inimigo".
         if (collision.gameObject.CompareTag("Inimigo") && !gameOverAtivo)
         {
-            // Reduz a vida atual do jogador.
             vidaAtual--;
-
-            // Atualiza a UI da vida.
             AtualizarUIVida();
 
-            // Destrói o objeto inimigo que colidiu com o jogador.
             Destroy(collision.gameObject);
 
-            // Exibe o efeito de dano e toca o som de dano.
             StartCoroutine(ExibirDanoCanvas());
             TocarSomDano();
 
-            // Verifica se o jogador perdeu todas as vidas.
             if (vidaAtual <= 0)
             {
                 HandleGameOver();
@@ -102,7 +89,6 @@ public class PlayerDano : MonoBehaviour
 
     private void AtualizarUIVida()
     {
-        // Atualiza o texto na UI para refletir a vida atual.
         if (vidaTextMeshPro != null)
         {
             vidaTextMeshPro.text = vidaAtual.ToString();
@@ -115,34 +101,45 @@ public class PlayerDano : MonoBehaviour
 
     private void HandleGameOver()
     {
-        if (gameOverAtivo) return; // Evita múltiplas execuções do Game Over.
+        if (gameOverAtivo) return;
 
-        gameOverAtivo = true; // Marca o jogo como finalizado.
+        gameOverAtivo = true;
 
-        // Toca o som de explosão, se configurado.
         if (explosionClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(explosionClip);
         }
 
-        // Exibe a UI de Game Over.
         ShowGameOverUI();
-
-        // Para os spawners de asteroides.
         FreezeSpawners();
-
-        // Destrói todos os asteroides existentes na cena.
         DestroyAllAsteroids();
-
-        // Desativa os objetos configurados.
         DesabilitarObjetos();
+
+        // ATIVA TECLADO
+        if (teclado != null)
+        {
+            teclado.SetActive(true);
+            teclado.transform.position = new Vector3(0f, 2.88f, 3.69f);
+        }
+
+        // ATIVA PLACAR
+        if (record != null)
+        {
+            record.SetActive(true);
+            record.transform.position = new Vector3(-5.2f, 3.5f, 5.1f);
+        }
+
+        // PREPARA SISTEMA DE PONTUAÇÃO
+        FindObjectOfType<PontoController>()?.PlacarOffline();
+
+        // REGISTRA PONTUAÇÃO FINAL
+        FindObjectOfType<PlacarRecords>()?.RegistrarPontuacaoFinal();
 
         Debug.Log("Game Over! O jogador perdeu todas as vidas.");
     }
 
     private void ShowGameOverUI()
     {
-        // Ativa a UI de Game Over e todos os seus filhos.
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
@@ -156,7 +153,6 @@ public class PlayerDano : MonoBehaviour
 
     private void FreezeSpawners()
     {
-        // Desativa todos os scripts de spawner de asteroides.
         foreach (var spawner in asteroidSpawnerScripts)
         {
             if (spawner != null && spawner.enabled)
@@ -168,7 +164,6 @@ public class PlayerDano : MonoBehaviour
 
     private void DestroyAllAsteroids()
     {
-        // Encontra e destrói todos os objetos na cena com a tag "Asteroid".
         foreach (GameObject asteroid in GameObject.FindGameObjectsWithTag("Asteroid"))
         {
             Destroy(asteroid);
@@ -177,7 +172,6 @@ public class PlayerDano : MonoBehaviour
 
     private void DesabilitarObjetos()
     {
-        // Desativa todos os objetos configurados na lista.
         foreach (GameObject obj in objetosParaDesabilitar)
         {
             if (obj != null)
@@ -189,7 +183,6 @@ public class PlayerDano : MonoBehaviour
 
     private void EnableAllChildren(GameObject parent)
     {
-        // Ativa todos os filhos do objeto pai recursivamente.
         foreach (Transform child in parent.transform)
         {
             child.gameObject.SetActive(true);
@@ -199,7 +192,6 @@ public class PlayerDano : MonoBehaviour
 
     public void ResetarVida()
     {
-        // Reseta a vida do jogador para o valor inicial e reinicia o jogo.
         vidaAtual = vidaInicial;
         gameOverAtivo = false;
         AtualizarUIVida();
@@ -207,7 +199,6 @@ public class PlayerDano : MonoBehaviour
 
     private System.Collections.IEnumerator ExibirDanoCanvas()
     {
-        // Exibe o Canvas de dano por um tempo definido.
         if (danoCanvas != null)
         {
             danoCanvas.gameObject.SetActive(true);
@@ -218,7 +209,6 @@ public class PlayerDano : MonoBehaviour
 
     private void TocarSomDano()
     {
-        // Toca o som de dano, se configurado.
         if (danoClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(danoClip);
@@ -227,7 +217,6 @@ public class PlayerDano : MonoBehaviour
 
     private void ValidateReferences()
     {
-        // Valida se as referências importantes foram configuradas corretamente.
         if (asteroidSpawnerScripts.Length == 0)
             Debug.LogWarning("Nenhum spawner de asteroides atribuído.");
 

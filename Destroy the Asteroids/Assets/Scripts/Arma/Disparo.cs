@@ -1,89 +1,101 @@
 using UnityEngine;
+using System.Collections;
 
 public class Disparo : MonoBehaviour
 {
-    [Header("Configura��es do Audio")]
-    [SerializeField] private AudioClip audio; // Som do disparo
+    [Header("Configurações do Audio")]
+    [SerializeField] private AudioClip audio;
 
-    [Header("Configura��es da Bala")]
-    [SerializeField] private GameObject bulletPrefab; // Prefab da bala
-    [SerializeField] private float bulletSpeed = 20f; // Velocidade da bala
+    [Header("Configurações da Bala")]
+    [SerializeField] private GameObject bulletPrefab;
 
     [Header("Ponto de Spawn da Bala")]
-    [SerializeField] private Transform bulletSpawnPoint; // Ponto de spawn da bala (geralmente na ponta do cano da arma)
+    [SerializeField] private Transform bulletSpawnPoint;
+
+    [Header("Configurações de Disparo")]
+    [SerializeField] private float fireRate = 0.2f;
+
+    [Header("Ajustes de Segurança")]
+    [SerializeField] private float distanciaExtraDoSpawn = 0.05f;
+    [SerializeField] private float tempoIgnorarColisaoInicial = 0.05f;
+    [SerializeField] private Collider[] collidersParaIgnorar;
 
     private AudioSource audioSource;
-
-    [Header("Configura��es de Disparo")]
-    [SerializeField] private float fireRate = 0.2f; // Intervalo entre disparos r�pidos
-    private float nextFireTime = 0f; // Controla o tempo de disparo
-
-    private Vector3 latestSpawnPosition;
-    private Quaternion latestSpawnRotation;
-    private bool shouldFire = false;
+    private float nextFireTime = 0f;
 
     private void Awake()
     {
-        // Verifica se o AudioSource existe, sen�o cria um novo
-        audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
         audioSource.playOnAwake = false;
     }
 
-    /// <summary>
-    /// M�todo para disparar a arma.
-    /// </summary>
     public void LaserGunFire()
     {
-        if (Time.time >= nextFireTime)
-        {
-            nextFireTime = Time.time + fireRate; // Ajusta o tempo para o pr�ximo disparo
-            PlayLaserSound();
+        if (Time.time < nextFireTime)
+            return;
 
-            // Guarda a posi��o e rota��o corretas no momento do disparo
-            latestSpawnPosition = bulletSpawnPoint.position;
-            latestSpawnRotation = Quaternion.LookRotation(bulletSpawnPoint.forward);
-            shouldFire = true;
-        }
+        if (bulletPrefab == null || bulletSpawnPoint == null)
+            return;
+
+        nextFireTime = Time.time + fireRate;
+
+        PlayLaserSound();
+        FireBulletSeguro();
     }
 
-    /// <summary>
-    /// Reproduz o som do disparo.
-    /// </summary>
     private void PlayLaserSound()
     {
         if (audio != null)
-        {
             audioSource.PlayOneShot(audio);
-        }
     }
 
-    /// <summary>
-    /// Garante que o disparo ocorra no �ltimo momento do frame, evitando problemas de interpola��o.
-    /// </summary>
-    private void LateUpdate()
+    private void FireBulletSeguro()
     {
-        if (shouldFire)
-        {
-            FireBullet();
-            shouldFire = false;
-        }
-    }
+        Physics.SyncTransforms();
 
-    /// <summary>
-    /// Instancia a bala e aplica a velocidade.
-    /// </summary>
-    private void FireBullet()
-    {
-        if (bulletPrefab != null)
-        {
-            // Instancia a bala na posi��o correta do �ltimo frame
-            GameObject bullet = Instantiate(bulletPrefab, latestSpawnPosition, latestSpawnRotation);
-            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        Vector3 spawnPosition = bulletSpawnPoint.position + bulletSpawnPoint.forward * distanciaExtraDoSpawn;
+        Quaternion spawnRotation = bulletSpawnPoint.rotation;
 
-            if (bulletRigidbody != null)
+        GameObject bullet = Instantiate(bulletPrefab, spawnPosition, spawnRotation);
+
+        Collider bulletCol = bullet.GetComponent<Collider>();
+
+        if (bulletCol != null && collidersParaIgnorar != null)
+        {
+            for (int i = 0; i < collidersParaIgnorar.Length; i++)
             {
-                // Aplica a velocidade � bala
-                bulletRigidbody.linearVelocity = latestSpawnRotation * Vector3.forward * bulletSpeed;
+                Collider col = collidersParaIgnorar[i];
+                if (col != null)
+                {
+                    Physics.IgnoreCollision(bulletCol, col, true);
+                }
+            }
+
+            if (tempoIgnorarColisaoInicial > 0f)
+                StartCoroutine(ReativarColisoesDepois(bulletCol));
+        }
+    }
+
+    private IEnumerator ReativarColisoesDepois(Collider bulletCol)
+    {
+        yield return new WaitForSeconds(tempoIgnorarColisaoInicial);
+
+        if (bulletCol == null)
+            yield break;
+
+        if (collidersParaIgnorar == null)
+            yield break;
+
+        for (int i = 0; i < collidersParaIgnorar.Length; i++)
+        {
+            Collider col = collidersParaIgnorar[i];
+            if (col != null)
+            {
+                Physics.IgnoreCollision(bulletCol, col, false);
             }
         }
     }

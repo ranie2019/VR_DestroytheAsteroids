@@ -24,6 +24,12 @@ public class DroneUfo : MonoBehaviour
     [Header("Regras de escolha")]
     public bool evitarRepetirMesmoPonto = true;
 
+    [Tooltip("Evita escolher um novo ponto muito perto da posição atual do drone.")]
+    public float distanciaMinimaNovoAlvo = 1f;
+
+    [Tooltip("Número máximo de tentativas para achar um ponto melhor.")]
+    public int maxTentativasEscolha = 10;
+
     private int indiceAtual = -1;
     private Transform alvo;
 
@@ -49,18 +55,36 @@ public class DroneUfo : MonoBehaviour
     void Update()
     {
         if (pontos == null || pontos.Length == 0) return;
-        if (alvo == null) { EscolherNovoAlvo(); return; }
 
-        Vector3 direcao = (alvo.position - transform.position);
+        if (alvo == null)
+        {
+            EscolherNovoAlvo();
+            if (alvo == null) return;
+        }
+
+        Vector3 direcao = alvo.position - transform.position;
         float dist = direcao.magnitude;
 
+        // Se chegou, escolhe outro alvo
         if (dist <= distanciaParaChegar)
         {
             EscolherNovoAlvo();
-            return;
+
+            if (alvo == null) return;
+
+            direcao = alvo.position - transform.position;
+            dist = direcao.magnitude;
+
+            // Se ainda assim estiver colado no novo alvo, sai
+            if (dist <= 0.0001f) return;
         }
 
-        transform.position += direcao.normalized * velocidade * Time.deltaTime;
+        // Move sem passar do alvo
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            alvo.position,
+            velocidade * Time.deltaTime
+        );
 
         if (rotacionarParaDirecao && direcao.sqrMagnitude > 0.0001f)
         {
@@ -119,15 +143,17 @@ public class DroneUfo : MonoBehaviour
     private bool TemPontosValidos(Transform[] arr)
     {
         if (arr == null || arr.Length == 0) return false;
+
         for (int i = 0; i < arr.Length; i++)
+        {
             if (arr[i] == null) return false;
+        }
+
         return true;
     }
 
     private int NomeParaNumero(string nome)
     {
-        // se o ponto chama "1", "2", "3" ele ordena certo.
-        // se não for número, joga pra final.
         int n;
         if (int.TryParse(nome, out n)) return n;
         return int.MaxValue;
@@ -137,22 +163,49 @@ public class DroneUfo : MonoBehaviour
     {
         if (pontos == null || pontos.Length == 0) return;
 
-        int novoIndice = Random.Range(0, pontos.Length);
+        Transform melhorPonto = null;
+        int melhorIndice = -1;
 
-        if (evitarRepetirMesmoPonto && pontos.Length > 1)
+        for (int tentativa = 0; tentativa < maxTentativasEscolha; tentativa++)
         {
-            while (novoIndice == indiceAtual)
-                novoIndice = Random.Range(0, pontos.Length);
+            int novoIndice = Random.Range(0, pontos.Length);
+
+            if (evitarRepetirMesmoPonto && pontos.Length > 1 && novoIndice == indiceAtual)
+                continue;
+
+            Transform candidato = pontos[novoIndice];
+            if (candidato == null) continue;
+
+            float distDoDrone = Vector3.Distance(transform.position, candidato.position);
+
+            // tenta evitar pontos muito perto
+            if (distDoDrone >= distanciaMinimaNovoAlvo)
+            {
+                melhorPonto = candidato;
+                melhorIndice = novoIndice;
+                break;
+            }
+
+            // guarda pelo menos alguma opção caso não ache uma ideal
+            if (melhorPonto == null)
+            {
+                melhorPonto = candidato;
+                melhorIndice = novoIndice;
+            }
         }
 
-        indiceAtual = novoIndice;
-        alvo = pontos[indiceAtual];
+        if (melhorPonto != null)
+        {
+            indiceAtual = melhorIndice;
+            alvo = melhorPonto;
+        }
     }
 
     // Opcional: se você quiser setar via spawner também
     public void SetPontos(Transform[] novosPontos)
     {
         pontos = novosPontos;
+
         if (TemPontosValidos(pontos))
         {
             pontosCache = pontos;

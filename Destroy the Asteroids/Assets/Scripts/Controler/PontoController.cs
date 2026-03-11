@@ -32,8 +32,6 @@ public class PontoController : MonoBehaviour
         AtualizarPlacarUI();
         AtualizarRecordeUI();
 
-        Debug.Log("📌 PontoController iniciado com sucesso.");
-        Debug.Log($"🏆 Recorde carregado: {maiorPontuacao}");
     }
 
     /// <summary>
@@ -56,7 +54,6 @@ public class PontoController : MonoBehaviour
 
             AtualizarRecordeUI();
 
-            Debug.Log($"🏆 Novo recorde salvo: {maiorPontuacao}");
         }
     }
 
@@ -129,7 +126,6 @@ public class PontoController : MonoBehaviour
             AtualizarRecordeUI();
         }
 
-        Debug.Log($"🎯 Pontuação atual definida manualmente: {pontosAtuais}");
     }
 
     /// <summary>
@@ -140,7 +136,6 @@ public class PontoController : MonoBehaviour
         pontosAtuais = 0;
         AtualizarPlacarUI();
 
-        Debug.Log("🔄 Pontuação atual resetada.");
     }
 
     /// <summary>
@@ -156,7 +151,6 @@ public class PontoController : MonoBehaviour
 
         AtualizarRecordeUI();
 
-        Debug.Log("🗑️ Recorde salvo foi resetado.");
     }
 
     /// <summary>
@@ -167,7 +161,6 @@ public class PontoController : MonoBehaviour
         AtualizarPlacarUI();
         AtualizarRecordeUI();
 
-        Debug.Log("🖥️ UI de pontuação e recorde atualizada.");
     }
 
     /// <summary>
@@ -177,7 +170,6 @@ public class PontoController : MonoBehaviour
     public void PlacarOffline()
     {
         ultimoIndiceSalvo = -1;
-        Debug.Log("ℹ️ PlacarOffline foi chamado, mas o ranking Top 10 agora é controlado por SaveRecords.");
     }
 
     /// <summary>
@@ -185,7 +177,7 @@ public class PontoController : MonoBehaviour
     /// </summary>
     public void SetNomePlayer(string nome)
     {
-        Debug.Log($"ℹ️ SetNomePlayer chamado com '{nome}', mas o nome agora é salvo pelo sistema SaveRecords.");
+
     }
 
     /// <summary>
@@ -213,7 +205,7 @@ public class PontoController : MonoBehaviour
     /// </summary>
     public void MostrarPontuacaoNaTela()
     {
-        Debug.Log("Pontuação atual: " + pontosAtuais.ToString("N0"));
+
     }
 
     /// <summary>
@@ -221,7 +213,7 @@ public class PontoController : MonoBehaviour
     /// </summary>
     public void MostrarRecordeNaTela()
     {
-        Debug.Log("Recorde atual: " + maiorPontuacao.ToString("N0"));
+
     }
 
     /// <summary>
@@ -229,6 +221,6 @@ public class PontoController : MonoBehaviour
     /// </summary>
     public void RegistrarColisaoEnter(string tagObjeto)
     {
-        Debug.Log("Colisão ENTER registrada pelo objeto: " + tagObjeto);
+
     }
 }

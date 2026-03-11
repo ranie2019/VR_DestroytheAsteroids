@@ -47,7 +47,10 @@ public class NaveMae : MonoBehaviour
     [Tooltip("Quantidade de objetos para spawnar toda vez que chegar no ponto 1.")]
     public int quantidadeSpawn = 10;
 
-    [Tooltip("Offset (posição) a partir da nave para spawnar (ex: um pouco acima).")]
+    [Tooltip("Ponto exato onde os drones vão nascer. Se vazio, usa o offset da nave.")]
+    public Transform pontoDeSpawnDosDrones;
+
+    [Tooltip("Offset (posição) a partir da nave para spawnar (usado só se não houver ponto de spawn).")]
     public Vector3 offsetSpawn = new Vector3(0f, 0.5f, 0f);
 
     [Tooltip("Raio aleatório ao redor do ponto de spawn (0 = sempre no mesmo lugar).")]
@@ -202,8 +205,13 @@ public class NaveMae : MonoBehaviour
 
         int qtd = Mathf.Max(0, quantidadeSpawn);
 
-        // usa o offset no espaço local da nave
-        Vector3 basePos = transform.TransformPoint(offsetSpawn);
+        Vector3 basePos;
+
+        // Se existir um ponto específico, usa ele
+        if (pontoDeSpawnDosDrones != null)
+            basePos = pontoDeSpawnDosDrones.position;
+        else
+            basePos = transform.TransformPoint(offsetSpawn);
 
         for (int i = 0; i < qtd; i++)
         {

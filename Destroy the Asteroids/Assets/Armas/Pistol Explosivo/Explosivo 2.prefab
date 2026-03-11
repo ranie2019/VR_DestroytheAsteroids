@@ -143,7 +143,7 @@ MonoBehaviour:
   - {fileID: 8500280922523610274}
   bulletSpeed: 10
   municaoMaxima: 30
-  tempoRecarga: 60
+  tempoRecarga: 80
   municaoText: {fileID: 5111080435743249418}
   disparoSFX: {fileID: 8300000, guid: f52bef7dc454dbf4d96a763e7518e297, type: 3}
   audioSourcePoolSize: 20
@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempoDeInatividade: 120
+  travarTransformTotalmente: 1
+  travarRigidbody: 1
   ativacaoSound: {fileID: 8300000, guid: 11b78f83477f52f4d971377dc3692e88, type: 3}
 --- !u!114 &3080670771260283475
 MonoBehaviour:
@@ -763,24 +765,25 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 94b63c08957cf794f9fbc98078f15d69, type: 2}
-  m_sharedMaterial: {fileID: -4131890075319073577, guid: 94b63c08957cf794f9fbc98078f15d69,
+  m_fontAsset: {fileID: 11400000, guid: 42957f18cd637564685d976b95fdbdcd, type: 2}
+  m_sharedMaterial: {fileID: -3276018670005810138, guid: 42957f18cd637564685d976b95fdbdcd,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278197759
-  m_fontColor: {r: 1, g: 0.11481641, b: 0, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4278779648
+  m_fontColor: {r: 0, g: 1, b: 0.030263662, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 479a66fa4b094512a62b0a8e553ad95a,
+    type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}

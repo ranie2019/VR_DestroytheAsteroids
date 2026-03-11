@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class TerraGravidade : MonoBehaviour
 {
+    [Header("Centro da Gravidade")]
+    [Tooltip("Ponto central real da gravidade. Se vazio, usa o transform deste objeto.")]
+    [SerializeField] private Transform centroGravidade;
+
     [Header("Configurações da Gravidade")]
     [Tooltip("Raio de influência da gravidade.")]
     [SerializeField] private float raioInfluencia = 3000f;
@@ -33,7 +37,20 @@ public class TerraGravidade : MonoBehaviour
     [Tooltip("Força máxima para evitar aceleração absurda perto demais do centro.")]
     [SerializeField] private float forcaMaxima = 300f;
 
+    [Header("Performance")]
+    [Tooltip("Quantidade máxima de colliders verificados por atualização.")]
+    [SerializeField] private int maxColisoes = 256;
+
     private float proximaAtualizacao = 0f;
+    private Collider[] resultadosOverlap;
+
+    private void Awake()
+    {
+        if (maxColisoes < 1)
+            maxColisoes = 1;
+
+        resultadosOverlap = new Collider[maxColisoes];
+    }
 
     private void FixedUpdate()
     {
@@ -48,13 +65,33 @@ public class TerraGravidade : MonoBehaviour
         AplicarGravidadeNosProximos();
     }
 
+    private Vector3 ObterCentroGravidade()
+    {
+        if (centroGravidade != null)
+            return centroGravidade.position;
+
+        return transform.position;
+    }
+
     private void AplicarGravidadeNosProximos()
     {
-        Collider[] colisoes = Physics.OverlapSphere(transform.position, raioInfluencia);
+        Vector3 centro = ObterCentroGravidade();
 
-        for (int i = 0; i < colisoes.Length; i++)
+        int quantidade = Physics.OverlapSphereNonAlloc(
+            centro,
+            raioInfluencia,
+            resultadosOverlap
+        );
+
+        for (int i = 0; i < quantidade; i++)
         {
-            Rigidbody rb = colisoes[i].attachedRigidbody;
+            Collider col = resultadosOverlap[i];
+
+            if (col == null)
+                continue;
+
+            Rigidbody rb = col.attachedRigidbody;
+
             if (rb == null)
                 continue;
 
@@ -67,14 +104,17 @@ public class TerraGravidade : MonoBehaviour
             if (!string.IsNullOrEmpty(tagAlvo) && !rb.CompareTag(tagAlvo))
                 continue;
 
-            AtrairObjeto(rb);
+            AtrairObjeto(rb, centro);
         }
     }
 
-    private void AtrairObjeto(Rigidbody rb)
+    private void AtrairObjeto(Rigidbody rb, Vector3 centro)
     {
-        Vector3 direcao = transform.position - rb.worldCenterOfMass;
+        Vector3 direcao = centro - rb.worldCenterOfMass;
         float distancia = direcao.magnitude;
+
+        if (distancia <= 0.0001f)
+            return;
 
         distancia = Mathf.Max(distancia, distanciaMinima);
 
@@ -84,14 +124,9 @@ public class TerraGravidade : MonoBehaviour
 
         if (usarForcaPorDistancia)
         {
-            // Distância normalizada dentro do raio de influência
             float distanciaNormalizada = Mathf.Clamp01(distancia / raioInfluencia);
 
-            // Quanto menor a distância, maior a força
-            // No limite do raio: quase forcaMinima
-            // Perto do centro: aproxima de forcaMaxima
             float fator = 1f / Mathf.Max(distanciaNormalizada * distanciaNormalizada, 0.001f);
-
             forcaFinal = forcaGravidade * fator;
         }
 
@@ -102,7 +137,12 @@ public class TerraGravidade : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        Vector3 centro = centroGravidade != null ? centroGravidade.position : transform.position;
+
         Gizmos.color = new Color(0.2f, 0.6f, 1f, 0.25f);
-        Gizmos.DrawSphere(transform.position, raioInfluencia);
+        Gizmos.DrawSphere(centro, raioInfluencia);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(centro, 0.5f);
     }
 }

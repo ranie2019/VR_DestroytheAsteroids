@@ -15,12 +15,10 @@ public class PlacarRecords : MonoBehaviour
     {
         if (saveRecords == null)
         {
-            Debug.LogError("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
             return;
         }
 
         saveRecords.CarregarRecordsNoPlacar();
-        Debug.Log("📥 Placar carregado no início.");
     }
 
     /// <summary>
@@ -31,14 +29,12 @@ public class PlacarRecords : MonoBehaviour
     {
         if (pontoController == null)
         {
-            Debug.LogError("⚠️ PlacarRecords: PontoController não foi atribuído.");
             return;
         }
 
         pontuacaoFinalPendente = pontoController.GetPontosFinais();
         aguardandoNome = true;
 
-        Debug.Log($"✅ Pontuação final capturada: {pontuacaoFinalPendente}");
     }
 
     /// <summary>
@@ -50,19 +46,16 @@ public class PlacarRecords : MonoBehaviour
     {
         if (saveRecords == null)
         {
-            Debug.LogError("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
             return;
         }
 
         if (!aguardandoNome)
         {
-            Debug.LogWarning("⚠️ PlacarRecords: não existe pontuação pendente para salvar.");
             return;
         }
 
         if (pontuacaoFinalPendente < 0)
         {
-            Debug.LogWarning("⚠️ PlacarRecords: pontuação pendente inválida.");
             return;
         }
 
@@ -71,7 +64,6 @@ public class PlacarRecords : MonoBehaviour
 
         saveRecords.RegistrarNovoRecord(nomeJogador.Trim(), pontuacaoFinalPendente);
 
-        Debug.Log($"💾 Record salvo: {nomeJogador} - {pontuacaoFinalPendente}");
 
         pontuacaoFinalPendente = -1;
         aguardandoNome = false;
@@ -85,7 +77,6 @@ public class PlacarRecords : MonoBehaviour
         pontuacaoFinalPendente = -1;
         aguardandoNome = false;
 
-        Debug.Log("❌ Pontuação pendente cancelada.");
     }
 
     /// <summary>
@@ -111,11 +102,9 @@ public class PlacarRecords : MonoBehaviour
     {
         if (saveRecords == null)
         {
-            Debug.LogWarning("⚠️ PlacarRecords: SaveRecords não foi atribuído.");
             return;
         }
 
         saveRecords.CarregarRecordsNoPlacar();
-        Debug.Log("🔄 Placar recarregado manualmente.");
     }
 }

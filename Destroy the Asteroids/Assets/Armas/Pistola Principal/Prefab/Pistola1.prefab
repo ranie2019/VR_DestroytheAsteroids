@@ -91,7 +91,7 @@ GameObject:
   m_Layer: 0
   m_Name: Bullet Spawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1363045837080855188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071069, z: -0.000000029744111, w: 0.70710677}
-  m_LocalPosition: {x: 4.2, y: 0.33, z: -0}
+  m_LocalPosition: {x: 2, y: 0.33, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519397039241893720}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.3680002, y: -0.33599997, z: 0.10200006}
   m_LocalScale: {x: 0.19999999, y: 0.20000005, z: 0.27000004}
   m_ConstrainProportionsScale: 0
@@ -348,7 +348,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -529,9 +529,20 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: ea1e5b11f2bacf745bbd2cb552f05600, type: 3}
   bulletPrefab: {fileID: 5828822694952543620, guid: 3d160879b42a5474ea9bb042ff46ce4f,
     type: 3}
-  bulletSpeed: 2500
   bulletSpawnPoint: {fileID: 8330760567553590578}
-  fireRate: 0.2
+  fireRate: 0.01
+  distanciaExtraDoSpawn: 0.1
+  tempoIgnorarColisaoInicial: 0.1
+  collidersParaIgnorar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2586061105953181403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +591,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []

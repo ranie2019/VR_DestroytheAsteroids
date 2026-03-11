@@ -1,18 +1,22 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class AsteroidMovement : MonoBehaviour
 {
     [Header("Control the speed of the Asteroid")]
     [Tooltip("Initial speed of the asteroid.")]
     public float initialSpeed = 1f;
+
     [Tooltip("Maximum speed of the asteroid.")]
     public float maxSpeed = 10f;
+
     [Tooltip("Rate at which the speed increases.")]
     public float speedIncreaseRate = 0.5f;
 
     [Header("Control the rotational speed")]
     [Tooltip("Minimum rotational speed.")]
     public float rotationalSpeedMin = 5f;
+
     [Tooltip("Maximum rotational speed.")]
     public float rotationalSpeedMax = 15f;
 
@@ -22,28 +26,49 @@ public class AsteroidMovement : MonoBehaviour
 
     private float rotationalSpeed;
     private float asteroidSpeed;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
-        // Inicializa a velocidade do asteroide
         asteroidSpeed = Mathf.Max(initialSpeed, 0f);
 
-        // Define uma rotação inicial aleatória
         transform.rotation = Random.rotation;
 
-        // Define a velocidade de rotação aleatória dentro do intervalo
         rotationalSpeed = Random.Range(rotationalSpeedMin, rotationalSpeedMax);
+
+        if (movementDirection.sqrMagnitude <= 0.0001f)
+            movementDirection = Vector3.back;
+
+        movementDirection = movementDirection.normalized;
+
+        // velocidade inicial
+        rb.linearVelocity = movementDirection * asteroidSpeed;
+
+        // configuração recomendada para objeto espacial
+        rb.useGravity = false;
+        rb.linearDamping = 0f;
+        rb.angularDamping = 0f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Aumenta a velocidade do asteroide até o máximo permitido
-        asteroidSpeed = Mathf.Clamp(asteroidSpeed + speedIncreaseRate * Time.deltaTime, 0f, maxSpeed);
+        asteroidSpeed = Mathf.Clamp(
+            asteroidSpeed + speedIncreaseRate * Time.fixedDeltaTime,
+            0f,
+            maxSpeed
+        );
 
-        // Move o asteroide na direção especificada
-        transform.Translate(movementDirection.normalized * asteroidSpeed * Time.deltaTime, Space.World);
+        Vector3 direcaoAtual = rb.linearVelocity.sqrMagnitude > 0.0001f
+            ? rb.linearVelocity.normalized
+            : movementDirection;
 
-        // Gira o asteroide nos três eixos
-        transform.Rotate(new Vector3(1, 1, 1) * rotationalSpeed * Time.deltaTime);
+        rb.linearVelocity = direcaoAtual * asteroidSpeed;
+
+        transform.Rotate(Vector3.one * rotationalSpeed * Time.fixedDeltaTime);
     }
 }
